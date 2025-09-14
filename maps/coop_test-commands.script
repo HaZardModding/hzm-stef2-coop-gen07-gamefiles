@@ -1,0 +1,796 @@
+//Generation 7 Test Script
+//Used to test all coop script functions
+//if they are working properly
+
+
+void main();
+void coop_printMessage(string sMessage);
+float coop_isPowerOfGiven(float fValue,float fGiven);
+
+float coop_MAX_PLAYERS = 8;
+float coop_GAMETYPE = 1;
+
+vector TEST_vector_1;
+string TEST_string_1;
+float TEST_float_1;
+
+float coop_removeViewmodeTest_status;
+
+//coop test functions
+void coop_getActorType();
+void coop_scriptVariables();
+void coop_configStrings();
+void coop_subStringTest();
+void coop_toUpper_toLower();
+void coop_lengthTest();
+void coop_findTest();
+void coop_isDigitTest();
+void coop_timestamp();
+void coop_getClassOfTest();
+void coop_getPathnodeOriginTest();
+void coop_getFloatVectorTest();
+void coop_getLevelParamaterTest();
+void coop_iniTest();
+void coop_getMapByIpTest();
+void coop_getPhysicsVarTest();
+void coop_getLastActivatingEntityTest();
+void coop_getDoorStateTest();
+void coop_isSpectatorTest();
+void coop_traceHitsSkyTest();
+void coop_getLastAttackerTest();
+void coop_removeViewmodeTest();
+void coop_playerStats1Test();
+void coop_playerStats2Test();
+void coop_playerStats3Test();
+void coop_playerStats4Test();
+void coop_cameraTest();
+
+void main()
+{
+	//get gametype
+	coop_GAMETYPE = getCvarInt("g_gametype");
+
+	//set maxplayers
+	float maxPlayers;
+	maxPlayers = getCvarInt("sv_maxclients");
+	if(maxPlayers < coop_MAX_PLAYERS){
+		coop_MAX_PLAYERS = maxPlayers;
+	}
+	
+	$world.addAvailableViewMode("structuralintegrity");
+	
+	if(getCvar("mp_motd") == ""){
+		stuffcmd("seta mp_motd \"Test Message of the Day\"");
+	}
+	
+	spawn("camera","targetname","cam1");
+}
+void coop_printMessage(string sMessage)
+{
+	//singleplayer
+	if(coop_GAMETYPE == 0){
+		centerPrint(sMessage+"\n");
+		return;
+	}
+	
+	//multiplayer
+	float iPlayer;
+	entity ePlayer;
+	for(iPlayer=0;iPlayer<coop_MAX_PLAYERS;iPlayer++){
+		ePlayer = getEntity("*"+iPlayer);
+		if(doesEntityExist(ePlayer)){
+			ePlayer.hudprint(sMessage+"\n");
+		}
+	}
+}
+float coop_isPowerOfGiven(float fValue,float fGiven)
+{
+	float fValueCalc;
+	fValueCalc = (fValue / fGiven);
+	fValueCalc = floor(fValueCalc);
+	if((fValueCalc * fGiven) == fValue){
+		return 1;
+	}
+	return 0;
+}
+
+
+
+void coop_getActorType()
+//get actor type from actor entity
+{
+	coop_printMessage("coop_actorGetType $actor1:"+$actor1.coop_actorGetType());
+	coop_printMessage("coop_actorGetType $actor2:"+$actor2.coop_actorGetType());
+}
+
+void coop_scriptVariables()
+//get and set level script variables
+{
+	coop_setVectorVariable("TEST_vector_"+1,'0 1 0');
+	coop_setStringVariable("TEST_string_1","text");
+	coop_setFloatVariable("TEST_float_1",1.1);
+	coop_printMessage("script variables set: "+TEST_vector_1+","+TEST_string_1+","+TEST_float_1+"");
+	wait(2);
+	coop_printMessage(	"script variables get:\nTEST_vector_1="+coop_getVectorVariable("TEST_vector_1")+
+						"\nTEST_string_1="+coop_getStringVariable("TEST_string_1")+
+						"\nTEST_float_1="+coop_getFloatVariable("TEST_float_1"));
+}
+
+void coop_configStrings()
+//remove configstrings, to prevent error cl_parsegamestate, because to many strings are loaded into configstrings
+{
+	print("============CONFIGSTRINGS============\n");
+	//used to remove general cached strings
+	coop_configstringRemove("UnknownAmmo");
+	coop_configstringRemove("sysimg/icons/mp/award_mvp");
+	
+	//used to remove cached combat sounds from (Team) NPC
+	coop_configstringRemoveCombatSounds("chell");
+	print("============ ============\n");
+}
+
+void coop_subStringTest()
+//returns part of a string from iStart with length of iLength
+{
+	float iStart,iLength;
+	
+	//play with these numbers to test
+	iStart=84;
+	iLength=4;
+	
+	string sText;
+	sText = "This is a long Text, we use this to text a function, this function should extract a part only of the string";
+	sText = coop_subString(sText,iStart,iLength);
+	coop_printMessage("coop_subString(sText,"+iStart+","+iLength+"): '"+sText+"'");
+}
+
+void coop_toUpper_toLower()
+//returns upper and lower case transformed text
+{
+	string sTransformed1;
+	string sTransformed2;
+	
+	string sText;
+	sText = "Mixed, CAPITAL TEXT, lower text, mIxEd TeXt 123 hERe!";
+	
+	sTransformed1 = coop_toUpper(sText);
+	sTransformed2 = coop_toLower(sText);
+	
+	coop_printMessage("coop_toUpper: "+sTransformed1+"\ncoop_toLower: "+sTransformed2+"");
+}
+
+void coop_lengthTest()
+//returns length of string
+{
+	float iLength;
+	string sText;
+	sText = "AbCdEfGhIjKlMnOpQrStUvWxYz";
+	
+	//just for fun make it dynamic - pick random length
+	sText = coop_subString(sText,0, randomInt(coop_length(sText)) + 1);
+	
+	
+	iLength = coop_length(sText);
+	coop_printMessage("coop_length: "+iLength+" -> "+sText);
+}
+
+void coop_findTest()
+//find text inside text
+{
+	float iFound;
+	string sLetter;
+	
+	string sText;
+	sText = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	
+	//just for fun make it dynamic - pick random letter
+	sLetter = coop_subString(sText,(randomInt(coop_length(sText))),1);
+	
+	
+	iFound = coop_find(sText, sLetter);
+	
+	coop_printMessage("coop_find: "+sLetter+" fount at "+iFound);
+}
+
+void coop_isDigitTest()
+//check if a letter is a digit/numeric
+{
+	float iFound;
+	string sLetter;
+	string sYesNo;
+	
+	string sText;
+	sText = "A2C4E6G8J0L1N3P5R7T9V1X3Z";
+	
+	//just for fun make it dynamic - pick random letter
+	sLetter = coop_subString(sText,(randomInt(coop_length(sText))),1);
+	
+	
+	iFound = coop_isDigit(sLetter);
+	
+	sYesNo = "No";
+	if(iFound == 1){
+		sYesNo = "Yes";
+	}
+	
+	coop_printMessage("coop_isDigt: "+sLetter+" = "+sYesNo);
+}
+
+void coop_timestamp()
+//returns unix timestamp from server
+{
+	coop_printMessage("coop_getTimeStamp: "+ coop_getTimeStamp());
+}
+
+void coop_getClassOfTest()
+//returns classname of entity
+{
+	entity e;
+	float iRand;
+	iRand = randomInt(4);
+	e = getEntity("entity"+iRand);
+	if(!doesEntityExist(e)){
+		return;
+	}
+		
+	coop_printMessage("coop_getClassOf: "+e.getTargetName()+" is "+coop_getClassOf(e));
+	coop_printMessage("coop_getEntNum: "+e.getTargetName()+" has Entity Number: "+e.coop_getEntNum());
+	
+	
+	//make object blink so we know qhat it is - door won't blink, so open and close it
+	float iBlink;
+	for(iBlink=6;iBlink>0;iBlink--){
+		if(iRand == 0){ //door
+			if(coop_isPowerOfGiven(iBlink,2)){
+				e.open($world);
+			}
+			else{
+				e.close();
+			}
+		}else{ //other objects
+			if(coop_isPowerOfGiven(iBlink,2)){
+				e.hide();
+			}
+			else{
+				e.show();
+			}
+		}
+		wait(0.2);
+	}
+	e.show();
+	e.close();
+}
+
+void coop_getPathnodeOriginTest()
+{
+	string sPathnodeTargetName;
+	vector vPathNodeOrigin;
+	
+	//randomize pathnode
+	sPathnodeTargetName = "pathnode"+randomInt(3);
+	vPathNodeOrigin = coop_getPathnodeOrigin(sPathnodeTargetName);
+	
+	//spawn visual confirmation - should autodelete it self
+	spawn("models/fx/fx-explosion-console-blue.tik","origin",""+vPathNodeOrigin);
+	
+	coop_printMessage("coop_getPathnodeOrigin: "+sPathnodeTargetName+" is "+vPathNodeOrigin);
+}
+
+void coop_getFloatVectorTest()
+{
+	string s1;
+	string s2;
+	s1 = "test 0.885511121213 abc";
+	s2 = "22 11 33";
+	
+	coop_printMessage("coop_getFloat("+s1+"): "+coop_getFloat(s1));
+	coop_printMessage("coop_getVector("+s2+"): "+coop_getVector(s2));
+}
+
+void coop_getLevelParamaterTest()
+{
+	//load the level with parameter like coop_test-commands$parm1=test
+	
+	string sParam;
+	sParam = "parm1";
+	
+	string sValue;
+	sValue = coop_getLevelParamater(sParam);
+	
+	//if map was not load with correct parameter
+	if(sValue == ""){
+		coop_printMessage("Please load the level with parameter like this:");
+		coop_printMessage("map coop_test-commands$parm1=test");
+		return;
+	}
+	
+	coop_printMessage("coop_getLevelParamater("+sParam+"): "+sValue);
+}
+
+void coop_iniTest()
+{
+	//grab current trigger, then grab player activating it
+	entity eTrigger;
+	entity ePlayer;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	//--- Be aware that this is performance intense ---
+	//if no filename is given it will grab a file that has the same name as the level from
+	//the level specific files, like:	co-op/ini/mapname.ini
+	//this is also the only where you can write ini files to
+
+	string sValue;
+	string sFile;
+	string sCat;
+	string sKey;
+	float fResult;
+
+	sFile = "co-op/config/maplist.ini";
+	sCat = "categories";
+	sKey = randomInt( 7 ) + 1;
+	sValue = coop_getIniData(sCat,sKey,sFile);
+	coop_printMessage("coop_getIniData("+sCat+","+sKey+","+sFile+") - Value returned: '"+sValue+"'");
+	
+	sFile = "co-op/config/maplist.ini";
+	sCat = "categories";
+	sKey = "1";
+	
+	sValue = coop_getIniDataPlayer(ePlayer,sCat,sFile);
+	coop_printMessage("coop_getIniDataPlayer("+ePlayer.getTargetname()+","+sCat+","+sFile+") - Value returned: '"+sValue+"'");
+
+	sCat = "newCat";
+	sKey = "key"+(randomInt(10) + 1);
+	sValue = "val"+(randomInt(10) + 1);
+	
+	fResult = coop_setIniData(sCat,sKey,sValue);
+	coop_printMessage("coop_setIniData("+sCat+","+sKey+","+sValue+") - Value returned: '"+fResult+"'");
+	
+	
+	sCat = "newCat";
+	sKey = "key"+(randomInt(10) + 1);
+	sValue = "val"+(randomInt(10) + 1);
+	
+	fResult = coop_setIniData(sCat,sKey,sValue);
+	coop_printMessage("coop_setIniData("+sCat+","+sKey+","+sValue+") - Value returned: '"+fResult+"'");
+	
+	sCat = "playerCat";
+	sValue = "val"+(randomInt(10) + 1);
+	fResult = coop_setIniDataPlayer(ePlayer,sCat,sValue);
+	coop_printMessage("coop_setIniDataPlayer("+sCat+","+sKey+","+sValue+") - Value returned: '"+fResult+"'");
+}
+
+void coop_getMapByIpTest()
+{
+	coop_getMapByServerIp();
+}
+
+void coop_getPhysicsVarTest()
+{
+	coop_printMessage("$world.coop_getPhysicsVar(gravity): "+$world.coop_getPhysicsVar("gravity"));
+	coop_printMessage("$world.coop_getPhysicsVar(airaccelerate): "+$world.coop_getPhysicsVar("airaccelerate"));
+	coop_printMessage("$world.coop_getPhysicsVar(maxspeed): "+$world.coop_getPhysicsVar("maxspeed"));
+}
+
+void coop_getLastActivatingEntityTest()
+{
+	entity eLast;
+	eLast = $puzzle1.coop_getLastActivatingEntity();
+	coop_printMessage("$puzzle1.coop_getLastActivatingEntity(): "+eLast.getTargetName());
+	
+	//very primitive way to reset puuzle
+	wait(1);
+	$puzzle1.puzzleobject_reset();
+}
+
+void coop_getDoorStateTest()
+{
+	coop_printMessage("$door.coop_getDoorState(): "+$door.coop_getDoorState());
+}
+
+void coop_isSpectatorTest()
+{
+	//grab current trigger, then grab player activating it
+	entity eTrigger;
+	entity ePlayer;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	ePlayer = eTrigger.getLastActivatingEntity();
+	
+	coop_printMessage(ePlayer.getTargetName()+".coop_isSpectator("+ePlayer.coop_isSpectator()+")");
+	coop_printMessage(ePlayer.getTargetName()+".coop_isEntityInsideOfEntity("+ePlayer.coop_isEntityInsideOfEntity($box)+")");
+	wait(4);
+	
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	coop_printMessage(ePlayer.getTargetName()+".coop_isSpectator("+ePlayer.coop_isSpectator()+")");
+	coop_printMessage(ePlayer.getTargetName()+".coop_isEntityInsideOfEntity("+ePlayer.coop_isEntityInsideOfEntity($box)+")");
+}
+
+void coop_traceHitsSkyTest()
+{
+	//trace
+	$beam.angle(90);
+	coop_printMessage("$beam.coop_traceHitsSky('tag_horizontal',99999): "+$beam.coop_traceHitsSky("tag_horizontal" , 99999));
+	
+	wait(1);
+	$beam.angle(-1);
+	coop_printMessage("$beam.coop_traceHitsSky('tag_horizontal',99999): "+$beam.coop_traceHitsSky("tag_horizontal" , 99999));
+	
+	wait(1);
+	$beam.angle(270);
+	coop_printMessage("$beam.coop_traceHitsSky('tag_horizontal',99999): "+$beam.coop_traceHitsSky("tag_horizontal" , 99999));
+}
+
+void coop_getLastAttackerTest()
+{
+	entity eAttacker;
+	float fCounts;
+	string sTargetname;
+	for(fCounts=3;fCounts>0;fCounts--){
+		eAttacker = $victimBox.coop_getLastAttacker();		
+		if(!eAttacker){
+			sTargetname = "";
+		}
+		else{
+			sTargetname = eAttacker.getTargetName();
+		}
+		
+		coop_printMessage("$victimBox.coop_getLastAttacker(): '"+sTargetname+"'");
+		wait(1);
+	}
+}
+void coop_getLastAttackerExplodeTest()
+{
+	//this is used to check if the last attacker is actually updating correctly
+	$victimBox.selfdetonate();
+}
+
+void coop_removeViewmodeTest()
+{
+	//coop_removeViewmode
+	if(coop_removeViewmodeTest_status){
+		coop_removeViewmodeTest_status=0;
+		
+		$barrelViewMode.coop_removeViewmode("structuralintegrity");
+	}
+	else{
+		coop_removeViewmodeTest_status=1;
+	
+		$barrelViewMode.viewMode("structuralintegrity");
+		
+		coop_printMessage("Use Triceorder ViewMode Structural Integrity");
+	}
+	
+	//coop_boosterNearbyPlayer
+	wait(0.25);
+	float iCounts;
+	iCounts = 10;
+	while(iCounts){
+		$boostPlant.coop_boosterNearbyPlayer("armor",64,5,9999);
+		iCounts--;
+		wait(0.2);
+	}
+}
+
+void coop_playerStats1Test()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	string sLanguage;
+	string sName;
+	string sTargetname;
+	
+	sLanguage	= ePlayer.coop_getLanguage();
+	sName		= ePlayer.coop_getName();
+	sTargetname	= ePlayer.getTargetName();
+	coop_printMessage(sTargetname+", LANG: "+sLanguage+", NAME: "+sName);
+	
+	float iScore;
+	float iKills;
+	float iDeaths;
+	iScore		= ePlayer.coop_getScore();
+	iKills		= ePlayer.coop_getKills();
+	iDeaths		= ePlayer.coop_getDeaths();
+	coop_printMessage(sTargetname+", SCORE: "+iScore+", KILLS: "+iKills+", DEATHS: "+iDeaths);
+	
+	//add score
+	ePlayer.coop_addScore(1);
+	
+	
+	float fLastDamage;
+	string sTeam;
+	float fTeamScore;
+	fLastDamage		= ePlayer.coop_getLastDamaged();
+	sTeam			= ePlayer.coop_getTeamName();
+	fTeamScore		= ePlayer.coop_getTeamScore();
+	coop_printMessage(sTargetname+", LastDAMAGE: "+fLastDamage+", TEAM: "+sTeam+", TeamSCORE: "+fTeamScore);
+}
+
+void coop_playerStats2Test()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	string sTargetname;
+	string sTargetnameTarget;
+	vector vPlayerView;
+	vector vPlayerViewEndpos;
+	float fUserFov;
+	entity eTarget;
+	sTargetname			= ePlayer.getTargetName();
+	vPlayerView			= ePlayer.coop_getViewAngles();
+	eTarget				= ePlayer.coop_getTargetedEntity();
+	vPlayerViewEndpos	= ePlayer.coop_getViewtraceEndpos();
+	fUserFov			= ePlayer.coop_getUserFov();
+	if(doesEntityExist(eTarget)){
+		sTargetnameTarget = ePlayer.getTargetName();
+	}	
+	
+	coop_printMessage(sTargetname+", VIEWANGLE: "+vPlayerView+", TARGETENTITY: "+sTargetnameTarget+", VIEWENDPOS: "+vPlayerViewEndpos+", FOV: "+fUserFov);
+}
+
+void coop_playerStats3Test()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	string sTargetname;
+	sTargetname			= ePlayer.getTargetName();
+	
+	float bRunningState,bThirdPersonState;
+	float bRunningStatePrev,bThirdPersonStatePrev;
+	bRunningStatePrev = -1;
+	bThirdPersonStatePrev = -1;
+	
+	float iRounds;
+	iRounds = 90;
+	while(iRounds){
+		if(doesEntityExist(ePlayer)){
+			if(ePlayer.coop_checkCrouch()){
+				coop_printMessage(sTargetname+", pressing Crouch");
+			}
+			if(ePlayer.coop_checkJump()){
+				coop_printMessage(sTargetname+", pressing Jump");
+			}
+			if(ePlayer.coop_checkForward()){
+				coop_printMessage(sTargetname+", pressing Forward");
+			}
+			if(ePlayer.coop_checkBackward()){
+				coop_printMessage(sTargetname+", pressing Backward");
+			}
+			if(ePlayer.coop_checkLeft()){
+				coop_printMessage(sTargetname+", pressing Left");
+			}
+			if(ePlayer.coop_checkRight()){
+				coop_printMessage(sTargetname+", pressing Right");
+			}
+			if(ePlayer.coop_checkLeanRight()){
+				coop_printMessage(sTargetname+", pressing LeanRight");
+			}
+			if(ePlayer.coop_checkLeanLeft()){
+				coop_printMessage(sTargetname+", pressing LeanLeft");
+			}
+			if(ePlayer.coop_checkDropRune()){
+				coop_printMessage(sTargetname+", pressing DropRune");
+			}
+			if(ePlayer.coop_checkReload()){
+				coop_printMessage(sTargetname+", pressing Reload");
+			}
+			if(ePlayer.coop_checkUse()){
+				coop_printMessage(sTargetname+", pressing Use");
+			}
+			if(ePlayer.coop_checkFire()){
+				coop_printMessage(sTargetname+", pressing Fire");
+			}
+			if(ePlayer.coop_checkFirealt()){
+				coop_printMessage(sTargetname+", pressing AltFire");
+			}
+			
+			/* Disabled because it just spams - but it works
+			if(ePlayer.coop_checkAnyButton()){
+				coop_printMessage(sTargetname+", pressing Any Button");
+			}
+			*/
+			
+			if(ePlayer.coop_checkMenu()){
+				coop_printMessage(sTargetname+", in Menu");
+			}
+			
+			bThirdPersonState = ePlayer.coop_checkThirdperson();
+			if(bThirdPersonState != bThirdPersonStatePrev){
+				bThirdPersonStatePrev = bThirdPersonState;
+				if(bThirdPersonState){
+					coop_printMessage(sTargetname+", ThirdPerson on");
+				}else{
+					coop_printMessage(sTargetname+", ThirdPerson off");
+				}
+			}
+			
+			bRunningState = ePlayer.coop_checkRun();
+			if(bRunningState != bRunningStatePrev){
+				bRunningStatePrev = bRunningState;
+				if(bRunningState){
+					coop_printMessage(sTargetname+", Running on");
+				}else{
+					coop_printMessage(sTargetname+", Running off");
+				}
+			}
+		}
+		iRounds--;
+		wait(0.1);
+	}
+	
+}
+
+void coop_playerStats4Test()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	string sTargetname;
+	sTargetname			= ePlayer.getTargetName();
+	
+	vector vBackPackAttOff,vFlagAttOff;
+	vector vBackPackAttAng,vFlagAttAng;
+	
+	vBackPackAttOff		= ePlayer.coop_getBackpackAttachOffset();
+	vBackPackAttAng		= ePlayer.coop_getBackpackAttachAngles();
+	
+	vFlagAttOff			= ePlayer.coop_getFlagAttachOffset();
+	vFlagAttAng			= ePlayer.coop_getFlagAttachAngles();
+	
+	coop_printMessage(sTargetname+", Backback: offset:"+vBackPackAttOff+", Angle:"+vBackPackAttAng);
+	coop_printMessage(sTargetname+", Flag: offset:"+vFlagAttOff+", Angle:"+vFlagAttAng);
+}
+
+void coop_cameraTest()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+
+	$cam1.follow($t1);
+	ePlayer.coop_setCamera($cam1);
+	if(!ePlayer.coop_checkThirdperson()){
+		ePlayer.pointofView();
+	}
+	wait(3);
+	if(ePlayer.coop_checkThirdperson()){
+		ePlayer.pointofView();
+	}
+	ePlayer.coop_setCamera($null);
+}
+
+void coopWidgetCmdTest()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	ePlayer.addHud("okdialog");
+	ePlayer.coop_widgetCmd("OkDialogTitle","labeltext","Hello!");	
+	wait(1);
+	
+	if(!doesEntityExist(ePlayer)){ return; }
+	ePlayer.coop_widgetCmd("OkDialogTitle","labeltext","Hello!~I^see^what^you^are");
+	wait(1);
+	
+	if(!doesEntityExist(ePlayer)){ return; }
+	ePlayer.coop_widgetCmd("OkDialogTitle","labeltext","Hello!~I^see^what^you^are^doing!");
+	wait(1);
+	
+	if(!doesEntityExist(ePlayer)){ return; }
+	ePlayer.coop_widgetCmd("OkDialogTitle","labeltext","Hello!~I^see^what^you^are^doing!~There^is^a^Camera^near...");
+	wait(1);
+	
+	if(!doesEntityExist(ePlayer)){ return; }
+	ePlayer.coop_widgetCmd("OkDialogTitle","labeltext","Hello!~I^see^what^you^are^doing!~There^is^a^Camera^near...~~^^^^^^^^^^^^^^^^^^^SMILE!");
+	wait(2);
+	
+	if(!doesEntityExist(ePlayer)){ return; }
+	ePlayer.removeHud("okdialog");
+}
+
+void coop_testThread()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	ePlayer.hudprint("Hello There!\n");
+}
+
+void coop_playerThreadTest()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	ePlayer.coop_runThread("coop_testThread");
+}
+
+void coop_languageTest()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	string sTargetname;
+	sTargetname			= ePlayer.getTargetName();
+	float bLangDeu;
+	float bLangEng;
+	bLangDeu = ePlayer.coop_hasLanguageGerman();
+	bLangEng = ePlayer.coop_hasLanguageEnglish();
+	coop_printMessage(sTargetname+" Language - GERMAN: "+bLangDeu+", ENGLISH: "+bLangEng);
+}

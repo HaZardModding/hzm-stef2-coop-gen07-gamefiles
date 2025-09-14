@@ -1,0 +1,209 @@
+//created 2021.11.14 chrissstrahl, Germany, Ulm
+//
+//Cygnus Example Script
+//
+//Example Map to show how symbols can be used
+
+//================================
+//DECLARATIONS - makes sure the functions can be called in random order
+//================================
+void main();
+
+void setupLevel();
+void setupArchetypes();
+void setupSymbols();
+void setupSymbolsWalkHere(string stargetname,float fGreen);
+
+void puzzleSolved();
+void puzzleAreaScanned();
+void puzzleSolvedFederation();
+
+
+//================================
+//INCLUDES - load additional functionality from other scripts
+//================================
+#include "co-op/matrix/symbols.scr"
+#include "maps/global_scripts/global_common.scr"
+#include "maps/global_scripts/global_archetype.scr"
+
+
+//================================
+//This function is started by the game after the level is loaded completly
+//================================
+void main()
+{
+	//start the setup for the level
+	//-to keep main function lightweight this is in a seperate function
+	setupLevel();
+}
+
+//================================
+//do stuff here that needs to be done on level start
+//================================
+void setupLevel()
+{
+	symbols_main();
+
+	setupArchetypes();
+	setupSymbols();
+}
+
+//================================
+//execute functions to convert script_object brush to Archetype Models
+//================================
+//Interactive Types: Usable, TricorderUsable, Destructable, Location, MissionObjective, Teammate, Friendly, Enemy
+void setupArchetypes()
+{
+	//enterprise console
+	globalArchetype_Setup ( $archetypeConsoleLeft , "Usable" );
+	globalArchetype_Setup ( $archetypeConsoleCenter , "Usable" );
+	globalArchetype_Setup ( $archetypeConsoleRight , "Usable" );
+	
+	//Tricorder Platform Area
+	globalArchetype_Setup ( $archetypeScan0 , "TricorderUsable" );
+}
+
+//================================
+//execute functions to PLACE and REPLACE symbold
+//================================
+//For a list of symbols see: populateSymbolVars() above
+void setupSymbols()
+{
+	//symbols_spawnSymbolAt(string sSymbol, float fScale, float fVerticalOffset,entity eLocation,string sTargetname)
+	//symbols_replaceSymbol(string sSymbol, float fScale, float fVerticalOffset,entity eLocation,string sTargetname)
+
+
+	//spawn symbol at triggers, and keep trigger
+	symbols_spawnSymbolAt(SYMBOL_GLOVE, 0.5, 0,$triggerdoort3,"");
+	symbols_spawnSymbolAt(SYMBOL_GLOVE, 0.15, 7,$archetypeConsoleLeft,"");
+	symbols_spawnSymbolAt("coop_use.spr", 0.3,16,$archetypeConsoleCenter,"");
+	symbols_spawnSymbolAt("coop_modulate.spr", 1, 30,$puzzleArchetypeScan0,"giantTricorderSymbol");
+	
+	//spawn/replace symbol at entity, and remove entity
+	symbols_replaceSymbol(SYMBOL_GLOVE, 0.15, 0,$usesymbol0,"");
+	symbols_replaceSymbol("coop_modulate.spr", 0.5, 0,$tricordersymbol0,"");
+	symbols_replaceSymbol(SYMBOL_GLOVE, 0.15, 0,$usesymbol0,"");
+	
+	//show allmost all symbols there are - Middle row - using the above set variables
+	symbols_spawnSymbolAt(SYMBOL_ARROW_RED, 0.15, 10,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_ARROW_BLUE, 0.15, 20,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_ARMOR, 0.15, 30,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_TRANSPORTER, 0.15, 40,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_BOOTS, 0.15, 50,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_GLOVE, 0.15, 60,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_STAR, 0.09, 70,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_BOMB, 0.15, 80,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_FED, 0.15, 90,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_IMOD, 0.15, 100,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_BADGE, 0.15, 110,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_HYPO, 0.15, 120,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_MEDKIT, 0.15, 130,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_TARGET, 0.15, 140,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_EXPLOSIVE, 0.15, 150,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_DEATH, 0.15, 160,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_SNIPER, 0.15, 170,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_AMMO_F, 0.15, 180,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_AMMO_P, 0.15, 190,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_AMMO_I, 0.15, 200,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_TONGS, 0.15, 210,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_TARGET2, 0.15, 220,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_BOMB2, 0.15, 230,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_STAR2, 0.15, 240,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_MEDIC, 0.15, 250,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_PAD, 0.15, 260,$placeAllSymbolsHere,"");
+	symbols_spawnSymbolAt(SYMBOL_BOOTS2, 0.15, 270,$placeAllSymbolsHere,"");
+	
+	//left row
+	symbols_spawnSymbolAt("sysimg/icons/mp/cp_alpha_neutral.spr", 0.15, 10,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/cp_alpha_blue.spr", 0.15, 20,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/cp_alpha_red.spr", 0.15, 30,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/cp_beta_neutral.spr", 0.15, 40,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/cp_gamma_neutral.spr", 0.15, 50,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/cp_delta_neutral.spr", 0.15, 60,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/ctf_flagcarrier.spr", 0.15, 70,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/ctf_oneFlagTaken.spr", 0.15, 80,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/ctf_oneFlagMissing.spr", 0.15, 90,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/ctf_oneFlagInBase.spr", 0.15, 100,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/ctf_blueFlagTaken.spr", 0.15, 110,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/ctf_blueFlagMissing.spr", 0.15, 120,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/ctf_blueFlagInBase.spr", 0.15, 130,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/diffusion_bombOnground.spr", 0.15, 140,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/diffusion_bombArmed-red.spr", 0.15, 150,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/diffusion_bomber.spr", 0.15, 160,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/award_denied.spr", 0.15, 170,$placeAllSymbolsHere2,"");
+	symbols_spawnSymbolAt("sysimg/icons/mp/award_excellent.spr", 0.15, 180,$placeAllSymbolsHere2,"");
+	
+	//right row - using Coop Mod Symbols Shader - requires coop mod
+	symbols_spawnSymbolAt("coop_use.spr", 0.15, 10,$placeAllSymbolsHere3,"");
+	symbols_spawnSymbolAt("coop_modulate.spr", 0.15, 20,$placeAllSymbolsHere3,"");
+	symbols_spawnSymbolAt("coop_destroy.spr", 0.15, 30,$placeAllSymbolsHere3,"");
+	symbols_spawnSymbolAt("coop_bomb.spr", 0.15, 40,$placeAllSymbolsHere3,"");
+
+	//replace marker entities for walk here symbol
+	setupSymbolsWalkHere("walkhere",1); //green boots
+	setupSymbolsWalkHere("walknothere",0); //lilac boots
+}
+
+//================================
+//executed when door puzzle is solved
+//================================
+void puzzleSolved()
+{
+	//unloack and open door
+	$doorPuzzleLocked.unlock();
+	$doorPuzzleLocked.open($world);
+	$tricordersymbol0.remove();
+}
+
+//================================
+//executed when area puzzle is solved
+//================================
+void puzzleAreaScanned()
+{
+	//remove archetype
+	//remove tricorder symbol
+	$archetypeScan0.remove();
+	$giantTricorderSymbol.remove();
+}
+
+//================================
+//executed when area puzzle is solved
+//================================
+void puzzleSolvedFederation()
+{
+	$symbolmodulatefederation.remove();
+	wait(0.05);
+}
+
+//================================
+//grab continues named entities and replace them with symbols
+//================================
+void setupSymbolsWalkHere(string sTargetname,float fGreen)
+{
+	//continue grabbing and replacing as long as the next higher number in the targetname is present
+	//starts at 0 continues with 1 2 3 4 ...
+	//limit is 50
+	float fNumber;
+	float fLimit=50;
+	entity eReplaceMe;
+	string sSprite;
+	
+	sSprite=SYMBOL_BOOTS;
+	if(fGreen){
+		sSprite=SYMBOL_BOOTS2;
+	}
+	for(fNumber=0;fNumber<fLimit;fNumber++){
+		eReplaceMe = getEntity(sTargetname+""+fNumber);
+		//cprint("setupSymbolsWalkHere "+sTargetname+""+fNumber+"\n");
+		//print("setupSymbolsWalkHere "+sTargetname+""+fNumber+"\n");
+		
+		if(doesEntityExist(eReplaceMe)){
+			symbols_replaceSymbol(sSprite, 0.15, 0,eReplaceMe,"");
+			//cprint("setupSymbolsWalkHere"+fNumber+"\n");
+		}else{
+			//cprint("setupSymbolsWalkHere limit\n");
+			//print("setupSymbolsWalkHere limit\n");
+			fNumber = fLimit;
+		}
+	}
+}

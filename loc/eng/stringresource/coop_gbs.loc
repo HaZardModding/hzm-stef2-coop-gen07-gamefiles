@@ -1,0 +1,402 @@
+/////////////// HUDS AND MENUS /////////////////
+/////////////// HUDS AND MENUS /////////////////
+/////////////// HUDS AND MENUS /////////[b60021]
+Gbs3MonthsLater			"Three months later"
+GbsRisa					"Risa"
+GbsAntiochSystem		"Antioch System"
+GbsOberthSystem			"Oberth System"
+GbsTimeUntilColli		"Time until Collision"
+
+
+/////////////// BORG ENVIROMENT STUFF /////////////////
+/////////////// BORG ENVIROMENT STUFF /////////////////
+/////////////// BORG ENVIROMENT STUFF /////////////////
+
+BorgPlasmaConduitDesc1 "Plasma Conduit"
+BorgPlasmaConduitDesc2 "Plasma Conduit"
+BorgPlasmaConduitDesc3 "Description: Destructable object"
+BorgPlasmaConduitRadar "Plasma Conduit"
+
+
+
+/////////////// ENTERPRISE STARFLEET ACADEMY ENVIROMENT /////////////////
+/////////////// ENTERPRISE STARFLEET ACADEMY ENVIROMENT /////////////////
+/////////////// ENTERPRISE STARFLEET ACADEMY ENVIROMENT /////////////////
+
+EnterpriseDatapadDesc2 "Name: Datapad"
+EnterpriseDatapadDesc3 "Description: Tool used to input\nand store valuable data"
+
+EnterpriseReplicatorDesc2 "Name: Replicator"
+EnterpriseReplicatorDesc3 "Description: Use to replicate\nfood and other items"
+
+EnterpriseLaptopDesc2 "Name: Laptop"
+EnterpriseLaptopDesc3 "Description: Tool used to input\nand store valuable data"
+
+ReadyRoomDeskDesc2 "Name: Desk"
+ReadyRoomDeskDesc3 "Description: Used to hold valuable equipment"
+
+ReadyRoomShellDesc2 "Name: Conch Shell"
+ReadyRoomShellDesc3 " "
+
+ReadyRoomVaseDesc2 "Name: Vase"
+ReadyRoomVaseDesc3 "Description: Popular Room decoration"
+
+BootsSloppyDesc2 "Name: Boots"
+BootsSloppyDesc3 "Description: Boots strewn about"
+
+BridgeChairDesc2 "Name: Chair"
+BridgeChairDesc3 "Description: Chair designed for prolonged sitting"
+
+BridgeConsole1Desc2 "Name: Computer Console"
+BridgeConsole1Desc3 "Description: Computer console used to control\nand operate various functions."
+
+BridgeConsole4Desc2 "Name: Computer Console"
+BridgeConsole4Desc3 "Description: Computer console used to control\nand operate various functions."
+
+BridgeConsoleOuterLeftDesc2 "Name: Computer Console"
+BridgeConsoleOuterLeftDesc3 "Description: Computer console used to control\nand operate various functions."
+
+BridgeConsoleOuterRightDesc2 "Name: Computer Console"
+BridgeConsoleOuterRightDesc3 "Description: Computer console used to control\nand operate various functions."
+
+CaptainsChairDesc2 "Name: Chair"
+CaptainsChairDesc3 "Description: Chair designed for prolonged sitting"
+
+EnterpriseBedDesc2 "Name: Bed"
+EnterpriseBedDesc3 "Description: Used for resting."
+
+EnterpriseBenchDesc2 "Name: Bench"
+EnterpriseBenchDesc3 "Description: Designed to help relieve stress."
+
+EnterpriseChair1Desc2 "Name: Chair"
+EnterpriseChair1Desc3 "Description: Decorative furniture."
+
+EnterpriseChair2Desc2 "Name: Chair"
+EnterpriseChair2Desc3 "Description: Decorative furniture."
+
+EnterpriseChair3Desc2 "Name: Chair"
+EnterpriseChair3Desc3 "Description: Decorative furniture."
+
+EnterpriseCompStationDesc2 "Name: Enterprise Computer Station"
+EnterpriseCompStationDesc3 "Description: Used to operate and\nmaintain various systems."
+
+EnterpriseCompTerminalDesc2 "Name: Enterprise Computer Terminal"
+EnterpriseCompTerminalDesc3 "Description: Used for inputting\ndata into various systems."
+
+EnterpriseOfficeChairDesc2 "Name: Office Chair"
+EnterpriseOfficeChairDesc3 "Description: Decorative furniture."
+
+EnterpriseStoolDesc2 "Name: Stool"
+EnterpriseStoolDesc3 "Description: Decorative furniture."
+
+EnterpriseTable1Desc2 "Name: Table"
+EnterpriseTable1Desc3 "Description: Decorative furniture."
+
+EnterpriseTable2Desc2 "Name: Table"
+EnterpriseTable2Desc3 "Description: Decorative furniture."
+
+EnterpriseTable3Desc2 "Name: Table"
+EnterpriseTable3Desc3 "Description: Decorative furniture."
+
+EnterpriseTable4Desc2 "Name: Table"
+EnterpriseTable4Desc3 "Description: Decorative furniture."
+
+PantsFoldedDesc2 "Name: Pants"
+PantsFoldedDesc3 "Description: Clothing designed for\nHeavy Duty."
+
+ShirtFoldedDesc2 "Name: Shirt"
+ShirtFoldedDesc3 "Description: Clothing designed for\nHeavy Duty"
+
+WristGearDesc2 "Name: Wrist Gear"
+WristGearDesc3 "Description: Protective wrist gear."
+
+StarfleetMaleDesc1 "Andrew Jacobs"
+StarfleetMaleDesc2 "Name: Andrew Jacobs"
+StarfleetMaleDesc3 "Description: Science Officer"
+StarfleetMaleRadar "Andrew"
+
+StarfleetMale2Desc1 "Rocky Mobieuto"
+StarfleetMale2Desc2 "Name: Rocky Mobieuto"
+StarfleetMale2Desc3 "Description: Transporter Technician"
+StarfleetMale2Radar "Rocky"
+
+StarfleetMale3Desc1 "Kelav Stratton"
+StarfleetMale3Desc2 "Name: Kelav Stratton"
+StarfleetMale3Desc3 "Description: Security Officer"
+StarfleetMale3Radar "Kelav"
+
+StarfleetMale4Desc1 "Pat Jones"
+StarfleetMale4Desc2 "Name: Pat Jones"
+StarfleetMale4Desc3 "Description: Pilot"
+StarfleetMale4Radar "Pat"
+
+StarfleetFemaleDesc1 "Miranda Manaan"
+StarfleetFemaleDesc2 "Name: Miranda Manaan"
+StarfleetFemaleDesc3 "Description: Counselor"
+StarfleetFemaleRadar "Miranda"
+
+StarfleetFemale6Desc1 "N'Tol"
+StarfleetFemale6Desc2 "Name: N'Tol"
+StarfleetFemale6Desc3 "Description: Counselor"
+StarfleetFemale6Radar "N'Tol"
+
+Redshirt6Desc1 "Toni Devaldenebro"
+Redshirt6Desc2 "Name: Toni Devaldenebro"
+Redshirt6Desc3 "Description: Team member"
+Redshirt6Radar "Toni Devaldenebro"
+
+FunctionaryDesc1 "Mr. Stemmons"
+FunctionaryDesc2 "Name: Mr. Stemmons"
+FunctionaryDesc3 "Description: Civilian,\nStarfleet Functionary"
+FunctionaryRadar "Stemmons"
+
+BatlethDesc1 "Bat'leth"
+BatlethDesc2 "Name: Bat'leth"
+BatlethDesc3 "Description: Klingon melee weapon"
+BatlethRadar "Bat'leth"
+
+
+
+/////////////// ROMULAN ENVIROMENT /////////////////
+/////////////// ROMULAN ENVIROMENT /////////////////
+/////////////// ROMULAN ENVIROMENT /////////////////
+
+RomulanExplosiveCrateDesc1 "Ammonium Nitrate"
+RomulanExplosiveCrateDesc2 "Ammonium Nitrate"
+RomulanExplosiveCrateDesc3 "Description: Highly explosive compound"
+
+RomulanRebelM11RifleDesc2 "Romulan Rifle Soldier"
+RomulanRebelM11RifleDesc3 "Description: Bipedal lifeform\nfrom the planet Romulus"
+
+RomulanRebelM11PhotonDesc2 "Romulan Photon Lance Soldier"
+RomulanRebelM11PhotonDesc3 "Description: Bipedal lifeform\nfrom the planet Romulus"
+
+RomulanRebelM11GrenadeDesc2 "Romulan Grenadier"
+RomulanRebelM11GrenadeDesc3 "Description: Bipedal lifeform\nfrom the planet Romulus"
+
+RomRebelM11PistolDesc2 "Romulan Pistol Soldier"
+RomRebelM11PistolDesc3 "Description: Bipedal lifeform\nfrom the planet Romulus"
+
+RomulanRebelM11SniperDesc2 "Romulan Sniper"
+RomulanRebelM11SniperDesc3 "Description: Bipedal lifeform\nfrom the planet Romulus"
+
+RomulanSoldierRadar "Romulan Soldier"
+
+/////////////// DALLAS ENVIROMENT /////////////////
+/////////////// DALLAS ENVIROMENT /////////////////
+/////////////// DALLAS ENVIROMENT /////////////////
+
+DallasCrateDesc2	"Storage Crate"
+DallasCrateDesc3	"Description: Storage container"
+
+DallasBarrelDesc2	"Barrel"
+DallasBarrelDesc3	"Description: Storage container"
+
+ManualDoorReleaseDesc1	"Manual Door Release"
+ManualDoorReleaseDesc2	"Manual Door Release"
+ManualDoorReleaseDesc3	"Description: Use to manually\nopen doors"
+ManualDoorRadar			"Door Release"
+
+DoorPanelDesc1		"Door Panel"
+DoorPanelDesc2		"Door Panel"
+DoorPanelDesc3		"Description: Use to open doors"
+DoorPanelRadar		"Door Panel"
+
+/////////////// K7 ENVIROMENT /////////////////
+/////////////// K7 ENVIROMENT /////////////////
+/////////////// K7 ENVIROMENT /////////////////
+
+AndorianMaleDesc2 "Name: Andorian Mercenary"
+AndorianMaleDesc3 "Description: Andorian Male Lifeform;\nnotable features include two large\nantennae protruding from forehead;\nHome Planet: Andoria"
+
+
+
+/////////////// IDRYLL ENVIROMENT /////////////////
+/////////////// IDRYLL ENVIROMENT /////////////////
+/////////////// IDRYLL ENVIROMENT /////////////////
+
+IdryllRebelDesc1	"Idryll Rebel"
+IdryllRebelDesc2	"Idryll Rebel"
+IdryllRebelDesc3	"Description: Idryll are an elegant\n and dignified race\nthat was discovered by the Attrexian\ncivilization about 400 years ago.\nAccording to Idryll lore the Attrexians\ncame in, enslaved the prosperous Idryll\nempire and stole all technology\nfor their own race."
+IdryllRebelRadar	"Idryll Rebel"
+
+
+
+/////////////// HEALTH AND ENERGY TERMINALS /////////////////
+/////////////// HEALTH AND ENERGY TERMINALS /////////////////
+/////////////// HEALTH AND ENERGY TERMINALS /////////////////
+
+RomulanEnergyTerminalDesc1 "Energy Terminal"
+RomulanEnergyTerminalDesc2 "Energy Terminal"
+RomulanEnergyTerminalDesc3 "Description: Use to recharge\nweapon energy"
+
+RomulanHealthTerminalDesc1 "Health Terminal"
+RomulanHealthTerminalDesc2 "Health Terminal"
+RomulanHealthTerminalDesc3 "Description: Use to heal"
+
+KlingonEnergyTerminalDesc1 "Energy Terminal"
+KlingonEnergyTerminalDesc2 "Energy Terminal"
+KlingonEnergyTerminalDesc3 "Description: Use to recharge\nplasma weapon energy"
+
+KlingonHealthTerminalDesc1 "Health Terminal"
+KlingonHealthTerminalDesc2 "Health Terminal"
+KlingonHealthTerminalDesc3 "Description: Use to restore shield\nand health energy"
+
+EnterpriseHealthTerminalDesc1 "Health Terminal"
+EnterpriseHealthTerminalDesc2 "Health Terminal"
+EnterpriseHealthTerminalDesc3 "Description: Use to restore shield\nand health energy"
+
+EnterpriseEnergyTerminalDesc1 "Energy Terminal"
+EnterpriseEnergyTerminalDesc2 "Energy Terminal"
+EnterpriseEnergyTerminalDesc3 "Description: Use to recharge\nplasma weapon energy"
+
+KlingonHealthTerminalRadar "Health Terminal"
+KlingonEnergyTerminalRadar "Energy Terminal"
+BorgEnergyTerminalRadar "Energy Terminal"
+BorgHealthTerminalRadar "Health Terminal"
+HealthTerminalRadar "Health Terminal"
+EnergyTerminalRadar "Energy Terminal"
+IdryllEnergyTerminalRadar "Energy Dispenser"
+
+
+
+/////////////// GENERIC CONSOLES /////////////////
+/////////////// GENERIC CONSOLES /////////////////
+/////////////// GENERIC CONSOLES /////////////////
+
+RomulanSecurityConsoleDesc1			"Security Console"
+RomulanSecurityConsoleDesc2			"Security Console"
+RomulanSecurityConsoleDesc3			"Description: Use to gain access to\nSecurity related Operations"
+
+RomulanGenericConsoleDesc1			"Computer Console"
+RomulanGenericConsoleDesc2			"Computer Console"
+RomulanGenericConsoleDesc3			"Description: Use to operate"
+RomulanGenericConsoleRadar			"Computer Console"
+
+RomulanGenericUsableConsoleDesc1	"Computer Console"
+RomulanGenericUsableConsoleDesc2	"Computer Console"
+RomulanGenericUsableConsoleDesc3	"Description: Use to operate"
+
+SecurityConsoleRadar				"Computer Console"
+
+
+/////////////// STAMMHEIM /////////////////
+/////////////// STAMMHEIM /////////////////
+/////////////// STAMMHEIM /////////////////
+StammheimDesc1					"Alexander Stammheim"
+StammheimDesc2					"Name: Alexander Stammheim\nHeight: 182.88 cm\nWeight: 79.37 kg"
+StammheimDesc3					"Rank: Sigma Cell Operative\nDescription: Human Male Lifeform"
+StammheimRadar					"Stammheim"
+
+
+/////////////// GENERAL STRINGS /////////////////
+/////////////// GENERAL STRINGS /////////////////
+/////////////// GENERAL STRINGS /////////////////
+GBS10FindStammheimFailed		"You failed to find Alexander Stammheim"
+
+hint_lever1			"Forcefield switch"
+hint_lever2			"Forcefiled switch"
+hint_lever3			"Use to deactivate forcefield"
+hint_leverR			"Forcefield switch"
+
+gas_console1		"Console"
+gas_console2		"Console"
+gas_console3		"Turns of the gas"
+gas_consoleR		"Console"
+
+sc1			"Cerberus"
+sc2			"U.S.S Atlantic - N.C.C. 2004"
+sc3			"Shuttlecraft 15\nCerberus"
+scR			"Cerberus"
+
+enviro1			"Main Computer Access"
+enviro2			"Enviromental Controls"
+enviro3			"Engineering Vent Controls\nWARNING Vent Shaft\nCleaning In Progress\nDo Not Use"
+enviroR			"Main Computer Access"
+
+comp1			"Main Computer Access"
+comp2			"Propulsion Controls"
+comp3			"Main Computer\nPropulsion Controls\nWarp Drive Systems"
+compR			"Main Computer Access"
+
+td1			"Power Relays"
+td2			"Cargo Bay 4 EPS Access Panel"
+td3			"Jefferies Tube Access\nPower Re-routed for\nMaintenance on Enviromental Systems"
+tdR			"Power Relays"
+
+compa1		"Main Computer Access"
+compa2		"Diagnostic Cycle in Progress"
+compa3		"Main Computer\nGravity Controls"
+compaR		"Main Computer Access"
+
+compb1		"Main Computer Access"
+compb2		"Diagnostic Cycle in Progress"
+compb3		"Main Computer\nWeapon Controls"
+compbR		"Main Computer Access"
+
+tub1		"Emergency Jefferies Tube Access"
+tub2		"Control Matrix Activated"
+tub3		"Emergency Systems Online"
+tubR		"Emergency Access"
+
+exp1		"Console"
+exp2		"Security lockout active"
+exp3		"Use to create access"
+expR		"Console"
+
+beam1		"Transporterconsole"
+beam2		"Security lockout active"
+beam3		"Use to activate energy for\ntransporter again"
+beamR		"Transporterconsole"
+
+mdoor1		"Console"
+mdoor2		"opens maindoor of shuttlebay"
+mdoor3		"Security lockout active"
+mdoorR		"Console"
+
+sdoor1		"Remote Shuttle Door Controls"
+sdoor2		"Shuttle 124\nRemote Door Control"
+sdoor3		"Shuttle 124: Cerberus\nU.S.S. Atlantic N.C.C. 2004\nShuttle Craft 15"
+sdoorR		"Remote Access"
+
+/////////////// OBJECTIVES /////////////////
+/////////////// OBJECTIVES /////////////////
+/////////////// OBJECTIVES /////////////////
+
+getToBar				"Go to the bar."
+findBrandy				"Find Saurian Brandy for the captain."
+getToEngineering		"Go to Engineering."
+SABOTAGEEngines			"Get to main computer control and plant a virus."
+getToCargoBay			"Reach a shuttle craft."
+goToBridge				"Go to the bridge of the warbird."
+WARBIRD1BeamOut			"Reroute power to the transporter and beam off the ship."
+findEntrance			"Find an entrance to the remains of the outpost."
+GBS10FindStammheim		"Find Alexander Stammheim. He will be in a holding cell."
+GBS10Escape				"Get to Stammheim's shuttle and escape with Stammheim."
+
+
+
+/////////////// GLOBALSTRINGS ENVIROMENT already in globalstrings.loc /////////////////
+/////////////// GLOBALSTRINGS ENVIROMENT already in globalstrings.loc /////////////////
+/////////////// GLOBALSTRINGS ENVIROMENT already in globalstrings.loc /////////////////
+
+//RomulanSoldierM10RifleDesc2
+//RomulanSoldierM10RifleDesc3
+
+//RomulanSoldierM10PistolDesc2
+//RomulanSoldierM10PistolDesc3
+
+//RomulanInstGuardM10PistolDesc2
+//RomulanInstGuardM10PistolDesc3
+
+//HumanMercMaleDesc2
+//HumanMercMaleDesc3
+
+//RomulanRebelM2PistolDesc2
+//RomulanRebelM2PistolDesc3
+
+//RomulanRebelM2RifleDesc2
+//RomulanRebelM2RifleDesc3
+
+//HumanMercFemaleDesc2
+//HumanMercFemaleDesc3

@@ -1,0 +1,41 @@
+menu "coopTimerBlue" 132 48 from_right 1
+bgcolor 0 0 0 0
+align right centery
+//noresize
+depth 0.4
+hideDuringLoad
+
+resource
+Label
+{
+rect 0 0 128 32
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 0.00 0.00 0.00 0.00
+borderstyle "NONE"
+shader bosshud/bkg2
+}
+
+resource
+Label
+{
+name "coopTimerBlueName" //[b60011] chrissstrahl - upgrade for coop usage
+rect 10 0 108 16
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 0.50 0.50 0.50 0.00
+borderstyle "NONE"
+linkcvar coop_timerBlue
+}
+
+resource
+Label
+{
+rect 9 16 110 8
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 0.50 0.50 0.50 0.00
+borderstyle "OUTLINE_BORDER"
+statbar_shader bosshud/bar2
+playerstat mp_generic1
+statbar horizontal 0 100
+statbardirection right
+}
+end.

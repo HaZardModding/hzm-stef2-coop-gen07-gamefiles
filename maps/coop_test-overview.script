@@ -1,0 +1,51 @@
+//Level: coop_test-overview - Example and test level
+//Function declarations
+void main();
+void objective1_complete();
+void objective1_failed();
+void coop_missionFailure();
+void coop_endLevel();
+
+//include the coop mod master files
+#include "co-op/matrix/main.scr"
+
+//main is started once the level has fully loaded
+void main()
+{
+	//the variables need to be inizialised to be accsessed via the gamex86.dll
+	coop_string_story = "Story of my Life...";			//background story of this mission
+	coop_string_levelAuthor = "AuthorName";		//level author
+	coop_string_objectiveTacticalInfo1 = "Tactical info 1";	//this sets Tactical  text
+	coop_string_objectiveItem1 = "Find the end location of the level"; //this sets objective1 text
+	coop_string_objectiveItem2 = "Do not go up the stairs!"; //this sets objective2 text
+	//set spawn weapons for all, players
+	coop_string_weapon1 = "models/weapons/worldmodel-Tricorder-stx.tik";
+	coop_string_weapon2 = "models/weapons/worldmodel-Phaser-stx.tik";
+	//set objective as incomplete – and show it
+	globalCoop_objectives_set("objective1 short description ", "incomplete", 1, 1); 
+	globalCoop_objectives_set("objective2 short description ", "incomplete", 2, 1); 
+}
+void objective1_complete()
+{
+	globalCoop_objectives_set("objective1 short description", "complete", 1, 1); //set as completed
+	wait( 6 );
+	thread coop_endLevel(); //activate level end
+}
+void objective1_failed()
+ {
+	//set objective as failed – and show it
+	globalCoop_objectives_set("Find level end" , "failed", 1, 1); //set as failed in the Objectives menu
+	globalCoop_objectives_set("No stairs" , "failed", 2, 1); //set as failed in the Objectives menu
+	thread coop_missionFailure(); //start mission failure
+}
+void coop_missionFailure()
+{
+	wait( 1.5 );
+	globalCoop_mission_failWithReason( "You took the stairs..." ); //Use "default" to have the game pick a reason
+}
+
+void coop_endLevel()
+{
+	wait( 2.5 );
+	thread globalCoop_mission_completed( "secret1" ); //Set next map to load
+}

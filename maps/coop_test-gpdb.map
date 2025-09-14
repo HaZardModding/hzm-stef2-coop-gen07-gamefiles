@@ -1,0 +1,286 @@
+{
+"classname" "worldspawn"
+"angle" "270"
+// brush 0
+{
+( -96 -752 0 ) ( -168 -752 0 ) ( -168 -792 0 ) common/caulk -32 16 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -120 -760 16 ) ( -80 -760 16 ) ( -80 -784 16 ) k-7_starbase/k7_cfloor2 -320 -32 0 0.25 0.25 0 0 0 +surfaceparm detail 
+( -120 -776 16 ) ( -80 -776 16 ) ( -64 -792 0 ) starfleet/sfcarpet3 -32 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -80 -816 16 ) ( -80 -744 16 ) ( -64 -744 0 ) starfleet/sfcarpet3 -32 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -80 -712 16 ) ( -120 -712 16 ) ( -136 -696 0 ) starfleet/sfcarpet3 -32 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -152 -752 16 ) ( -152 -824 16 ) ( -168 -824 0 ) starfleet/sfcarpet3 -32 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 1
+{
+( -216 -752 0 ) ( -288 -752 0 ) ( -288 -792 0 ) common/caulk 16 16 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -240 -760 16 ) ( -200 -760 16 ) ( -200 -784 16 ) k-7_starbase/k7_cfloor2 -352 -32 0 0.25 0.25 0 0 0 +surfaceparm detail 
+( -240 -776 16 ) ( -200 -776 16 ) ( -184 -792 0 ) starfleet/sfcarpet3 -48 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -200 -816 16 ) ( -200 -744 16 ) ( -184 -744 0 ) starfleet/sfcarpet3 -48 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -200 -712 16 ) ( -240 -712 16 ) ( -256 -696 0 ) starfleet/sfcarpet3 -48 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -272 -752 16 ) ( -272 -824 16 ) ( -288 -824 0 ) starfleet/sfcarpet3 -48 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 2
+{
+( -456 -752 0 ) ( -528 -752 0 ) ( -528 -792 0 ) common/caulk -16 16 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -480 -760 16 ) ( -440 -760 16 ) ( -440 -784 16 ) k-7_starbase/k7_cfloor2 -416 -32 0 0.25 0.25 0 0 0 +surfaceparm detail 
+( -480 -776 16 ) ( -440 -776 16 ) ( -424 -792 0 ) starfleet/sfcarpet3 -80 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -440 -816 16 ) ( -440 -744 16 ) ( -424 -744 0 ) starfleet/sfcarpet3 -80 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -440 -712 16 ) ( -480 -712 16 ) ( -496 -696 0 ) starfleet/sfcarpet3 -80 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -512 -752 16 ) ( -512 -824 16 ) ( -528 -824 0 ) starfleet/sfcarpet3 -80 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 3
+{
+( -336 -752 0 ) ( -408 -752 0 ) ( -408 -792 0 ) common/caulk 0 16 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -360 -760 16 ) ( -320 -760 16 ) ( -320 -784 16 ) k-7_starbase/k7_cfloor2 -384 -32 0 0.25 0.25 0 0 0 +surfaceparm detail 
+( -360 -776 16 ) ( -320 -776 16 ) ( -304 -792 0 ) starfleet/sfcarpet3 -64 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -320 -816 16 ) ( -320 -744 16 ) ( -304 -744 0 ) starfleet/sfcarpet3 -64 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -320 -712 16 ) ( -360 -712 16 ) ( -376 -696 0 ) starfleet/sfcarpet3 -64 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -392 -752 16 ) ( -392 -824 16 ) ( -408 -824 0 ) starfleet/sfcarpet3 -64 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 4
+{
+( -576 -752 0 ) ( -648 -752 0 ) ( -648 -792 0 ) common/caulk -32 16 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -600 -760 16 ) ( -560 -760 16 ) ( -560 -784 16 ) k-7_starbase/k7_cfloor2 -448 -32 0 0.25 0.25 0 0 0 +surfaceparm detail 
+( -600 -776 16 ) ( -560 -776 16 ) ( -544 -792 0 ) starfleet/sfcarpet3 -96 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -560 -816 16 ) ( -560 -744 16 ) ( -544 -744 0 ) starfleet/sfcarpet3 -96 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -560 -712 16 ) ( -600 -712 16 ) ( -616 -696 0 ) starfleet/sfcarpet3 -96 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -632 -752 16 ) ( -632 -824 16 ) ( -648 -824 0 ) starfleet/sfcarpet3 -96 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 5
+{
+( -696 -752 0 ) ( -768 -752 0 ) ( -768 -792 0 ) common/caulk -48 16 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -720 -760 16 ) ( -680 -760 16 ) ( -680 -784 16 ) k-7_starbase/k7_cfloor2 -480 -32 0 0.25 0.25 0 0 0 +surfaceparm detail 
+( -720 -776 16 ) ( -680 -776 16 ) ( -664 -792 0 ) starfleet/sfcarpet3 -112 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -680 -816 16 ) ( -680 -744 16 ) ( -664 -744 0 ) starfleet/sfcarpet3 -112 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -680 -712 16 ) ( -720 -712 16 ) ( -736 -696 0 ) starfleet/sfcarpet3 -112 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -752 -752 16 ) ( -752 -824 16 ) ( -768 -824 0 ) starfleet/sfcarpet3 -112 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 6
+{
+( -936 -752 0 ) ( -1008 -752 0 ) ( -1008 -792 0 ) common/caulk 48 16 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -960 -760 16 ) ( -920 -760 16 ) ( -920 -784 16 ) k-7_starbase/k7_cfloor2 480 -32 0 0.25 0.25 0 0 0 +surfaceparm detail 
+( -960 -776 16 ) ( -920 -776 16 ) ( -904 -792 0 ) starfleet/sfcarpet3 112 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -920 -816 16 ) ( -920 -744 16 ) ( -904 -744 0 ) starfleet/sfcarpet3 112 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -920 -712 16 ) ( -960 -712 16 ) ( -976 -696 0 ) starfleet/sfcarpet3 112 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -992 -752 16 ) ( -992 -824 16 ) ( -1008 -824 0 ) starfleet/sfcarpet3 112 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 7
+{
+( -1112 -816 8 ) ( -168 -816 8 ) ( -168 -816 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 -944 8 ) ( 0 0 8 ) ( 0 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -1024 -944 8 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -112 -808 8 ) ( -1056 -808 8 ) ( -112 -808 0 ) starfleet/sfcarpet3 0 0 0 0.5 0.5 0 0 0 
+( -388 -1032 384 ) ( -382 -1024 384 ) ( -376 -1032 384 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -304 -1024 0 ) ( -312 -1032 0 ) ( -296 -1032 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 8
+{
+( -80 0 -8 ) ( -1024 0 -8 ) ( -1024 -944 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -1024 -944 8 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 0 ) ( -80 0 0 ) ( -1024 -944 0 ) starfleet/sfcarpet3b 0 0 0 0.5 0.5 0 0 0 
+( -24 -512 -8 ) ( -8 -512 -8 ) ( -16 -512 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -120 -808 -8 ) ( -128 -808 -8 ) ( -124 -808 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 -784 -8 ) ( 0 -808 -8 ) ( 0 -796 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 9
+{
+( -80 0 -8 ) ( -1024 0 -8 ) ( -1024 -944 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 -944 8 ) ( 0 0 8 ) ( 0 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -80 0 8 ) ( -1024 0 8 ) ( -1024 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -1024 -944 8 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 0 ) ( -80 0 0 ) ( -1024 -944 0 ) starfleet/sfcarpet3b 0 0 0 0.5 0.5 0 0 0 
+( -8 -512 -8 ) ( -24 -512 -8 ) ( -16 -512 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 10
+{
+( -816 -752 0 ) ( -888 -752 0 ) ( -888 -792 0 ) common/caulk 0 16 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -840 -760 16 ) ( -800 -760 16 ) ( -800 -784 16 ) k-7_starbase/k7_cfloor2 0 -32 0 0.25 0.25 0 0 0 +surfaceparm detail 
+( -840 -776 16 ) ( -800 -776 16 ) ( -784 -792 0 ) starfleet/sfcarpet3 0 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -800 -816 16 ) ( -800 -744 16 ) ( -784 -744 0 ) starfleet/sfcarpet3 0 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -800 -712 16 ) ( -840 -712 16 ) ( -856 -696 0 ) starfleet/sfcarpet3 0 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -872 -752 16 ) ( -872 -824 16 ) ( -888 -824 0 ) starfleet/sfcarpet3 0 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 11
+{
+( -80 0 0 ) ( -1024 0 0 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 -808 8 ) ( -88 -808 8 ) ( -88 -808 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 8 -944 8 ) ( 8 0 8 ) ( 8 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -80 0 8 ) ( -1024 0 8 ) ( -1024 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 216 8 ) ( 0 -728 8 ) ( 0 216 0 ) starfleet/sfcarpet3 0 0 0 0.5 0.5 0 0 0 
+( -388 -1024 384 ) ( -382 0 384 ) ( -376 -1024 384 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 12
+{
+( -80 0 0 ) ( -1024 0 0 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 -944 8 ) ( 0 0 8 ) ( 0 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -80 8 8 ) ( -1024 8 8 ) ( -1024 8 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -1024 -944 8 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -80 0 8 ) ( -1024 0 0 ) starfleet/sfcarpet3 0 0 0 0.5 0.5 0 0 0 
+( -388 0 384 ) ( -382 8 384 ) ( -376 0 384 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 13
+{
+( -80 0 0 ) ( -1024 0 0 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 -808 8 ) ( -88 -808 8 ) ( -88 -808 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -80 0 8 ) ( -1024 0 8 ) ( -1024 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 0 8 ) ( -1032 -944 8 ) ( -1032 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 -728 8 ) ( -1024 216 8 ) ( -1024 -728 0 ) starfleet/sfcarpet3 0 0 0 0.5 0.5 0 0 0 
+( -388 -1024 384 ) ( -382 0 384 ) ( -376 -1024 384 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 14
+{
+( -1033 -944 448 ) ( -1033 0 448 ) ( -89 0 448 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 -808 8 ) ( -88 -808 8 ) ( -88 -808 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 -944 8 ) ( 0 0 8 ) ( 0 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -80 0 8 ) ( -1024 0 8 ) ( -1024 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -1024 -944 8 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -988 0 384 ) ( -988 -944 384 ) ( -44 0 384 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 
+}
+}
+// entity 1
+{
+"classname" "char_starfleet_teacher_teacher-male3"
+"model" "models/char/starfleet_teacher-male3.tik"
+"ai_off" "1"
+"targetname" "sfteacher"
+"origin" "-956.00 -748.00 16.00"
+"angle" "90"
+"anim" "idle2"
+}
+// entity 2
+{
+"anim" "idle2"
+"angle" "90"
+"origin" "-836.00 -748.00 16.00"
+"targetname" "romulanhound"
+"ai_off" "1"
+"model" "models/char/romulan-hound.tik"
+"classname" "char_romulan_m10_hound-normal"
+}
+// entity 3
+{
+"scale" "0.50"
+"classname" "char_bugs_queen-bug"
+"model" "models/char/bug_queen.tik"
+"ai_off" "1"
+"targetname" "bugqueen"
+"origin" "-712.00 -736.00 16.00"
+"angle" "90"
+}
+// entity 4
+{
+"classname" "char_borg_boss"
+"model" "models/char/borg_boss.tik"
+"ai_off" "1"
+"targetname" "borgboss"
+"origin" "-593.00 -737.00 16.00"
+"angle" "90"
+}
+// entity 5
+{
+"classname" "char_attrexian_m4_colonist_noweapon-male1"
+"model" "models/char/attrexian-m4-noweapon-colonist-m.tik"
+"ai_off" "1"
+"targetname" "archeopendra0"
+"origin" "-468.00 -740.00 16.00"
+"angle" "90"
+}
+// entity 6
+{
+"scale" "0.50"
+"classname" "char_alien_boss_quadraped"
+"model" "models/char/alien-type6-quad.tik"
+"ai_off" "1"
+"targetname" "archeopendra"
+"origin" "-361.00 -753.00 16.00"
+"angle" "90"
+}
+// entity 7
+{
+"origin" "-116.00 -740.00 16.00"
+"ai_off" "1"
+"targetname" "inigor"
+"angle" "90"
+"model" "models/char/inigor-noweapon.tik"
+"classname" "char_npc_inigor_inigor-noweapon"
+}
+// entity 8
+{
+"angle" "90"
+"origin" "-230.00 -742.00 16.00"
+"targetname" "lurker"
+"ai_off" "1"
+"model" "models/char/alien-type1a-lurker-esrb.tik"
+"classname" "char_alien_lurker"
+}
+// entity 9
+{
+"angle" "270"
+"classname" "info_player_deathmatch"
+"origin" "-752 -48 0"
+"targetname" "ipd1"
+"NOTE" "marks where a player can spawn in multiplayer, also sets facing direction"
+}
+// entity 10
+{
+"classname" "info_player_start"
+"angle" "270"
+"origin" "-528 -48 0"
+"NOTE" "marks where the player spawns in SIngleplayer, also sets facing direction"
+}
+// entity 11
+{
+"targetname" "ipd2"
+"origin" "-688 -48 0"
+"classname" "info_player_deathmatch"
+"angle" "270"
+"NOTE" "marks where a player can spawn in multiplayer, also sets facing direction"
+}
+// entity 12
+{
+"angle" "270"
+"classname" "info_player_deathmatch"
+"origin" "-624 -48 0"
+"targetname" "ipd3"
+"NOTE" "marks where a player can spawn in multiplayer, also sets facing direction"
+}
+// entity 13
+{
+"targetname" "ipd4"
+"origin" "-560 -48 0"
+"classname" "info_player_deathmatch"
+"angle" "270"
+"NOTE" "marks where a player can spawn in multiplayer, also sets facing direction"
+}
+// entity 14
+{
+"angle" "270"
+"classname" "info_player_deathmatch"
+"origin" "-496 -48 0"
+"targetname" "ipd5"
+"NOTE" "marks where a player can spawn in multiplayer, also sets facing direction"
+}
+// entity 15
+{
+"targetname" "ipd6"
+"origin" "-432 -48 0"
+"classname" "info_player_deathmatch"
+"angle" "270"
+"NOTE" "marks where a player can spawn in multiplayer, also sets facing direction"
+}
+// entity 16
+{
+"angle" "270"
+"classname" "info_player_deathmatch"
+"origin" "-368 -48 0"
+"targetname" "ipd7"
+"NOTE" "marks where a player can spawn in multiplayer, also sets facing direction"
+}
+// entity 17
+{
+"targetname" "ipd8"
+"origin" "-304 -48 0"
+"classname" "info_player_deathmatch"
+"angle" "270"
+"NOTE" "marks where a player can spawn in multiplayer, also sets facing direction"
+}

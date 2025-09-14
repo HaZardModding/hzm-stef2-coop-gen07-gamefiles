@@ -1,0 +1,109 @@
+//-----------------------------------------------------------------------------------
+// Script By:	Christian Sebastian Strahl (Chrissstrahl)
+// Created on:	2008.??.??
+// E-Mail:		chrissstrahl@yahoo.de
+//-----------------------------------------------------------------------------------
+// CONTAINS SERVER RELATED FUNCTIONS
+//-----------------------------------------------------------------------------------
+
+
+void globalCoop_server_itemUnlockedSet(string sWeaponModel)
+//----------------------------------------------------------------------
+// Fake function, will be catched inside gamex86.dll and managed via the c++ code and stored in coop_status.ini
+//----------------------------------------------------------------------
+{
+	//keep this dummy function, it is needed for the c++ code to work with the script
+	thread globalCoop_server_itemUnlockedSet_dll(sWeaponModel);
+}
+void globalCoop_server_itemUnlockedSet_dll(string sWeaponModel)
+//----------------------------------------------------------------------
+// Fake function, will be catched inside gamex86.dll and managed via the c++ code and stored in coop_status.ini
+//----------------------------------------------------------------------
+{
+	//keep this dummy function, it is needed for the c++ code to work with the script
+}
+void globalCoop_server_itemLockedSet(string sWeaponModel)
+//----------------------------------------------------------------------
+// Fake function, will be catched inside gamex86.dll and managed via the c++ code and stored in coop_status.ini
+//----------------------------------------------------------------------
+{
+	//keep this dummy function, it is needed for the c++ code to work with the script
+	thread globalCoop_server_itemLockedSet_dll(sWeaponModel);
+}
+void globalCoop_server_itemLockedSet_dll(string sWeaponModel)
+//----------------------------------------------------------------------
+// Fake function, will be catched inside gamex86.dll and managed via the c++ code and stored in coop_status.ini
+//----------------------------------------------------------------------
+{
+	//keep this dummy function, it is needed for the c++ code to work with the script
+}
+
+void globalCoop_server_loadGivenMapNow(string sMap)
+//----------------------------------------------------------------------
+// loads given map, handeling all other dependencies
+//----------------------------------------------------------------------
+{
+	//the games does create a savegame for sublevel in base/config/save
+	
+	//[b607] chrissstrahl - execute this function but once
+	if(coop_integer_serverLoadingMap){
+		globalCoop_main_print("COOP: server already loading map");
+		return;
+	}
+	coop_integer_serverLoadingMap=1;
+
+//WARNING!!!!! If we would have a delay here, the game gets stuck in the
+//loading screen when firing up a server with sv_maxclients < 1 while trying to correct
+	if(sMap == ""){
+		globalCoop_main_print("globalCoop_server_loadGivenMapNow()->EMPTY MAPNAME! - LOADING zoo1");
+		sMap = "zoo1";
+	}
+	
+	//set map to load on reboot to server config (if writeable)
+	stuffCMD("seta map \"" + sMap + "\"\n");
+	
+	//[b607] chrissstrahl - no intermission or it will seem like the server has crashed until intermissiontime is up
+	noIntermission();
+	//[b607] chrissstrahl - overwrite callvote nextmap		
+	nextmap(sMap);
+	
+	//[b607] chrissstrahl - have a standard way to change levels
+	cvar_string_mapname = sMap;
+	globalCoop_level_triggerLevelChange();
+}
+
+void globalCoop_server_checkAllMaps()
+//----------------------------------------------------------------------
+// TEST EVERY SINGLE MAP IF IT DOES NOT CHRASH! START WITH THE MAP 'secret1'
+//----------------------------------------------------------------------
+{
+	if(cvar_bool_coop_developer){
+		if(getCvarInt("coop_diag") == 1)
+		{
+			$world.time_scale(3);
+			float fTime=10;
+			globalCoop_main_countDown("^5SERVER^3 IS IN ^5DIAGNOSE-MODE^3, NEXT MAP ^5LOADING^3 IN^5::^5 ",fTime);
+			$world.time_scale(1);
+			globalCoop_level_callReliably("coop_endLevel");
+		}else{
+			$world.time_scale(1);
+		}
+	}
+}
+
+void globalCoop_server_listenServerControll()
+//----------------------------------------------------------------------
+// IMPORTANT RUTINE TO MANAGE THE COMMAND OVER FLOW ON A LISTEN SERVER
+//----------------------------------------------------------------------
+{
+	entity ePlayer;
+	if(cvar_bool_multiplayer == 0 || cvar_float_dedicated <= 0){
+		waitForPlayer();
+		ePlayer = getEntity("*0");
+		globalCoop_player_waitForFreeReliableServerCommand(ePlayer);
+		return;
+	}
+	
+	//not a listen server - just wait a additional frame
+	globalCoop_main_waitAFrame();
+}

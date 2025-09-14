@@ -1,0 +1,29 @@
+TIKI
+
+setup
+	{
+	scale 1
+	lod 1 1 1 1 1
+ 
+	path models/vehicle/ferengi_shuttle
+	surface material1 shader models/vehicle/ferengi-shuttle
+	}
+init
+	{
+		server
+		{
+		//[b60025] chrissstrahl - fixed bad boundingbox size
+		setsize "-342 -235 -68" "214 210 121"
+		}
+		client
+		{
+		}
+	}
+animations 
+	{
+	idle	ferengi_shuttle.tan
+}
+
+/*QUAKED   vehicle_ferengi_ferengi-shuttle (0.5 0.25 0.25)   (0 0 0)   (0 0 0)
+ferengi-shuttle
+*/

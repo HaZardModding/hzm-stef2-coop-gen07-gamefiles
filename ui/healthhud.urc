@@ -1,0 +1,81 @@
+menu "healthhud" 256 64 NONE 1
+bgcolor 0 0 0 0
+align bottom left
+direction from_bottom 0.1
+hideDuringLoad
+depth 0.3
+
+resource
+Label
+{
+ordernumber 1
+rect 0 0 256 64
+fgcolor 			1.00 1.00 1.00 1.00
+bgcolor 			0.00 0.00 0.00 0.00
+borderstyle "NONE"
+shader "hud/health"
+}
+
+resource
+Label
+{
+ordernumber 2
+rect 78 32 73 18
+fgcolor 			1.00 1.00 1.00 1.00
+bgcolor 			0.00 0.00 0.00 0.00
+borderstyle "NONE"
+playerstat health 
+statbar horizontal 0 100
+statbar_shader "hud/health-bar"
+}
+
+
+resource
+Label
+{
+rect 78 52 73 12
+fgcolor 			1.00 1.00 1.00 1.00
+bgcolor 			0.00 0.00 0.00 0.00
+borderstyle "NONE"
+playerstat armor_level
+statbar horizontal 0 100
+statbar_shader "hud/armor-bar"
+}
+
+resource
+colorstatlabel
+{
+ordernumber 5
+rect 23 28 45 24 //[b60011]
+fgcolor 			0.87 0.58 0.17 1.00
+bgcolor 			0.00 0.00 0.00 0.00
+borderstyle "NONE"
+playerstat health
+font serpentinemedium-12
+increasecolor 1 1 0 1
+decreasecolor 1 0 0 1
+warningLevel 20
+warningSound sound/player/player_heartbeat.wav 2
+
+//[b60011]
+verticaljustify top
+textshadowcolor 0 0 0 1
+hovertextshadowcolor 0 0 0 1
+}
+
+resource
+Label
+{
+rect 36 48 32 16 //[b60011]
+fgcolor 			0.0 0.60 0.235 1.00
+bgcolor 			0.00 0.00 0.00 0.00
+borderstyle "NONE"
+playerstat armor_level
+font serpentinemedium-10
+//[b60011]
+verticaljustify top
+textshadowcolor 0 0 0 1
+hovertextshadowcolor 0 0 0 1
+}
+
+end.

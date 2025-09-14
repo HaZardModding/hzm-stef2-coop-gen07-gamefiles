@@ -1,0 +1,2853 @@
+void main ();
+void intro();
+void intro_skip();
+void intro_end();
+void setupShuttleFed();
+void setupEvoSuit();
+void setupAirlock();
+void setupActor(entity eActor,string sAnim);
+void setupClips();
+void setupActors();
+void setupArrays();
+
+
+void coop_airlockInsideUse();
+void coop_airlockOutsideUse();
+
+void door_unlock();
+
+void klingonStation_IntroCinematicDoor();
+void klingonStation_cargobayAirlockScene();
+void klingonStation_cargobayPowerCoup();
+void klingonStation_cargobayDistNode();
+void klingonStation_hallwayKlingonSellerTalk();
+void klingonStation_hallwayKlingonFriendTalk();
+void klingonStation_barBattlearenaLoser();
+void klingonStation_barRomulanFound();
+void klingonStation_barEnterCinematicCamInPosition();
+void klingonStation_shuttlebayFerengieTakeoff();
+void klingonStation_cinematicBorgArrive();
+void klingonStation_barEnterCinematic();
+void klingonStation_barEnterCinematicEnd();
+void klingonStation_hallwayConsoleExplode();
+void klingonStation_hallwayTubeExplode();
+void klingonStation_PDA();
+void klingonStation_seller();
+void klingonStation_takeBathleth();
+
+void klingonStation_cargobayTransporterEnable();
+void klingonStation_cargobayTransporter();
+
+void klingonStation_generalPurposeTransporter(vector vNewLocation);
+void klingonStation_generalPurposeTransporter_transport(vector vOld,vector vNew,entity ePlayer);
+void klingonStation_generalPurposeTransporter_move(vector vOld,vector vNew,entity ePlayer);
+
+
+void space_federationShuttle2_fire();
+
+
+void borgCube_entranceTransport();
+void borgCube_exitTransport();
+void borgCube_enterCube();
+void borgCube_droneMurdered();
+void borgCube_chellWork_timer();
+void borgCube_chellWork();
+void borgCube_spawner();
+void borgCube_npcBeamIn();
+void borgCube_gravunitPath1End();
+void borgCube_gravunitPath2End();
+void borgCube_gravunitLightBlink(entity eLight);
+void borgCube_torpedo0Ready();
+void borgCube_torpedo1Ready();
+void borgCube_tricorderPuzzle0();
+void borgCube_resetTricorderPuzzle0();
+void borgCube_tricorderPuzzle1();
+void borgCube_resetTricorderPuzzle1();
+void borgCube_contiousRandomTorpedoAttack();
+void borgCube_torpedoDamaged();
+
+void TestStuff();
+void coop_endMission();
+
+
+float BORGCUBE_GENERATORSDOWN = 0;
+float BORGCUBE_ACTIVEDRONES = 0;
+float BORGCUBE_INFILTRATED = 0;
+float BORGCUBE_FIRERANDOMLY = 1;
+float KLINGONSTATION_ROMULANFOUND = 0;
+float BORGCUBE_CHELLWORKING = 1;
+float MAX_ARRAY_WINGS = 3;
+float MAX_ARRAYS = 6;
+//float MAX_FWD_SPEED = 99999;
+
+#include "co-op/matrix/main.scr"
+#include "co-op/matrix/evosuit.scr"
+void	coop_endLevel();
+
+//#include "maps/global_scripts/global_debugutils.scr"
+#include "maps/global_scripts/global_math.scr"
+#include "maps/global_scripts/global_acceleratedMovement.scr"
+
+#include "maps/global_scripts/global_tricorderbase.scr"
+#include "maps/global_scripts/global_tricordermod.scr"
+
+
+#include "co-op/matrix/respawner.scr"
+
+
+void ffTouchedClearShader(entity ePlayer)
+{
+	wait(1);
+	if(doesEntityExist(ePlayer)){
+		ePlayer.clearcustomshader("electriclines");
+	}
+}
+
+void ffTouched()
+{
+	entity e;
+	e = getCurrentEntity();
+	if(doesEntityExist(e)){
+		e.noTouch(); //make stop calling this thread
+
+		float fTurnNonSol;
+		float fRunningWithScissors=1;
+		while(fRunningWithScissors){
+			fRunningWithScissors = 0;
+			if(doesEntityExist(e)){
+				entity ePlayer;
+				float fPlayerIdInUse;
+				//[b60025] Chrissstrahl - now using Entity numbers instead of targetnames
+				for(fPlayerIdInUse=0;fPlayerIdInUse<coop_integer_maxPlayers;fPlayerIdInUse++){
+					ePlayer = getEntity("*"+fPlayerIdInUse);
+					if(globalCoop_check_existingLivingEntity(ePlayer)){
+						//check all players touching this trigger
+						if(globalCoop_check_isEntityInsideOfEntity(ePlayer,e,1)){
+							fRunningWithScissors=1;
+							if(!globalCoop_check_playerSpectator(ePlayer)){
+								if(coop_evosuit_playerEquiped(ePlayer) == 1 || coop_evosuit_spaceWorthy(ePlayer) == 1){
+									e.notSolid();
+									ePlayer.setcustomshader("electriclines");
+									thread ffTouchedClearShader(ePlayer);
+									//print("NOT SOLID\n");
+								}
+							}
+						}
+					}
+				}
+			}
+			else{
+				print("ENTITY MISSING\n");
+				return;
+			}
+			globalCoop_main_waitAFrame();
+		}
+		thread globalCoop_level_onTouch(e,"ffTouched");
+		e.solid();
+		//print("MADE SOLID\n");
+	}
+}
+
+void main ()
+{
+	//borgCube_drone0 -> borgCube_drone20
+	//coop_evosuit_haltStat(ePlayer,0);
+
+	//fade cam in
+	cam_fadeOut(0.05,0,0,0,1);
+	
+	coop_string_levelAuthor = "Luke Sutton, Chrissstrahl";
+	
+	//hzm coop mod chrissstrahl - declare objectives - english
+	coop_string_objectiveItem1 = "$$Rotec9SecureFriendlyRomulan$$";
+	coop_string_objectiveItem2 = "$$Rotec9DefendStation$$";
+	coop_string_objectiveItem3 = "$$Rotec9ObtainEvosuitInCargobay$$";
+	coop_string_objectiveItem4 = "$$Rotec9InfiltrateBorgCube$$";
+	coop_string_objectiveItem5 = "$$Rotec9ProtectChell$$";
+	coop_string_objectiveItem6 = "$$Rotec9DefendDemolitionTeams$$";
+	coop_string_objectiveTacticalInfo1 = "$$Rotec9Story";
+
+
+	//coop_string_weapon2 = "models/weapons/worldmodel-Phaser-stx.tik";
+	coop_string_weapon1 = "models/weapons/worldmodel-Tricorder-stx.tik";
+	//coop_string_weapon8 = "models/weapons/worldmodel-Batleth.tik";
+
+
+	setupEvoSuit();
+	setupShuttleFed();
+	setupAirlock();
+
+	//$world.physicsvar ( "gravity" , 250 );
+//$world.physicsvar ( "maxspeed" , 250 );
+//$world.physicsvar ( "airaccelerate" , 1.5 );
+	//MAX_FWD_SPEED = $world.getPhysicsVar("maxspeed");
+	
+	setupClips();
+	setupActors();
+	setupArrays();
+	
+	$klingonAirductAreaportal.closePortal();
+	
+	$klingonStation_cargobayPowerCoup.contents("+shootable");
+	$klingonStation_cargobayDistNode.contents("+shootable");
+	thread globalCoop_level_onDamage($klingonStation_cargobayPowerCoup,"klingonStation_cargobayPowerCoup");
+	thread globalCoop_level_onDamage($klingonStation_cargobayDistNode,"klingonStation_cargobayDistNode");
+	
+	
+//REMOVE EM FOR EVO SUIT TESTING
+/*
+	$klingonAirlockActor0.remove();
+	$klingonAirlockActor1.remove();
+	$KlingonAirlockActPlayerClip.remove();
+	*/
+	
+	
+	entity e;
+	string sForceFieldName;
+	float iForceFieldCurNum = 13;
+	
+	sForceFieldName = "forcefield0Collision";
+	print("ForceField: Running setup for "+sForceFieldName+"\n");
+	e = getEntity(sForceFieldName +""+ iForceFieldCurNum);
+	while(doesEntityExist(e)){
+		e.solid(); //makesolid - was notsolid to allow ai passing trough
+		thread globalCoop_level_onTouch(e,"ffTouched");
+		iForceFieldCurNum++;
+		//e.hide();
+		e = getEntity(sForceFieldName +""+ iForceFieldCurNum);
+	}
+	print("ForceField: SETUP - $"+sForceFieldName+""+iForceFieldCurNum+" not found, assuming setup is complete.\n");
+	
+	
+	//[b60025] chrissstrahl - make sure objects don't fade to early
+	$world.entity_fade_dist( 16000 );
+	
+	//start cinematic
+	thread intro();
+	
+	//$borgCube_gravNode.speed(200);
+	
+		
+	thread TestStuff();
+	
+	$borgCubeFf.solid();
+
+	wait(3);
+	
+	//models/item/ctf_oneflagbase.tik
+	//remove unwanted texture from mission marker model
+	//$objectiveMarker0.surface("material1", "+nodraw" );
+	//$objectiveMarker1.surface("material1", "+nodraw" );
+	
+	//ready torpedo puzzles
+	wait(1);
+	
+	//setup misc dialog for actors	
+	thread globalCoop_level_onUse($klingonStation_hallwayChatAtPipesMale,"klingonStation_hallwayChatAtPipesMaleTalk");
+	thread globalCoop_level_onUse($klingonStation_hallwayKlingonFemaleWithSitting,"klingonStation_hallwayKlingonFemaleWithSittingTalk");
+	thread globalCoop_level_onUse($klingonStation_hallwayKlingonSeller,"klingonStation_hallwayKlingonSellerTalk");
+	thread globalCoop_level_onUse($klingonStation_barChatKlingonSittingTable1,"klingonStation_barChatKlingonSittingTable1Talk");
+	thread globalCoop_level_onUse($klingonStation_barChatAndorianWithKlingonF,"klingonStation_barChatAndorianWithKlingonFTalk");
+	thread globalCoop_level_onUse($klingonStation_barkeeper,"klingonStation_barkeeperTalk");
+
+	$borgCube_generator0.rotateX(5);
+	$borgCube_generator0.time(5);
+	$borgCube_generator1.rotateX(5);
+	$borgCube_generator1.time(5);
+	
+	$klingonStation_barRomulanFriend.missionobjective(1);
+	
+	$klingonStation_pinnedBatlethTriggerSymbol.scale(0.01);
+	
+	return;
+	while(1)
+	{
+		//$klingonForcefieldShuttlebay.setobjectparms(66.9,0);
+		$klingonForcefieldShuttlebay.mask("-weaponclip");
+		wait(4);
+		//$klingonForcefieldShuttlebay.setobjectparms(33,0);
+		$klingonForcefieldShuttlebay.mask("+weaponclip");
+		wait(4);
+	}
+}
+
+void intro()
+//intro cinematics
+{
+	spawn("camera","targetname","cam1");
+	globalCoop_main_waitAFrame();
+	
+	globalCoop_main_waitForWarmupTime();
+
+
+	thread globalCoop_objectives_set(coop_string_objectiveItem1,"incomplete",1,1);
+
+	//fade cam in
+	cam_fadeIn(0.25,0,0,0,1);
+	
+//centerprint("INTRO SKIPPED\n");
+//return; //skip this during development
+
+	cinematic();
+	freezeplayer();
+	letterbox(0.1);
+	
+	$shuttleFederationOrigin1.moveup(80);
+	$shuttleFederationOrigin1.moveBackward(1000);
+	$shuttleFederationOrigin1.time(0.25);
+	
+	//hzm coop mod chrissstrahl - this is only for sp
+	if(getCvarInt("g_gametype") == 0){
+		$player.hide();
+		$player.notsolid();		
+	}
+	$cam1.follow($klingonStation_shuttleCinematic);
+	$cam1.cut();
+	globalCoop_main_waitAFrame();
+	cuecamera($cam1);
+	skipthread("intro_skip");
+	
+	//fade cam in
+	cam_fadeIn(0.25,0,0,0,1);
+	
+	//shuttle move
+	wait(11);
+	$t303.playsound( "sound/coop_mod/shuttle_land5.wav", 1, 1, 512 );
+	thread globalAccelMove( $shuttleFederationOrigin1, '1000 0 -80', 5, "rampdown", "" );
+	wait(5);
+	
+	skipthread("");
+	wait(1.5);
+	
+
+	thread intro_skip();
+}
+
+void intro_skip()
+{
+	cam_fadeout( 0.5, 0, 0, 0, 1, 0 );
+	wait(0.5);
+	
+	killthread("intro");
+	killthread("globalAccelMove");
+
+	
+	$shuttleFederationOrigin1.stopsound();
+	$shuttleFederationOrigin1.movetopos('-219 534 96');
+	$shuttleFederationOrigin1.time(0.15);
+	
+	thread intro_end();
+}
+
+void intro_end()
+{
+	//end cinematic
+	noncinematic();
+	clearletterbox(0.1);
+	cueplayer();
+	//hzm coop mod chrissstrahl - this is only for sp
+	if(getCvarInt("g_gametype") == 0){
+		$player.show();
+		$player.solid();		
+	}
+	
+	wait(1.5);
+	releaseplayer();
+	cam_fadein( 2, 0, 0, 0, 1, 0 );
+}
+
+void klingonStation_IntroCinematicDoor()
+//opens the door for the camera
+{
+	if(getCvarInt("sv_cinematic") == 0){
+		return;
+	}
+	$klingonStation_shuttlebayDoor.open($world);
+}
+
+void klingonStation_hallwayCinematicTalking()
+{
+	$klingonStation_hallwayKlingonSittingWithFemale.anim("bar_sitting_left");
+	$klingonStation_hallwayKlingonFemaleWithSitting.anim("bar_standing");
+	/*
+	$klingonStation_hallwayKlingonSittingWithFemale.lookat($t293);
+	$klingonStation_hallwayKlingonFemaleWithSitting.lookat($klingonStation_hallwayKlingonSittingWithFemale);
+	*/
+}
+
+void setupShuttleFed()
+{
+	$shuttleFederationClip1.bind($shuttleFederationOrigin1);
+	$shuttleFederation1.bind($shuttleFederationOrigin1);
+}
+
+void setupEvoSuit()
+{
+	/*SET VALUES FOR EVOSUIT SCRIPT SPECIFIC FOR THIS MAP*/
+	__EVOSUIT_VEC_AIRLOCK_DECOMPRESS_PUSH			= '0 500 150';
+	
+	__EVOSUIT_INT_SUFFICATE_WAIT					= 8;
+	__EVOSUIT_INT_SUFFICATE_HURT					= 7;
+	//__EVOSUIT_INT_SUFFICATE_HURT					= 77;
+	__EVOSUIT_FLT_AIRSUPPLY_CONSUMPTION				= 0.01;
+	//__EVOSUIT_FLT_AIRSUPPLY_CONSUMPTION				= 0.5;
+	
+	__EVOSUIT_FLT_SPACE_GRAVITY						= 0.15;
+	
+	__EVOSUIT_INT_THRUSTER_COOLDOWN_TIME			= 10;
+	__EVOSUIT_INT_THRUSTER_MOVE_COST				= 0.5;
+	__EVOSUIT_INT_THRUSTER_MOVE_UP_COST				= 1.5;
+	__EVOSUIT_INT_THRUSTER_MOVE_DOWN_COST			= 1;
+	__EVOSUIT_INT_THRUSTER_MOVE_FORCE				= 50;
+	__EVOSUIT_INT_THRUSTER_EMERGENCY_COST			= 40;
+}
+
+void setupAirlock()
+{
+	//open airlock so we can see the actor departing
+	$klingonAirlockDoorInside.open($world);
+	$klingonAirlockSteamTopEffect.hide();
+	$KlingonAirlockActPlayerClip.solid(); //prevents playa from blocking door
+}
+
+void setupActor(entity eActor,string sAnim)
+{
+	eActor.mass(99999);
+	eActor.pushable(0);
+	if(sAnim != ""){
+		//eActor.ai_off(); //allready done in radiant
+		eActor.anim(sAnim);
+	}
+}
+
+void setupClips()
+{
+	//battle arena close it up
+	$klingonStation_barBattlearenaFf.solid();
+	
+	//shuttlebay clip make solid after pathnodes finished connecting
+	$klingonFerengieShipMonsterclip.solid();
+	$klingonFerengieShipClip.solid();
+
+	$playerclipRomulanArea.solid();
+	setupActor($klingonStation_hallwayRomulanGuard1,"");
+	setupActor($klingonStation_hallwayRomulanGuard2,"");
+	setupActor($klingonStation_hallwayRomulanGuard3,"");
+	
+	$playerclipKlingonArea.solid();
+	setupActor($klingonStation_hallwayKlingonGuard1,"");
+	thread globalCoop_armory_putAwayWeapon($klingonStation_hallwayKlingonGuard1);
+	setupActor($klingonStation_hallwayKlingonGuard2,"");
+	
+	$klingonBorgFF.solid();
+}
+
+void setupActors()
+{
+	/* //CHELL WORK ANIMATIONS
+	ent-compstation-idle
+	ent-compstation-idle-look
+	ent-compstation-scan
+	
+	tricorder_aim
+	tricorder_area_scan180
+	tricorder_calm_idle1
+	tricorder_calm_idle2
+	tricorder_calm_idle3
+	tricorder_draw
+	tricorder_fire
+	tricorder_idle
+	tricorder_postfire
+	tricorder_prefire
+	tricorder_putaway
+	tricorder_scan
+	tricorder_scan-look
+	tricorder_scan180
+	tricorder_tense_idle1
+	tricorder_use_start
+	tricorder_use_end
+	tricorder_use_loop
+	tricorder_use_once
+	*/
+	
+	thread klingonStation_hallwayCinematicTalking();
+	
+	$klingonAirlockActor1.anim("idle_armup.ska");
+
+	$klingonStation_barkeeper.anim("bar_shake");
+	
+	//in alcove
+	setupActor($klingonStation_cargobayAssimilated,"idle_breathing"); //stand_idle
+	$klingonStation_cargobayAssimilated.flags( "-notarget" );
+	$klingonStation_cargobayAssimilated.health(30);
+	$klingonStation_cargobayAssimilated.immortal(0);
+	
+	setupActor($klingonStation_hallwayChatAtPipesFemale,"conv-affirmative");
+	setupActor($klingonStation_hallwayChatAtPipesMale,"conv-affirmative");
+	
+	
+	setupActor($klingonStation_barChatAndorianWithKlingonF,"conv-affirmative");
+	setupActor($klingonStation_barChatKlingonFWithAndorian,"idle_breathing");
+	
+	setupActor($klingonStation_hallwayKlingonSittingWithFemale,"bar_sitting_left");
+	setupActor($klingonStation_hallwayKlingonFemaleWithSitting,"bar_standing");
+	
+	setupActor($klingonStation_barChatKlingonSittingTable2,"bar_sitting_right");
+	setupActor($klingonStation_barChatKlingonSittingTable1,"bar_sitting_relaxed");
+	
+	
+	setupActor($klingonStation_hallwayKlingonSeller,"bar_sitting_forward");
+	setupActor($klingonStation_barkeeper,"");
+	setupActor($klingonStation_omag,"bar_sitting_left");
+	setupActor($klingonStation_andorianWithOmag,"bar_sitting_left");
+	setupActor($klingonRomBar0,"bar_sitting_left");
+	setupActor($klingonRomBar1,"bar_sitting_right");
+	
+	
+	setupActor($klingonStation_cargobayDrone1,"idle_armup.ska");
+	setupActor($klingonStation_cargobayDrone3,"assimilate_hold");
+	setupActor($klingonStation_cargobayDrone2,"alcove_idle");
+	$klingonStation_cargobayDrone2.setactorflag ( "inalcove" , 1 );
+	$klingonStation_cargobayDrone2.settendency( "hibernate" , 1.0 );
+	
+	setupActor($klingonStation_barRomulanFriend,"sfa_chair-idle");
+	
+	
+	//needs to be executed in this order	
+	globalCoop_armory_putAwayWeapon($klingonStation_hallwayKlingonFriend);
+	thread globalCoop_level_onUse($klingonStation_hallwayKlingonFriend,"klingonStation_hallwayKlingonFriendTalk");
+	setupActor($klingonStation_hallwayKlingonFriend,"bar_standing");
+
+	entity eActor;
+	float fNum;
+	for(fNum=0;fNum<6;fNum++){
+		eActor = getEntity("klingonChat"+fNum);
+		setupActor(eActor,"");
+	}
+	
+	//change weapons
+	thread globalCoop_actor_useWeapon($demolitionTeam0,"fed-IMod");
+	thread globalCoop_actor_useWeapon($demolitionTeam1,"fed-IMod");
+	
+	$demolitionTeam0.immortal(0);
+	$demolitionTeam1.immortal(0);
+}
+
+void setupArrays()
+//PUT TOGETHER THE ARRAYS FROM THEIR PARTS
+{
+	float iArray,iWing,iAngle;
+	entity eWing,eWingOrigin,eArrayOrigin;
+	for(iArray=1;iArray<=MAX_ARRAYS;iArray++){
+		for(iWing=0;iWing<MAX_ARRAY_WINGS;iWing++){
+			eWing		= getEntity("sensorArray"+iArray+"Wing"+iWing);
+			eWingOrigin	= getEntity("sensorArray"+iArray+"Wing"+iWing+"Origin");
+			eWing.bind(eWingOrigin);
+			eArrayOrigin= getEntity("sensorArray"+iArray+"Origin"+iWing);
+
+			if(iWing == 2){ iAngle = 180; }
+			else if(iWing == 1){ iAngle = 45; }
+			else{ iAngle = 315; }
+			
+			eWingOrigin.time(0.1);
+			eWingOrigin.moveto(eArrayOrigin);
+			eWingOrigin.rotateYdown(iAngle);
+			
+			//print("sensorArray"+iArray+"Wing"+iWing+" ("+iAngle+")\n");
+			//print("sensorArray"+iArray+"Wing"+iWing+"Origin ("+iAngle+")\n");
+			//print("sensorArray"+iArray+"Origin"+iWing+" ("+iAngle+")\n");
+			//print("----------------------\n");
+		}
+		wait(0.05);
+	}
+}
+
+void puzzleStart()
+{
+	entity ePuzz,ePlayer;
+	ePuzz = getCurrentEntity();
+	ePlayer = ePuzz.getLastActivatingEntity();
+	coop_evosuit_haltStat(ePlayer,1);
+}
+
+void puzzleAborted()
+{
+	entity ePuzz,ePlayer;
+	ePuzz = getCurrentEntity();
+	ePlayer = ePuzz.getLastActivatingEntity();
+	coop_evosuit_haltStat(ePlayer,0);
+}
+
+void puzzleSolved()
+{
+	entity ePuzz,ePlayer;
+	ePuzz = getCurrentEntity();
+	ePlayer = ePuzz.getLastActivatingEntity();
+	coop_evosuit_haltStat(ePlayer,0);
+}
+
+void puzzleFailed()
+{
+	entity ePuzz,ePlayer;
+	ePuzz = getCurrentEntity();
+	ePlayer = ePuzz.getLastActivatingEntity();
+	coop_evosuit_haltStat(ePlayer,0);
+}
+
+void klingonStation_barEnterCinematic()
+{
+	/* CINEMATIC DISABLED
+	//fade cam
+	cam_fadeOut(0.25,0,0,0,1);
+	wait(0.25);
+	
+	//hzm coop mod chrissstrahl - this is only for sp
+	if(getCvarInt("g_gametype") == 0){
+		$player.hide();
+		$player.notsolid();		
+	}
+	$cam1.follow($klingonStation_barCinematicSplinepath);
+	$cam1.cut();
+	globalCoop_main_waitAFrame();
+	cuecamera($cam1);
+	*/
+	
+	//Battle Area Klingon
+	$klingonStation_barBattlearenaWarrior1.ai_on();
+	$klingonStation_barBattlearenaWarrior2.ai_on();
+	$klingonStation_barBattlearenaWarrior1.immortal(1);
+	$klingonStation_barBattlearenaWarrior2.immortal(1);
+	
+	$klingonStation_barBattlearenaWarrior1.attack($klingonStation_barBattlearenaWarrior2);
+	$klingonStation_barBattlearenaWarrior2.attack($klingonStation_barBattlearenaWarrior1);
+	
+	$klingonStation_barBattlearenaWarrior1.health(25);
+	$klingonStation_barBattlearenaWarrior2.health(25);
+	//damageenemy( Float damage
+	
+	$klingonStation_barBattlearenaWarrior1.actortype("enemy");
+	$klingonStation_barBattlearenaWarrior2.actortype("enemy");
+	
+	wait(3);
+	
+	thread klingonStation_barEnterCinematicCamInPosition(); //needs to be executed if there is no cinematic
+	
+	/* CINEMATIC DISABLED
+	cinematic();
+	freezeplayer();
+	letterbox(0.1);
+	
+	//fade cam
+	cam_fadeIn(0.5,0,0,0,1);
+	*/
+}
+
+void klingonStation_barEnterCinematicEnd()
+{
+	/* CINEMATIC DISABLED
+	//fade cam
+	cam_fadeOut(0.25,0,0,0,1);
+	
+	//end cinematic
+	noncinematic();
+	clearletterbox(0.1);
+	cueplayer();
+	//hzm coop mod chrissstrahl - this is only for sp
+	if(getCvarInt("g_gametype") == 0){
+		$player.show();
+		$player.solid();		
+	}
+	
+	wait(1.5);
+	releaseplayer();
+	cam_fadein( 2, 0, 0, 0, 1, 0 );
+	*/
+	
+	//remove camera path
+	thread globalCoop_level_removePath($klingonStation_barCinematicSplinepath);
+}
+
+
+void klingonStation_barEnterCinematicCamInPosition()
+{
+	//allow now one of them to die
+	wait(1);
+	$klingonStation_barBattlearenaWarrior1.immortal(0);
+	$klingonStation_barBattlearenaWarrior2.immortal(0);
+}
+
+
+void klingonStation_barChallenge()
+{
+	//we do this differently now, the player picks up a batleth in the hallway
+	//makes morse sense this way, until we have the actual challange/combat working
+	//moved to -> klingonStation_barRomulanFound
+	return;
+	
+	//don't allow the challenge before talking to the spy
+	if(!KLINGONSTATION_ROMULANFOUND){
+		return;
+	}
+
+	entity eTrigger;
+	entity eActivator;
+	eTrigger = getCurrentEntity();
+	if(doesEntityExist(eTrigger)){
+		eTrigger.noUse();
+		
+		eActivator = globalCoop_return_playerClosestActive(eTrigger);
+		if(doesEntityExist(eActivator)){
+			eActivator.give("models/weapons/worldmodel-Batleth.tik");
+		}
+	}
+	
+	//spacebattle attack cinematic
+	thread klingonStation_cinematicBorgArrive();
+}
+
+void klingonStation_cinematicBorgArrive()
+//spacebattle attack cinematic
+{
+	//remove that so we don't run into issues when triggering things out of order
+	globalCoop_level_remove($klingonStation_barEnterTrigger);
+	globalCoop_level_removePath($klingonStation_barCinematicSplinepath);
+	globalCoop_level_remove($klingonStation_barRomulanFound);
+	globalCoop_level_removePath($klingonStation_barRomulanFoundCinematic);
+
+
+	spawn("camera","targetname","cam3");
+	cinematic();
+	freezeplayer();
+	letterbox(0.1);
+	
+	//fade cam
+	cam_fadeOut(0.25,0,0,0,1);
+	wait(0.3);
+	
+	//lower shields
+	$klingonStation_shieds.notsolid();
+	$klingonStation_shieds.hide();
+	
+	
+	//remove ambient sound
+	$klingonStation_barAmbientSound1.remove();
+	$klingonStation_shuttlebayAmbient.remove();
+	
+	$cam3.follow($klingonSpaceStationCinematic);
+	$cam3.cut();
+	globalCoop_main_waitAFrame();
+	cuecamera($cam3);
+	
+	//fade cam
+	cam_fadeIn(0.5,0,0,0,1);
+	
+	//Ferengie shuttle fly away
+	thread klingonStation_shuttlebayFerengieTakeoff();
+	
+	//move tile so it looks like some damage took place
+	$klingonStation_hallwayFloorTile.moveup(8);
+	$klingonStation_hallwayFloorTile.movewest(16);
+	$klingonStation_hallwayFloorTile.rotateYdown(90);
+	$klingonStation_hallwayFloorTile.time(1);
+	
+	wait(5);
+	
+	$borgCube_torpedoLauncher0.projectileAttackEntity( "models/coop/projectile/photonball-borgcube.tik","$t309",5,20);
+	wait(1);
+	$borgCube_torpedoLauncher1.projectileAttackEntity( "models/coop/projectile/photonball-borgcube.tik","$t309",5,20);
+	wait(0.5);
+	$borgCube_torpedoLauncher2.projectileAttackEntity( "models/coop/projectile/photonball-borgcube.tik","$klingonSpaceStationCinematic",5,20);
+	$borgCube_torpedoLauncher0.projectileAttackEntity( "models/coop/projectile/photonball-borgcube.tik","$t309",5,20);
+	wait(1);
+	$borgCube_torpedoLauncher1.projectileAttackEntity( "models/coop/projectile/photonball-borgcube.tik","$t309",5,20);
+	wait(0.7);
+	
+	//raise shields
+	$klingonStation_shieds.solid();
+	$klingonStation_shieds.show();
+	
+	$borgCube_torpedoLauncher2.projectileAttackEntity( "models/coop/projectile/photonball-borgcube.tik","$klingonSpaceStationCinematic",5,20);
+	wait(3);
+	
+	cam_fadeOut(0.25,0,0,0,1);
+	wait(0.3);
+	
+	//end cinematic
+	noncinematic();
+	clearletterbox(0.1);
+	cueplayer();
+	//hzm coop mod chrissstrahl - this is only for sp
+	if(getCvarInt("g_gametype") == 0){
+		$player.show();
+		$player.solid();		
+	}
+	
+	//remove batleths from hallway
+	float fNum;
+	entity eBat;
+	for(fNum=4;fNum>=0;fNum--){
+		eBat = getEntity("klingonStation_sellerBathlet"+fNum);
+		if(doesEntityExist(eBat)){
+			eBat.remove();
+		}
+	}
+	
+	//remove gauntlets from hallway
+	for(fNum=4;fNum>=0;fNum--){
+		eBat = getEntity("klingonStation_sellerGauntlet"+fNum);
+		if(doesEntityExist(eBat)){
+			eBat.remove();
+		}
+	}
+	
+	
+	//remove camera path
+	thread globalCoop_level_removePath($klingonSpaceStationCinematic);
+	
+	
+	//allow player to explore rest of the base
+	//allow explosion effects
+	$klingonStation_hallwayConsoleExplodeTrigger.triggerable();
+	$klingonStation_hallwayTubeExplodeTrigger.triggerable();
+	//remove clips
+	$playerclipKlingonArea.remove();
+	$playerclipRomulanArea.remove();
+	
+	//remove actors, because we are in combat now any everyone is enged in fighting
+//at some point we rather want to move some actors so the combat seems a bit more intense
+//the hallway is pretty thinned out as soon as the combat starts, some drones should be moved there
+	$klingonStation_hallwayRomulanGuard1.remove();
+	$klingonStation_hallwayRomulanGuard2.remove();
+	$klingonStation_hallwayRomulanGuard3.remove();
+
+	$klingonStation_hallwayKlingonGuard2.remove();
+	
+	$klingonStation_hallwayKlingonSittingWithFemale.remove();
+	
+	//to much work to make him fight and not get attacked by other teammate - at this time I just wana finish the mission
+	$klingonStation_hallwayKlingonFemaleWithSitting.remove();
+	
+	$klingonStation_hallwayKlingonFriend.remove();
+	
+	$klingonStation_hallwayChatAtPipesFemale.remove();
+	$klingonStation_hallwayChatAtPipesMale.remove();
+	
+	$klingonStation_hallwayKlingonSeller.remove();
+	
+	
+	$klingonStation_barChatKlingonSittingTable1.remove();
+	$klingonStation_barChatKlingonSittingTable2.remove();
+
+	$klingonStation_barChatAndorianWithKlingonF.remove();
+	$klingonStation_barChatKlingonFWithAndorian.remove();
+	
+	$klingonStation_barBattlearenaWarrior1.remove();
+	$klingonStation_barBattlearenaWarrior2.remove();
+	
+	$klingonStation_andorianWithOmag.remove();
+	$klingonStation_omag.remove();
+	
+	$klingonStation_barkeeper.remove();
+	
+	//remove ambient sound of chatter
+	$klingonStation_barAmbientSound1.remove();
+	
+	//remove guard triggers
+	$klingonStation_hallwayKlingonGuardTrigger.remove();
+	$klingonStation_hallwayRomulanGuardTrigger.remove();	
+	
+	wait(1);
+	releaseplayer();
+	cam_fadein( 2, 0, 0, 0, 1, 0 );
+	
+	//have random PDA
+	thread klingonStation_PDA();
+	
+	$klingonStation_hallwayKlingonGuard1.health(75);
+	$klingonStation_hallwayKlingonGuard1.aggressive(1);
+	$klingonStation_hallwayKlingonGuard1.useactorweapon("actorweapons/klingon-batleth.tik","left");
+	$klingonStation_hallwayKlingonGuard1.immortal(0);
+	$klingonStation_hallwayKlingonGuard1.settendency("patrol",1);
+	$klingonStation_hallwayKlingonGuard1.setTendency("follow",0);
+	$klingonStation_hallwayKlingonGuard1.ai_on();
+	
+	
+	//flip over chair
+	$klingonStation_hallwayKlingonSittingWithFemaleChair.angles('0 135 270');
+	$klingonStation_hallwayKlingonSittingWithFemaleChair.origin('989.93 659.42 39');	
+	
+	//show signs of battle
+	$klingonStation_pinnedBatleth.show();
+	$klingonStation_pinnedBorg.nodamage();
+	$klingonStation_pinnedBorg.solid();
+	$klingonStation_pinnedBorg.show();
+	$klingonStation_pinnedBorg.anim("alcove_disabled_still");
+	$klingonStation_pinnedBorg.setcustomshader("electriclines");
+	//allow to pickup batleth now
+	$klingonStation_pinnedBatlethTrigger.triggerable();
+	$klingonStation_pinnedBatlethTriggerSymbol.scale(2);
+	$klingonStation_pinnedBatleth.missionobjective(1);
+	
+	//ready borg
+	thread globalCoop_player_makeSolidASAP($klingonStation_hallwayBorg1);
+	$klingonStation_hallwayBorg1.show();
+	$klingonStation_hallwayBorg1.ai_on();
+	$klingonStation_hallwayBorg1.aggressive(1);
+	
+	//make sure we get some more borg to fight, respawn this drone
+	//but wait some time, because we want the klingon to help the player first
+	thread respawner_respawnByDifficulty($klingonStation_hallwayBorg1,0,25,"TransportIn","Borg",0,0,400,8);
+	
+	//toggle redalert ambient on
+	float fAlerts;
+	entity eAlert;
+	for(fAlerts=7;fAlerts>=0;fAlerts--){
+		eAlert = getEntity("klingonStation_redalert"+fAlerts);
+		if(doesEntityExist(eAlert)){
+			triggerEntity(eAlert);
+		}
+	}
+	
+	//start random torpedo attacks
+	thread borgCube_contiousRandomTorpedoAttack();
+	
+	//remove camera path
+	thread globalCoop_level_removePath($klingonSpaceStationCinematic);
+}
+
+void klingonStation_romulanSectionEnter()
+{
+	$world.light_lightstyle( "klingonStation_romulanSectionLight1" ,"aaaadddjjjzzzzzssssssuuuuutttttbbbb", 0 );
+
+	//activate drones
+	float fNum;
+	for(fNum=3;fNum>=0;fNum--){
+		entity eActor;
+		eActor = getEntity("klingonStation_romulanSectionBorg" + fNum);
+		if(doesEntityExist(eActor)){
+			eActor.ai_on();
+			eActor.aggressive(1);
+			
+			//make sure we get some more borg to fight, respawn this drone
+			thread respawner_respawnByDifficulty(eActor,0,3,"TransportIn","Borg",0,0,400,4);
+		}
+	}
+	//activate romulan
+	$klingonStation_romulanSectionRomulan0.ai_on();
+	$klingonStation_romulanSectionRomulan0.aggressive(1);
+	$klingonStation_romulanSectionRomulan0.actortype("teammate");
+	$klingonStation_romulanSectionRomulan0.groupactortype("teammate");
+//	$klingonStation_romulanSectionRomulan0.attack($klingonStation_romulanSectionBorg0);
+	$klingonStation_romulanSectionRomulan0.settendency("patrol",1);
+	$klingonStation_romulanSectionRomulan0.settendency("pullalarm",0);
+	$klingonStation_romulanSectionRomulan0.settendency("noscript",1);
+	$klingonStation_romulanSectionRomulan0.setnodeid(3003); //for what ever reason this does not work, should be investigated at some point - Chrissstrahl
+	$klingonStation_romulanSectionRomulan0.talkiness(0);
+	
+	globalCoop_main_waitAFrame();
+	$klingonStation_romulanSectionRomulan0.damagemodifier("actortype","monster", 2);
+	$klingonStation_romulanSectionRomulan0.damagemodifier("actortype","enemy", 1);
+	$klingonStation_romulanSectionRomulan0.damagemodifier("actortype","teammate", 0.25);
+	$klingonStation_romulanSectionRomulan0.damagemodifier("actortype","friend",0);
+	$klingonStation_romulanSectionRomulan0.actortoactordamage(2);
+}
+
+void klingonStation_cinematicBorgArriveTorpedo()
+{
+}
+
+
+void klingonStation_barRomulanFound()
+//romulan informant friend found
+{
+	/*
+	sfa_chair-idle
+	sfa_chair_talk_A
+	sfa_chair_talk_B
+	sfa_chair_talk_C
+	sfa_chair_talk_omag
+	sit_elbows
+	sit_lean
+	sit_right
+	
+	*/
+	
+	$klingonStation_barRomulanFriend.missionobjective(0);
+	
+	//mark the surviving warrior
+	if(doesEntityExist($klingonStation_barBattlearenaWarrior1)){
+		if($klingonStation_barBattlearenaWarrior1.getHealth()){
+			$klingonStation_barBattlearenaWarrior1.missionobjective(1);
+		}
+	}
+	if(doesEntityExist($klingonStation_barBattlearenaWarrior2)){
+		if($klingonStation_barBattlearenaWarrior2.getHealth()){
+			$klingonStation_barBattlearenaWarrior2.missionobjective(1);
+		}
+	}
+	
+	$klingonStation_barRomulanFriend.missionobjective(1);
+	globalCoop_objectives_set(coop_string_objectiveItem1,"complete",1,0);
+	thread globalCoop_objectives_set(coop_string_objectiveItem2,"incomplete",2,1);
+	
+	cam_fadeOut(0.1,0,0,0,1);	
+	wait(0.15);
+	
+	cinematic();
+	freezeplayer();
+	letterbox(0.1);
+	
+	wait(1);
+	
+	//hzm coop mod chrissstrahl - this is only for sp
+	if(getCvarInt("g_gametype") == 0){
+		$player.hide();
+		$player.notsolid();		
+	}
+	
+	$cam1.follow($klingonStation_barRomulanFoundCinematic);
+	$cam1.cut();
+	globalCoop_main_waitAFrame();
+	cuecamera($cam1);
+	
+	//fade cam in
+	cam_fadeIn(0.25,0,0,0,1);
+	
+	skipthread("");
+	wait(1.4);
+	
+	$klingonStation_barRomulanFriendDatapad.remove();
+	$t352.playsound("sound/player/player_invpickup.wav",0,1.5,99999);
+	wait(.15);
+	
+	$klingonStation_barRomulanFriend.animateonce("sfa_chair_talk_B");
+	
+	wait(1);
+	
+	cam_fadeout(1, 0, 0, 0, 1, 0 );
+	wait(1);
+	
+	$klingonStation_barRomulanFriend.displayEffect("TransportOut","Federation");
+	
+	//end cinematic
+	noncinematic();
+	clearletterbox(0.1);
+	cueplayer();
+	//hzm coop mod chrissstrahl - this is only for sp
+	if(getCvarInt("g_gametype") == 0){
+		$player.show();
+		$player.solid();
+	}
+	
+	wait(0.5);
+	releaseplayer();
+	cam_fadein( 1, 0, 0, 0, 1, 0 );
+	
+	KLINGONSTATION_ROMULANFOUND = 1;
+	
+	wait(2);
+	$klingonStation_barRomulanFriend.remove();
+	
+	wait(2);
+	
+	//BORG ATTACK >>> BORG ATTACK
+	//BORG ATTACK >>> BORG ATTACK
+	//BORG ATTACK >>> BORG ATTACK
+	//BORG ATTACK >>> BORG ATTACK
+	//BORG ATTACK >>> BORG ATTACK
+	//BORG ATTACK >>> BORG ATTACK
+	//spacebattle attack cinematic
+	thread klingonStation_cinematicBorgArrive();
+}
+
+void klingonStation_barBattlearenaLoser()
+//Who ever louses the battle and gets killed will start this thread
+//the winner will be the last attacker at the exact moment of death
+{
+	entity eWinner;
+	eWinner = getCurrentEntity();
+	if(doesEntityExist(eWinner))
+	{
+		eWinner.notarget();
+		eWinner = eWinner.coop_getLastAttacker();
+	
+		if(doesEntityExist(eWinner))
+		{
+			eWinner.model("models/char/klingon-m9-merc-batleth-m2-neutral.tik");
+			eWinner.playsound("sound/coop_blArena/chars/klingon/batleth_m1.wav",3,3,512);
+			globalCoop_main_waitAFrame();
+			eWinner.ai_off();
+			eWinner.animateonce("cheer");
+			eWinner.actortype("friend");
+			wait(1.6);
+			eWinner.anim("idle");
+			wait(0.5);
+			eWinner.pushable(0);
+			eWinner.walkto("$klingonStation_barBattlearenaExit1");
+			waitfor(eWinner);
+			
+			//end - fight cinematic
+			thread klingonStation_barEnterCinematicEnd();
+			
+			if(doesEntityExist(eWinner))
+			{
+				$klingonStation_barBattlearenaFf.notsolid();
+				$klingonStation_barBattlearenaFf.hide();
+				eWinner.walkto("$klingonStation_barBattlearenaExit2");
+				waitfor(eWinner);
+				
+				if(doesEntityExist(eWinner))
+				{
+					eWinner.walkto("$klingonStation_barPosition1");
+					waitfor(eWinner);
+					
+					//now at bar, make avialable for challenge
+					//if(doesEntityExist(eWinner))
+					//{
+						//eWinner.onuse("klingonStation_barChallenge");
+						//eWinner.pause();				
+					//}
+				}
+			}
+		}
+	}
+}
+
+void klingonStation_hallwayConsoleExplode()
+{
+	vector vOrigin;
+	vOrigin = $klingonStation_hallwayConsole.getOrigin();
+	$klingonStation_hallwayConsole.selfdetonate();
+	globalCoop_main_waitAFrame();
+	$klingonStation_hallwayConsoleSparks.show();
+	$klingonStation_hallwayConsoleSparks.scale(1);
+	$klingonStation_hallwayConsole.remove();
+	
+	//borg beams in
+	$klingonStation_hallwayBorg2.ai_on();
+	$klingonStation_hallwayBorg2.show();
+	thread globalCoop_player_makeSolidASAP($klingonStation_hallwayBorg2);
+	$klingonStation_hallwayBorg2.displayEffect("TransportIn","Borg");
+	$klingonStation_hallwayBorg2.aggressive(1);
+	
+	//make sure we get some more borg to fight, respawn this drone
+	thread respawner_respawnByDifficulty($klingonStation_hallwayBorg2,0,2,"TransportIn","Borg",0,0,400,4);
+	
+	$klingonStation_hallwayBorg3.ai_on();
+	$klingonStation_hallwayBorg3.show();
+	thread globalCoop_player_makeSolidASAP($klingonStation_hallwayBorg3);
+	$klingonStation_hallwayBorg3.displayEffect("TransportIn","Borg");
+	$klingonStation_hallwayBorg3.aggressive(1);
+	
+	//make sure we get some more borg to fight, respawn this drone
+	//but wait some time, because we want the klingon to help the player first
+	thread respawner_respawnByDifficulty($klingonStation_hallwayBorg3,0,10,"TransportIn","Borg",0,0,400,4);
+	
+	$klingonStation_hallwayBorg4.ai_on();
+	$klingonStation_hallwayBorg4.show();
+	thread globalCoop_player_makeSolidASAP($klingonStation_hallwayBorg4);
+	$klingonStation_hallwayBorg4.displayEffect("TransportIn","Borg");
+	$klingonStation_hallwayBorg4.aggressive(1);
+	
+	//make sure we get some more borg to fight, respawn this drone
+	//but wait some time, because we want the klingon to help the player first
+	thread respawner_respawnByDifficulty($klingonStation_hallwayBorg4,0,2,"TransportIn","Borg",0,0,400,8);
+}
+
+void klingonStation_hallwayTubeExplode()
+{
+	$klingonStation_hallwayTube.remove();
+	$klingonStation_hallwayTubeDamaged.show();
+	$klingonStation_hallwayTubeDamaged.solid();
+	$klingonStation_hallwayTubeDamaged.selfdetonate();
+	thread globalCoop_player_makeSolidASAP($klingonStation_hallwayTubeDamaged);
+	$klingonStation_hallwayTubeExplodeSteam.show();
+	$klingonStation_hallwayTubeExplodeSteam.scale(1);
+	$klingonStation_hallwayTubeDamagedTrigger.triggerable();
+	
+	
+	//hallway light turn off
+	spawn("SFX_sparks_directional-blue-small","model","models/fx/fx-sparks-blue-directional-small.tik","origin","792 604 288","angles","119 0 234");
+	$world.light_intensity( "klingonStation_hallwayLight1" , 0 );
+	$klingonStation_hallwayLight1Beam.hide();
+}
+
+void klingonStation_seller()
+//kingon seller trigger on table
+{
+
+}
+
+void coop_klingonAirlockBoxes()
+{
+	if(doesEntityExist($klingonAirlockBoxes)){
+		if($klingonAirlockBoxes.getFloatVar("flownAway") == 0){
+			$klingonAirlockBoxes.setFloatVar("flownAway",1);
+			
+			$klingonAirlockBoxes.time(1);
+			$klingonAirlockBoxes.moveEast(-80);
+			$klingonAirlockBoxes.moveNorth(30);
+			$klingonAirlockBoxes.moveUp(20);
+			wait(0.95);
+			$klingonAirlockBoxes.rotateX(randomint(5));
+			$klingonAirlockBoxes.rotateY(randomint(5));
+			$klingonAirlockBoxes.rotateZ(randomint(5));
+			$klingonAirlockBoxes.time(1.5);
+			$klingonAirlockBoxes.moveNorth(151);
+			wait(1.45);
+			vector vVel;
+			vVel = $klingonAirlockBoxes.getVelocity();
+			
+			waitFor($klingonAirlockBoxes);
+			$klingonAirlockBoxes.setVelocity(vVel);
+			wait(120);
+			if(doesEntityExist($klingonAirlockBoxes)){
+				$klingonAirlockBoxes.remove();
+			}
+		}
+	}
+}
+
+//-------------------------------------
+//AUTOMATICALLY STARTED BY THE COOP MOD
+//-------------------------------------
+void coop_justEntered()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		//-------------------------------------
+		//EVOSUIT PLAYER ENTERED LEVEL
+		//-------------------------------------
+		coop_evosuit_justEntered(ePlayer);		
+	}
+}
+//-------------------------------------
+//AUTOMATICALLY STARTED BY THE COOP MOD
+//-------------------------------------
+void coop_justBecameSpectator()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		//-------------------------------------
+		//EVOSUIT PLAYER BECAME SPECTATOR
+		//-------------------------------------
+		coop_evosuit_justBecameSpectator(ePlayer);
+	}
+}
+//-------------------------------------
+//AUTOMATICALLY STARTED BY THE COOP MOD
+//-------------------------------------
+void coop_justTransported()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		//-------------------------------------
+		//EVOSUIT PLAYER USED TRANSPORT COMMAND
+		//-------------------------------------
+		coop_evosuit_justTransported(ePlayer);
+	}
+}
+
+//-------------------------------------
+//AUTOMATICALLY STARTED BY THE COOP MOD
+//-------------------------------------
+void coop_justChangedClass()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		//-------------------------------------
+		//EVOSUIT MODEL CHANGED
+		//-------------------------------------
+		coop_evosuit_classChanged(ePlayer);		
+	}
+}
+//-------------------------------------
+//AUTOMATICALLY STARTED BY THE COOP MOD
+//-------------------------------------
+void coop_justChangedModel()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		//-------------------------------------
+		//EVOSUIT MODEL CHANGED
+		//-------------------------------------
+		coop_evosuit_modelChanged(ePlayer);		
+	}
+}
+//-------------------------------------
+//AUTOMATICALLY STARTED BY THE COOP MOD
+//-------------------------------------
+void coop_justSpawned()
+{
+}
+//-------------------------------------
+//AUTOMATICALLY STARTED BY THE COOP MOD
+//-------------------------------------
+void coop_justDied()
+{
+return; //[b60021] chrissstrahl - this func call was fixed in c++ code
+	entity ePlayer;
+	entity eAttacker;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		eAttacker = ePlayer.coop_getLastAttacker();
+		if(eAttacker != ePlayer && eAttacker != $world){
+			ePlayer.hudprint("You got killed by "+eAttacker.getTargetname()+"\n");
+		}
+	}
+}
+//-------------------------------------
+//AUTOMATICALLY STARTED BY THE COOP MOD
+//-------------------------------------
+void coop_justLeft()
+{
+}
+
+void coop_airlockOutsideUse()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(doesEntityExist(eTrigger)){
+		eTrigger.notTriggerable();
+
+		$klingonPressureLightsWhite.hide();
+		$klingonPressureLightsRed.show();
+		$world.light_intensity("klingonPressureLightsWhite",0);
+		$world.light_intensity("klingonPressureLightsRed",1);
+		
+		//wait for door to close and lock
+		globalCoop_level_waitForDoorToClose($klingonAirlockDoorInside,1);
+		
+		float fBlinkiBlink;
+		float fOn;
+		for(fBlinkiBlink=0;fBlinkiBlink<9;fBlinkiBlink++){
+			if(globalCoop_check_isPowerOfGiven(fBlinkiBlink,2)){
+				fOn = 1;
+			}
+			else{
+				fOn=0;
+			}
+			wait(0.25);
+			$world.light_intensity("klingonPressureLightsRed",fOn);
+		}
+		
+		$klingonAirlockDoorOutside.unlock();
+		$klingonAirlockDoorOutside.open($world);
+		$klingonAirlockDoorOutside.playsound( "sound/environment/wind/wind_vacuum.wav", 6, .6, 256 );
+		entity eDecompressionEffect;
+		eDecompressionEffect = spawn("fx/fx-explosion-ice-gas-large.tik","origin","833 2683 120","angle","90");
+		
+		thread coop_klingonAirlockBoxes();
+		
+//-------------------------------------
+//EVOSUIT DECOMPRESS - NOTIFIES ALL RELATED SCRIPTS
+//-------------------------------------
+thread coop_evosuit_airlockDecompress($coop_evosuit_airlockInsideTrigger);
+//-------------------------------------
+		
+		wait(1);
+		
+		$KlingonAirlockInsideUse.triggerable();
+		
+		wait(2);
+		if(doesEntityExist(eDecompressionEffect)){ eDecompressionEffect.remove(); }
+	}
+}
+
+void coop_airlockInsideUse()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(doesEntityExist(eTrigger)){
+		eTrigger.notTriggerable();
+		
+		globalCoop_level_waitForDoorToClose($klingonAirlockDoorOutside,1);
+		wait(0.5);
+		
+		//$klingonAirlockSteamTopEffect.scale(1.7);
+		$klingonAirlockSteamTopEffect.show();
+		
+		wait(2);
+		
+		$klingonAirlockSteamTopEffect.hide();
+		
+		$klingonPressureLightsRed.hide();
+		$klingonPressureLightsWhite.show();
+		$world.light_intensity("klingonPressureLightsRed",0);
+		$world.light_intensity("klingonPressureLightsWhite",1);
+		
+//-------------------------------------
+//EVOSUIT COMPRESS - NOTIFIES ALL RELATED SCRIPTS
+//-------------------------------------
+thread coop_evosuit_airlockCompress($coop_evosuit_airlockInsideTrigger);
+//-------------------------------------
+		
+		wait(0.5);
+		
+		$klingonAirlockDoorInside.unlock();
+		$klingonAirlockDoorInside.open($world);
+		wait(1);
+		$KlingonAirlockOutsideUse.triggerable();
+	}
+}
+
+void klingonStation_cargobayAirlockScene()
+{
+	thread globalCoop_objectives_set(coop_string_objectiveItem2,"incomplete",3,1); //evosuit
+	
+	/*
+	if(getCvar("username") == "Chrissstrahl"){
+		$player0.origin('5504 12264 -1848'); //on cube exterior lower segment
+		//$player0.origin('1111 2640 330'); //On KLstation Airlock
+	}
+	*/
+
+	$klingonAirlockActor0.animateonce("cin-m3_pointing");
+	$klingonAirlockActor1.anim("walk_fast_armup");
+	wait(1.25);
+	$klingonAirlockDoorInside.close();
+	wait(3);
+	$KlingonAirlockActPlayerClip.remove(); //clip that prevents playa from blocking doorz
+	$klingonAirlockActor0.remove();
+	$klingonAirlockActor1.remove();
+	
+	
+	//[b60025] chrissstrahl - have a shuttle loop in a path
+	$shuttleFederationOrigin2_torpedo.bind($shuttleFederationOrigin2);
+	$shuttleFederationClip2.bind($shuttleFederationOrigin2);
+	$shuttleFederation2.bind($shuttleFederationOrigin2);
+	$shuttleFederationOrigin2.followpath( $t280 , "loop" , "normalangles" );
+	$shuttleFederation2.show();
+	$shuttleFederationClip2.solid();
+	
+	while(doesEntityExist($needToPickupEvoSuit)){
+		wait(1);
+	}
+	globalCoop_objectives_set(coop_string_objectiveItem2,"incomplete",4,0);
+	thread globalCoop_objectives_set(coop_string_objectiveItem2,"complete",3,1);
+}
+
+void klingonStation_cargobayPowerCoup()
+{
+	/*
+	//--- set the explosion spawner to spawn an explosion and trigger it
+	$dis_node1_spawn.modelname ( "fx/fx-explosion-distnode.tik" );
+	$dis_node1_spawn.spawntargetname ( "dis_node1_boom" );
+	trigger ( "$dis_node1_spawn" );
+	wait( .1 );
+	$dis_node1_spawn.remove();
+	*/
+	
+	trigger("$klingonStation_cargobayGroupEnable");
+	wait(0.1);
+	trigger("$klingonStation_cargobayGroupAggressive");
+	
+	$klingonBorgFF.remove();
+
+	$klingonStation_cargobayPowerCoup.noDamage();
+	$klingonStation_cargobayPowerCoup.model("models/enviro/borg-sphere_powercup_powercup_damaged.tik");
+	
+	entity eEffect;
+	eEffect = spawn("Object","model","fx/fx-explosion-plasmacon-red.tik","scale","0.25","origin",""+$klingonStation_cargobayPowerCoup.getOrigin());
+	wait(2);
+	if(doesEntityExist(eEffect)){
+		eEffect.remove();
+	}
+}
+
+void klingonStation_cargobayDistNode()
+{
+	$klingonStation_cargobayDistNode.noDamage();
+	$klingonStation_cargobayDistNode.model("models/enviro/borg-sphere_distnode_distnode_damaged.tik");
+
+	entity eEffect;
+	eEffect = spawn("Object","model","fx/fx-explosion-distnode.tik","scale","0.25","origin",""+$klingonStation_cargobayDistNode.getOrigin());
+	wait(2);
+	if(doesEntityExist(eEffect)){
+		eEffect.remove();
+	}
+	
+	//disable all borg on the klingon station
+	/*entity eActor;
+	float fNum;
+	for(fNum=0;fNum<7;fNum++){
+		eActor = getEntity("klingonDrone"+fNum);
+		if(doesEntityExist(eActor)){
+			//eActor.settendency("disable",1);
+			eActor.ai_on();
+		}
+	}*/
+	
+	//disable all borg on the klingon station
+	wait(0.3);
+	trigger("$klingonStation_cargobayGroupDisable");	
+}
+
+void klingonStation_shuttlebayFerengieTakeoff()
+{
+	$klingonFerengieShipMonsterclip.remove();
+	$klingonFerengieShip.bind($klingonFerengieShipOrigin);
+	$klingonFerengieShipClip.bind($klingonFerengieShipOrigin);
+	
+	thread globalAccelMove( $klingonFerengieShipOrigin, '-1500 0 80', 3, "rampdown", "" );
+	wait(3.1);
+	globalAccelMove( $klingonFerengieShipOrigin, '3000 0 3000', 5, "rampdown", "" );
+	
+	$klingonFerengieShip.remove();
+	$klingonFerengieShipOrigin.remove();
+	$klingonFerengieShipClip.remove();	
+}
+
+
+void klingonStation_hallwayKlingonGuard()
+{
+	//sound\dialog\m9l2\
+	//klingcomm_dor.mp3
+	//klingcomm_nomatch.mp3
+	//klingcomm_retreat.mp3
+	$klingonStation_hallwayKlingonGuard1.playdialog( "localization/sound/dialog/m9l2/klingcomm_retreat.mp3", 1, 256, 0);
+	entity ePlayer;
+	ePlayer = globalCoop_return_playerClosestActive($klingonStation_hallwayKlingonGuard1);
+	if(doesEntityExist(ePlayer)){
+		$klingonStation_hallwayKlingonGuard1.headwatch(ePlayer);
+	}
+	$klingonStation_hallwayKlingonGuard1.animateonce("idle_adjust");
+	wait(3);
+	$klingonStation_hallwayKlingonGuard1.headwatchtarget("none",10);
+}
+
+void klingonStation_hallwayRomulanGuard()
+{
+	//idle_adjust
+	//patrol_clean
+	//patrol_search
+	//patrol_spotted
+	//patrol_whosthere
+	//romdisruptor_melee1
+	//romdisruptor_melee2
+	
+	//sound\dialog\m10l1\
+	//romhall2_youthere.mp3
+	//romguard_what.mp3
+	//romguard_tightw.mp3
+	$klingonStation_hallwayRomulanGuard2.animateonce("patrol_search");
+	$klingonStation_hallwayRomulanGuard2.playdialog( "localization/sound/dialog/m10l1/romguard_tightw.mp3", 1, 256, 0);
+}
+
+
+void klingonStation_PDA()
+{
+	//sound\dialog\m2l2\
+	//klingm1_armory2.mp3
+	//klingm1_atmproc.mp3
+	//klingm1_infolt.mp3
+	//klingm1_press.mp3
+	//klingm1_secbr.mp3
+	//klingm1_secteam.mp3
+	//klingm1_responset.mp3
+	//klingm1_procroom.mp3
+	//
+	
+	float fVolume = 2;
+	float fRange = 256;
+	float fLocationType = 0;
+	float fAvailable = 8;
+	
+	while(1)
+	{
+		string sDialog;
+		float fRand;
+		
+		fRand = randomInt(7);
+		
+		float fValid;
+		float fCurr;
+		while(!fValid){
+			fValid = 1;
+			if($world.doesVarExist("klingonStation_PDA"+fRand)){
+				fCurr = $world.getFloatVar("klingonStation_PDA"+fRand);
+				if(fCurr == 1){
+					fValid = 0;
+					fRand = randomInt(fAvailable);
+				}
+			}
+			globalCoop_main_waitAFrame();
+			//globalCoop_main_print("=======pda loop========");
+		}
+		
+		//globalCoop_main_print("====AVIALABLE "+fAvailable+"=======");
+		$world.setFloatVar("klingonStation_PDA"+fRand,1);
+		
+		fAvailable--;
+		
+		//all dialogs has been played
+		if(fAvailable < 1){
+			return;
+		}
+		
+		
+		fLocationType = randomInt(3);
+		if(fRand==0){sDialog="klingm1_armory2.mp3";}
+		else if(fRand==1){sDialog="klingm1_atmproc.mp3";}
+		else if(fRand==2){sDialog="klingm1_infolt.mp3";}
+		else if(fRand==3){sDialog="klingm1_press.mp3";}
+		else if(fRand==4){sDialog="klingm1_secbr.mp3";}
+		else if(fRand==5){sDialog="klingm1_secteam.mp3";}
+		else if(fRand==6){sDialog="klingm1_responset.mp3";}
+		else{sDialog="klingm1_procroom.mp3";}
+		
+		if(fLocationType == 0){
+			$klingonStation_hallwayTubeDamaged_origin.playsound("localization/sound/dialog/m2l2/"+sDialog,0,fVolume,fRange);
+			$klingonStation_hallwayPDA1.playsound("localization/sound/dialog/m2l2/"+sDialog,0,fVolume,fRange);
+			$klingonStation_hallwayPDA2.playsound("localization/sound/dialog/m2l2/"+sDialog,0,fVolume,fRange);
+		}
+		else if(fLocationType == 1){
+			$klingonStation_shuttlebayPDA.playsound("localization/sound/dialog/m2l2/"+sDialog,0,fVolume,fRange);
+		}
+		else if(fLocationType == 2){
+			$klingonStation_romulanSectionPDA.playsound("localization/sound/dialog/m2l2/"+sDialog,0,fVolume,fRange);
+			$klingonStation_cargobayPDA.playsound("localization/sound/dialog/m2l2/"+sDialog,0,fVolume,fRange);
+		}
+		else{
+			$klingonStation_barPDA.playsound("localization/sound/dialog/m2l2/"+sDialog,0,fVolume,fRange);
+		}
+		
+		//wait between 20 and 50 sec
+		fRand = randomInt(30);
+		wait(20 + fRand);
+	}
+}
+
+void borgCube_entranceTransport()
+//beaming on to the cube
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	//set in space, the function will handle the suffication
+	coop_evosuit_playerSetSpace(ePlayer,0);
+	
+	//[b60025] chrissstrahl - set objective
+	if(!BORGCUBE_INFILTRATED){
+		BORGCUBE_INFILTRATED = 1;
+		globalCoop_objectives_set(coop_string_objectiveItem2,"complete",4,0);
+		thread globalCoop_objectives_set(coop_string_objectiveItem2,"incomplete",5,1);
+	}
+}
+
+
+void borgCube_exitTransport()
+//beaming out of the cube
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	//set in space, the function will handle the suffication
+	coop_evosuit_playerSetSpace(ePlayer,1);
+}
+
+void borgCube_spawnerSetFree(entity eActor, entity eSpawner)
+{
+	if(doesEntityExist(eSpawner)){
+		eSpawner.setFloatVar("freeSlot",0);
+	}
+	
+	wait(1.8);
+	
+	if(doesEntityExist(eActor)){
+		eActor.animateonce("alcove_activate");
+	}
+	
+	wait(1.8);
+	
+	if(doesEntityExist(eActor)){
+		eActor.anim("idle");
+		eActor.aggressive(1);
+		eActor.ai_on();
+	}
+	
+	
+	float fWait;
+	fWait = 1;
+	while(fWait){
+		fWait = 0;
+		if(doesEntityExist(eActor) == 1 && doesEntityExist(eSpawner) == 1){
+			fWait = 1;
+			vector vPosActor;
+			vector vPosSpawn;
+			vPosActor = eActor.getOrigin();
+			vPosSpawn = eSpawner.getOrigin();
+			
+			if(vectorLength(vPosSpawn - vPosActor) > 256){
+				eSpawner.setFloatVar("freeSlot",1);
+				return;
+			}
+		}
+		wait(3);
+	}
+	if(doesEntityExist(eSpawner)){
+		eSpawner.setFloatVar("freeSlot",1);
+	}
+}
+
+
+void borgCube_spawner()
+{
+	entity ePlayer;
+	float spawnedDrones;
+	float spawnerNumber;
+	entity eSpawner;
+	string spawnerBaseName;
+	spawnerBaseName = "borgCube_alcove";
+	float spawnLimit;
+	
+	//setup - set floatvar, preventing warnings in console
+	eSpawner = getEntity(spawnerBaseName + spawnerNumber);	
+	while(doesEntityExist(eSpawner)){
+		spawnerNumber++;
+		eSpawner = getEntity(spawnerBaseName + spawnerNumber);
+		if(doesEntityExist(eSpawner)){
+			eSpawner.setFloatVar("freeSlot",1);
+		}
+	}
+	spawnerNumber=0;
+
+	//continous drone spawn
+	while(1) {
+		spawnLimit = 4;
+		spawnLimit += globalCoop_return_integerPlayersQuantity(2);	
+	
+		spawnerNumber=0;
+		eSpawner = getEntity(spawnerBaseName + spawnerNumber);	
+		while(doesEntityExist(eSpawner) && BORGCUBE_ACTIVEDRONES < spawnLimit){
+			if(eSpawner.getFloatVar("freeSlot")){
+				ePlayer = globalCoop_return_playerClosestActive(eSpawner);
+				if(doesEntityExist(ePlayer)){
+					if(ePlayer.isWithinDistanceOf(eSpawner, 1024)){
+						entity eDrone;
+						eDrone = spawn("models/char/borg_drone-male.tik","origin",""+eSpawner.getOrigin(),"hide","1","ai_off","1");
+						globalCoop_main_waitAFrame();
+						if(doesEntityExist(eDrone)){
+							eDrone.angle(VectorGetY(eSpawner.getAngles()));
+							eDrone.show();
+							eDrone.targetname("borgCube_drone"+spawnedDrones);
+							eDrone.killthread("borgCube_droneMurdered");
+							eDrone.displayEffect("TransportIn","Borg");
+							BORGCUBE_ACTIVEDRONES++;
+							
+							thread borgCube_spawnerSetFree(eDrone, eSpawner);
+						}
+						spawnedDrones++;
+					}					
+				}
+			}
+			
+			eSpawner = getEntity(spawnerBaseName + spawnerNumber);
+			spawnerNumber++;
+		}
+		wait(15);
+	}
+}
+
+void borgCube_enterCube()
+//started from trigger once player enters cube first time
+{
+	$demolitionTeam0.ai_on();
+	$demolitionTeam1.ai_on();
+
+	thread borgCube_spawner();
+
+
+/*
+
+	//setup all the drones
+	float fDrones;
+	entity eDrone;
+	for(fDrones = 7;fDrones>=0;fDrones--){
+		eDrone = getEntity("borgCube_drone"+fDrones);
+		if(doesEntityExist(eDrone)){
+			//eDrone.anim ( "alcove_idle" );
+			eDrone.setactorflag ( "inalcove" , 1 );
+			eDrone.settendency( "hibernate" , 1.0 );
+			eDrone.ai_on();
+			eDrone.killthread("borgCube_droneMurdered");
+			
+			//some spawn if you are at a distance some dont
+			float fRand;
+			fRand = randomInt(5);
+			if(fRand == 0){
+				fRand = 400;
+			}else{
+				fRand = -500;
+			}
+			thread respawner_respawnByDifficulty(eDrone,0,(randomInt(10) + 1),"TransportIn","Borg",0,0,fRand,8);
+		}
+	}
+	*/
+	
+	
+	
+	//make forcefields solid - they needed to be notsolid for the pathnodes to connect
+	float fFields;
+	entity eField;
+	for(fFields=3;fFields>=0;fFields--){
+		eField = getEntity("borgCube_forceField"+fFields);
+		if(doesEntityExist(eField)){
+			eField.solid();
+		}
+	}
+	
+	//start beaming in npc demolition teams
+	thread borgCube_npcBeamIn();
+	
+	//stop flickering light in romulan section
+	$world.light_intensity( "klingonStation_romulanSectionLight1" , 0 );
+}
+
+void borgCube_droneMurdered()
+//a drone was killed, it starts this
+{
+	entity eDrone;
+	eDrone = getCurrentEntity();
+	if(doesEntityExist(eDrone)){
+		BORGCUBE_ACTIVEDRONES--;
+	}
+}
+
+float actor_animateOnce(entity e,string sAnim)
+{
+	if(doesEntityExist(e)){
+		if(e.getHealth() > 0){
+			e.animateonce(sAnim);
+			$player0.hudprint("actor_animateOnce 1\n");
+			return 1;
+		}
+	}
+	$player0.hudprint("actor_animateOnce 0\n");
+	return 0;	
+}
+
+void borgCube_chellWorkDone()
+//chell has finished his work
+{
+	return;
+	if(doesEntityExist($chell)){
+		if($chell.getHealth() > 0){
+			killthread("borgCube_chellWork_timer");
+			thread globalCoop_main_globalMessage("borgCube_chellWorkDone - success");
+			
+			$chell.missionobjective(0);
+			$objectiveMarker0.hide();
+			
+			//disable beam
+			$borgCube_energyBeam.remove();
+			
+			$chell.mass(200);
+			$chell.pushable(1);
+			$chell.immortal(1);
+			globalCoop_actor_useWeapon($chell,"fed-IMod");
+			$chell.ai_on();
+			
+			//drain coolant
+			trigger("$borgCube_coolant");
+			
+			wait(2);
+			
+			//show steam
+			$borgCube_powerPipe0Steam.show();
+			$borgCube_powerPipe1Steam.show();
+			$borgCube_powerPipe0Steam.scale(1);
+			$borgCube_powerPipe1Steam.scale(1);
+			
+
+			wait(5);
+			
+			
+			//explode
+			$borgCube_powerPipe0.selfdetonate();
+			$borgCube_powerPipe1.selfdetonate();
+			$borgCube_powerPipe0.remove();
+			$borgCube_powerPipe1.remove();
+			$borgCube_powerPipe0Destroyed.show();
+			$borgCube_powerPipe1Destroyed.show();
+			
+			//remove forcefields
+			float fFields;
+			entity eField;
+			for(fFields=3;fFields>=0;fFields--){
+				eField = getEntity("borgCube_forceField"+fFields);
+				if(doesEntityExist(eField)){
+					eField.remove();
+				}
+			}
+			
+			wait(3);
+			
+			//start beaming in npc demolition teams
+			thread borgCube_npcBeamIn();
+		}
+	}
+}
+
+void borgCube_chellWork_timer()
+//handle mission procedure
+{
+	return;
+	thread globalCoop_main_globalMessage("borgCube_chellWork_timer");
+	thread borgCube_chellWork();
+	
+	//make sure to stop previouse
+	globalCoop_statbar_timerStop();
+	wait(0.2);
+	
+	float fTime = 10;
+	float fFailure;
+	while(fTime > 0){
+		fFailure = 1;
+		if(doesEntityExist($chell)){
+			if($chell.getHealth() > 1){
+				fFailure = 0;
+				
+				killthread("borgCube_chellWork");
+				$chell.ai_off();
+				//$chell.animateOnce("death");
+			}
+		}
+		if(fFailure){
+			thread globalCoop_main_globalMessage("borgCube_chellWorkDone - FAILURE");
+			globalCoop_mission_failWithReason("$$Rotec9FailedChell$$");
+			return;
+		}
+		wait(1);
+	}
+	
+	//success - continue mission
+	thread borgCube_chellWorkDone();
+}
+
+void borgCube_chellWork()
+//handle animations
+{
+	return;
+	$chell.missionobjective(1);
+	$chell.ai_off();
+	thread globalCoop_armory_putAwayWeapon($chell);
+	$chell.mass(9999);
+	$chell.pushable(0);
+	$chell.immortal(0);
+	
+	if(getCvar("username") == "Chrissstrahl"){
+		$player0.hudprint("chell working 1\n");
+	}
+	
+	while(BORGCUBE_CHELLWORKING){
+		$player0.hudprint("start loop\n");
+		$chell.anim("ent-vchair-sm-gesture1");
+		wait(2.95);
+		
+		if(!actor_animateOnce($chell,"ent-compstation-idle")){
+			$player0.hudprint("chell abbort 2\n");
+			return;
+		}
+		waitForAnimation($chell,"ent-compstation-idle-look",-0.05);
+		
+		if(!actor_animateOnce($chell,"ent-compstation-idle")){
+			$player0.hudprint("chell abbort 3\n");
+			return;
+		}
+		waitForAnimation($chell,"ent-compstation-idle",-0.05);		
+		
+		if(!actor_animateOnce($chell,"ent-compstation-idle")){
+			$player0.hudprint("chell abbort 4\n");
+			return;
+		}
+		waitForAnimation($chell,"ent-compstation-scan",-0.05);
+		
+		if(getCvar("username") == "Chrissstrahl"){
+			$player0.hudprint("chell working loop\n");
+		}
+	}
+}
+
+void borgCube_npcBeamIn()
+{
+	//remove forcefields
+	float fFields;
+	entity eField;
+	for(fFields=3;fFields>=0;fFields--){
+		eField = getEntity("borgCube_forceField"+fFields);
+		if(doesEntityExist(eField)){
+			eField.remove();
+		}
+	}
+			
+	//beam effect for gravunit - can't play effect on it because it is not a model
+	entity e;
+	vector vCap;
+	e = spawn("SFX_beamsparkle_boogaloo","model","models/fx/fx-beamsparkle-boogaloo2.tik","scale","1.5");
+	
+	//ready antigrav units
+	//$anigravUnitFederation0Gravnode.bind($anigravUnitFederation0Origin);
+	$anigravUnitFederation0UseSymbol.bind($anigravUnitFederation0Origin);
+	$anigravUnitFederation0Puzzle.bind($anigravUnitFederation0Origin);
+	$anigravUnitFederation0Cap.bind($anigravUnitFederation0Origin);
+	$anigravUnitFederation0.bind($anigravUnitFederation0Origin);
+	$anigravUnitFederation0WalkTo.bind($anigravUnitFederation0Origin);
+	$anigravUnitFederation0DamageTrigger.bind($anigravUnitFederation0Origin);
+	
+	$anigravUnitFederation0UseSymbol.scale(0.001);
+	
+	//objective marker
+	vector vPos;
+	vPos = $anigravUnitFederation0Origin.getOrigin();
+	vPos_z += -110;
+	$objectiveMarker0.origin(vPos);
+	$objectiveMarker0.bind($anigravUnitFederation0Origin);	
+	$anigravUnitFederation0Origin.movetopos($borgCube_gravunitBeamIn.getOrigin());
+	$anigravUnitFederation0Origin.time(0.01);
+	$anigravUnitFederation0.solid();
+	$anigravUnitFederation0Cap.show();
+	thread globalCoop_player_makeSolidASAP($anigravUnitFederation0);
+	
+	globalCoop_main_waitAFrame();
+	vCap = $anigravUnitFederation0Cap.getOrigin();
+	vCap_z += -70;
+	e.origin ( vCap );
+	
+	globalCoop_main_waitAFrame();
+	$anigravUnitFederation0.show();
+	
+	wait(2.2);
+	e.scale(0.001);	
+	
+	wait(1);
+	$anigravUnitFederation0Origin.followpath($borgCube_gravunitPath1);
+	$anigravUnitFederation0.missionobjective(1);
+	
+	
+	wait(15);
+	
+	$anigravUnitFederation1UseSymbol.scale(0.001);
+	
+	//$anigravUnitFederation1Gravnode.bind($anigravUnitFederation1Origin);
+	$anigravUnitFederation1UseSymbol.bind($anigravUnitFederation1Origin);
+	$anigravUnitFederation1Puzzle.bind($anigravUnitFederation1Origin);
+	$anigravUnitFederation1Cap.bind($anigravUnitFederation1Origin);
+	$anigravUnitFederation1.bind($anigravUnitFederation1Origin);
+	$anigravUnitFederation1WalkTo.bind($anigravUnitFederation1Origin);
+	$anigravUnitFederation1DamageTrigger.bind($anigravUnitFederation1Origin);
+	vPos = $anigravUnitFederation1Origin.getOrigin();
+	vPos_z += -110;
+	$objectiveMarker1.origin(vPos);
+	wait(1);
+	$objectiveMarker1.bind($anigravUnitFederation1Origin);	
+	$anigravUnitFederation1Origin.movetopos($borgCube_gravunitBeamIn.getOrigin());
+	$anigravUnitFederation1Origin.time(0.01);
+	
+	$anigravUnitFederation1.solid();
+	$anigravUnitFederation1Cap.show();
+	thread globalCoop_player_makeSolidASAP($anigravUnitFederation1);
+	$anigravUnitFederation1.show();
+	
+	//show beam effect again
+	e.scale(1.5);
+	
+	wait(2.2);
+	//remove beam effect
+	e.remove();
+
+	wait(1);
+	$anigravUnitFederation1Origin.followpath($borgCube_gravunitPath2);
+	$anigravUnitFederation1.missionobjective(1);
+	
+	wait(1.5);
+//$demolitionTeam1.ai_on();
+	
+}
+
+void borgCube_gravunitPath1End()
+{
+	$anigravUnitFederation0Cap.rotateZup(-90);
+	$anigravUnitFederation0Cap.time(2);
+	wait(1);
+	
+	//stop following, also stops "invalid animation for" error, because groupfollow was not meant to be used on objects
+	if(doesEntityExist($demolitionTeam0)){
+		$demolitionTeam0.settendency("followobject",0);
+	}
+	
+	$anigravUnitFederation0Puzzle.puzzleobject_solvedthread( "borgCube_torpedo0Ready" );
+	$anigravUnitFederation0Puzzle.puzzleobject_canceledthread( "borgCube_resetTricorderPuzzle0" );
+	$anigravUnitFederation0Puzzle.puzzleobject_itemusedthread( "borgCube_tricorderPuzzle0" );
+	
+	$anigravUnitFederation0UseSymbol.scale(1);
+}
+
+void borgCube_gravunitPath2End()
+{
+	$anigravUnitFederation1Cap.rotateZup(-90);
+	$anigravUnitFederation1Cap.time(2);
+	wait(1);
+	
+	//stop following, also stops "invalid animation for" error, because groupfollow was not meant to be used on objects
+	if(doesEntityExist($demolitionTeam0)){
+		$demolitionTeam1.settendency("followobject",0);
+	}
+	
+	$anigravUnitFederation1Puzzle.puzzleobject_solvedthread( "borgCube_torpedo1Ready" );
+	$anigravUnitFederation1Puzzle.puzzleobject_canceledthread( "borgCube_resetTricorderPuzzle1" );
+	$anigravUnitFederation1Puzzle.puzzleobject_itemusedthread( "borgCube_tricorderPuzzle1" );
+	
+	$anigravUnitFederation1UseSymbol.scale(1);
+}
+
+//---------------------
+// tricorderPuzzle
+// tricorder puzzle stuff
+//---------------------
+void borgCube_tricorderPuzzle0()
+{
+	globalTricorderMod_SetNumWaves ( 1 );
+	globalTricorderMod_SetAllRandomParms();
+	globalTricorderMod_Run( $anigravUnitFederation0Puzzle, 0 );
+}
+
+void borgCube_resetTricorderPuzzle0()
+{
+	$bridgePower.puzzleobject_reset();
+}
+
+void borgCube_tricorderPuzzle1()
+{
+	globalTricorderMod_SetNumWaves ( 1 );
+	globalTricorderMod_SetAllRandomParms();
+	globalTricorderMod_Run( $anigravUnitFederation1Puzzle, 0 );
+}
+
+void borgCube_resetTricorderPuzzle1()
+{
+	$bridgePower.puzzleobject_reset();
+}
+
+void borgCube_torpedo0Ready()
+{
+	$anigravUnitFederation0UseSymbol.remove();
+	$anigravUnitFederation0Cap.rotateZdown(-90);
+	$anigravUnitFederation0Cap.time(2);
+	wait(2);
+	
+	//EMP IMPULSE
+	wait(5);
+	entity eFlash;
+	eFlash = spawn("models/fx/fx-warpflash-federation.tik","origin",""+$anigravUnitFederation0Cap.getOrigin(),"scale","3");
+	wait(0.25);
+	$borgCube_generator0Forcefield.remove();
+	
+	spawn("script_object","model","fx/fx-sparks-yellow-directional-small.tik","origin",""+$anigravUnitFederation0Cap.getOrigin());	
+	
+	//disable all drone within 4000 units
+	float fMaxEnt;
+	float fPause;
+	entity e;
+	for(fMaxEnt = 1023;fMaxEnt>=0;fMaxEnt--) {
+		fPause++;
+		e = getEntity("*"+fMaxEnt);
+		if(doesEntityExist(e)) {
+			if(coop_getClassOf(e) == "Actor"){
+				if(e.isWithinDistanceOf($borgCube_generator0,4000)){
+					if(coop_find(e.getModelname(),"borg") > -1){
+						e.groupnumber(1000); //boom
+					}
+				}
+			}
+		}
+		
+		if(fPause >= 256){
+			fPause = 0;
+			globalCoop_main_waitAFrame();
+		}
+	}
+	entity eTrig;
+	eTrig = spawn("trigger_groupevent","targetname","disableDrones","setgroupnumber","1000","setpassevent","disable 1");
+	globalCoop_main_waitAFrame();
+	triggerEntity(eTrig);
+	
+	$borgCube_generator0.anim("turnoff");
+	wait(1);
+	$borgCube_generator0.anim("off");
+	
+	thread coop_endMission();
+}
+
+void borgCube_torpedo1Ready()
+{
+	$anigravUnitFederation1UseSymbol.remove();
+	$anigravUnitFederation1Cap.rotateZdown(-90);
+	$anigravUnitFederation1Cap.time(2);
+	
+	//EMP IMPULSE
+	wait(5);
+	entity eFlash;
+	eFlash = spawn("models/fx/fx-warpflash-federation.tik","origin",""+$anigravUnitFederation1Cap.getOrigin(),"scale","3");
+	wait(0.25);
+	$borgCube_generator1Forcefield.remove();
+	
+	spawn("script_object","model","fx/fx-sparks-yellow-directional-small.tik","origin",""+$anigravUnitFederation1Cap.getOrigin());	
+	
+	//disable all drone within 4000 units
+	float fMaxEnt;
+	float fPause;
+	entity e;
+	for(fMaxEnt = 1023;fMaxEnt>=0;fMaxEnt--) {
+		fPause++;
+		e = getEntity("*"+fMaxEnt);
+		if(doesEntityExist(e)) {
+			if(coop_getClassOf(e) == "Actor"){
+				if(e.isWithinDistanceOf($borgCube_generator1,4000)){
+					if(coop_find(e.getModelname(),"borg") > -1){
+						e.groupnumber(1001); //boom
+					}
+				}
+			}
+		}
+		
+		if(fPause >= 256){
+			fPause = 0;
+			globalCoop_main_waitAFrame();
+		}
+	}
+	entity eTrig;
+	eTrig = spawn("trigger_groupevent","targetname","disableDrones","setgroupnumber","1001","setpassevent","disable 1");
+	globalCoop_main_waitAFrame();
+	triggerEntity(eTrig);
+	
+	$borgCube_generator1.anim("turnoff");
+	wait(1);
+	$borgCube_generator1.anim("off");
+	
+	thread coop_endMission();	
+}
+
+void borgCube_gravunitLightBlink(entity eLight)
+{
+	while(doesEntityExist(eLight)){
+		//eLight.scale(0.01);
+		eLight.hide();
+		wait(0.5);
+		if(!doesEntityExist(eLight)){
+			return;
+		}
+		//eLight.scale(0.5);
+		eLight.show();
+		wait(1);
+	}
+}
+
+void borgCube_contiousRandomTorpedoAttack()
+{
+	entity eLauncher;
+	float waitTime_random = 5;
+	float waitTime_minimum = 1;
+	float launcher_originNums = 2;
+	float target_namesNums = 27;
+	string launcherBaseName;
+	string targetBaseName;
+		launcherBaseName = "borgCube_torpedoLauncher";
+		targetBaseName = "klingonStation_shieldTarget";
+	string projectileName;
+		//projectileName = "models/projectile/projectile-photonball-idryll-secret.tik";
+		//projectileName = "models/coop/projectile/photonball-klingonstation.tik";
+		projectileName = "models/coop/projectile/photonball-borgcube.tik";
+		
+	/*
+	$t309
+	$klingonSpaceStationCinematic
+	
+spawn models/projectile/projectile_merc-pistol.tik
+spawn models/projectile/projectile_fedphotonball.tik
+spawn models/projectile/projectile_attrex-security-pistol.tik
+spawn models/projectile/projectile-snake-laserbeam.tik
+spawn models/projectile/projectile-photonball-voyager.tik
+spawn models/projectile/projectile-photonball-borg.tik
+spawn models/projectile/projectile-laserbeam.tik
+spawn models/projectile/projectile-klingon-rig-arm.tik
+spawn models/projectile/projectile-idryllstrike.tik //this one actually strikes towards a angle over and over again
+spawn models/projectile/projectile-idryll-blast2.tik //looks kinda like a wormhole effect
+spawn models/projectile/projectile-idryll-blast.tik //looks kinda like a wormhole effect
+projectile_cannonblast.tik
+	
+	*/
+	
+	while(BORGCUBE_FIRERANDOMLY)
+	{
+		eLauncher = getEntity(launcherBaseName+""+randomInt(launcher_originNums + 1));
+		eLauncher.projectileAttackEntity( projectileName ,"$"+targetBaseName+""+randomInt(target_namesNums),5,10);
+		
+		$klingonStation_torpedo0.projectileAttackEntity( "models/coop/projectile/photonball-klingonstation.tik" ,"$borgCube_torpedoLauncher1",270,10);
+		
+		//eLauncher.projectileattackfrompoint( projectileName,'2556 13229 2585','0 90 0', 50, 15 );
+		wait( waitTime_minimum + randomInt(waitTime_random));
+	}
+	
+	
+	$klingonStation_shieds.remove();
+	
+	string targetBaseName;
+	targetBaseName = "klingonStation_shieldTarget";
+	entity eRem;
+	float fCur=0;
+	eRem = getEntity(targetBaseName+fCur);
+	while(doesEntityExist(eRem)){
+		eRem.remove();
+		fCur++;
+		eRem = getEntity(targetBaseName+fCur);
+	}
+	
+	fCur=0;
+	string launcherBaseName;
+	launcherBaseName = "borgCube_torpedoLauncher";
+	
+	eRem = getEntity(targetBaseName+fCur);
+	while(doesEntityExist(eRem)){
+		eRem.remove();
+		fCur++;
+		eRem = getEntity(launcherBaseName+fCur);
+	}	
+}
+
+void door_unlock()
+//unlocks a targeted door from trigger activation
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(doesEntityExist(eTrigger)){
+		string sTargetname;
+		sTargetname = eTrigger.getStringVar("uservar1");
+		
+		if(sTargetname == ""){
+			sTargetname = eTrigger.getTarget(0);
+		}
+		
+		if(sTargetname == ""){
+			globalCoop_main_print("door_unlock()->No Target found on trigger");
+			return;
+		}
+		
+		entity eDoor;
+		eDoor = getEntity(sTargetname);
+		
+		if(!doesEntityExist(eDoor)){
+			globalCoop_main_print("door_unlock()->Target not found: "+sTargetname);
+		}
+		
+		eDoor.unlock();
+		//globalCoop_main_print("door_unlock()->UNLOCKED: "+eDoor.getTargetname());
+	}
+}
+
+void klingonStation_cargobayTransporterEnable()
+{
+	vector vOr;
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	vOr = eTrigger.getOrigin();
+	spawn("SFX_sparks_directional-blue-small","model","models/fx/fx-sparks-blue-directional-small.tik","origin",""+vOr);
+	
+	klingonStation_generalPurposeTransporter($klingonStation_warehouseTransporter.getOrigin());
+	wait(5);
+	$klingonStation_cargobayTransportArea.triggerable();
+}
+
+void klingonStation_cargobayTransporter()
+{
+	klingonStation_generalPurposeTransporter($klingonStation_warehouseTransporter.getOrigin());
+}
+
+void klingonStation_generalPurposeTransporter(vector vNewLocation)
+//This Transporter Script Beams pretty much every entity within its designated boundingbox (eTransportArea)
+{
+	entity eCurrent;
+	entity eTransportArea;
+	vector areaOrigin;
+	vector currentEntityOffset;
+	
+	eTransportArea = getEntity("klingonStation_cargobayTransportArea");
+	
+	if(!doesEntityExist(eTransportArea)){
+		globalCoop_main_print("Transport Area Entity not found");
+		return;
+	}
+	
+	areaOrigin = eTransportArea.getOrigin();
+	
+	//compensate for trigger area bbox offset
+	areaOrigin_z -= vectorGetZ(eTransportArea.getMaxs());
+	
+	float entnum;
+	string sClassname;
+	for(entnum=1023;entnum>-1;entnum--){
+		eCurrent = getEntity("*"+entnum);
+		if(doesEntityExist(eCurrent)){			
+			if(globalCoop_check_isEntityTouchingOther(eTransportArea,eCurrent,0)){
+				if(eCurrent.getStringvar("uservar1") != "notransport"){
+					//Actor,Player,Object,ScriptModel,ExplodeObject,Weapon
+					sClassname = coop_getClassOf(eCurrent);
+					//exclude a few classes, to be sure we don't get any issues
+					if(	sClassname != "ScriptSlave" &&
+						sClassname != "ScriptOrigin" &&
+						sClassname != "SplinePath" &&
+						sClassname != "Camera" &&
+						sClassname != "info_pathnode" &&
+						sClassname != "info_helpernode" 
+						)
+					{
+						globalCoop_main_print("Transporting: Ent:"+entnum+" Class: "+sClassname+" Mdl: "+eCurrent.getModelName()+"Targ: "+eCurrent.getRawTargetname()+"\n");
+						thread klingonStation_generalPurposeTransporter_transport(areaOrigin,vNewLocation,eCurrent);
+					}
+				}
+			}
+		}
+	}
+}
+
+void klingonStation_generalPurposeTransporter_transport(vector vOld,vector vNew,entity ePlayer)
+{
+	float nodamageReset = 0;
+	string subClass;
+	subClass = coop_getClassOf(ePlayer);
+	if(subClass == "Actor"){
+		ePlayer.ai_off();
+		ePlayer.nodamage();
+		nodamageReset = 1;
+	}else if(subClass == "Player"){
+		ePlayer.nodamage();
+		ePlayer.immobilize(1);
+		nodamageReset = 1;
+	}
+		
+	ePlayer.displayEffect("TransportOut","Federation");
+	wait(2.5); //[b60021] chrissstrahl - fix delay when beaming
+	
+	if(!doesEntityExist(ePlayer)){	return;	}
+	
+	klingonStation_generalPurposeTransporter_move(vOld,vNew,ePlayer);
+	
+	if(!doesEntityExist(ePlayer)){	return;	}
+	if(subClass == "Actor" || subClass == "Player"){
+		if(ePlayer.getHealth() <= 0){
+			return;
+		}
+	}
+	
+	ePlayer.displayEffect("TransportIn","Federation");
+	wait(2);
+	
+	if(!doesEntityExist(ePlayer)){	return;	}
+	if(subClass == "Actor" || subClass == "Player"){
+		if(ePlayer.getHealth() <= 0){
+			return;
+		}
+	}
+	
+	if(subClass == "Actor"){
+		ePlayer.ai_on();
+		ePlayer.takedamage();
+		ePlayer.droptofloor();
+	}else if(subClass == "Player"){
+		ePlayer.takedamage();
+		ePlayer.immobilize(0);
+		//ePlayer.resetState();
+		ePlayer.droptofloor();
+	}
+}
+
+void klingonStation_generalPurposeTransporter_move(vector vOld,vector vNew,entity ePlayer)
+//moves entity relative to old and new origin, taken from hatoria holodeck
+{
+	float yAxisMaxOffset = 240;
+	float xAxisMaxOffset = 240;
+	float zAxisMaxOffset = 120;
+
+	if(	doesEntityExist(ePlayer) != 1)
+	{
+		return;
+	}
+	vector vVelocity;
+	vector vOriginPlayer;
+	vector vOrigin;
+	float fAxisOffsetY;
+	float fAxisOffsetX;
+	float fAxisOffsetZ;
+	float fYOffsetAdd;
+	float fXOffsetAdd;
+	vector vCalc1,vCalc2;
+	vVelocity = ePlayer.getVelocity();
+	vOriginPlayer = ePlayer.getOrigin();
+	vOrigin = vOld;
+	
+	if(vOriginPlayer_y >= vOrigin_y){
+		fYOffsetAdd = 1;
+	}
+	if(vOriginPlayer_x >= vOrigin_x){
+		fXOffsetAdd = 1;
+	}
+	
+	//calc y offset
+	vCalc1 = vOrigin;
+	vCalc2 = vOriginPlayer;
+	vCalc1_x = (vCalc1_z = 0);
+	vCalc2_x = (vCalc2_z = 0);
+	fAxisOffsetY = vectorLength(vCalc1 - vCalc2);
+//if(fAxisOffsetY > yAxisMaxOffset){fAxisOffsetY = yAxisMaxOffset;}
+	
+	//calc x offset
+	vCalc1 = vOrigin;
+	vCalc2 = vOriginPlayer;
+	vCalc1_y = (vCalc1_z = 0);
+	vCalc2_y = (vCalc2_z = 0);
+	fAxisOffsetX = vectorLength(vCalc1 - vCalc2);
+//if(fAxisOffsetX > xAxisMaxOffset){fAxisOffsetX = xAxisMaxOffset;}
+	
+	//calc z offset
+	vCalc1 = vOrigin;
+	vCalc2 = vOriginPlayer;
+	vCalc1_x = (vCalc1_y = 0);
+	vCalc2_x = (vCalc2_y = 0);
+	fAxisOffsetZ = vectorLength(vCalc1 - vCalc2);
+	if(fAxisOffsetZ > zAxisMaxOffset){fAxisOffsetZ = zAxisMaxOffset;}
+	else if(fAxisOffsetZ < 1){fAxisOffsetZ = 1;} //put 1 unit above, avoid getting stuck in the floor
+	
+	//set offsets
+	vOrigin = vNew;
+	if(fYOffsetAdd){
+		vOrigin_y += fAxisOffsetY;
+	}
+	else{
+		vOrigin_y -= fAxisOffsetY;
+	}
+
+	if(fXOffsetAdd){
+		vOrigin_x += fAxisOffsetX;
+	}
+	else{
+		vOrigin_x -= fAxisOffsetX;
+	}
+	
+	
+	vOrigin_z += fAxisOffsetZ;
+	thread globalCoop_level_warpEntityToVectorSafty(ePlayer,vOrigin);
+	globalCoop_main_waitZeroDotZero5();
+	//ePlayer.setVelocity(vVelocity);
+}
+
+//handle borg boss
+float fltBossStage = 1;
+void stage_change_cinema_start()
+{
+	//--- increment the stage counter
+	fltBossStage++;
+
+    //--- set the boss into the next stage
+    $boss1.ai_off();
+    $boss1.goToStage( fltBossStage );
+	//--- wait for the stage transition
+	wait ( .5 );
+
+    //--- enable the borg boss's AI
+    $borg1.ai_on();
+}
+
+void klingonStation_takeBathleth()
+{
+	$klingonStation_pinnedBatleth.remove();
+	coop_string_weapon8 = "models/weapons/worldmodel-Batleth.tik";
+	globalCoop_armory_useTiki( coop_string_weapon8 );
+	
+	wait(0.15);
+	$klingonStation_pinnedBorg.animateonce("death_alcove");
+	//prevent animation from replaying if player reenters area
+	wait(3.5);
+	$klingonStation_pinnedBorg.setFrame(28,"death_alcove");
+	$klingonStation_pinnedBorg.clearcustomshader("electriclines");
+	$klingonStation_pinnedBorg.notsolid();
+	
+	thread globalCoop_objectives_set(coop_string_objectiveItem2,"complete",2,1);
+}
+
+void borgCube_torpedoDamaged()
+//torpedo trigger damaged - update status
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	
+	if(getCvar("uservar") == "Chrissstrahl"){
+		$player0.hudprint(""+eTrigger.getTargetname()+" health: "+eTrigger.getHealth()+"\n");
+	}
+}
+
+
+void space_federationShuttle2_fire()
+{
+	wait(0.25);
+	
+	float fRand;
+	fRand = randomInt(5);
+	fRand++;
+	
+	if(fRand < 2){
+		fRand = 2;
+	}
+	
+	while(fRand > 0){
+		$shuttleFederationOrigin2_torpedo.projectileAttackEntity( "weapons/projectile_photonball2.tik","$space_borgCube_shuttleTarget"+randomInt(3),3,20);
+		fRand--;
+		wait(1.1);
+	}
+}
+
+void testCam1End()
+{
+	
+}
+
+void TestStuff()
+{
+	respawner_setLimitActiveSpawned(8);
+	
+	thread respawner_respawn($testBorg0,0,0,"TransportIn","Borg",20,1,0,0,0);
+	thread respawner_respawn($testBorg1,0,0,"TransportIn","Borg",20,1,0,0,0);
+	thread respawner_respawn($testBorg2,0,0,"TransportIn","Borg",20,1,0,0,0);
+	thread respawner_respawn($testBorg3,0,0,"TransportIn","Borg",20,1,0,0,0);
+	//thread respawner_respawn($testBorg4,0,0,"TransportIn","Borg",20,1,0,0,-60);
+	
+	//wait(10);
+	//respawner_setLimitActiveSpawned(2);
+	
+	//wait(10);
+	//respawner_setLimitActiveFunctions(1);
+	
+	//wait(10);
+	//respawner_stopActiveSpawners();
+}
+
+void klingonStation_barkeeperTalk()
+{
+	$klingonStation_barkeeper.nouse();
+	entity ePlayer;
+	ePlayer = globalCoop_return_playerClosestActive($klingonStation_barkeeper);
+	if(doesEntityExist(ePlayer)){
+		$klingonStation_barkeeper.headwatch(ePlayer);
+	}
+	$klingonStation_barkeeper.playdialog("localization/sound/dialog/m9l1/bar_bev.mp3", 1, 250, 0);
+	wait(3);
+	$klingonStation_barkeeper.headwatchtarget("none",10);
+	thread globalCoop_level_onUse($klingonStation_barkeeper,"klingonStation_barkeeperTalk");
+}
+
+void klingonStation_barChatAndorianWithKlingonFTalk()
+{
+	$klingonStation_barChatAndorianWithKlingonF.nouse();
+	entity ePlayer;
+	ePlayer = globalCoop_return_playerClosestActive($klingonStation_barChatAndorianWithKlingonF);
+	if(doesEntityExist(ePlayer)){
+		$klingonStation_barChatAndorianWithKlingonF.headwatch(ePlayer);
+	}
+	$klingonStation_barChatAndorianWithKlingonF.playdialog("localization/sound/dialog/m9l1/andmerc2_tribbait.mp3", 1, 250, 0);
+	wait(3);
+	$klingonStation_barChatAndorianWithKlingonF.headwatchtarget("none",10);
+	thread globalCoop_level_onUse($klingonStation_barChatAndorianWithKlingonF,"klingonStation_barChatAndorianWithKlingonFTalk");
+}
+
+void klingonStation_hallwayChatAtPipesMaleTalk()
+{
+	$klingonStation_hallwayChatAtPipesMale.nouse();
+	entity ePlayer;
+	ePlayer = globalCoop_return_playerClosestActive($klingonStation_hallwayChatAtPipesMale);
+	if(doesEntityExist(ePlayer)){
+		$klingonStation_hallwayChatAtPipesMale.headwatch(ePlayer);
+	}
+	$klingonStation_hallwayChatAtPipesMale.playdialog("localization/sound/dialog/m9l1/mercm1_justb.mp3", 1, 250, 0);
+	wait(3);
+	$klingonStation_hallwayChatAtPipesMale.headwatchtarget("none",10);
+	thread globalCoop_level_onUse($klingonStation_hallwayChatAtPipesMale,"klingonStation_hallwayChatAtPipesMaleTalk");
+}
+
+void klingonStation_hallwayKlingonFemaleWithSittingTalk()
+{
+	$klingonStation_hallwayKlingonFemaleWithSitting.nouse();
+	entity ePlayer;
+	ePlayer = globalCoop_return_playerClosestActive($klingonStation_hallwayKlingonFemaleWithSitting);
+	if(doesEntityExist(ePlayer)){
+		$klingonStation_hallwayKlingonFemaleWithSitting.headwatch(ePlayer);
+	}
+	$klingonStation_hallwayKlingonFemaleWithSitting.playdialog("localization/sound/dialog/m9l1/merc5_interupt.mp3", 1, 250, 0);
+	wait(3);
+	$klingonStation_hallwayKlingonFemaleWithSitting.headwatchtarget("none",10);
+	thread globalCoop_level_onUse($klingonStation_hallwayKlingonFemaleWithSitting,"klingonStation_hallwayKlingonFemaleWithSittingTalk");
+}
+
+void klingonStation_hallwayKlingonSellerTalk()
+{
+	$klingonStation_hallwayKlingonSeller.nouse();
+	entity ePlayer;
+	ePlayer = globalCoop_return_playerClosestActive($klingonStation_hallwayKlingonSeller);
+	if(doesEntityExist(ePlayer)){
+		$klingonStation_hallwayKlingonSeller.headwatch(ePlayer);
+	}
+	$klingonStation_hallwayKlingonSeller.playdialog("localization/sound/dialog/m9l1/merc5_donttalk.mp3", 1, 250, 0);
+	wait(3);
+	$klingonStation_hallwayKlingonSeller.headwatchtarget("none",10);
+	thread globalCoop_level_onUse($klingonStation_hallwayKlingonSeller,"klingonStation_hallwayKlingonSellerTalk");
+}
+
+void klingonStation_hallwayKlingonFriendTalk()
+{
+	$klingonStation_hallwayKlingonFriend.nouse();
+	$klingonStation_hallwayKlingonFriend.playDialog("localization/sound/dialog/m9l1/klingon_arrg.mp3",2,128,0);
+	
+	entity ePlayer;
+	ePlayer = globalCoop_return_playerClosestActive($klingonStation_hallwayKlingonFriend);
+	if(doesEntityExist(ePlayer)){
+		$klingonStation_hallwayKlingonFriend.headwatch(ePlayer);
+	}
+	wait(3);
+	$klingonStation_hallwayKlingonFriend.headwatchtarget("none",10);
+	thread globalCoop_level_onUse($klingonStation_hallwayKlingonFriend,"klingonStation_hallwayKlingonFriendTalk");
+}
+
+void klingonStation_barChatKlingonSittingTable1Talk()
+{
+	$klingonStation_barChatKlingonSittingTable1.nouse();
+	$klingonStation_barChatKlingonSittingTable1.playDialog("localization/sound/dialog/m9l1/klingon_arrg.mp3",2,128,0);
+	
+	entity ePlayer;
+	ePlayer = globalCoop_return_playerClosestActive($klingonStation_barChatKlingonSittingTable1);
+	if(doesEntityExist(ePlayer)){
+		$klingonStation_barChatKlingonSittingTable1.headwatch(ePlayer);
+	}
+	wait(3);
+	$klingonStation_barChatKlingonSittingTable1.headwatchtarget("none",10);
+	thread globalCoop_level_onUse($klingonStation_barChatKlingonSittingTable1,"klingonStation_barChatKlingonSittingTable1Talk");
+}
+
+void coop_endMission()
+{
+	BORGCUBE_GENERATORSDOWN++;
+	BORGCUBE_FIRERANDOMLY = 0;
+	if(BORGCUBE_GENERATORSDOWN != 2) {
+		return;
+	}
+	
+	level_ai(0);
+	$shuttleFederationClip2.remove();
+	$shuttleFederation2.remove();
+	$shuttleFederationOrigin2.remove();
+	$shuttleFederationOrigin2_torpedo.remove();
+	
+	globalCoop_level_removePath($t283);
+		
+	spawn("camera","targetname","cam69");
+	globalCoop_main_waitAFrame();
+	cam_fadeOut(0.1,0,0,0,1);
+	cinematic();
+	freezeplayer();
+	letterbox(0.1);
+	
+	if(getCvarInt("g_gametype") == 0){
+		$player.hide();
+		$player.notsolid();		
+	}
+	
+	$cam69.follow($endCinematic_camPos);
+	$cam69.cut();
+	globalCoop_main_waitAFrame();
+	cuecamera($cam69);
+	cam_fadeIn(0.25,0,0,0,1);
+	
+	$endCinematic_galaxy.bind($endCinematic_galaxyOrigin);
+	//$endCinematic_galaxyOrigin.rotateYdown(20);
+	thread globalAccelMove( $endCinematic_galaxyOrigin, '-5000 0 300', 15, "rampdown", "" );
+	$endCinematic_galaxy.show();
+	//$endCinematic_galaxyOrigin.moveNorth(200);
+	//$endCinematic_galaxyOrigin.moveWest(4500);
+	//$endCinematic_galaxyOrigin.time(5);
+	
+	//hzm coop mod chrissstrahl - show mod title - but before get the player out of all menus he currently has showing
+	globalCoop_player_transmittToAll("popmenu 1;popmenu 0");//close 2 layers of menu
+	wait(0.1);
+	globalCoop_player_transmittToAll("popmenu 0");//close 1 layer of menu
+	wait(0.1);
+	globalCoop_player_transmittToAll("popmenu coop_cTitle");
+	globalCoop_player_transmittToAll("exec cfg/maps/coop_rotec/rotec9End1.cfg\n");
+	wait(6);
+	globalCoop_player_transmittToAll("exec cfg/maps/coop_rotec/rotec9End2.cfg\n");
+	wait(10);
+	globalCoop_player_transmittToAll("popmenu 1;popmenu 0");//close 2 layers of menu
+	wait(1);
+	thread coop_endLevel();
+}
+
+
+void coop_endLevel()
+//------------------------------------------------------------------------------
+//Level end
+//------------------------------------------------------------------------------
+{
+//credits, and history of map
+//mark this map as completed to the scripts (can not fail anymore)
+	globalCoop_mission_accomplished();
+	globalCoop_main_globalCommand("nodamage");
+	
+	level_ai(0);
+	
+	
+//credits, and history of map
+	
+	globalCoop_player_transmittToAll("pushmenu coop_cCredits");
+	thread globalCoop_player_transmittToAll("exec cfg/maps/coop_rotec/cCredits.cfg\n");
+	wait(3);
+	cam_fadeOut(1,0,0,0,0.6);
+	wait(10);
+	cam_fadeOut(3,0,0,0,1);
+	wait(4);
+	
+	//end server if in singleplayer
+	if(getCvarInt("g_gametype") == 0){
+		stuffcmd("disconnect\n");
+		return;
+	}
+	
+//load next map
+	thread globalCoop_mission_completed("coop_aftermath1");
+}

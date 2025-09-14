@@ -1,0 +1,360 @@
+{
+"Note" "This is a simple coop example level"
+"classname" "worldspawn"
+// brush 0
+{
+( -832 -792 -64 ) ( -888 -792 -64 ) ( -888 -960 -64 ) common/nodraw 0 0 0 0.5 0.5 536870912 16512 0 
+( -888 -961 -39 ) ( -888 -793 -39 ) ( -832 -793 -39 ) drull_ruins3_exterior/lavahell 0 0 0 0.5 0.5 536870920 1040 0 
+( -888 -960 -32 ) ( -832 -960 -32 ) ( -832 -960 -64 ) common/nodraw 0 0 0 0.5 0.5 536870912 16512 0 
+( -832 -960 -32 ) ( -832 -792 -32 ) ( -832 -792 -64 ) common/nodraw 0 0 0 0.5 0.5 536870912 16512 0 
+( -832 -792 -32 ) ( -888 -792 -32 ) ( -888 -792 -64 ) common/nodraw 0 0 0 0.5 0.5 536870912 16512 0 
+( -960 -792 -24 ) ( -960 -960 -24 ) ( -960 -960 -56 ) common/nodraw 0 0 0 0.5 0.5 536870912 16512 0 
+}
+// brush 1
+{
+( -832 -768 -64 ) ( -960 -768 -64 ) ( -960 -792 -64 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -960 -792 -48 ) ( -960 -768 -48 ) ( -832 -768 -48 ) starfleet/sfcarpet3b 0 0 0 0.5 0.5 0 0 0 
+( -960 -816 -40 ) ( -832 -816 -40 ) ( -832 -816 -64 ) starfleet/sfcarpet3 0 0 0 0.5 0.5 0 0 0 
+( -832 -792 -32 ) ( -832 -768 -32 ) ( -832 -768 -56 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -832 -768 -32 ) ( -960 -768 -32 ) ( -960 -768 -56 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -960 -768 -32 ) ( -960 -792 -32 ) ( -960 -792 -56 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 2
+{
+( -832 -768 -48 ) ( -960 -768 -48 ) ( -960 -792 -48 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -961 -792 -27 ) ( -961 -768 -27 ) ( -833 -768 -27 ) starfleet/sfcarpet3b 0 0 0 0.5 0.5 0 0 0 
+( -960 -792 -24 ) ( -832 -792 -24 ) ( -832 -792 -48 ) starfleet/sfcarpet3 0 0 0 0.5 0.5 0 0 0 
+( -832 -792 -24 ) ( -832 -768 -24 ) ( -832 -768 -48 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -832 -768 -24 ) ( -960 -768 -24 ) ( -960 -768 -48 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -960 -768 -24 ) ( -960 -792 -24 ) ( -960 -792 -48 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 3
+{
+( -80 16 -64 ) ( -1024 16 -64 ) ( -1024 -928 -64 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -1024 -944 8 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 0 ) ( -80 0 0 ) ( -1024 -944 0 ) starfleet/sfcarpet3b 0 0 0 0.5 0.5 0 0 0 
+( -888 -768 -64 ) ( -896 -768 -64 ) ( -892 -768 0 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 
+( -904 -704 -64 ) ( -888 -704 -64 ) ( -896 -704 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -960 -744 -64 ) ( -960 -776 -64 ) ( -960 -760 0 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 4
+{
+( -80 16 -64 ) ( -1024 16 -64 ) ( -1024 -928 -64 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -832 -768 -27 ) ( -960 -768 -27 ) ( -960 -704 0 ) starfleet/sfcarpet3b 0 0 0 0.5 0.5 0 0 0 
+( -960 -768 -27 ) ( -832 -768 -27 ) ( -832 -768 -64 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 
+( -904 -704 -64 ) ( -888 -704 -64 ) ( -896 -704 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -832 -752 -64 ) ( -832 -768 -64 ) ( -832 -760 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -960 -776 -64 ) ( -960 -744 -64 ) ( -960 -760 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 5
+{
+( -80 16 -64 ) ( -1024 16 -64 ) ( -1024 -928 -64 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 -944 8 ) ( 0 0 8 ) ( 0 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 0 ) ( -80 0 0 ) ( -1024 -944 0 ) starfleet/sfcarpet3b 0 0 0 0.5 0.5 0 0 0 
+( -888 -768 -64 ) ( -896 -768 -64 ) ( -892 -768 0 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 
+( -904 -704 -64 ) ( -888 -704 -64 ) ( -896 -704 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -832 -768 -64 ) ( -832 -752 -64 ) ( -832 -760 0 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 6
+{
+( -80 16 -64 ) ( -1024 16 -64 ) ( -1024 -928 -64 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 -944 8 ) ( 0 0 8 ) ( 0 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -80 0 8 ) ( -1024 0 8 ) ( -1024 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -1024 -944 8 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 0 ) ( -80 0 0 ) ( -1024 -944 0 ) starfleet/sfcarpet3b 0 0 0 0.5 0.5 0 0 0 
+( -888 -704 -64 ) ( -904 -704 -64 ) ( -896 -704 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 7
+{
+( -80 16 -64 ) ( -1024 16 -64 ) ( -1024 -928 -64 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 -1024 8 ) ( -88 -1024 8 ) ( -88 -1024 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 0 ) ( -80 0 0 ) ( -1024 -944 0 ) starfleet/sfcarpet3b 0 0 0 0.5 0.5 0 0 0 
+( -832 -768 -64 ) ( -832 -784 -64 ) ( -832 -776 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -960 -792 -64 ) ( -960 -776 -64 ) ( -960 -784 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -848 -960 -64 ) ( -832 -960 -64 ) ( -840 -960 0 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 8
+{
+( -80 16 -96 ) ( -1024 16 -96 ) ( -1024 -928 -96 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1016 0 -64 ) ( -72 0 -64 ) ( -1016 -944 -64 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 
+( -920 -768 -80 ) ( -912 -768 -80 ) ( -916 -768 -16 ) common/caulk 0 -32 0 0.5 0.5 0 1184 0 
+( -832 -768 -80 ) ( -832 -784 -80 ) ( -832 -776 -16 ) common/caulk 0 -32 0 0.5 0.5 0 1184 0 
+( -960 -792 -80 ) ( -960 -776 -80 ) ( -960 -784 -16 ) common/caulk 0 -32 0 0.5 0.5 0 1184 0 
+( -832 -960 -80 ) ( -848 -960 -80 ) ( -840 -960 -16 ) common/caulk 0 -32 0 0.5 0.5 0 1184 0 
+}
+// brush 9
+{
+( -80 16 -64 ) ( -1024 16 -64 ) ( -1024 -928 -64 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 -1024 8 ) ( -88 -1024 8 ) ( -88 -1024 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 -944 8 ) ( 0 0 8 ) ( 0 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 0 ) ( -80 0 0 ) ( -1024 -944 0 ) starfleet/sfcarpet3b 0 0 0 0.5 0.5 0 0 0 
+( -920 -768 -64 ) ( -912 -768 -64 ) ( -916 -768 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -832 -784 -64 ) ( -832 -768 -64 ) ( -832 -776 0 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 10
+{
+( -80 16 -64 ) ( -1024 16 -64 ) ( -1024 -928 -64 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 -1024 8 ) ( -88 -1024 8 ) ( -88 -1024 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -1024 -944 8 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 0 ) ( -80 0 0 ) ( -1024 -944 0 ) starfleet/sfcarpet3b 0 0 0 0.5 0.5 0 0 0 
+( -920 -768 -64 ) ( -912 -768 -64 ) ( -916 -768 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -960 -776 -64 ) ( -960 -792 -64 ) ( -960 -784 0 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 11
+{
+( 0 -688 96 ) ( -64 -688 96 ) ( -64 -816 96 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -64 -816 112 ) ( -64 -688 112 ) ( 0 -688 112 ) starfleet/sfcarpet6r 0 -96 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 0 -816 104 ) ( 0 -688 104 ) ( 0 -688 96 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -8 -856 104 ) ( -72 -856 104 ) ( -72 -856 96 ) starfleet/sfcarpet6r 0 64 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -128 -688 104 ) ( -128 -816 104 ) ( -128 -816 96 ) starfleet/sfcarpet6r 96 64 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -104 -1024 96 ) ( -128 -1024 96 ) ( -116 -1024 112 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 12
+{
+( 0 -672 64 ) ( -64 -672 64 ) ( -64 -800 64 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -64 -800 80 ) ( -64 -672 80 ) ( 0 -672 80 ) starfleet/sfcarpet6r 0 -64 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 0 -800 72 ) ( 0 -672 72 ) ( 0 -672 64 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -8 -736 72 ) ( -72 -736 72 ) ( -72 -736 64 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -128 -672 72 ) ( -128 -800 72 ) ( -128 -800 64 ) starfleet/sfcarpet6r 64 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -104 -1024 64 ) ( -128 -1024 64 ) ( -116 -1024 80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 13
+{
+( 0 -688 112 ) ( -64 -688 112 ) ( -64 -816 112 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -64 -816 128 ) ( -64 -688 128 ) ( 0 -688 128 ) starfleet/sfcarpet6r 0 -96 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 0 -816 120 ) ( 0 -688 120 ) ( 0 -688 112 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -8 -904 120 ) ( -72 -904 120 ) ( -72 -904 112 ) starfleet/sfcarpet6r 0 96 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -128 -688 120 ) ( -128 -816 120 ) ( -128 -816 112 ) starfleet/sfcarpet6r 96 96 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -104 -1024 112 ) ( -128 -1024 112 ) ( -116 -1024 128 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 14
+{
+( 0 -680 80 ) ( -64 -680 80 ) ( -64 -808 80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -64 -808 96 ) ( -64 -680 96 ) ( 0 -680 96 ) starfleet/sfcarpet6r 0 -80 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 0 -808 88 ) ( 0 -680 88 ) ( 0 -680 80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -8 -792 88 ) ( -72 -792 88 ) ( -72 -792 80 ) starfleet/sfcarpet6r 0 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -128 -680 88 ) ( -128 -808 88 ) ( -128 -808 80 ) starfleet/sfcarpet6r 80 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -104 -1024 80 ) ( -128 -1024 80 ) ( -116 -1024 96 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 15
+{
+( 0 -664 32 ) ( -64 -664 32 ) ( -64 -792 32 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -64 -792 48 ) ( -64 -664 48 ) ( 0 -664 48 ) starfleet/sfcarpet6r 0 -48 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -64 -1024 40 ) ( 0 -1024 40 ) ( 0 -1024 32 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( 0 -792 40 ) ( 0 -664 40 ) ( 0 -664 32 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( 0 -656 40 ) ( -64 -656 40 ) ( -64 -656 32 ) starfleet/sfcarpet6r 0 64 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -128 -664 40 ) ( -128 -792 40 ) ( -128 -792 32 ) starfleet/sfcarpet6r 48 64 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 16
+{
+( 0 -640 16 ) ( -64 -640 16 ) ( -64 -768 16 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -64 -768 32 ) ( -64 -640 32 ) ( 0 -640 32 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -64 -1024 24 ) ( 0 -1024 24 ) ( 0 -1024 16 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( 0 -768 24 ) ( 0 -640 24 ) ( 0 -640 16 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( 0 -616 24 ) ( -64 -616 24 ) ( -64 -616 16 ) starfleet/sfcarpet6r 0 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -128 -640 24 ) ( -128 -768 24 ) ( -128 -768 16 ) starfleet/sfcarpet6r 0 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 17
+{
+( 0 -648 0 ) ( -64 -648 0 ) ( -64 -776 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -64 -776 16 ) ( -64 -648 16 ) ( 0 -648 16 ) starfleet/sfcarpet6r 0 -16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 0 -776 8 ) ( 0 -648 8 ) ( 0 -648 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( 0 -576 8 ) ( -64 -576 8 ) ( -64 -576 0 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -128 -648 8 ) ( -128 -776 8 ) ( -128 -776 0 ) starfleet/sfcarpet6r 16 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -104 -1024 0 ) ( -128 -1024 0 ) ( -116 -1024 16 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 18
+{
+( 0 -664 48 ) ( -64 -664 48 ) ( -64 -792 48 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -64 -792 64 ) ( -64 -664 64 ) ( 0 -664 64 ) starfleet/sfcarpet6r 0 -48 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -64 -1024 56 ) ( 0 -1024 56 ) ( 0 -1024 48 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( 0 -792 56 ) ( 0 -664 56 ) ( 0 -664 48 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -8 -688 56 ) ( -72 -688 56 ) ( -72 -688 48 ) starfleet/sfcarpet6r 0 96 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -128 -664 56 ) ( -128 -792 56 ) ( -128 -792 48 ) starfleet/sfcarpet6r 48 96 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 19
+{
+( -320 -576 0 ) ( -704 -576 0 ) ( -704 -960 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -704 -960 24 ) ( -704 -640 24 ) ( -320 -640 24 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -704 -960 8 ) ( -320 -960 8 ) ( -320 -960 0 ) starfleet/sfcarpet6r 0 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -320 -640 0 ) ( -320 -960 0 ) ( -320 -960 24 ) starfleet/sfcarpet6r 0 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -704 -576 0 ) ( -320 -576 0 ) ( -320 -640 24 ) starfleet/ogtrim 0 0 90 0.5 0.5 0 0 0 +surfaceparm detail 
+( -704 -640 8 ) ( -704 -960 8 ) ( -704 -960 0 ) starfleet/sfcarpet6r 0 16 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 20
+{
+( -80 0 0 ) ( -1024 0 0 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1048 -944 1024 ) ( -1048 0 1024 ) ( -104 0 1024 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 -1024 8 ) ( -88 -1024 8 ) ( -88 -1024 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -80 0 8 ) ( -1024 0 8 ) ( -1024 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 0 8 ) ( -1032 -944 8 ) ( -1032 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 -944 8 ) ( -1024 0 8 ) ( -1024 -944 0 ) starfleet/sfcarpet3 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 21
+{
+( -80 0 0 ) ( -1024 0 0 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1048 -944 1024 ) ( -1048 0 1024 ) ( -104 0 1024 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 -944 8 ) ( 0 0 8 ) ( 0 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -80 8 8 ) ( -1024 8 8 ) ( -1024 8 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -1024 -944 8 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -80 0 8 ) ( -1024 0 0 ) starfleet/sfcarpet3 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 22
+{
+( -80 0 0 ) ( -1024 0 0 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1048 -944 1024 ) ( -1048 0 1024 ) ( -104 0 1024 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 -1024 8 ) ( -88 -1024 8 ) ( -88 -1024 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 8 -944 8 ) ( 8 0 8 ) ( 8 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -80 0 8 ) ( -1024 0 8 ) ( -1024 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 8 8 ) ( 0 -936 8 ) ( 0 8 0 ) starfleet/sfcarpet3 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 23
+{
+( -80 0 0 ) ( -1024 0 0 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1048 -944 1024 ) ( -1048 0 1024 ) ( -104 0 1024 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 -1032 8 ) ( -88 -1032 8 ) ( -88 -1032 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 -944 8 ) ( 0 0 8 ) ( 0 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -1024 -944 8 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -88 -1024 8 ) ( -1032 -1024 8 ) ( -88 -1024 0 ) starfleet/sfcarpet3 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 24
+{
+( -1048 -944 1032 ) ( -1048 0 1032 ) ( -104 0 1032 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1032 -1024 8 ) ( -88 -1024 8 ) ( -88 -1024 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 0 -944 8 ) ( 0 0 8 ) ( 0 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -80 0 8 ) ( -1024 0 8 ) ( -1024 0 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1024 0 8 ) ( -1024 -944 8 ) ( -1024 -944 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -1048 0 1024 ) ( -1048 -944 1024 ) ( -104 0 1024 ) starfleet/sfcarpet6r 0 0 0 0.5 0.5 0 0 0 
+}
+}
+// entity 1
+{
+"damage" "5"
+"damagetype" "lava"
+"message" "You like it hot ?"
+"classname" "trigger_hurt"
+// brush 0
+{
+( -80 16 -64 ) ( -1024 16 -64 ) ( -1024 -928 -64 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( -1016 -1 -33 ) ( -72 -1 -33 ) ( -1016 -945 -33 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( -920 -792 -48 ) ( -912 -792 -48 ) ( -916 -792 16 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( -832 -768 -48 ) ( -832 -784 -48 ) ( -832 -776 16 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( -960 -792 -48 ) ( -960 -776 -48 ) ( -960 -784 16 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( -832 -960 -48 ) ( -848 -960 -48 ) ( -840 -960 16 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+}
+}
+// entity 2
+{
+"NOTE" "displays the level exit hud, telling the player that he is near the exit"
+"classname" "trigger_exit"
+// brush 0
+{
+( -192 -592 64 ) ( -264 -592 64 ) ( -264 -664 64 ) common/trigger 16 -16 0 0.5 0.5 0 128 0 
+( -448 -664 72 ) ( -448 -592 72 ) ( -376 -592 72 ) common/trigger 16 -16 0 0.5 0.5 0 128 0 
+( -282 -959 1024 ) ( -210 -959 1024 ) ( -210 -959 0 ) common/trigger 16 0 0 0.5 0.5 0 128 0 
+( -318 -631 1024 ) ( -318 -559 1024 ) ( -318 -559 0 ) common/trigger 16 0 0 0.5 0.5 0 128 0 
+( -185 -624 1024 ) ( -257 -624 1024 ) ( -257 -624 0 ) common/trigger 16 0 0 0.5 0.5 0 128 0 
+( -707 -551 1024 ) ( -707 -623 1024 ) ( -707 -623 0 ) common/trigger 16 0 0 0.5 0.5 0 128 0 
+}
+}
+// entity 3
+{
+"thread" "objective1_failed"
+"classname" "trigger_once"
+"NOTE" "Starts objective1_failed in script and this fails objective and then the level"
+// brush 0
+{
+( 128 -872 128 ) ( -432 -872 128 ) ( -432 -952 128 ) common/trigger 16 16 0 0.5 0.5 0 128 0 
+( -438 -952 205 ) ( -438 -872 205 ) ( 122 -872 205 ) common/trigger 16 16 0 0.5 0.5 0 128 0 
+( -376 -1024 152 ) ( 184 -1024 152 ) ( 184 -1024 128 ) common/trigger 16 -48 0 0.5 0.5 0 128 0 
+( 0 -960 152 ) ( 0 -880 152 ) ( 0 -880 128 ) common/trigger -16 -48 0 0.5 0.5 0 128 0 
+( 114 -930 152 ) ( -446 -930 152 ) ( -446 -930 128 ) common/trigger 16 -48 0 0.5 0.5 0 128 0 
+( -104 -880 152 ) ( -104 -960 152 ) ( -104 -960 128 ) common/trigger -16 -48 0 0.5 0.5 0 128 0 
+}
+}
+// entity 4
+{
+"angle" "270"
+"classname" "info_player_deathmatch"
+"origin" "-752 -48 0"
+"targetname" "ipd1"
+"NOTE" "this marks where a player can spawn in multiplayer, also sets the facing direction"
+}
+// entity 5
+{
+"classname" "info_player_start"
+"angle" "270"
+"origin" "-528 -48 0"
+"NOTE" "this marks where the player spawns in Singleplayer, also sets the facing direction"
+}
+// entity 6
+{
+"targetname" "ipd2"
+"origin" "-688 -48 0"
+"classname" "info_player_deathmatch"
+"angle" "270"
+"NOTE" "this marks where a player can spawn in multiplayer, also sets the facing direction"
+}
+// entity 7
+{
+"angle" "270"
+"classname" "info_player_deathmatch"
+"origin" "-624 -48 0"
+"targetname" "ipd3"
+"NOTE" "this marks where a player can spawn in multiplayer, also sets the facing direction"
+}
+// entity 8
+{
+"targetname" "ipd4"
+"origin" "-560 -48 0"
+"classname" "info_player_deathmatch"
+"angle" "270"
+"NOTE" "this marks where a player can spawn in multiplayer, also sets the facing direction"
+}
+// entity 9
+{
+"angle" "270"
+"classname" "info_player_deathmatch"
+"origin" "-496 -48 0"
+"targetname" "ipd5"
+"NOTE" "this marks where a player can spawn in multiplayer, also sets the facing direction"
+}
+// entity 10
+{
+"targetname" "ipd6"
+"origin" "-432 -48 0"
+"classname" "info_player_deathmatch"
+"angle" "270"
+"NOTE" "this marks where a player can spawn in multiplayer, also sets the facing direction"
+}
+// entity 11
+{
+"angle" "270"
+"classname" "info_player_deathmatch"
+"origin" "-368 -48 0"
+"targetname" "ipd7"
+"NOTE" "this marks where a player can spawn in multiplayer, also sets the facing direction"
+}
+// entity 12
+{
+"targetname" "ipd8"
+"origin" "-304 -48 0"
+"classname" "info_player_deathmatch"
+"angle" "270"
+"NOTE" "this marks where a player can spawn in multiplayer, also sets the facing direction"
+}
+// entity 13
+{
+"thread" "objective1_complete"
+"NOTE" "Starts objective1_complete in script and this ends the level"
+"classname" "trigger_once"
+// brush 0
+{
+( -191 -687 24 ) ( -303 -687 24 ) ( -303 -735 24 ) common/trigger 30 50 0 0.5 0.5 0 128 0 
+( -313 -735 126 ) ( -313 -687 126 ) ( -201 -687 126 ) common/trigger 30 50 0 0.5 0.5 0 128 0 
+( -308 -865 96 ) ( -196 -865 96 ) ( -196 -865 0 ) common/trigger 30 0 0 0.5 0.5 0 128 0 
+( -412 -712 96 ) ( -412 -664 96 ) ( -412 -664 0 ) common/trigger -50 0 0 0.5 0.5 0 128 0 
+( -205 -741 96 ) ( -317 -741 96 ) ( -317 -741 0 ) common/trigger 30 0 0 0.5 0.5 0 128 0 
+( -609 -667 96 ) ( -609 -715 96 ) ( -609 -715 0 ) common/trigger -50 0 0 0.5 0.5 0 128 0 
+}
+}

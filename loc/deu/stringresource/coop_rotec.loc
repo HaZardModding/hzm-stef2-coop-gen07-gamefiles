@@ -1,0 +1,355 @@
+
+/////////////// HEALTH AND ENERGY TERMINALS /////////////////
+/////////////// HEALTH AND ENERGY TERMINALS /////////////////
+/////////////// HEALTH AND ENERGY TERMINALS /////////////////
+
+RomulanEnergyTerminalDesc1 "Waffen-Terminal"
+RomulanEnergyTerminalDesc2 "Waffen-Terminal"
+RomulanEnergyTerminalDesc3 "Beschreibung: Zur Wiedergewinnung\nvon Waffenenergie"
+
+RomulanHealthTerminalDesc1 "Lebensenergie-Terminal"
+RomulanHealthTerminalDesc2 "Lebensenergie-Terminal"
+RomulanHealthTerminalDesc3 "Beschreibung: Zur Heilung\nvon Verletzungen"
+
+KlingonEnergyTerminalDesc1 "Waffen-Terminal"
+KlingonEnergyTerminalDesc2 "Waffen-Terminal"
+KlingonEnergyTerminalDesc3 "Beschreibung: Zur Wiedergewinnung\nvon Plasmawaffenenergie"
+
+KlingonHealthTerminalDesc1 "Lebensenergie-Terminal"
+KlingonHealthTerminalDesc2 "Lebensenergie-Terminal"
+KlingonHealthTerminalDesc3 "Beschreibung: Zur Heilung\nvon Verletzungen"
+
+EnterpriseHealthTerminalDesc1 "Lebensenergie-Terminal"
+EnterpriseHealthTerminalDesc2 "Lebensenergie-Terminal"
+EnterpriseHealthTerminalDesc3 "Beschreibung: Zur Heilung\nvon Verletzungen"
+
+EnterpriseEnergyTerminalDesc1 "Waffen-Terminal"
+EnterpriseEnergyTerminalDesc2 "Waffen-Terminal"
+EnterpriseEnergyTerminalDesc3 "Beschreibung: Zur Wiedergewinnung\nvon Plasmawaffenenergie"
+
+KlingonHealthTerminalRadar	"Lebensenergie-Terminal"
+KlingonEnergyTerminalRadar	"Waffen-Terminal"
+BorgEnergyTerminalRadar		"Waffen-Terminal"
+BorgHealthTerminalRadar		"Lebensenergie-Terminal"
+HealthTerminalRadar			"Lebensenergie-Terminal"
+EnergyTerminalRadar			"Waffen-Terminal"
+IdryllEnergyTerminalRadar	"Waffen-Terminal"
+
+AttrexianEnergyTerminalDesc1 "Waffen-Terminal"
+AttrexianEnergyTerminalDesc2 "Waffen-Terminal"
+AttrexianEnergyTerminalDesc3 "Beschreibung: Zur Wiedergewinnung\nvon Waffenenergie"
+
+AttrexianHealthTerminalDesc1 "Lebensenergie-Terminal"
+AttrexianHealthTerminalDesc2 "Lebensenergie-Terminal"
+AttrexianHealthTerminalDesc3 "Beschreibung: Zur Heilung\nvon Verletzungen"
+
+
+/////////////// ENTERPRISE STARFLEET ACADEMY ENVIROMENT /////////////////
+/////////////// ENTERPRISE STARFLEET ACADEMY ENVIROMENT /////////////////
+/////////////// ENTERPRISE STARFLEET ACADEMY ENVIROMENT /////////////////
+
+EnterpriseDatapadDesc2 "Name: Datenpad"
+EnterpriseDatapadDesc3 "Beschreibung: Zur Eingabe und\nSpeicherung wichtiger Daten"
+
+EnterpriseReplicatorDesc2 "Name: Replikator"
+EnterpriseReplicatorDesc3 "Beschreibung: Zur Replikation von\nNahrung und anderen Gegenständen"
+
+EnterpriseLaptopDesc2 "Name: Laptop"
+EnterpriseLaptopDesc3 "Beschreibung: Zur Eingabe und\nSpeicherung wichtiger Daten"
+
+ReadyRoomDeskDesc2 "Name: Schreibtisch"
+ReadyRoomDeskDesc3 "Beschreibung: Enthält wertvolle Ausrüstung"
+
+ReadyRoomShellDesc2 "Name: Muschel"
+ReadyRoomShellDesc3 " "
+
+ReadyRoomVaseDesc2 "Name: Vase"
+ReadyRoomVaseDesc3 "Beschreibung: Beliebte Raumdekoration"
+
+BootsSloppyDesc2 "Name: Stiefel"
+BootsSloppyDesc3 "Beschreibung: Herumliegende Stiefel"
+
+BridgeChairDesc2 "Name: Stuhl"
+BridgeChairDesc3 "Beschreibung: Stuhl zum längeren Sitzen"
+
+BridgeConsole1Desc2 "Name: Computerkonsole"
+BridgeConsole1Desc3 "Beschreibung: Computerkonsole zur\nSteuerung und Bedienung\nverschiedener Funktionen."
+
+BridgeConsole4Desc2 "Name: Computerkonsole"
+BridgeConsole4Desc3 "Beschreibung: Computerkonsole zur\nSteuerung und Bedienung\nverschiedener Funktionen."
+
+BridgeConsoleOuterLeftDesc2 "Name: Computerkonsole"
+BridgeConsoleOuterLeftDesc3 "Beschreibung: Computerkonsole zur\nSteuerung und Bedienung\nverschiedener Funktionen."
+
+BridgeConsoleOuterRightDesc2 "Name: Computerkonsole"
+BridgeConsoleOuterRightDesc3 "Beschreibung: Computerkonsole zur\nSteuerung und Bedienung\nverschiedener Funktionen."
+
+CaptainsChairDesc2 "Name: Stuhl"
+CaptainsChairDesc3 "Beschreibung: Stuhl zum längeren Sitzen"
+
+EnterpriseBedDesc2 "Name: Bett"
+EnterpriseBedDesc3 "Beschreibung: Genutzt zur Erholung."
+
+EnterpriseBankDesc2 "Name: Bank"
+EnterpriseBankDesc3 "Beschreibung: Zur Entspannung bei Stress."
+
+EnterpriseChair1Desc2 "Name: Stuhl"
+EnterpriseChair1Desc3 "Beschreibung: Dekoratives Möbelstück."
+
+EnterpriseChair2Desc2 "Name: Stuhl"
+EnterpriseChair2Desc3 "Beschreibung: Dekoratives Möbelstück."
+
+EnterpriseChair3Desc2 "Name: Stuhl"
+EnterpriseChair3Desc3 "Beschreibung: Dekoratives Möbelstück."
+
+EnterpriseCompStationDesc2 "Name: Computer Station"
+EnterpriseCompStationDesc3 "Beschreibung: Zum Betrieb und\nzur Steuerung der Systeme."
+
+EnterpriseCompTerminalDesc2 "Name: Computer Terminal"
+EnterpriseCompTerminalDesc3 "Beschreibung: Zur Eingabe von Daten\nin die Systeme."
+
+EnterpriseOfficeChairDesc2 "Name: Office Stuhl"
+EnterpriseOfficeChairDesc3 "Beschreibung: Dekoratives Möbelstück."
+
+EnterpriseStoolDesc2 "Name: Hocker"
+EnterpriseStoolDesc3 "Beschreibung: Dekoratives Möbelstück."
+
+EnterpriseTable1Desc2 "Name: Tisch"
+EnterpriseTable1Desc3 "Beschreibung: Dekoratives Möbelstück."
+
+EnterpriseTable2Desc2 "Name: Tisch"
+EnterpriseTable2Desc3 "Beschreibung: Dekoratives Möbelstück."
+
+EnterpriseTable3Desc2 "Name: Tisch"
+EnterpriseTable3Desc3 "Beschreibung: Dekoratives Möbelstück."
+
+EnterpriseTable4Desc2 "Name: Tisch"
+EnterpriseTable4Desc3 "Beschreibung: Dekoratives Möbelstück."
+
+PantsFoldedDesc2 "Name: Hose"
+PantsFoldedDesc3 "Beschreibung: Kleidung ausgelegt für\nstarke Beanspruchung."
+
+ShirtFoldedDesc2 "Name: T-Shirt"
+ShirtFoldedDesc3 "Beschreibung: Kleidung ausgelegt für\nstarke Beanspruchung."
+
+WristGearDesc2 "Name: Handgelenkschoner"
+WristGearDesc3 "Beschreibung: Zur schonung des Handgelenks."
+
+ShirtHungDesc2 "Name: T-Shirt"
+ShirtHungDesc3 "Beschreibung: Kleidung ausgelegt für\nstarke Beanspruchung."
+
+StarfleetMaleDesc1 "Andrew Jacobs"
+StarfleetMaleDesc2 "Name: Andrew Jacobs"
+StarfleetMaleDesc3 "Beschreibung: Wissenschaftsoffizier"
+StarfleetMaleRadar "Andrew"
+
+StarfleetMale2Desc1 "Rocky Mobieuto"
+StarfleetMale2Desc2 "Name: Rocky Mobieuto"
+StarfleetMale2Desc3 "Beschreibung: Transportertechniker"
+StarfleetMale2Radar "Rocky"
+
+StarfleetMale3Desc1 "Kelav Stratton"
+StarfleetMale3Desc2 "Name: Kelav Stratton"
+StarfleetMale3Desc3 "Beschreibung: Sicherheitsoffizier"
+StarfleetMale3Radar "Kelav"
+
+StarfleetMale4Desc1 "Pat Jones"
+StarfleetMale4Desc2 "Name: Pat Jones"
+StarfleetMale4Desc3 "Beschreibung: Pilot"
+StarfleetMale4Radar "Pat"
+
+StarfleetFemaleDesc1 "Miranda Manaan"
+StarfleetFemaleDesc2 "Name: Miranda Manaan"
+StarfleetFemaleDesc3 "Beschreibung: Counselor"
+StarfleetFemaleRadar "Miranda"
+
+StarfleetFemale6Desc1 "N'Tol"
+StarfleetFemale6Desc2 "Name: N'Tol"
+StarfleetFemale6Desc3 "Beschreibung: Counselor"
+StarfleetFemale6Radar "N'Tol"
+
+Redshirt6Desc1 "Toni Devaldenebro"
+Redshirt6Desc2 "Name: Toni Devaldenebro"
+Redshirt6Desc3 "Beschreibung: Teammitglied"
+Redshirt6Radar "Toni Devaldenebro"
+
+FunctionaryDesc1 "Mr. Stemmons"
+FunctionaryDesc2 "Name: Mr. Stemmons"
+FunctionaryDesc3 "Zivilist,\nSternenflottenfunktionär"
+FunctionaryRadar "Stemmons"
+
+BatlethDesc1 "Bat'leth"
+BatlethDesc2 "Name: Bat'leth"
+BatlethDesc3 "Beschreibung: Klingonische Nahkampfwaffe"
+BatlethRadar "Bat'leth"
+
+StarfleetFemale3Desc1 "Dr. Stevenson"
+StarfleetFemale3Desc2 "Name: Dr. Stevenson"
+StarfleetFemale3Desc3 "Beschreibung: Schiffsarzt"
+StarfleetFemale3Radar "Doktor"
+
+RedshirtDesc1 "Elizabeth Laird"
+RedshirtDesc2 "Name: Elizabeth Laird"
+RedshirtDesc3 "Beschreibung: Teammitglied"
+RedshirtRadar "Elizabeth Laird"
+
+Redshirt3Desc1 "Namkcots Sirhc"                                                   
+Redshirt3Desc2 "Name: Namkcots Sirhc"
+Redshirt3Desc3 "Beschreibung: Mitglied des\nHazard-Teams"
+Redshirt3Radar "Namkcots Sirhc"      
+
+Redshirt4Desc1 "Jonathan Struhlem"
+Redshirt4Desc2 "Name: Jonathan Struhlem"
+Redshirt4Desc3 "Beschreibung: Teammitglied"
+Redshirt4Radar "Jonathan Struhlem"
+
+Redshirt5Desc1 "Brian Bobowski"
+Redshirt5Desc2 "Name: Brian Bobowski"
+Redshirt5Desc3 "Beschreibung: Teammitglied"
+Redshirt5Radar "Brian Bobowski"
+
+Redshirt6Desc1 "Toni Devaldenebro"
+Redshirt6Desc2 "Name: Toni Devaldenebro"
+Redshirt6Desc3 "Beschreibung: Teammitglied"
+Redshirt6Radar "Toni Devaldenebro"
+
+
+/////////////// ROMULAN ENVIROMENT /////////////////
+/////////////// ROMULAN ENVIROMENT /////////////////
+/////////////// ROMULAN ENVIROMENT /////////////////
+
+RomulanExplosiveCrateDesc1	"Ammoniumnitrat"
+RomulanExplosiveCrateDesc2	"Ammoniumnitrat"
+RomulanExplosiveCrateDesc3	"Beschreibung: Höchst explosives Gemisch"
+
+RomulanRebelM11RifleDesc2	"Romulanischer Gewehrsoldat"
+RomulanRebelM11RifleDesc3	"Beschreibung: Zweibeinige Lebensform\nvom Planeten Romulus"
+
+RomulanRebelM11PhotonDesc2	"Romulanischer Photonenspeer-Soldat"
+RomulanRebelM11PhotonDesc3	"Beschreibung: Zweibeinige Lebensform\nvom Planeten Romulus"
+
+RomulanRebelM11GrenadeDesc2	"Romulanischer Grenadier"
+RomulanRebelM11GrenadeDesc3	"Beschreibung: Zweibeinige Lebensform\nvom Planeten Romulus"
+
+RomRebelM11PistolDesc2		"Romulanischer Pistolensoldat"
+RomRebelM11PistolDesc3		"Beschreibung: Zweibeinige Lebensform\nvom Planeten Romulus"
+
+RomulanRebelM11SniperDesc2	"Romulanischer Scharfschütze"
+RomulanRebelM11SniperDesc3	"Beschreibung: Zweibeinige Lebensform\nvom Planeten Romulus"
+
+RomulanSoldierRadar			"Romulanischer Soldat"
+
+RomulanInformantRadar		"Informant"
+RomulanInformantBossDesc2	"Name: Operative 93"
+RomulanInformantBossDesc3	"Description: Tal'Shiar operative."
+
+
+/////////////// DALLAS ENVIROMENT /////////////////
+/////////////// DALLAS ENVIROMENT /////////////////
+/////////////// DALLAS ENVIROMENT /////////////////
+
+DallasCrateDesc1	"Lagerkiste\n"
+DallasCrateDesc2	"Lagerkiste\n"
+DallasCrateDesc3	"Bechreibung: Lagerkiste"
+
+DallasBarrelDesc1	"Fass"
+DallasBarrelDesc2	"Fass"
+DallasBarrelDesc3	"Beschreibung: Behälter zur Lagerung"
+
+ManualDoorReleaseDesc1	"Manuelle Türfreigabe"
+ManualDoorReleaseDesc2	"Manuelle Türfreigabe"
+ManualDoorReleaseDesc3	"Beschreibung: Zum manuellen\nÖffnen von Türen"
+ManualDoorRadar			"Türfreigabe"
+
+DallasCrateRadar		"Lagerkiste"
+
+DoorPanelDesc1		"Türkonsole"
+DoorPanelDesc2		"Türkonsole"
+DoorPanelDesc3		"Beschreibung: Zum Öffnen von Türen"
+DoorPanelRadar		"Türkonsole"
+
+
+/////////////// ATTREXIAN ENVIROMENT /////////////////
+/////////////// ATTREXIAN ENVIROMENT /////////////////
+/////////////// ATTREXIAN ENVIROMENT /////////////////
+
+AttrexianM4NoWeaponDesc2	"Name: Attrexianer"
+AttrexianM4NoWeaponDesc3	"Beschreibung: Fremde Rasse,\ndie sich um eine Mitgliedschaft\nin der Föderation bemüht."
+
+AttrexianM4PistolDesc2		"Name: Attrexianer"
+AttrexianM4PistolDesc3		"Beschreibung: Fremde Rasse,\ndie sich um eine Mitgliedschaft\nin der Föderation bemüht."
+
+AttrexianM4RifleDesc2		"Name: Attrexianer"
+AttrexianM4RifleDesc3 		"Beschreibung: Fremde Rasse,\ndie sich um eine Mitgliedschaft\nin der Föderation bemüht."
+
+AttrexianM7NoWeaponDesc2	"Name: Attrexianischer Kolonist"
+AttrexianM7NoWeaponDesc3	"Beschreibung: Industriekultur, die auf unzähligen\ntechnologischen Forschungsjahren anderer\nRassen basiert"
+
+AttrexianM7PistolDesc2		"Name: Attrexianischer Kolonist"
+AttrexianM7PistolDesc3		"Beschreibung: Industriekultur, die auf unzähligen\ntechnologischen Forschungsjahren anderer\nRassen basiert"
+
+AttrexianM7RifleDesc2		"Name: Attrexianischer Kolonist"
+AttrexianM7RifleDesc3		"Beschreibung: Industriekultur, die auf unzähligen\ntechnologischen Forschungsjahren anderer\nRassen basiert"
+
+Attrexian1Radar		"Attrexianer"
+Attrexian2Radar		"Attrexianer"
+Attrexian3Radar		"Attrexianer"
+Attrexian6Radar		"Attrexianer"
+Attrexian7Radar		"Attrexianer"
+AttrexianRadar		"Attrexianer"
+
+ExplodableCrateDesc1	"Hytritium-Lagerbehälter"
+ExplodableCrateDesc2	"Hytritium-Lagerbehälter"
+ExplodableCrateDesc3	"Beschreibung: Höchst instabile Verbindung;\nExplosion bei Reaktion\nmit energiegeladenen Ionen"
+ExplodableCrateRadar	"Hytritium"
+
+/////////////// BORG ENVIROMENT /////////////////
+/////////////// BORG ENVIROMENT /////////////////
+/////////////// BORG ENVIROMENT /////////////////
+BorgDistributionNodeDesc1                                "Borg-Verteilerknoten"
+BorgDistributionNodeDesc2                                "Beschreibung: Knotenzerstörung\nbewirkt Deaktivierung der Borg\nin der Umgebung."
+BorgDistributionNodeDesc3                                " "
+BorgDistributionNodeRadar                                "Borg-Verteilerknoten" 
+BorgDistributionNodeDamagedDesc1                         "Zerstörter Borg-Verteilerknoten"
+BorgDistributionNodeDamagedDesc2                         " "
+
+BorgPowerCouplingDesc1                                   "Energieleitung"
+BorgPowerCouplingDesc2                                   " "
+BorgPowerCouplingDesc3                                   "Beschreibung: Versorgt grüne Kraftfelder.\nDurch Zerstörung werden grüne\nKraftfelder in der Nähe deaktiviert."
+BorgPowerCouplingRadar                                   "Energieleitung"                                       
+BorgPowerCouplingDamagedDesc1                            "Zerstörte Energieleitung"
+BorgPowerCouplingDamagedDesc2                            " "
+BorgPowerCouplingDamagedDesc3                            "Beschreibung: Zerstörte Energieleitung"
+
+BorgPlasmaConduitDesc1		"Plasmaleitung"
+BorgPlasmaConduitDesc2		"Zerstörbare Plasmaleitung"
+BorgPlasmaConduitDesc3		"Beschreibung: Zerstörbares Objekt"
+BorgPlasmaConduitRadar		"Plasmaleitung"
+
+BorgDroneMaleDesc1			"Borg-Drohne"
+BorgDroneMaleDesc2			"Name: Borg-Drohne"
+BorgDroneMaleDesc3			"Beschreibung: Männlich; besteht aus\nMetalllegierungen, Fleisch\nund unbekannten Flüssigkeiten."
+BorgDroneMaleRadar			"Männliche Borg-Drohne"
+
+/////////////// IDRYLL ENVIROMENT /////////////////
+/////////////// IDRYLL ENVIROMENT /////////////////
+/////////////// IDRYLL ENVIROMENT /////////////////
+
+IdryllExplodableCrateDesc1		"Idryllglicium-Container"
+IdryllExplodableCrateDesc2		"Idryllglicium-Container"
+IdryllExplodableCrateDesc3		"Beschreibung: Höchst instabil"
+IdryllExplodableCrateRadar		"Explosivgemisch"
+
+Rotec9HawkArrivesInTime1				"Ankunft, pünktlich um die neutralisierten"
+Rotec9HawkArrivesInTime2				"Borg sicherzustellen."
+
+/////////////// STORY AND OBJECTIVES /////////////////
+/////////////// STORY AND OBJECTIVES /////////////////
+/////////////// STORY AND OBJECTIVES /////////////////
+Rotec9SecureFriendlyRomulan			"Finden Sie den Romulaner und beamen ihn zur Odessey"
+Rotec9DefendStation					"Finden Sie eine Möglichkeit un die Station zu verteidigen."
+Rotec9ObtainEvosuitInCargobay		"Besorgen Sie sich einen Evosuit"
+Rotec9InfiltrateBorgCube			"Infiltrieren Sie das Borg Schiff"
+Rotec9DefendDemolitionTeams			"Zünden Sie die EMP Torpedos um die Borg zu neutralisieren"
+Rotec9Story							"Sie sind mit einem Shuttle der USS Odessey zu einer Klingonischen Station gereist, um einen wohlgesinnten Romulaner zu finden der Informationen zur Freien Krone hat, so vermutet es Captain Lewis"
+Rotec9FailedChell					" "

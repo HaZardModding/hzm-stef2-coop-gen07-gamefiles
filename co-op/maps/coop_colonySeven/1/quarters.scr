@@ -1,0 +1,112 @@
+void quarters_setup();
+void quarters_replicatorSecret();
+void quartersHallway_npc1();
+
+/*
+$quarters_laptop1
+$quarters_laptop2
+$quarters_datapad1
+$quarters_datapad2
+$quarters_replicatorSecret
+*/
+
+void quarters_setup()
+{
+	//$dufresne.anim("ent-sickbed-sitting-idle");
+	$dufresne.anim("ent-sickbed-sitting-scan");
+	
+	$quarters_datapad0.noshadow();
+	$quarters_datapad0.renderEffects("+fullbright");
+	
+	//archetypes for tricorder scan
+	globalArchetype_Setup( $quarters_archeType0, "KorbanDoorPanel" ); //0-6
+	globalArchetype_Setup( $quarters_archeType1, "Weapon-Batleth" );
+	globalArchetype_Setup( $quarters_archeType1, "Batleth" );
+	globalArchetype_Setup( $quarters_archeType2, "KorbanDoorPanel" );
+	
+	//add lots of scanable - teppich, bilder, vasen, pads, bett,
+	
+	/*
+	
+OBJECT RomulanVent		RomulanEnvironment
+{
+    string InteractiveType		Usable
+    string Description3		RomulanVentDesc3
+    string Description2		RomulanVentDesc2
+    string Description1		RomulanVentDesc1
+}
+OBJECT RomulanCommEquipment		RomulanEnvironment
+{
+    string Description1		RomulanCommEquipmentDesc1
+    string Description2		RomulanCommEquipmentDesc2
+    string Description3		RomulanCommEquipmentDesc3
+    string InteractiveType		Destructable
+    string RadarDescription		CommEquipmentRadar
+}
+OBJECT KorbanDoorPanel		KlingonEnvironment
+{
+    float Description1		1
+    string Description2		KorbanDoorPanelDesc2
+    string Description3		KorbanDoorPanelDesc3
+    string InteractiveType		NonInteractive
+}
+
+	*/
+}
+
+void quarters_replicatorSecret()
+//make replicator materilize 
+{
+	entity e;
+	e = spawn("script_model","model","models/item/gs_akira.tik","origin","-1413.00 978.00 -1800.00","notsolid","1","scale",".5");
+	wait(1 / getCvarInt("sv_fps")); //wait a frame for server to update
+	e.displayEffect("TransportIn","FederationWeapons");
+	e.playSound("sound/ships/enterprise/ent_replicator.wav");
+	wait(2.5);
+	//move real item now so player can pick it up
+	$quarters_replicatorSecret.scale(.5);
+	$quarters_replicatorSecret.origin(e.getOrigin());
+	e.remove();
+}
+
+void quartersHallway_npc1()
+{
+	$quartersHallway_npc1.walkto("$quartersHallway_npc1_loc1");
+	waitFor($quartersHallway_npc1);
+	
+	$quartersHallway_npc1.anim( "tricorder_scan180" );	
+	waitForAnimation( $quartersHallway_npc1 , "tricorder_scan180" );
+	$quartersHallway_npc1.anim( "tricorder_calm_idle" );
+	
+	//ent-datapad-raise
+	//ent-datapad-scan
+	//ent-datapad-use
+	//ent-datapad_draw
+	//ent-datapad_putaway
+	
+	//ent-guard-idle
+	//ent-guard-gesture1
+	//ent-guard-gesture
+	//ent-guard-idle-look
+	//ent-guard-scan
+	
+	//ent-idryll-shuttle-gesture
+	//ent-idryll-shuttle-gesture1
+	//ent-idryll-shuttle-idle
+	//ent-idryll-shuttle-idle-look
+	
+	//ent-library-seat-gesture
+	//ent-library-seat-gesture1
+	//ent-library-seat-idle
+	//ent-library-seat-idle-look
+	//ent-library-seat-scan
+	
+	//ent-library-stand-gesture
+	//ent-library-stand-gesture1
+	//ent-library-stand-idle
+	//ent-library-stand-idle-look
+	//ent-library-stand-scan
+	//ent-lockers-gesture
+	
+	//
+}

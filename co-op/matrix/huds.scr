@@ -1,0 +1,222 @@
+//-----------------------------------------------------------------------------------
+// Script By:	Christian Sebastian Strahl (Chrissstrahl)
+// Created on:	2009.23.5
+// E-Mail:		chrissstrahl@yahoo.de
+//-----------------------------------------------------------------------------------
+// CONTAINING PLAYER-HUD HANDLING RELATED FUNCTIONS FOR THE HZM CO-OP MOD
+//-----------------------------------------------------------------------------------
+
+
+//cg_mpgametype "1"
+//cg_gametype "0"
+//cl_disableloadinginbackground "1"
+//activeAction
+// cl_eventstats "0"
+// cl_timeevents "0"
+// cl_eventlimit "500"
+// cl_showevents "0"
+// cl_debugMove "0"
+// sv_serverid
+// mp_gametypename "Holomatch"
+// net_qport "59843"
+// cg_maxclients "1"
+// cl_running "1"
+// sv_running "0"
+// deathmatch "0"
+// cg_viewStrafeTilt "0"
+// cg_viewWeaponBob "0"
+// loadingstatus
+// ui_radarviewmode
+// journal
+
+
+void globalCoop_huds_textOrHud(entity ePlayer,string sHudName,string sText)
+//----------------------------------------------------------------------
+// if player has co-op mod, show hud instead of text message
+//----------------------------------------------------------------------
+{
+	if(doesEntityExist(ePlayer))
+	{
+		print("globalCoop_huds_textOrHud - not implemented\n");
+		if( 0 /*ePlayer.getCoopVersion() > 0*/ )
+		{
+			//[b60025] chrissstrahl - run as thread now
+			thread globalCoop_huds_Add(ePlayer,sHudName);
+		}
+		else
+		{
+			ePlayer.hudprint(sText+"\n");
+		}
+	}
+}
+
+void globalCoop_huds_textOrHudAll(string sHudName,string sText)
+//----------------------------------------------------------------------
+// if player has co-op mod, show hud instead of text message
+//----------------------------------------------------------------------
+{
+	entity ePlayer;
+	float fPlayerIdInUse=0;
+	
+	while(fPlayerIdInUse<coop_integer_maxPlayers){
+		//[b60025] Chrissstrahl - using now entity num instead of targetname
+		ePlayer = getEntity("*"+fPlayerIdInUse);
+		globalCoop_huds_textOrHud(ePlayer,sHudName,sText);
+		fPlayerIdInUse++;
+	}
+}
+
+
+void globalCoop_huds_registerMissionHud(string sHud,float fRegister,string sCommand)
+//----------------------------------------------------------------------
+// registers this hud to be shown to new players and returning players it is mission relevant
+//----------------------------------------------------------------------
+{
+	if(sHud == ""){
+		globalCoop_main_print("globalCoop_huds_registerMissionHud - Error - paramater 1 was empty");
+		return;
+	}
+	
+	float fFirstFreeSlot;
+	float fIndex;
+	fFirstFreeSlot = -1;
+	for(fIndex=0;fIndex < 8;fIndex++){
+		if($world.doesVarExist(("coop_registredHud"+fIndex))){
+			string sRegHudName;
+			sRegHudName = $world.getStringVar("coop_registredHud"+fIndex);
+			if(sRegHudName == sHud){
+				//globalCoop_main_print("hud ("+sHud+") found at: "+fIndex);
+				
+				//UNREGISTER
+				if(fRegister == 0){
+					//globalCoop_main_print("remove coop_registredHud"+fIndex+" "+sHud);
+					$world.removevar("coop_registredHud"+fIndex);
+					$world.removevar("coop_registredHud"+fIndex+"_command");
+					return;
+				}
+				//REGISTER - UPDATE
+				else{
+					globalCoop_main_print("update coop_registredHud"+fIndex+" "+sHud);
+					$world.setStringvar(("coop_registredHud"+fIndex+"_command"),""+sCommand);
+					return;
+				}
+			}
+		}else if(fRegister == 1 && fFirstFreeSlot == -1){
+			fFirstFreeSlot = fIndex;
+			//globalCoop_main_print("first free slot: "+fFirstFreeSlot);
+		}
+	}
+	
+	//REGISTER - NEW
+	if(fRegister == 1){
+		if(fFirstFreeSlot == -1){
+			fFirstFreeSlot = 7;
+		}
+		//globalCoop_main_print("set new coop_registredHud"+fFirstFreeSlot+" "+sHud);
+		$world.setStringVar(("coop_registredHud"+fFirstFreeSlot),""+sHud);
+		$world.setStringvar(("coop_registredHud"+fFirstFreeSlot+"_command"),""+sCommand);
+	}
+}
+
+
+void globalCoop_huds_manageAll(string sHud,float fAdd,float fMissionHud)
+//----------------------------------------------------------------------
+// Add or remove a hud on all players, do also the Missionobjective Hud stuff
+//----------------------------------------------------------------------
+{
+//Singleplayer
+	if(!cvar_bool_multiplayer){
+	//REMOVE IT FISRT, OR WE GET TRUBLES WHEN TRYING TO READ IT
+		$player.removeHud(sHud);
+	//SEE IF WE SHALL ADD THE HUD
+		if(fAdd == 1){
+			$player.addHud(sHud);
+		}
+		return;
+	}
+//Make this hud a mission Related now Players which enter later will become
+//this hud displayed on spawn if var is still set
+	if(fMissionHud == 1 || fAdd == 0)
+	{
+		thread globalCoop_huds_registerMissionHud(sHud,fAdd,"");
+	}
+	
+	entity ePlayer;
+	float fPlayerIdInUse=0;
+	
+	while(fPlayerIdInUse<coop_integer_maxPlayers){
+		//[b60025] Chrissstrahl - using now entity num instead of targetname
+		ePlayer = getEntity("*"+fPlayerIdInUse);
+		
+		if(fAdd == 1){
+			//[b60025] chrissstrahl - run as thread now
+			thread globalCoop_huds_Add(ePlayer,sHud);
+		}else
+			globalCoop_huds_Remove(ePlayer,sHud);
+			
+		fPlayerIdInUse++;
+	}
+}
+
+
+void globalCoop_huds_Add(entity ePlayer,string sHudName)
+//----------------------------------------------------------------------
+// add a hud to a player, if player exists
+//----------------------------------------------------------------------
+{
+	if(doesEntityExist(ePlayer))
+	{
+		ePlayer.removeHud(sHudName);
+		globalCoop_main_waitAFrame();
+		
+		if(doesEntityExist(ePlayer))
+			ePlayer.addHud(sHudName);
+	}
+}
+
+
+void globalCoop_huds_AddAll(string sHud)
+//----------------------------------------------------------------------
+//Remove a hud from all players
+//----------------------------------------------------------------------
+{
+	globalCoop_huds_manageAll(sHud,1,1);
+}
+
+
+void globalCoop_huds_AddTemporary(entity ePlayer,string sHudName,float fTime)
+//----------------------------------------------------------------------
+//Set a Hud which is used for this mission with a Timer on it
+//----------------------------------------------------------------------
+{
+//ADD Hud just temporary
+	thread globalCoop_huds_Add(ePlayer,sHudName);
+	wait(fTime);
+	globalCoop_huds_Remove(ePlayer,sHudName);
+}
+
+
+void globalCoop_huds_Remove(entity ePlayer,string sHudName)
+//----------------------------------------------------------------------
+// Remove a hud of a player, if player exists
+//----------------------------------------------------------------------
+{
+	if(doesEntityExist(ePlayer)){
+		//[b60025] Chrissstrahl - Issue regular remove command to clear associated variable
+		ePlayer.removeHud(sHudName);
+		//[b60024] Chrissstrahl - Fix: Issues with huds not being removed properly
+		//Because removeHud does not REMOVE if it thinks the hud wasn't added (or player died) 
+		thread globalCoop_player_transmitter(ePlayer,"ui_removehud "+sHudName);
+	}
+}
+
+void globalCoop_huds_RemoveAll(string sHud)
+//----------------------------------------------------------------------
+//Add a hud to all players
+//----------------------------------------------------------------------
+{
+	globalCoop_huds_manageAll(sHud,0,1);
+}
+
+
+

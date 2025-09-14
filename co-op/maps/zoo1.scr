@@ -1,0 +1,166 @@
+void main();
+void end_level();
+void coop_endLevel();
+
+//#include "co-op/maps/test.scr"
+#include "co-op/matrix/main.scr"
+#include "maps/global_scripts/global_common.scr"
+#include "maps/global_scripts/global_playerLoadout.scr"
+
+string coop_string_weapon1;
+string coop_string_weapon2;
+string coop_string_weapon3;
+string coop_string_weapon4;
+string coop_string_weapon5;
+string coop_string_weapon6;
+string coop_string_weapon7;
+string coop_string_weapon8;
+string coop_string_weapon9;
+string coop_string_weapon10;
+string coop_string_weapon11;
+string coop_string_weapon12;
+string coop_string_weapon13;
+string coop_string_weapon14;
+string coop_string_weapon15;
+
+vector coop_vector_spawnOrigin0;
+vector coop_vector_spawnOrigin1;
+float coop_float_spawnAngle0;
+float coop_float_spawnAngle1;
+
+
+void coop_justEntered()
+{
+return;
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		ePlayer.hudprint("Entered\n");
+	}
+}
+void coop_justSpawned()
+{
+return;
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		ePlayer.hudprint("Spawned\n");
+	}
+}
+void coop_justDied()
+{
+return;
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		ePlayer.hudprint("Died\n");
+	}
+}
+void coop_justLeft()
+{
+return;
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		ePlayer.hudprint("Left\n");
+	}
+}
+void coop_justBecameSpectator()
+{
+return;
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		ePlayer.hudprint("Spectator\n");
+	}
+}
+void coop_justChangedModel()
+{
+return;
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		ePlayer.hudprint("Model\n");
+	}
+}
+void coop_justTransported()
+{
+return;
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		ePlayer.hudprint("transported\n");
+	}
+}
+
+void main()
+{
+coop_float_spawnAngle1 = 180;
+coop_float_spawnAngle0 = 0;
+coop_vector_spawnOrigin1 = '1000 100 400';
+coop_vector_spawnOrigin0 = '0 0 100';
+
+    waitForPlayer();
+
+    globalLoadout_AssignWeapons( "zoo1" );
+    
+    $attrexianrifle_pic.contents( "targetable" );
+    $attrexianrifle_pic.archetype( "AttrexianRifleSecretPic" );
+    
+    $attrexiancolony_pic.contents( "targetable" );
+    $attrexiancolony_pic.archetype( "AttrexianColonySecretPic" );
+    
+    $attrexianstation_pic1.contents( "targetable" );
+    $attrexianstation_pic1.archetype( "AttrexianStationSecretPic" );
+    
+    $stalker_pic.contents( "targetable" );
+    $stalker_pic.archetype( "StalkerSecretPic" );
+    
+    $idryllruins2_pic.contents( "targetable" );
+    $idryllruins2_pic.archetype( "IdryllRuins2SecretPic" );
+    
+    $attrexianfemale_pic.contents( "targetable" );
+    $attrexianfemale_pic.archetype( "AttrexianFemaleSecretPic" );
+    
+    $commander_pic.contents( "targetable" );
+    $commander_pic.archetype( "CommanderSecretPic" );
+    
+    $quadraped_pic.contents( "targetable" );
+    $quadraped_pic.archetype( "QuadrapedSecretPic" );
+    
+    $attrexianstation_pic2.contents( "targetable" );
+    $attrexianstation_pic2.archetype( "AttrexianStationSecretPic2" );
+    
+    $idryllruins1_pic.contents( "targetable" );
+    $idryllruins1_pic.archetype( "IdryllRuins1SecretPic" );
+    
+    $fedrifle_pic.contents( "targetable" );
+    $fedrifle_pic.archetype( "FedRiflepic" );
+    
+    $attrexianmale_pic.contents( "targetable" );
+    $attrexianmale_pic.archetype( "AttrexianMaleSecretPic" );
+
+    $archeopendra_pic.contents( "targetable" );
+    $archeopendra_pic.archetype( "Archeopendrapic" );
+
+    $imod_pic.contents( "targetable" );
+    $imod_pic.archetype( "IMODpic" );
+	
+	
+	
+	//spawn("char/bug_small-explosive.tik","targetname","hans","origin","0 0 100","ai_off","1");wait(3);
+	//$player0.hudprint("actortype: "+$hans.coop_actorGetType()+"\n");
+}
+
+void end_level()
+{
+	stuffcmd( "disconnect" );
+}
+
+void coop_endLevel()
+//------------------------------------------------------------------------------
+//HZM Coop Mod - levelend default coop function, loads next map on completion
+//------------------------------------------------------------------------------
+{
+	thread globalCoop_mission_completed("testMorph");
+}

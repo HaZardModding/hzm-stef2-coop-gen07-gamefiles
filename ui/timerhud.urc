@@ -1,0 +1,29 @@
+menu "timerhud" 192 48 NONE 0
+hideDuringLoad
+bgcolor 0 0 0 0
+align centerx centery
+nomouse
+noescape 0
+depth 0.35
+gamefocus
+
+hidecommand	"ui_removehud timerhud\n"
+
+include "co-op/ui/timerhud.inc"
+
+resource
+Label
+{
+name "timerhudText"
+rect 0 0 192 48
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 0.50 0.50 0.50 0.00
+borderstyle "NONE"
+title "$$TricorderBar_Fed$$"
+font serpentinemedium-10
+horizontaljustify center
+verticaljustify center
+ordernumber 2
+}
+
+end.

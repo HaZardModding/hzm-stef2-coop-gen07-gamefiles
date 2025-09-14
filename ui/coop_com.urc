@@ -1,0 +1,350 @@
+menu "coop_com" 512 256 NONE 0.1
+align  center
+bgcolor 1 0 0 0
+borderstyle NONE
+direction from_bottom 0.2
+depth 0.1
+fadein 0.3
+hideDuringLoad
+
+//[b60014] chrissstrahl - new communicator menu
+//Multiplay Cvars with 1, this will create them with value 0 if they don't exist, they need to exist for the menu to work
+showcommand "scale coop_comT 1;scale coop_comL 1\n"
+showcommand	"ui_showmouse\n"
+
+////////////////////////////////////////////////////////////////////////////////
+//BACKGROUND WIDGET
+////////////////////////////////////////////////////////////////////////////////
+resource
+Widget
+{
+	name "coop_com"
+	rect 0 0 512 256
+	bgcolor 0 0 0 0
+	borderstyle "NONE"
+	shader textures/coop_mod/lcars/coopLcars011.tga
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//TITLE LABEL
+////////////////////////////////////////////////////////////////////////////////
+resource
+Label
+{
+	title "$$c#047$$" //COMMUNICATOR
+	name "coop_comTitle0"
+	rect 24 2 512 34
+	font serpentinemedium-12
+	verticaljustify top
+	horizontaljustify left
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0
+	cvarvisibility "coop_comT" "0"
+}
+resource
+Label
+{
+	title "Commands"
+	name "coop_comTitle1"
+	rect 24 2 512 34
+	font serpentinemedium-12
+	verticaljustify top
+	horizontaljustify left
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0
+	cvarvisibility "coop_comT" "1"
+}
+resource
+Label
+{
+	title "Transport"
+	name "coop_comTitle2"
+	rect 24 2 512 34
+	font serpentinemedium-12
+	verticaljustify top
+	horizontaljustify left
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0
+	cvarvisibility "coop_comT" "2"
+}
+resource
+Label
+{
+	title "Server"
+	name "coop_comTitle3"
+	rect 24 2 512 34
+	font serpentinemedium-12
+	verticaljustify top
+	horizontaljustify left
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0
+	cvarvisibility "coop_comT" "3"
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//BUTTONS FOR COMMUNICATOR
+////////////////////////////////////////////////////////////////////////////////
+include	"co-op/ui/coop_comCom.inc"
+
+////////////////////////////////////////////////////////////////////////////////
+//BUTTONS FOR COMMANDS
+////////////////////////////////////////////////////////////////////////////////
+include	"co-op/ui/coop_comCmd.inc"
+
+////////////////////////////////////////////////////////////////////////////////
+//BUTTONS FOR TRANSPORT
+////////////////////////////////////////////////////////////////////////////////
+include	"co-op/ui/coop_comTran.inc"
+
+
+////////////////////////////////////////////////////////////////////////////////
+//BUTTONS FOR SERVER
+////////////////////////////////////////////////////////////////////////////////
+include	"co-op/ui/coop_comSvr.inc"
+
+////////////////////////////////////////////////////////////////////////////////
+//TOOLTIP
+////////////////////////////////////////////////////////////////////////////////
+resource
+Label
+{
+	title ""
+	name "coop_comTooltip"
+	rect 72 231 340 24
+	font serpentinemedium-10
+	verticaljustify top
+	horizontaljustify left
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//OPTIONS BUTTONS
+////////////////////////////////////////////////////////////////////////////////
+resource
+Label
+{
+	title "Communuicator by\nChrissstrahl"
+	name "coop_comOptText"
+	rect 380 172 128 40
+	
+	borderstyle "NONE"
+	font serpentinelight-8
+	verticaljustify top
+	fgcolor 1 1 1 0.2
+	bgcolor 0 0 0 0
+	//cvarvisibility "coop_comL" "4"
+}
+
+resource
+Button
+{
+	title "COMMUNICATOR"
+	name "coop_comOpt0"
+	rect 380 36 128 32
+	
+	borderstyle "NONE"
+	font serpentinemedium-10
+	verticaljustify top
+	clicksound sound/environment/computer/holo_yes.wav
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0
+	
+	//hoverbgcolor 0.0 0.6 0.6 0.9
+	//hoverfgcolor 1 1 1 1
+	
+	cvarvisibility "coop_comT" "0" !=
+	stuffcommand "seta coop_comT 0;seta coop_comL 0"
+	hovercommand "globalwidgetcommand coop_comTooltip title \"Accsess Coop Communicator\""
+	hoverexitcommand "globalwidgetcommand coop_comTooltip title \"\""	
+	
+	shader textures/coop_mod/lcars/coopLcars030.tga
+	hovershader textures/coop_mod/lcars/coopLcars032.tga
+
+}
+resource
+Button
+{
+	title "COMMUNICATOR"
+	name "coop_comOpt0Sel"
+	rect 380 36 128 32
+	borderstyle "NONE"
+	font serpentinemedium-10
+	verticaljustify top
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0	
+	cvarvisibility "coop_comT" "0" ==
+	hovercommand "globalwidgetcommand coop_comTooltip title \"Currently on display\""
+	hoverexitcommand "globalwidgetcommand coop_comTooltip title \"\""
+	shader textures/coop_mod/lcars/coopLcars031.tga
+}
+
+resource
+Button
+{
+	title "COMMANDS"
+	name "coop_comOpt1"
+	rect 380 71 128 32
+	
+	borderstyle "NONE"
+	font serpentinemedium-10
+	verticaljustify top
+	clicksound sound/environment/computer/holo_yes.wav
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0
+	
+	//hoverbgcolor 0.0 0.6 0.6 0.9
+	//hoverfgcolor 1 1 1 1
+	
+	cvarvisibility "coop_comT" "1" !=
+	stuffcommand "seta coop_comT 1;seta coop_comL 10"
+	hovercommand "globalwidgetcommand coop_comTooltip title \"Accsess Coop Command Options\""
+	hoverexitcommand "globalwidgetcommand coop_comTooltip title \"\""	
+	
+	shader textures/coop_mod/lcars/coopLcars030.tga
+	hovershader textures/coop_mod/lcars/coopLcars032.tga
+}
+resource
+Button
+{
+	title "COMMANDS"
+	name "coop_comOpt1Sel"
+	rect 380 71 128 32
+	borderstyle "NONE"
+	font serpentinemedium-10
+	verticaljustify top
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0	
+	cvarvisibility "coop_comT" "1" ==
+	hovercommand "globalwidgetcommand coop_comTooltip title \"Currently on display\""
+	hoverexitcommand "globalwidgetcommand coop_comTooltip title \"\""
+	
+	shader textures/coop_mod/lcars/coopLcars031.tga
+}
+
+resource
+Button
+{
+	title "TRANSPORTER"
+	name "coop_comOpt2"
+	rect 380 106 128 32
+	
+	borderstyle "NONE"
+	font serpentinemedium-10
+	verticaljustify top
+	clicksound sound/environment/computer/holo_yes.wav
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0
+	cvarvisibility "coop_comT" "2" !=
+	stuffcommand "seta coop_comT 2;seta coop_comL 20"
+	hovercommand "globalwidgetcommand coop_comTooltip title \"Short Range Transporter Options\""
+	hoverexitcommand "globalwidgetcommand coop_comTooltip title \"\""	
+	shader textures/coop_mod/lcars/coopLcars030.tga
+	hovershader textures/coop_mod/lcars/coopLcars032.tga
+}
+
+resource
+Button
+{
+	title "TRANSPORTER"
+	name "coop_comOpt2Sel"
+	rect 380 106 128 32
+	borderstyle "NONE"
+	font serpentinemedium-10
+	verticaljustify top
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0	
+	cvarvisibility "coop_comT" "2" ==
+	hovercommand "globalwidgetcommand coop_comTooltip title \"Currently on display\""
+	hoverexitcommand "globalwidgetcommand coop_comTooltip title \"\""
+	shader textures/coop_mod/lcars/coopLcars031.tga
+}
+
+resource
+Button
+{
+	title "SERVER"
+	name "coop_comOpt3"
+	rect 380 141 128 32
+	
+	borderstyle "NONE"
+	font serpentinemedium-10
+	verticaljustify top
+	clicksound sound/environment/computer/holo_yes.wav
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0
+	
+	//hoverbgcolor 0.0 0.6 0.6 0.9
+	//hoverfgcolor 1 1 1 1
+	
+	cvarvisibility "coop_comT" "3" !=
+	stuffcommand "seta coop_comT 3;seta coop_comL 30"
+	hovercommand "globalwidgetcommand coop_comTooltip title \"Accsess Coop Server Options\""
+	hoverexitcommand "globalwidgetcommand coop_comTooltip title \"\""	
+	
+	shader textures/coop_mod/lcars/coopLcars030.tga
+	hovershader textures/coop_mod/lcars/coopLcars032.tga
+}
+resource
+Button
+{
+	title "SERVER"
+	name "coop_comOpt3Sel"
+	rect 380 141 128 32
+	borderstyle "NONE"
+	font serpentinemedium-10
+	verticaljustify top
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0	
+	cvarvisibility "coop_comT" "3" ==
+	hovercommand "globalwidgetcommand coop_comTooltip title \"Currently on display\""
+	hoverexitcommand "globalwidgetcommand coop_comTooltip title \"\""
+	shader textures/coop_mod/lcars/coopLcars031.tga
+}
+
+resource
+Button
+{
+	title "OBJECTIVES >>"
+	name "coop_comOpt4"
+	rect 380 176 128 32
+	borderstyle "NONE"
+	font serpentinemedium-10
+	verticaljustify top
+	clicksound sound/environment/computer/holo_yes.wav
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0
+	stuffcommand "set coop_comT 0;set coop_comL 0;transitionmenu coop_obj"
+	hovercommand "globalwidgetcommand coop_comTooltip title \"Switch to Coop Objectives\""
+	hoverexitcommand "globalwidgetcommand coop_comTooltip title \"\""	
+	shader textures/coop_mod/lcars/coopLcars030.tga
+	hovershader textures/coop_mod/lcars/coopLcars032.tga
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//EXIT BUTTON
+////////////////////////////////////////////////////////////////////////////////
+resource
+Button
+{
+	title "$$Exit$$"
+	name "coop_comExit"
+	rect 412 220 96 32
+	
+	borderstyle "NONE"
+	font serpentinemedium-12
+	verticaljustify top
+	horizontaljustify left
+	clicksound sound/environment/computer/holo_yes.wav
+	fgcolor 0 0 0 1
+	bgcolor 0 0 0 0
+	
+	hoverfgcolor 1 1 1 1
+	stuffcommand "popmenu coop_com"
+	hovercommand "globalwidgetcommand coop_comTooltip title \"Terminate Terminal\""
+	hoverexitcommand "globalwidgetcommand coop_comTooltip title \"\""
+	
+	shader textures/coop_mod/lcars/coopLcars034.tga
+	hovershader textures/coop_mod/lcars/coopLcars033.tga
+}
+end.

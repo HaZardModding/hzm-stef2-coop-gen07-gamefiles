@@ -1,0 +1,19 @@
+menu "texthud" 300 56 NONE 0.1
+align  bottom centerx
+bgcolor 0 0 0 0
+borderstyle NONE
+depth 0.38
+
+resource
+DialogTextConsole
+{
+name "DialogConsole2"
+//[b60025] chrissstrahl - make the text bigger
+font serpentinemedium-16
+rect 0 0 300 56
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 0.00 0.00 0.00 0.90
+borderstyle "none"
+ordernumber 1
+}
+end.

@@ -1,0 +1,262 @@
+menu "coop_class" 128 480 NONE 0
+bgcolor 0 0 0 0
+align center right
+//direction from_right 0.1
+depth 0.3
+gamefocus
+//hideDuringLoad
+
+
+//[b60014] chrissstrahl - updated style
+resource 
+widget
+{
+	cvarvisibility coop_ui_class 1 == //allows disabling
+    name "coop_classBg"
+    rect 0 270 128 32
+    fgcolor 			1.00 1.00 1.00 1.00
+    bgcolor 			1.00 0.00 0.00 0.00
+    borderstyle "NONE"
+    shader "inv-selection"
+}
+
+//player class - set via cfg
+resource 
+widget
+{
+	cvarvisibility coop_ui_class 1 ==
+    name "coop_classImg"
+    rect -1 278 32 16
+    fgcolor 			1.00 1.00 1.00 1.00
+    bgcolor 			1.00 0.00 0.00 0.00
+    borderstyle "NONE"
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////TECH CLASS
+////////////////////////////////////////////////////////////////////////////////
+resource
+widget
+{
+	cvarvisibility coop_ui_class 1 ==
+	rect 25 270 32 32
+	fgcolor 			1.00 1.00 1.00 1.00
+	bgcolor 			0.00 0.00 0.00 0.70
+	borderstyle	"OUTLINE_BORDER"
+	borderwidth 2
+	//shadercolor 			0.20 1.00 0.80 1.00
+	//bordercolor			0.286 0.063 0.500 1.000 //plasma
+	//bordercolor			0.784 0.52 0.155 1.00 //phaser
+	//bordercolor			0.1 0.15 0.475 1.00 //fed
+	//bordercolor			0.3 0.35 0.6475 1.00 //hw
+	bordercolor			0.10 0.50 0.40 1.00 //idryll
+}
+resource
+Label
+{
+	//[b607] chrissstrahl - this allowed the hud to be toggled on/off
+	cvarvisibility coop_ui_class 1 ==
+	
+	title "8"
+	rect 25 274 18 24
+	fgcolor 0.10 0.50 0.40 1.00
+	bgcolor 0.50 0.50 0.50 0.00
+	borderstyle "NONE"
+	font serpentinemedium-16
+	horizontaljustify center
+	verticaljustify top
+	linkcvar "coop_ct"
+	textshadowcolor 0 0 0 1
+	hovertextshadowcolor 0 0 0 1
+}
+resource 
+widget
+{
+	cvarvisibility coop_ui_class 1 ==
+    rect 31 278 32 16
+    fgcolor 			1.00 1.00 1.00 1.00
+    bgcolor 			1.00 0.00 0.00 0.00
+    borderstyle "NONE"
+    shader "sysimg/icons/mp/specialty_heavyweapons"
+    shader "sysimg/icons/mp/specialty_medic"
+    shader "sysimg/icons/mp/specialty_technician"
+}
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////MEDI CLASS
+////////////////////////////////////////////////////////////////////////////////
+resource
+widget
+{
+	cvarvisibility coop_ui_class 1 ==
+	rect 58 270 32 32
+	fgcolor 			1.00 1.00 1.00 1.00
+	bgcolor 			0.00 0.00 0.00 0.70
+	shadercolor 			0.20 1.00 0.80 1.00
+	borderwidth 2
+	borderstyle	"OUTLINE_BORDER"
+	bordercolor			0.784 0.52 0.155 1.00 //phaser
+}
+resource
+Label
+{
+	//[b607] chrissstrahl - this allowed the hud to be toggled on/off
+	cvarvisibility coop_ui_class 1 ==
+	
+	title "8"
+	rect 58 274 18 24
+	fgcolor 0.784 0.52 0.155 1.00
+	bgcolor 0.50 0.50 0.50 0.00
+	borderstyle "NONE"
+	font serpentinemedium-16
+	horizontaljustify center
+	verticaljustify top
+	linkcvar "coop_cm"
+	textshadowcolor 0 0 0 1
+	hovertextshadowcolor 0 0 0 1
+}
+resource 
+widget
+{
+	cvarvisibility coop_ui_class 1 ==
+    rect 64 278 32 16
+    fgcolor 			1.00 1.00 1.00 1.00
+    bgcolor 			1.00 0.00 0.00 0.00
+    borderstyle "NONE"
+    shader "sysimg/icons/mp/specialty_medic"
+}
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////HEAVY CLASS
+////////////////////////////////////////////////////////////////////////////////
+resource
+widget
+{
+	cvarvisibility coop_ui_class 1 ==
+	rect 91 270 32 32
+	fgcolor 			1.00 1.00 1.00 1.00
+	bgcolor 			0.00 0.00 0.00 0.70
+	shadercolor 			0.20 1.00 0.80 1.00
+	borderwidth 2
+	borderstyle	"OUTLINE_BORDER"
+	bordercolor			0.3 0.35 0.6475 1.00
+}
+resource
+Label
+{
+	cvarvisibility coop_ui_class 1 ==
+	title "8"
+	rect 91 274 18 24
+	fgcolor 0.3 0.35 0.6475 1.00
+	bgcolor 0.50 0.50 0.50 0.00
+	borderstyle "NONE"
+	font serpentinemedium-16
+	horizontaljustify center
+	verticaljustify top
+	linkcvar "coop_ch"
+	textshadowcolor 0 0 0 1
+	hovertextshadowcolor 0 0 0 1
+}
+
+resource 
+widget
+{
+	cvarvisibility coop_ui_class 1 ==
+    rect 97 278 32 16
+    fgcolor 			1.00 1.00 1.00 1.00
+    bgcolor 			1.00 0.00 0.00 0.00
+    borderstyle "NONE"
+    shader "sysimg/icons/mp/specialty_heavyweapons"
+}
+
+//[b60021] chrissstrahl - used to show ability cooldown
+resource
+Label
+{
+	disable
+	name "coop_class25"
+	//rect 8 304 112 210
+	rect 8 304 26 10
+	fgcolor 0.3 0.35 0.6475 1.00
+	bgcolor 0.50 0.00 0.00 0.7
+	borderstyle "NONE"
+	font serpentinemedium-12
+	horizontaljustify center
+	verticaljustify top
+	textshadowcolor 0 0 0 1
+	hovertextshadowcolor 0 0 0 1
+}
+resource
+Label
+{
+	disable
+	name "coop_class50"
+	rect 36 304 26 10
+	fgcolor 0.3 0.35 0.6475 1.00
+	bgcolor 0.50 0.25 0.00 0.70
+	borderstyle "NONE"
+	font serpentinemedium-12
+	horizontaljustify center
+	verticaljustify top
+	textshadowcolor 0 0 0 1
+	hovertextshadowcolor 0 0 0 1
+}
+resource
+Label
+{
+	disable
+	name "coop_class75"
+	rect 64 304 26 10
+	fgcolor 0.3 0.35 0.6475 1.00
+	bgcolor 0.50 0.50 0.00 0.80
+	borderstyle "NONE"
+	font serpentinemedium-12
+	horizontaljustify center
+	verticaljustify top
+	textshadowcolor 0 0 0 1
+	hovertextshadowcolor 0 0 0 1
+}
+resource
+Label
+{
+	disable
+	name "coop_class100"
+	rect 92 304 26 10
+	fgcolor 0.3 0.35 0.6475 1.00
+	bgcolor 0.00 1.00 0.00 0.80
+	borderstyle "NONE"
+	font serpentinemedium-12
+	horizontaljustify center
+	verticaljustify top
+	textshadowcolor 0 0 0 1
+	hovertextshadowcolor 0 0 0 1
+	
+	//[b60024] chrissstrahl - moved to gamecode, because it would be spamed during cinematic / letterbox
+	//showcommand "exec co-op/cfg/coop_classReady.cfg"
+}
+
+//[b60021] chrissstrahl - used to show ability cooldown
+resource
+Label
+{
+	disable
+	name "coop_classReadyImg"
+	rect 0 260 130 100
+	bgcolor 0.0 0.0 0.0 0
+	borderstyle "NONE"
+	shader menu/generic/button-press
+	fadedelay 0.25
+}
+resource
+Label
+{
+	title "ABILITY READY"
+	name "coop_classReady"
+	rect 0 304 130 60
+	bgcolor 0.0 0.0 0.0 0
+	borderstyle "NONE"
+	font serpentinemedium-10
+	horizontaljustify center
+	verticaljustify top
+	textshadowcolor 0 0 0 1
+	hovertextshadowcolor 0 0 0 1
+}
+end.

@@ -1,0 +1,528 @@
+setup
+{
+	scale 1.0
+	path models/char/starfleet/base-male/
+
+	skelmodel starfleet-base-male.skb
+	morphfile starfleet-base-male.skm
+
+	bonemapping "Bip01 Pelvis" material1 7
+	bonemapping "Bip01 Spine" material1 9
+	bonemapping "Bip01 Spine1" material1 7
+	bonemapping "Bip01 Spine2" material1 9
+	bonemapping "Bip01 Head" material1 4.2 9
+
+	bonemapping "Bip01 L Clavicle" material1 7
+	bonemapping "Bip01 L Upperarm" material1 3
+	bonemapping "Bip01 L Forearm" material1 2.5
+	bonemapping "Bip01 L Hand" material1 3
+	bonemapping "Bip01 L Finger2" material1 2.8 5
+
+	bonemapping "Bip01 R Clavicle" material1 7
+	bonemapping "Bip01 R Upperarm" material1 3
+	bonemapping "Bip01 R Forearm" material1 2.5
+	bonemapping "Bip01 R Hand" material1 3
+	bonemapping "Bip01 R Finger2" material1 2.8 5
+
+	bonemapping "Bip01 L Thigh" material1 4
+	bonemapping "Bip01 L Calf" material1 4
+	bonemapping "Bip01 L Foot" material1 4.5
+	bonemapping "Bip01 L Toe0" material1 5 2
+
+	bonemapping "Bip01 R Thigh" material1 4
+	bonemapping "Bip01 R Calf" material1 4
+	bonemapping "Bip01 R Foot" material1 4.5
+	bonemapping "Bip01 R Toe0" material1 5 2
+
+	surface material9 shader comm_badge
+		
+	headoffset 28 0 -87
+
+	radius 50
+}
+
+init
+{
+	server
+	{
+	classname Actor
+	name "Zombi"
+	archetype "StarfleetBaseMale"
+	}
+
+	client
+	{
+	aliascache sndroll sound/chars/human/human_roll.wav
+	aliascache sndland sound/chars/human/human_land.wav
+	}
+}
+
+//Animations ( Core )
+
+animations models/char/romulan/rebel-base-grenadier
+{
+	//----------------------------------------------------------------
+	duck_wait				grenadier-duck.ska
+	//----------------------------------------------------------------
+	{
+	}
+
+	//----------------------------------------------------------------
+	grenade_throw					grenadier-throw.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		1 attachmodel projectile/projectile_romulan-handgrenade.tik "tag_LHand"
+		11 proj "tag_Lhand" "projectile/projectile_romulan-handgrenade.tik" 1 1 800 0 0 100
+		12 removeattachedmodel "tag_LHand"
+		}
+	client
+		{
+		//0 sound sound/ships/romulan/rom_grencock.wav 2 1 400
+		11 sound sound/ships/romulan/rom_grentoss.wav 1 1 400
+		}
+	}
+}
+
+
+//MOTION
+animations models/char/attrexian/base-male
+{
+	//------------------------------------------------------------------------------------
+	// Attrexian Specific Motion Animations
+	//------------------------------------------------------------------------------------
+
+	//----------------------------------------------------------------
+	walk							walk-heavy.ska
+	//----------------------------------------------------------------
+	{
+	client
+		{
+		6 footstepsound 1 2 100
+		16 footstepsound 1 2 100
+		//4 footstep "origin"
+		//4 footstepsound 1 4 300
+		//12 footstep "origin"
+		//12 footstepsound 1 4 300
+		}
+	}
+	
+	//----------------------------------------------------------------
+	run								run-heavy.ska
+	//----------------------------------------------------------------
+	{
+	client
+		{
+		4 footstep "origin"
+		4 footstepsound 1 4 300
+		12 footstep "origin"
+		12 footstepsound 1 4 300
+		4 sound sound/chars/wraith/wr_run.wav 1 3.0 300
+		12 sound sound/chars/wraith/wr_run.wav 1 3.0 300
+		}
+	}
+}
+animations models/char/klingon/base-male
+{
+	//----------------------------------------------------------------
+	knife_strafeL		knife-strafeL.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		first movementmode "anim"
+		exit movementmode "normal"
+		}
+	client
+		{
+		1 footstepsound 1 1 200
+		8 footstepsound 1 1 200
+		}
+	}
+	//----------------------------------------------------------------
+	knife_strafeR		knife-strafeR.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		first movementmode "anim"
+		exit movementmode "normal"
+		}
+	client
+		{
+		1 footstepsound 1 1 200
+		8 footstepsound 1 1 200
+		}
+	}
+}
+animations models/char/base-male2
+{
+// AI REQUIRED
+	//------------------------------------------------------------------------------------
+	land				jump-run-end.ska
+	//------------------------------------------------------------------------------------
+	{
+	client
+		{
+		3 sound sndland 4 0.6 50
+		}
+	}
+
+	//------------------------------------------------------------------------------------
+	fall				jump-run-middle.ska
+	//------------------------------------------------------------------------------------
+	{
+	}
+
+	//------------------------------------------------------------------------------------
+	jump				jump-run-start.ska
+	//------------------------------------------------------------------------------------
+	{
+	}
+	
+	//----------------------------------------------------------------
+	backpedal			walk-backpedal.ska
+	//----------------------------------------------------------------
+	{
+	client
+		{
+		6 footstepsound 1 1 200
+		15 footstepsound 1 1 200
+		}
+	}
+	
+	//----------------------------------------------------------------
+	swat_dodge_L			swat-dodge-L.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		first movementmode "anim"
+		exit movementmode "normal"
+		}
+	client
+		{
+		4 footstepsound 1 1 200
+		7 footstepsound 2 1 200
+		}
+	}
+	//----------------------------------------------------------------
+	swat_dodge_R			swat-dodge-R.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		first movementmode "anim"
+		exit movementmode "normal"
+		}
+	client
+		{
+		4 footstepsound 1 1 200
+		7 footstepsound 2 1 200
+		}
+	}
+	//----------------------------------------------------------------
+	roll_left			crouch-roll-left.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		first movementmode "anim"
+		exit movementmode "normal"
+		}
+	client
+		{
+		2 sound sndroll 2 1 200
+		}
+	}
+
+	//----------------------------------------------------------------
+	roll_right			crouch-roll-right.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		first movementmode "anim"
+		exit movementmode "normal"
+		}
+	client
+		{
+		2 sound sndroll 2 1 200
+		}
+	}	
+//ATTACK - WORK		
+	//----------------------------------------------------------------
+	panel-pushbutton			panel-pushbutton.ska
+	//----------------------------------------------------------------
+	{
+	}
+	
+	//----------------------------------------------------------------
+	communicator		communicator.ska
+	//----------------------------------------------------------------
+	{
+
+	client
+		{
+		13 sound sound/player/CommunicatorBeep.wav 1 3.0 160
+		}
+	}
+	
+	//----------------------------------------------------------------
+	blowup	idle.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		1 explosionattack ( "fx/fx-effectring-01.tik" "origin" )	
+		}
+	}
+	
+	//----------------------------------------------------------------
+	melee							comp-rifle-butt.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		0 sound sound/chars/chewer/chew_whoosh1.wav 1 3.0 160
+		10 melee 10 "origin" "alien_melee" "60 128 96" 20
+		}
+	}
+	
+	stand_to_kneel		kneel-working-down.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		10 melee 10 "origin" "alien_melee" "60 128 96" 20
+		}
+	client
+		{
+		7 sound sound/chars/chewer/chew_whoosh1.wav 1 3.0 160
+		}
+	}
+
+	//----------------------------------------------------------------
+	kneel_idle			kneel-working-idle.ska
+	//----------------------------------------------------------------
+	{
+	}
+
+	//----------------------------------------------------------------
+	kneel_to_stand		kneel-working-up.ska
+	//----------------------------------------------------------------
+	{
+	}
+	//----------------------------------------------------------------
+	plant			detpack-plant.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		10 melee 10 "origin" "alien_melee" "60 128 96" 20
+		}
+	client
+		{
+		6 sound sound/chars/chewer/chew_whoosh1.wav 1 3.0 160
+		}
+	}
+//IDLE
+	//----------------------------------------------------------------
+	idle		idle-heavy-breathing.ska
+	//----------------------------------------------------------------
+	{
+	client
+		{
+		10 sound sound/chars/wraith/wr_idle2.wav 1 2.0 70
+		}
+	}
+	//----------------------------------------------------------------
+	idle2		swat-calm-idle2c.ska
+	//----------------------------------------------------------------
+	{
+	client
+		{
+		3 sound sound/chars/wraith/wr_idle1.wav 1 2.0 70
+		}
+	}
+	//----------------------------------------------------------------
+	idle_adjust			idle2-adjust.ska
+	//----------------------------------------------------------------
+	{
+	}
+//PAIN
+	//----------------------------------------------------------------
+	pain_fallForwardL			pain-calfL-far.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		0 rendereffects +shadowFromBip01
+		0 morph MORPH_LID-LSHUT 100
+		0 morph MORPH_LID-RSHUT 100
+		0 morph MORPH_BROW-LDN 100
+		0 morph MORPH_BROW-RDN 100
+		0 morph MORPH_O 57
+		exit morph MORPH_BASE 100
+		}
+	}
+	//----------------------------------------------------------------
+	pain_fallForwardR			pain-calfR-far.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		0 rendereffects +shadowFromBip01
+		0 morph MORPH_LID-LSHUT 100
+		0 morph MORPH_LID-RSHUT 100
+		0 morph MORPH_BROW-LDN 100
+		0 morph MORPH_BROW-RDN 100
+		0 morph MORPH_O 57
+		exit morph MORPH_BASE 100
+		}
+	}
+	//----------------------------------------------------------------
+	pain_legR			pain-legR-far.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		0 rendereffects +shadowFromBip01
+		0 morph MORPH_LID-LSHUT 100
+		0 morph MORPH_LID-RSHUT 100
+		0 morph MORPH_BROW-LDN 100
+		0 morph MORPH_BROW-RDN 100
+		0 morph MORPH_O 57
+		exit morph MORPH_BASE 100
+		}
+	}
+
+	//----------------------------------------------------------------
+	pain_legL			pain-legL-far.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		0 rendereffects +shadowFromBip01
+		0 morph MORPH_LID-LSHUT 100
+		0 morph MORPH_LID-RSHUT 100
+		0 morph MORPH_BROW-LDN 100
+		0 morph MORPH_BROW-RDN 100
+		0 morph MORPH_O 57
+		exit morph MORPH_BASE 100
+		}
+	}
+	//----------------------------------------------------------------
+	pain	pain-head.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		0 rendereffects +shadowFromBip01
+		0 morph MORPH_LID-LSHUT 100
+		0 morph MORPH_LID-RSHUT 100
+		0 morph MORPH_BROW-LDN 100
+		0 morph MORPH_BROW-RDN 100
+		0 morph MORPH_O 57
+		exit morph MORPH_BASE 100
+		}
+	}
+	//----------------------------------------------------------------
+	cry			brace-impact.ska
+	//----------------------------------------------------------------
+	{
+	}
+//DEATH
+	//----------------------------------------------------------------
+	death				death2.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		0 removeattachedmodel "tag_LHand"
+		1 notsolid
+		}
+	client
+		{
+		1 sound sound/chars/klingon/kling_mpain1.wav 2 1 300
+		21 sound sound/impact/bodyfall/bodyfall1.wav 2 1 300
+		41 sound sound/impact/bodyfall/softland.wav 3 1 300
+		}
+	}
+}
+animations models/char/attrexian/base-male
+{
+	//----------------------------------------------------------------
+	death2							death-front.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		0 removeattachedmodel "tag_LHand"
+		2 notsolid
+		}
+	client
+		{
+		1 sound sound/chars/klingon/kling_mpain2.wav 2 1 300
+		21 sound sound/impact/bodyfall/bodyfall1.wav 2 1 300
+		41 sound sound/impact/bodyfall/softland.wav 3 1 300
+		}
+	}
+	//----------------------------------------------------------------
+	death3					dead_ground2.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		0 removeattachedmodel "tag_LHand"
+		3 notsolid
+		}
+	client
+		{
+		1 sound sound/chars/klingon/kling_mpain1.wav 2 1 300
+		2 sound sound/impact/bodyfall/softland.wav 3 1 300
+		}
+	}
+
+	//----------------------------------------------------------------
+	death4						dead_ground.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		0 removeattachedmodel "tag_LHand"
+		3 notsolid
+		}
+	client
+		{
+		1 sound sound/chars/klingon/kling_mpain3.wav 2 1 300
+		2 sound sound/impact/bodyfall/softland.wav 3 1 300
+		}
+	}
+//SLEEP
+	//----------------------------------------------------------------
+	sleep							dead_ground2.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		}
+	client
+		{
+		}
+	}
+	//----------------------------------------------------------------
+	sleep2							dead_ground.ska
+	//----------------------------------------------------------------
+	{
+	server
+		{
+		}
+	client
+		{
+		}
+	}
+}
+
+$include models/sharedanim/humanoid-transport-m.tik

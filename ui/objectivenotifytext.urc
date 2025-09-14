@@ -1,0 +1,53 @@
+menu "objectivenotifytext" 340 480 NONE 1
+bgcolor 0 0 0 0
+align center
+direction from_bottom 0.3
+//noresize
+depth 0.4
+gamefocus
+
+resource 
+Label
+{
+    name "mission-obj1"
+    title "$$MISSIONOBJECTIVESUPDATED$$"
+    rect 0 260 340 35
+	fgcolor 			0.80 0.20 0.20 1.00
+    //fgcolor 			0 0.9 0.9 0.9
+    bgcolor 			0.00 0.00 0.00 0.00
+    borderstyle "NONE"
+    
+   	font serpentinemedium-14
+	horizontaljustify center
+	verticaljustify top
+	
+	textshadowcolor 0 0 0 1
+	hovertextshadowcolor 0 0 0 1
+	
+	fadedelay 3
+}
+
+resource 
+Label
+{
+    name "mission-obj2"
+    title "$$PressObjective$$"
+    rect 0 295 340 35
+    fgcolor 			0.80 0.20 0.20 1.00
+    //fgcolor 			0 0.9 0.9 0.9
+    bgcolor 			0.00 0.00 0.00 0.00
+    borderstyle "NONE"
+    
+    font serpentinelight-12
+	horizontaljustify center
+	verticaljustify top
+	
+	textshadowcolor 0 0 0 1
+	hovertextshadowcolor 0 0 0 1
+	
+	fadedelay 3
+	
+	hidecommand "ui_removehud objectivenotifytext\n"
+}
+
+end.

@@ -1,0 +1,40 @@
+menu "coopTimerRed" 128 32 from_left 1
+bgcolor 0 0 0 0
+align left centery
+//noresize
+depth 0.4
+hideDuringLoad
+
+resource
+Label
+{
+rect 0 0 128 32
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 0.00 0.00 0.00 0.00
+borderstyle "NONE"
+shader bosshud/bkg
+}
+
+resource
+Label
+{
+name "coopTimerRedName" //[b60011] chrissstrahl - upgrade for coop usage
+rect 10 0 108 16
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 0.00 0.00 0.00 0.00
+borderstyle "NONE"
+linkcvar coop_timerRed
+}
+
+resource
+Label
+{
+rect 9 16 110 8
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 0.50 0.50 0.50 0.00
+borderstyle "OUTLINE_BORDER"
+statbar_shader bosshud/bar
+playerstat generic
+statbar horizontal 0 100
+}
+end.

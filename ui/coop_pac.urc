@@ -1,0 +1,122 @@
+//point and click master hud
+menu "coop_pac" 640 64 NONE 1
+bgcolor 0 0 0 1
+align bottom left
+direction from_bottom 0.1
+hideDuringLoad
+depth 0.2
+hideDuringLoad
+
+showcommand "exec co-op/cfg/reset_pac.cfg\n"
+hidecommand "exec co-op/cfg/reset_pac.cfg\n"
+
+
+resource
+Label
+{
+rect -45 -2 110 68
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 1 0 0 0
+borderstyle "NONE"
+statbar_shader "sysimg/icons/items/health.tga"
+playerstat generic
+statbar vertical 0 100
+statbardirection down
+}
+
+resource
+widget
+{
+ordernumber 1
+rect 22 0 64 64
+fgcolor 			1.00 1.00 1.00 1.00
+bgcolor 			0.00 0.00 0.00 0.00
+borderstyle "NONE"
+shader "sysimg/hud/coop_8"
+}
+
+resource
+Widget
+{
+name "pacSel"
+ordernumber 2
+rect 27 5 54 54
+fgcolor 			1.00 1.00 1.00 1.00
+bgcolor 			0.00 0.00 0.00 0.00
+borderstyle "NONE"
+}
+
+resource
+Label
+{
+name "pacSelDescr"
+ordernumber 10
+rect 88 0 300 64
+fgcolor 			1.00 1.00 1.00 1.00
+bgcolor 			1.00 1.00 1.00 0.30
+borderstyle "NONE"
+textshadowcolor 0 0 0 1
+hovertextshadowcolor 0 0 0 1
+}
+
+resource
+Widget
+{
+name "pacAbility"
+ordernumber 11
+rect 324 1 62 62
+fgcolor 			1.00 1.00 1.00 1.00
+bgcolor 			0.00 1.00 0.00 0.00
+borderstyle "NONE"
+shader textures/coop_mod/pac/orbitalstrike
+}
+
+resource
+Label
+{
+name "pacAbilityTime"
+ordernumber 12
+rect 324 24 62 32
+fgcolor 			0.00 1.00 0.00 1.00
+bgcolor 			1.00 1.00 0.00 0.00
+borderstyle "NONE"
+title ""
+font serpentinemedium-16
+textshadowcolor 0 0 0 1
+hovertextshadowcolor 0 0 0 1
+}
+
+// resource
+// Label
+// {
+// name "pacHovDescr"
+// ordernumber 2
+// rect 574 0 120 50
+// fgcolor 			1.00 1.00 1.00 1.00
+// bgcolor 			1.00 0.00 0.00 1.00
+// borderstyle "NONE"
+// }
+
+resource
+widget
+{
+ordernumber 1
+rect 576 0 64 64
+fgcolor 			1.00 1.00 1.00 1.00
+bgcolor 			0.00 0.00 0.00 0.00
+borderstyle "NONE"
+shader "sysimg/hud/coop_8"
+}
+
+resource
+Widget
+{
+name "pacHov"
+ordernumber 2
+rect 581 5 54 54
+fgcolor 			1.00 1.00 1.00 1.00
+bgcolor 			0.00 0.00 0.00 0.00
+borderstyle "NONE"
+}
+
+end.

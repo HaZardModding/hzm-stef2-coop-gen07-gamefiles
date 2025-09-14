@@ -1,0 +1,1334 @@
+//-----------------------------------------------------------------------------------
+// Script By:	Christian Sebastian Strahl (Chrissstrahl)
+// Created on:	2022.02.04
+// E-Mail:		chrissstrahl@yahoo.de
+//-----------------------------------------------------------------------------------
+//Buy and Sell Mission Requisition Items
+//Based on a concept by Akula79 and Chrissstrahl
+//-----------------------------------------------------------------------------------
+
+string	sEmptyShader;
+string	sMissionName;string sMissionName_deu;
+string	sItemBuy1; string sItemBuy1Shader;string sItemBuy1Name;string sItemBuy1Descr;string sItemBuy1Name_deu;string sItemBuy1Descr_deu;
+string	sItemBuy2; string sItemBuy2Shader;string sItemBuy2Name;string sItemBuy2Descr;string sItemBuy2Name_deu;string sItemBuy2Descr_deu;
+string	sItemBuy3; string sItemBuy3Shader;string sItemBuy3Name;string sItemBuy3Descr;string sItemBuy3Name_deu;string sItemBuy3Descr_deu;
+string	sItemBuy4; string sItemBuy4Shader;string sItemBuy4Name;string sItemBuy4Descr;string sItemBuy4Name_deu;string sItemBuy4Descr_deu;
+string	sItemBuy5; string sItemBuy5Shader;string sItemBuy5Name;string sItemBuy5Descr;string sItemBuy5Name_deu;string sItemBuy5Descr_deu;
+string	sItemBuy6; string sItemBuy6Shader;string sItemBuy6Name;string sItemBuy6Descr;string sItemBuy6Name_deu;string sItemBuy6Descr_deu;
+string	sItemBuy7; string sItemBuy7Shader;string sItemBuy7Name;string sItemBuy7Descr;string sItemBuy7Name_deu;string sItemBuy7Descr_deu;
+string	sItemBuy8; string sItemBuy8Shader;string sItemBuy8Name;string sItemBuy8Descr;string sItemBuy8Name_deu;string sItemBuy8Descr_deu;
+vector	vItemBuy1Cost;
+vector	vItemBuy2Cost;
+vector	vItemBuy3Cost;
+vector	vItemBuy4Cost;
+vector	vItemBuy5Cost;
+vector	vItemBuy6Cost;
+vector	vItemBuy7Cost;
+vector	vItemBuy8Cost;
+//string	sChallenges;
+vector  vRequired3Items;
+vector	vRequired3ItemsOnce;
+vector	vStartCredits;
+float	bLockPlayerClass;
+
+void	mrm_uiPopulateMenu(entity ePlayer);
+void	mrn_uiUpdateClass(entity ePlayer);
+void	mrn_uiUpdateCredits(entity ePlayer);
+void	mrm_uiSelectBuyItem(entity ePlayer,float fItem);
+void	mrm_uiSelectSellItem(entity ePlayer,float fItem);
+void	mrm_uiEnableBuyButton(entity ePlayer,float fEnable);
+void	mrm_uiEnableSellButton(entity ePlayer,float fEnable);
+float	mrm_uiTransferItem(entity ePlayer,float fBuy);
+void	mrm_uiFlashWidget(entity ePlayer,string sWidgetName,string sFlashColor,string sNormalColor,float fTimes);
+void	mrm_uiPaymentSelectEc(entity ePlayer);
+void	mrm_uiPaymentCancel(entity ePlayer);
+void	mrm_uiPaymentSelectReq(entity ePlayer);
+
+void	mrm_sellSelectedItem(entity ePlayer);
+void	mrm_buySelectedItem(entity ePlayer);
+void	mrm_playerTakeAllItems(entity ePlayer);
+void	mrm_setResourceData(entity ePlayer);
+float	mrm_canBuyItem(entity ePlayer,float fItem);
+float	mrm_isInventoryFull(entity ePlayer);
+float	mrm_hasRequiredInventory(entity ePlayer);
+
+string	mrm_returnLanguageString(entity ePlayer, string sEnglishVarName);
+
+void	mrm_returnItemFromInventory(entity ePlayer,float fInventoryItemNumer);
+void	mrm_addItemToInventory(entity ePlayer,float fItemNumer);
+
+float	mrm_requiredInventoryOnceCheck(entity ePlayer,float fRequiredSlotNumber);
+float	mrm_getValidPaymentMethod(entity ePlayer,vector vItemCost);
+float	mrm_getFreeInventorySlot(entity ePlayer);
+vector	mrm_addToPlayerBalance(entity ePlayer,vector vBallance);
+vector	mrm_removeFromPlayerBalance(entity ePlayer,vector vBallance);
+void	mrm_accept(entity ePlayer);
+void	mrm_giveItems(entity ePlayer);
+void	mrm_checkItemUsed(entity ePlayer, entity eItem,float fInvAssociation);
+void	mrm_autoUseItemHealth(entity ePlayer,float fInv);
+float	mrm_isEquiped(entity ePlayer);
+void	mrm_printMessageNoSpam(entity ePlayer, string sMessage);
+vector	mrm_returnNoNegativeCredit(vector vCred);
+vector	mrm_returnVectorFromString(string sVec);
+void	mrm_giveCreditsEnergy(entity ePlayer,float fCredits);
+void	mrm_giveCreditsRequisition(entity ePlayer,float fCredits);
+
+//declaration
+////////////////////////////////////////////////////////////////////////////////
+void	mrmnoMenu();
+void	mrm();
+void	mrm_One();
+void	mrm_Two();
+void	mrm_Three();
+void	mrm_Four();
+void	mrm_Five();
+void	mrm_Six();
+void	mrm_Seven();
+void	mrm_Eight();
+void	mrm_Nine();
+void	mrm_Ten();
+void	mrm_Eleven();
+void	mrm_Twelve();
+void	mrm_Thirteen();
+void	mrm_Fourteen();
+void	mrm_Fifteen();
+void	mrm_Zero();
+
+void mrmnoMenu()
+//this is started if the player does not have the menu
+{
+	entity ePlayer;
+	ePlayer = mom_returnPlayerForTrigger(getCurrentEntity ());
+	mom_showMessagePlayer(ePlayer,"It seems you don't have the Menu for MRM...");	
+}
+
+void mrm()
+//this function is started once the trigger is used
+{
+	entity ePlayer;
+	entity eTrigger;
+
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		globalCoop_main_print("ERROR: mom_returnPlayerForTrigger - trigger did not exist");
+		ePlayer = $Player;
+	}else{
+		ePlayer = mom_returnPlayerForTrigger(getCurrentEntity());
+	}
+	
+	//set default vars
+	sEmptyShader = "weapons/empty";	
+	
+	if(!doesEntityExist(ePlayer)){ return; }
+	
+	//allow class selection (again)
+	globalCoop_player_classLocked(ePlayer,0);
+	
+	//this player is not equipped (anymore)
+	ePlayer.setFloatVar("mrmLoadOutComplete",0);
+	
+	//take away inventory that was given via mrm
+	mrm_playerTakeAllItems(ePlayer);
+	
+	//populate the menu with items and data
+	mrm_uiPopulateMenu(ePlayer);
+}
+
+void mrm_One()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_uiSelectBuyItem(ePlayer,1);
+}
+
+void mrm_Two()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_uiSelectBuyItem(ePlayer,2);
+}
+
+void mrm_Three()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_uiSelectBuyItem(ePlayer,3);
+}
+
+void mrm_Four()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_uiSelectBuyItem(ePlayer,4);
+}
+
+void mrm_Five()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_uiSelectBuyItem(ePlayer,5);
+}
+
+void mrm_Six()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_uiSelectBuyItem(ePlayer,6);
+}
+
+void mrm_Seven()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_uiSelectBuyItem(ePlayer,7);
+}
+
+void mrm_Eight()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_uiSelectBuyItem(ePlayer,8);
+}
+
+void mrm_Nine()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_buySelectedItem(ePlayer);
+}
+
+void mrm_Ten()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_sellSelectedItem(ePlayer);
+}
+
+void mrm_Eleven()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	
+	//allow for multiple fucntions of this button
+	//there is a different button also calling this function
+	//if the player in in that different menu this var will be != 0
+	if(ePlayer.getFloatVar("mrmUiLevel")==0){
+		mrm_uiSelectSellItem(ePlayer,1);
+	}else{
+		mrm_uiPaymentSelectEc(ePlayer);
+	}
+}
+
+void mrm_Twelve()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	//allow for multiple fucntions of this button
+	//there is a different button also calling this function
+	//if the player in in that different menu this var will be != 0
+	if(ePlayer.getFloatVar("mrmUiLevel")==0){
+		mrm_uiSelectSellItem(ePlayer,2);
+	}else{
+		mrm_uiPaymentCancel(ePlayer);
+	}
+}
+
+void mrm_Thirteen()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	//allow for multiple fucntions of this button
+	//there is a different button also calling this function
+	//if the player in in that different menu this var will be != 0
+	if(ePlayer.getFloatVar("mrmUiLevel")==0){
+		mrm_uiSelectSellItem(ePlayer,3);
+	}else{
+		mrm_uiPaymentSelectReq(ePlayer);
+	}
+}
+
+void mrm_Fourteen()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_uiSelectSellItem(ePlayer,4);
+}
+
+void mrm_Fifteen()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_uiSelectSellItem(ePlayer,5);
+}
+
+void mrm_Zero()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	mrm_accept(ePlayer);
+}
+
+void mrm_Exit()
+{
+	entity	ePlayer;
+	ePlayer	= mom_returnPlayerForTrigger(getCurrentEntity());
+	
+	//if player has succedded before we assume player is ready
+	//and has just aborted after reentering the menu
+	if(ePlayer.getFloatVar("mrmLoadOutSucceeded") >= 1){
+		ePlayer.setFloatVar("mrmLoadOutComplete",1);
+	}
+}
+
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+//	SUBFUNCTIONS MANAGING THE BUY AND SET AND MENU STUFF
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+void mrm_playerTakeAllItems(entity ePlayer)
+//===================================
+//take away inventory that was given via mrm
+//===================================
+{
+	float fInv;
+	float fPlaySound;
+	float fInventoryItem;
+	string sItem;
+	for(fInv=1;fInv<=5;fInv++){
+		fInventoryItem = ePlayer.getFloatVar("mrmInvAssociation"+fInv);
+		if(fInventoryItem != 0){
+			fPlaySound=1;
+			sItem = ePlayer.getStringVar("mrmItemBuy"+fInventoryItem);
+			ePlayer.take(sItem);
+			ePlayer.hudprint(sItem+" - taken\n");
+		}
+	}
+	
+	//play pickup sound on player
+	if(fPlaySound){
+		ePlayer.playsound("sound/player/player_invdrop.wav",0,2,100);
+	}
+}
+
+void mrm_uiFlashWidget(entity ePlayer,string sWidgetName,string sFlashColor,string sNormalColor,float fTimes)
+//===================================
+// makes given widget flash
+//===================================
+{
+	float fRounds;
+	for(fRounds=0;fRounds<fTimes;fRounds++){
+		globalCoop_player_widgetCmd(ePlayer,sWidgetName,"bgcolor "+sFlashColor,"");
+		wait(0.2);
+		globalCoop_player_widgetCmd(ePlayer,sWidgetName,"bgcolor "+sNormalColor,"");
+		wait(0.2);
+	}
+}
+
+float mrm_getItemInventorySlot(entity ePlayer,float fItem)
+//===================================
+// return slot nuber in which a specific item can be found
+//===================================
+{
+	float fInventorySlot;
+	for(fInventorySlot=1;fInventorySlot<=5;fInventorySlot++){
+		float fInventoryItem;
+		fInventoryItem = ePlayer.getFloatVar("mrmInvAssociation"+fInventorySlot);
+		//ePlayer.hudprint("asso-slot: "+fInventorySlot+" - item-num: "+fInventoryItem+" souldBe["+fItem+"]\n");
+		if(fInventoryItem == fItem){
+			return fInventorySlot;
+		}
+	}
+	return 0;
+}
+
+float mrm_requiredInventoryOnceCheck(entity ePlayer,float fRequiredSlotNumber)
+//===================================
+// check if player need required inventory or if player allready had it
+//===================================
+{
+	if(!doesEntityExist(ePlayer)){ return 0; }
+	
+	//player has at least once sucsessfully been equiped by mrm
+	float bRequiredOnce = 0;
+	if(ePlayer.getFloatVar("mrmLoadOutSucceeded") > 0){
+		if(fRequiredSlotNumber == 1		)	{ bRequiredOnce = vRequired3ItemsOnce_x; }
+		else if(fRequiredSlotNumber == 2)	{ bRequiredOnce = vRequired3ItemsOnce_y; }
+		else if(fRequiredSlotNumber == 3)	{ bRequiredOnce = vRequired3ItemsOnce_z; }
+	}
+	//globalCoop_main_print("\nITEM: "+fRequiredSlotNumber+" is required once:"+bRequiredOnce);
+	return bRequiredOnce;
+}
+
+float mrm_hasRequiredInventory(entity ePlayer)
+//===================================
+// check if player has required inventory
+//===================================
+{
+	if(!doesEntityExist(ePlayer)){ return 0; }
+	float fRequired1;
+	float fRequired2;
+	float fRequired3;
+	fRequired1 = vectorGetX(vRequired3Items);
+	fRequired2 = vectorGetY(vRequired3Items);
+	fRequired3 = vectorGetZ(vRequired3Items);
+
+	//check if we have all required items if there are any
+	float fAllOkay=1;
+	if(mrm_requiredInventoryOnceCheck(ePlayer,1) != 1 && fRequired1 != 0 && mrm_getItemInventorySlot(ePlayer,fRequired1) == 0){
+		fAllOkay=0;
+	}
+	if(mrm_requiredInventoryOnceCheck(ePlayer,2) != 1 && fRequired2 != 0 && mrm_getItemInventorySlot(ePlayer,fRequired2) == 0){
+		fAllOkay=0;
+	}
+	if(mrm_requiredInventoryOnceCheck(ePlayer,3) != 1 && fRequired3 != 0 && mrm_getItemInventorySlot(ePlayer,fRequired3) == 0){
+		fAllOkay=0;
+	}
+	
+	//player has all required items
+	if(fAllOkay){
+		return 1;
+	}
+	
+	thread mrm_uiFlashWidget(ePlayer,"mrmRequired","1 0 0 0.6","0.58 0.52 0.99 0.5",3);
+
+	//play warn sound on clientgame and return false
+	ePlayer.playsound("sound/misc/mp_warn1.wav",0,2,100);
+	return 0;
+}
+
+string	mrm_returnLanguageString(entity ePlayer, string sEnglishVarName)
+//===================================
+// checks if there is a german string available for the variable name (usually adds _deu)
+//===================================
+{
+	if(!doesEntityExist(ePlayer)){ return "";}
+
+	string sValEng;
+	string sValDeu;
+	sValEng = coop_getStringVariable(sEnglishVarName);
+	
+	if(globalCoop_player_langugeIsGerman(ePlayer)){
+		sValDeu = coop_getStringVariable(sEnglishVarName+"_deu");
+		if(sValDeu != ""){
+			return ""+sValDeu;
+		}
+	}
+	return ""+sValEng;
+}
+
+void mrm_sellSelectedItem(entity ePlayer)
+//===================================
+//removes a item from player inventory
+//===================================
+{
+	mrm_uiTransferItem(ePlayer,0);
+}
+
+void mrm_buySelectedItem(entity ePlayer)
+//===================================
+//transfers a item into player inventory
+//===================================
+{
+	if(mrm_canBuyItem(ePlayer,ePlayer.getFloatVar("mrmItemBuyLastSelected"))){
+		mrm_uiTransferItem(ePlayer,1);
+	}
+}
+
+void mrm_setResourceData(entity ePlayer)
+//=================================================
+//grabs the mission resource data for the mission and sets them on entity vars of player
+//reads from global vars or maybe ini file
+//=================================================
+{
+	if(!doesEntityExist(ePlayer) || ePlayer.getFloatVar("mrmDataSet") != 0){ return; }
+	ePlayer.setFloatVar("mrmDataSet",1);
+
+//GET LEVELOBJECTS AND SET VARS ?
+//OR GET LEVEL OBJECTS FOR EACH PLAYER ?
+//OR GET LEVEL OBJECTS MAKE EM INTO A LIST AND REMOVE/ADD THEM BASED ON THAT LIST ? - WHERE TO STORE ORIGINS AND OTHER USER VARS ?
+	
+	//GET CREDITS DATA - make sure we add starting credits to any that already are set
+	vector vCred;
+	vCred = ePlayer.getVectorVar("mrmCredits");
+	vCred_x += vStartCredits_x;
+	vCred_y	+= vStartCredits_y;
+	vCred_z += vStartCredits_z;
+	//make sure we don'thave any floating points
+	vCred_x = floor(vCred_x);
+	vCred_y = floor(vCred_y);
+	vCred_z = floor(vCred_z);
+	//write credits data to player
+	ePlayer.setVectorVar("mrmCredits",mrm_returnNoNegativeCredit(vCred));
+	
+	//GET ITEM DATA
+	float fItem;
+	for(fItem=1;fItem<=8;fItem++){
+		string sTemp1,sTemp2;
+		sTemp1 = coop_getStringVariable("sItemBuy"+fItem);
+		sTemp2 = mrm_returnLanguageString(ePlayer,"sItemBuy"+fItem+"Name");
+		
+		//globalCoop_main_print("->mrm_setResourceData: "+sTemp1+","+sTemp2);
+		
+		//only set data if there even is a item
+		if(sTemp1 != "" && sTemp2 != ""){
+			ePlayer.setStringVar("mrmItemBuy"+fItem,sTemp1);
+			ePlayer.setStringVar("mrmItemBuyName"+fItem,sTemp2);
+			ePlayer.setStringVar("mrmItemBuyDescr"+fItem,mrm_returnLanguageString(ePlayer,"sItemBuy"+fItem+"Descr"));
+			ePlayer.setStringVar("mrmItemBuyShader"+fItem,coop_getStringVariable("sItemBuy"+fItem+"Shader"));
+			ePlayer.setVectorVar("mrmItemBuyCost"+fItem,coop_getVectorVariable("vItemBuy"+fItem+"Cost"));
+			ePlayer.setFloatVar("mrmItemBuyAvailable"+fItem,vectorGetZ(coop_getVectorVariable("vItemBuy"+fItem+"Cost")));
+			
+			//globalCoop_main_print("->mrm_setResourceData: "+sTemp1+","+sTemp2+","+fItem);
+		}
+	}
+}
+
+void mrm_uiPopulateMenu(entity ePlayer)
+//===================================
+//populates all menu items and resets the menu seen to the current actual status
+//reads entity vars from player
+//===================================
+{
+	//retrive mission resource data, then store on player and read from player in the future
+	mrm_setResourceData(ePlayer);
+
+	if(!doesEntityExist(ePlayer)){
+		globalCoop_main_print("ERROR: mrm_uiPopulateMenu - NULL PLAYER");
+		return;
+	}
+	
+	//disable challenge selection if there is none
+	//if(sChallenges == ""){
+		//globalCoop_player_widgetCmd(ePlayer,"mrmChallengeImage","disable","");
+		//globalCoop_player_widgetCmd(ePlayer,"mrmChallenge","disable","");
+	//}
+
+	//set mission name
+	globalCoop_player_widgetCmd(ePlayer,"mrmMission","labeltext",mrm_returnLanguageString(ePlayer,"sMissionName"));
+	
+	//wait for function "mrm_setResourceData", at least 1 frame
+	wait(0.1);	
+	
+	thread mrn_uiUpdateCredits(ePlayer);
+	
+	//wait for function "mrm_setResourceData", at least 1 frame
+	wait(0.1);
+	
+	if(!doesEntityExist(ePlayer)){ return; }
+	
+	//populate inventory Items
+	//GET ITEM DATA
+	float fInv;
+	for(fInv=1;fInv<=5;fInv++){
+		if(!doesEntityExist(ePlayer)){ return; }
+	
+		float fInvItemAssociatedItemNumber;
+		fInvItemAssociatedItemNumber = ePlayer.getFloatVar("mrmInvAssociation"+fInv);
+		
+		string sShaderz;
+		sShaderz = sEmptyShader;
+		if(fInvItemAssociatedItemNumber != 0){
+			sShaderz = ePlayer.getStringVar("mrmItemBuyShader"+fInvItemAssociatedItemNumber);
+		}
+		
+		globalCoop_player_widgetCmd(ePlayer,"mrmInv"+fInv,"shader",sShaderz);
+		wait(0.05);
+	}	
+	
+	if(!doesEntityExist(ePlayer)){ return; }
+	
+	//get required items and thair costs
+	float fRequired1;
+	float fRequired2;
+	float fRequired3;
+	fRequired1 = vectorGetX(vRequired3Items);
+	fRequired2 = vectorGetY(vRequired3Items);
+	fRequired3 = vectorGetZ(vRequired3Items);
+	
+	if(fRequired1 != 0 && mrm_requiredInventoryOnceCheck(ePlayer,1) != 1){
+		globalCoop_player_widgetCmd(ePlayer,"mrmRequiredItem1","shader",""+ePlayer.getStringVar("mrmItemBuyShader"+fRequired1));
+	}else{ globalCoop_player_widgetCmd(ePlayer,"mrmRequiredItem1","shader",""+sEmptyShader); }
+	
+	if(fRequired2 != 0 && mrm_requiredInventoryOnceCheck(ePlayer,2) != 1){
+		globalCoop_player_widgetCmd(ePlayer,"mrmRequiredItem2","shader",""+ePlayer.getStringVar("mrmItemBuyShader"+fRequired2));
+	}else{ globalCoop_player_widgetCmd(ePlayer,"mrmRequiredItem2","shader",""+sEmptyShader); }
+	
+	if(fRequired3 != 0 && mrm_requiredInventoryOnceCheck(ePlayer,3) != 1){
+		globalCoop_player_widgetCmd(ePlayer,"mrmRequiredItem3","shader",""+ePlayer.getStringVar("mrmItemBuyShader"+fRequired3));
+	}else{ globalCoop_player_widgetCmd(ePlayer,"mrmRequiredItem3","shader",""+sEmptyShader); }
+	
+	//globalCoop_main_print("->mrm_uiPopulateMenu:"+ePlayer.getStringVar("mrmItemBuyShader"+fRequired1));
+	
+	//populate Buy Items
+	//GET ITEM DATA
+	float fItem;
+	for(fItem=1;fItem<=8;fItem++){
+		if(!doesEntityExist(ePlayer)){ return; }
+	
+		float fAmount;
+		fAmount = ePlayer.getFloatVar("mrmItemBuyAvailable"+fItem);
+		string sTemp1,sTemp2,sTemp3;
+		sTemp1 = ePlayer.getStringVar("mrmItemBuy"+fItem);
+		sTemp2 = ePlayer.getStringVar("mrmItemBuyName"+fItem);
+		sTemp3 = ePlayer.getStringVar("mrmItemBuyShader"+fItem);
+		
+		//only set data if there even is a item
+		if(fAmount > 0 && sTemp1 != "" && sTemp2 != "" && sTemp3 != ""){
+			globalCoop_player_widgetCmd(ePlayer,"mrmItem"+fItem,"shader",sTemp3);
+		}
+		else{
+			globalCoop_player_widgetCmd(ePlayer,"mrmItem"+fItem,"shader",sEmptyShader);
+		}
+		wait(0.05);
+	}
+	float fThread;
+	fThread = thread mrn_uiUpdateClass(ePlayer);
+	//ePlayer.setFloatVar("mrmClassUpdaterThraeNum",fThread);
+}
+
+void mrn_uiUpdateClass(entity ePlayer)
+//===================================
+// updates the class for player in menu
+//===================================
+{
+	if(doesEntityExist(ePlayer) == 0){
+		return;
+	}
+	string sCoopClass;
+	string sPreviouseCoopClass;
+	vector vClassResetColor;
+	while(	doesEntityExist(ePlayer) == 1 &&
+			ePlayer.getFloatVar("mrmLoadOutComplete") == 0 &&
+			ePlayer.getHealth() > 0	&&
+			globalCoop_check_playerSpectator(ePlayer) != 1
+			)
+	{
+		sCoopClass = ePlayer.coop_getCoopClass();
+		
+		//in not same class, set the new widget color, also rest bg color of the other widgets
+		if(sPreviouseCoopClass != sCoopClass){
+			if(ePlayer.coop_isTechnician()){
+				vClassResetColor = '0 1 1';
+				globalCoop_player_widgetCmd(ePlayer,"mrmClass1","bgcolor","0 1 0 0.5");
+			}
+			else if (ePlayer.coop_isMedic()){
+				vClassResetColor = '1 0 1';
+				globalCoop_player_widgetCmd(ePlayer,"mrmClass2","bgcolor","0 1 0 0.5");			
+			}
+			else if (ePlayer.coop_isHeavyWeapons()){
+				vClassResetColor = '1 1 0';
+				globalCoop_player_widgetCmd(ePlayer,"mrmClass3","bgcolor","0 1 0 0.5");
+			}
+			
+			if(vClassResetColor_x == 1)
+			{ globalCoop_player_widgetCmd(ePlayer,"mrmClass1","bgcolor","0.58 0.52 0.99 0.5");	 }
+			if(vClassResetColor_y == 1)
+			{ globalCoop_player_widgetCmd(ePlayer,"mrmClass2","bgcolor","0.58 0.52 0.99 0.5");	 }
+			if(vClassResetColor_z == 1)
+			{ globalCoop_player_widgetCmd(ePlayer,"mrmClass3","bgcolor","0.58 0.52 0.99 0.5");	 }
+		}
+		sPreviouseCoopClass = sCoopClass;
+		wait(0.5);
+	}
+}
+
+void mrn_uiUpdateCredits(entity ePlayer)
+//===================================
+// updates the credits for player in menu
+//===================================
+{
+	if(!doesEntityExist(ePlayer)){ return; }
+	vector vCredits;
+	vCredits = ePlayer.getVectorVar("mrmCredits");
+	globalCoop_player_widgetCmd(ePlayer,"mrmReqValue","title",""+vectorGetX(vCredits));
+	globalCoop_player_widgetCmd(ePlayer,"mrmEnergyValue","title",""+vectorGetY(vCredits));
+}
+
+void mrm_uiSelectSellItem(entity ePlayer, float fItem)
+//===================================
+// marks a selected item and displays the info for the item
+//===================================
+{
+	if(!doesEntityExist(ePlayer)){ return; }
+	
+	//change color of widget to make it appear selected
+	globalCoop_player_widgetCmd(ePlayer,"mrmInv"+fItem,"bgcolor","1 0.5 0 0.5");
+	
+	//reset last item background color, if not the same
+	float fLastItem;
+	fLastItem = ePlayer.getFloatVar("mrmItemSellLastSelected");
+	if(fLastItem > 0 && fLastItem != fItem){
+		globalCoop_player_widgetCmd(ePlayer,"mrmInv"+fLastItem,"bgcolor","0.5 0.5 0.5 0.5");
+	}
+	ePlayer.setFloatVar("mrmItemSellLastSelected",fItem);
+	
+	//get item stats and send to player ui
+	float fInvItemAssociatedItemNumber;
+	fInvItemAssociatedItemNumber = ePlayer.getFloatVar("mrmInvAssociation"+fItem);
+	
+	//enable/disable button to sell
+	float fEnable;
+	if(fInvItemAssociatedItemNumber != 0){
+		fEnable = 1;
+	}
+	mrm_uiEnableSellButton(ePlayer,fEnable);
+	
+	//empty - not associated
+	if(fInvItemAssociatedItemNumber == 0){ return; }
+	
+	string sTemp1,sTemp2,sTemp3;
+	sTemp1 = ePlayer.getStringVar("mrmItemBuyName"+fInvItemAssociatedItemNumber);
+	sTemp2 = ePlayer.getStringVar("mrmItemBuyDescr"+fInvItemAssociatedItemNumber);
+	
+	globalCoop_player_widgetCmd(ePlayer,"mrmInvEnergy","title",""+vectorGetY(ePlayer.getVectorVar("mrmItemBuyCost"+fInvItemAssociatedItemNumber)));
+	globalCoop_player_widgetCmd(ePlayer,"mrmInvReq","title",""+vectorGetX(ePlayer.getVectorVar("mrmItemBuyCost"+fInvItemAssociatedItemNumber)));	
+
+	//enable/disable button to buy
+	mrm_uiEnableSellButton(ePlayer,1);
+	
+	//set name and description of selected item
+	if(sTemp1 != ""){	globalCoop_player_widgetCmd(ePlayer,"mrmInvTitle","labeltext",sTemp1); }
+	else{				globalCoop_player_widgetCmd(ePlayer,"mrmInvTitle","labeltext","^"); }
+	
+	if(sTemp2 != ""){	globalCoop_player_widgetCmd(ePlayer,"mrmInvDescr","labeltext",sTemp2); }
+	else{				globalCoop_player_widgetCmd(ePlayer,"mrmInvDescr","labeltext","^");}
+}
+
+void mrm_uiSelectBuyItem(entity ePlayer,float fItem)
+//===================================
+// marks a selected inventory-item and displays the info for the item
+//===================================
+{
+	if(!doesEntityExist(ePlayer)){ return; }
+	
+	//change color of widget to make it appear selected
+	globalCoop_player_widgetCmd(ePlayer,"mrmItem"+fItem,"bgcolor","0 1 0 0.5");
+	
+	//reset last item background color, if not the same
+	float fLastItem;
+	fLastItem = ePlayer.getFloatVar("mrmItemBuyLastSelected");
+	if(fLastItem > 0 && fLastItem != fItem){
+		globalCoop_player_widgetCmd(ePlayer,"mrmItem"+fLastItem,"bgcolor","0.5 0.5 0.5 0.5");
+	}
+	ePlayer.setFloatVar("mrmItemBuyLastSelected",fItem);
+	
+	//get item stats and send to player ui
+	string sTemp1,sTemp2,sTemp3;
+	sTemp1 = ePlayer.getStringVar("mrmItemBuyName"+fItem);
+	sTemp2 = ePlayer.getStringVar("mrmItemBuyDescr"+fItem);
+	
+	float fAmount;
+	fAmount = ePlayer.getFloatVar("mrmItemBuyAvailable"+fItem);
+	
+	if(fAmount > 0){
+		vector vCost;
+		vCost = ePlayer.getVectorVar("mrmItemBuyCost"+fItem);
+		globalCoop_player_widgetCmd(ePlayer,"mrmItemEnergy","title",""+vectorGetY(vCost));
+		globalCoop_player_widgetCmd(ePlayer,"mrmItemReq","title",""+vectorGetX(vCost));
+		globalCoop_player_widgetCmd(ePlayer,"mrmItemAmmount","title",""+fAmount);
+	}else{
+		globalCoop_player_widgetCmd(ePlayer,"mrmItemEnergy","title","0");
+		globalCoop_player_widgetCmd(ePlayer,"mrmItemReq","title","0");
+		globalCoop_player_widgetCmd(ePlayer,"mrmItemAmmount","title","0");
+	}
+
+	//enable/disable button to buy
+	mrm_uiEnableBuyButton(ePlayer,mrm_canBuyItem(ePlayer,fItem));
+	
+	//set name and description of selected item
+	if(fAmount > 0 && sTemp1 != ""){	globalCoop_player_widgetCmd(ePlayer,"mrmItemTitle","labeltext",sTemp1); }
+	else{				globalCoop_player_widgetCmd(ePlayer,"mrmItemTitle","labeltext","^");}
+	
+	if(fAmount > 0 && sTemp2 != ""){	globalCoop_player_widgetCmd(ePlayer,"mrmItemDescr","labeltext",sTemp2); }
+	else{				globalCoop_player_widgetCmd(ePlayer,"mrmItemDescr","labeltext","^");}
+}
+
+float mrm_canBuyItem(entity ePlayer,float fItem)
+//===================================
+// checks if player can buy selected items
+//===================================
+{
+	if(!doesEntityExist(ePlayer)){ return 0; }
+	
+	vector vItemCost;
+	vector vPlayerCredits;
+	
+	//get item costs
+	vItemCost = ePlayer.getVectorVar("mrmItemBuyCost"+fItem);
+	//get player remaining credits and req
+	vPlayerCredits = ePlayer.getVectorVar("mrmCredits");
+	
+	//item depleded ?
+	if(ePlayer.getFloatVar("mrmItemBuyAvailable"+fItem) <= 0){
+		return 0;
+	}
+	
+	//item has no price '0 0 0' - can't buy
+	if(vectorLength(vItemCost) < 1){
+		return 0;
+	}
+	
+	//check if there is even a free slot
+	if(mrm_isInventoryFull(ePlayer)){
+		thread mrm_uiFlashWidget(ePlayer,"mrmSell","1 0 0 0.6","0.5 0.5 0.5 0.5",3);
+		return 0;
+	}
+	
+	//item is cheaper or equal to req - can buy
+	float fReqCost;
+	float fReqAvailable;
+	float fEnergyCost;
+	float fEnergyAvailable;
+	
+	fReqCost			= vectorGetX(vItemCost);
+	fEnergyCost			= vectorGetY(vItemCost);
+	fReqAvailable		= vectorGetX(vPlayerCredits);
+	fEnergyAvailable	= vectorGetY(vPlayerCredits);	
+	
+	
+	if(fReqCost > 0 && fReqCost <= fReqAvailable){
+		return 1;
+	}
+	//item is cheaper or equal to credits - can buy
+	if(fEnergyCost > 0 && fEnergyCost <= fEnergyAvailable){
+		return 1;
+	}
+	
+	//play reject sound on player
+	ePlayer.playsound("sound/misc/menu/reject.wav",0,2,100);
+	
+	thread mrm_uiFlashWidget(ePlayer,"mrmBallance","1 0 0 0.6","0.58 0.52 0.99 0.50",3);
+	
+	//if none of the above is true default to can't buy
+	return 0;
+}
+
+void mrm_uiEnableBuyButton(entity ePlayer,float fEnable)
+//===================================
+// change color of buy button to disabled/enabled
+//===================================
+{
+	if(!doesEntityExist(ePlayer)){ return; }
+	
+	string sBgColor;
+	if(fEnable){	sBgColor = "0 1 0 0.5"; }
+	else{			sBgColor = "0.5 0.5 0.5 0.5"; }
+	
+	globalCoop_player_widgetCmd(ePlayer,"mrmBuy","bgColor",sBgColor);
+}
+
+void mrm_uiEnableSellButton(entity ePlayer,float fEnable)
+//===================================
+// change color of sell button to disabled/enabled
+//===================================
+{
+	if(!doesEntityExist(ePlayer)){ return; }
+	
+	string sBgColor;
+	if(fEnable){	sBgColor = "1 0.5 0 0.5"; }
+	else{			sBgColor = "0.5 0.5 0.5 0.5"; }
+	
+	globalCoop_player_widgetCmd(ePlayer,"mrmSell","bgColor",sBgColor);
+}
+
+float mrm_uiTransferItem(entity ePlayer,float fBuy)
+//===================================
+// Moves a item from one inventory to another (buy/sell)
+//===================================
+{
+	//disable sell and buy buttons
+	mrm_uiEnableBuyButton(ePlayer,0);
+	mrm_uiEnableSellButton(ePlayer,0);
+
+	float fFreeInvSlot;
+	float fLastSelectedBuyItem;
+	float fLastSelectedSellItem;
+	
+	fLastSelectedBuyItem = ePlayer.getFloatVar("mrmItemBuyLastSelected");
+	fLastSelectedSellItem = ePlayer.getFloatVar("mrmItemSellLastSelected");
+	//ePlayer.setFloatVar("mrmItemBuyLastSelected",0);
+	//ePlayer.setFloatVar("mrmItemSellLastSelected",0);
+	
+	//move item icon and clear other slot icon
+	if(fBuy){		
+		//UPDATE ITEM INVENTORY DATA
+		mrm_addItemToInventory(ePlayer,fLastSelectedBuyItem);
+	}
+	else{	
+		//UPDATE ITEM INVENTORY DATA
+		mrm_returnItemFromInventory(ePlayer,fLastSelectedSellItem);
+	}
+	return 1;
+}
+
+void mrm_addItemToInventory(entity ePlayer,float fLastSelectedBuyItem)
+//===================================
+// adds item inventory/item-gallery widget
+//===================================
+{
+	vector vItemCost;
+	vItemCost = ePlayer.getVectorVar("mrmItemBuyCost"+fLastSelectedBuyItem);
+	
+	//check if inventory has a free slot
+	float fFreeInvSlot;
+	float fInvSlotMax	= 5;
+	fFreeInvSlot		= mrm_getFreeInventorySlot(ePlayer);
+	
+	//abbort if Inventory full
+	//blink sell button to indicate to player that he has to sell something
+	if(fFreeInvSlot > fInvSlotMax){
+		thread mrm_uiFlashWidget(ePlayer,"mrmSell","1 0 0 0.6","0.5 0.5 0.5 0.5",3);
+		return;
+	}
+	
+	//get aviailability of item
+	float fAmount;
+	fAmount = ePlayer.getFloatVar("mrmItemBuyAvailable"+fLastSelectedBuyItem);
+	if(fAmount <= 0){
+		thread mrm_uiFlashWidget(ePlayer,"mrmItem"+fLastSelectedBuyItem,"1 0 0 0.6","0.58 0.52 0.99 0.50",3);
+		return;
+	}
+	
+	//DECIDE PAYMENT METHOD if there is more than one.
+	//default is requisition
+	float fPaymentMethod;
+	fPaymentMethod = mrm_getValidPaymentMethod(ePlayer,vItemCost);
+	
+	//method 2 requires user input (and is later used to abbort)
+	if(fPaymentMethod == 2){
+		ePlayer.setFloatVar("mrmUiLevel",1);
+		ePlayer.addhud("coop_mrmDialog");
+		
+		while(ePlayer.getFloatVar("mrmUiLevel") != 0){
+			wait(0.1); //0.1
+			if(doesEntityExist(ePlayer) != 1){
+				return;
+			}
+		}
+		//GRAB CREDITS TYPE the player decided for
+		fPaymentMethod = ePlayer.getFloatVar("mrmPaymentMethod");
+		ePlayer.removehud("coop_mrmDialog");
+		
+		//ABBORT - Player did cancel
+		if(fPaymentMethod == 2){	
+			return;
+		}
+	}
+	
+	//REMOVE 1 ITEM FROM GALLERY
+	fAmount--;
+	ePlayer.setFloatVar("mrmItemBuyAvailable"+fLastSelectedBuyItem,fAmount);
+	
+	//START 
+	vector vPlayerPayment;
+	vector vPlayerBallance;
+	
+	//remove the item from resources and keep a record
+	vPlayerPayment_z = 1;	//purchase 1 item always
+	vItemCost_z--;			//remove 1 item
+	
+	if(fPaymentMethod == 0){
+		vPlayerPayment_x = vItemCost_x;
+	}else if(fPaymentMethod == 1){
+		vPlayerPayment_y = vItemCost_y;
+	}
+	
+	//UPDATE PLAYER BALANCE
+	vPlayerBallance = mrm_removeFromPlayerBalance(ePlayer,vPlayerPayment);
+	
+	//UPDATE ui
+	if(fAmount <= 0){
+		globalCoop_player_widgetCmd(ePlayer,"mrmItem"+fLastSelectedBuyItem,"shader",sEmptyShader);
+		globalCoop_player_widgetCmd(ePlayer,"mrmItemEnergy","title","0");
+		globalCoop_player_widgetCmd(ePlayer,"mrmItemReq","title","0");
+		globalCoop_player_widgetCmd(ePlayer,"mrmItemTitle","labeltext","^");
+		globalCoop_player_widgetCmd(ePlayer,"mrmItemDescr","labeltext","^");
+	}
+	
+	globalCoop_player_widgetCmd(ePlayer,"mrmItemAmmount","title",""+fAmount);
+	globalCoop_player_widgetCmd(ePlayer,"mrmInv"+fFreeInvSlot,"shader",ePlayer.getStringVar("mrmItemBuyShader"+fLastSelectedBuyItem));
+	globalCoop_player_widgetCmd(ePlayer,"mrmInv"+fFreeInvSlot,"bgcolor","0.5 0.5 0.5 0.5");
+	
+	//remember which itemslot the new inventory weapon is associated to
+	//we will use the sellitem data and not write new data...
+	//...so items can be sold again and memory usage is low
+//ePlayer.hudprint("mrmInvAssociation: inv("+fFreeInvSlot+") buyItem("+fLastSelectedBuyItem+") - payed:("+vPlayerPayment+")\n");
+	
+	ePlayer.setFloatVar("mrmInvAssociation"+fFreeInvSlot,fLastSelectedBuyItem);
+	ePlayer.setVectorVar("mrmInvPayment"+fFreeInvSlot,vPlayerPayment);	
+}
+
+void mrm_returnItemFromInventory(entity ePlayer,float fLastSelectedSellItem)
+//===================================
+// takes item from inventory away and puts it back to item gallery
+//===================================
+{
+	float fInvItemAssociatedItemNumber;
+	fInvItemAssociatedItemNumber = ePlayer.getFloatVar("mrmInvAssociation"+fLastSelectedSellItem);
+
+	//UPDATE PLAYER BALANCE
+	vector vPaymentRecord;
+	vector vPlayerBallance;
+	//refund player credits or requisition points 
+	vPaymentRecord	= ePlayer.getVectorVar("mrmInvPayment"+fLastSelectedSellItem);
+	vPlayerBallance	= mrm_addToPlayerBalance(ePlayer,vPaymentRecord);
+	
+	//ePlayer.hudprint("1 vPaymentRecord: "+vPaymentRecord+"\n");
+	
+	//keep track - remove one item in that slot
+	vPaymentRecord_z--;
+
+	//add item to sell slot/gallery
+	float fAmount;
+	float fBuyable;
+	fAmount = ePlayer.getFloatVar("mrmItemBuyAvailable"+fInvItemAssociatedItemNumber);
+	fBuyable = fAmount;
+	fAmount++;
+	ePlayer.setFloatVar("mrmItemBuyAvailable"+fInvItemAssociatedItemNumber,fAmount);
+	
+	globalCoop_player_widgetCmd(ePlayer,"mrmItemAmmount","title",""+fAmount);
+	
+	//clear inventory if it was the last item in that slot
+	if(vPaymentRecord_z == 0){
+		ePlayer.setFloatVar("mrmInvAssociation"+fLastSelectedSellItem,0);
+		globalCoop_player_widgetCmd(ePlayer,"mrmInv"+fLastSelectedSellItem,"shader",sEmptyShader);
+		globalCoop_player_widgetCmd(ePlayer,"mrmInv"+fLastSelectedSellItem,"bgcolor","0.5 0.5 0.5 0.5");
+		globalCoop_player_widgetCmd(ePlayer,"mrmInvTitle","labeltext","^");
+		globalCoop_player_widgetCmd(ePlayer,"mrmInvDescr","labeltext","^");
+	}
+	
+	//update payment for this item
+	ePlayer.setVectorVar("mrmInvPayment"+fLastSelectedSellItem,vPaymentRecord);
+	
+	//set gallery shader for returned item
+	globalCoop_player_widgetCmd(ePlayer,"mrmItem"+fInvItemAssociatedItemNumber,"shader",ePlayer.getStringVar("mrmItemBuyShader"+fInvItemAssociatedItemNumber));
+}
+
+float mrm_isInventoryFull(entity ePlayer)
+//===================================
+// Check if inventory is full of this player (max 5 items)
+//===================================
+{
+	float fInvSlot=1;
+	while(ePlayer.getFloatVar("mrmInvAssociation"+fInvSlot) != 0){
+		if(fInvSlot >= 5){
+			return 1;
+		}	
+		fInvSlot++;
+	}
+	return 0;
+}
+
+//SELECT PAYMENT METHOD/CREDITS
+void mrm_uiPaymentSelectEc(entity ePlayer)
+{
+	ePlayer.setFloatVar("mrmPaymentMethod",1);
+	ePlayer.setFloatVar("mrmUiLevel",0);
+}
+void mrm_uiPaymentCancel(entity ePlayer)
+{
+	ePlayer.setFloatVar("mrmPaymentMethod",2);
+	ePlayer.setFloatVar("mrmUiLevel",0);
+}
+void mrm_uiPaymentSelectReq(entity ePlayer)
+{
+	ePlayer.setFloatVar("mrmPaymentMethod",0);
+	ePlayer.setFloatVar("mrmUiLevel",0);
+}
+
+float mrm_getValidPaymentMethod(entity ePlayer,vector vItemCost)
+//===================================
+//returns payment method number - -1=none 0=requistion 1=Eenergy 2=pushmenu to make decision
+//===================================
+{
+	if(doesEntityExist(ePlayer) != 1){ return -1; }
+	
+	float fItemEc;
+	float fItemReq;
+	float fPlayerEc;
+	float fPlayerReq;
+	vector vPlayerBallance;
+	fItemEc = vectorGetY(vItemCost);
+	fItemReq = vectorGetX(vItemCost);
+	
+	vPlayerBallance = ePlayer.getVectorVar("mrmCredits");
+	fPlayerEc = vectorGetY(vPlayerBallance);
+	fPlayerReq = vectorGetX(vPlayerBallance);
+	
+	//decide for requistion
+	if(fItemEc == 0 || fPlayerEc < fItemEc){
+		return 0;
+	}
+	//decide for energy
+	else if(fItemReq == 0 || fPlayerReq < fItemReq){
+		return 1;
+	}
+	return 2;
+}
+
+float mrm_getFreeInventorySlot(entity ePlayer)
+//===================================
+//return first free inventory slot of player
+//===================================
+{
+	float fInvSlot;
+	float fInvAssociation;
+	do
+	{
+		fInvSlot++;
+		fInvAssociation =  ePlayer.getFloatVar("mrmInvAssociation"+fInvSlot);
+//ePlayer.hudprint("Inventar slot"+fInvSlot+"\n");
+	} while ( fInvAssociation != 0 );
+	return fInvSlot;
+}
+
+vector mrm_addToPlayerBalance(entity ePlayer,vector vCredits)
+//===================================
+//menu
+//===================================
+{
+	vector vBallance;
+	vBallance = ePlayer.getVectorVar("mrmCredits");
+//ePlayer.hudprint("Credits: "+vBallance+" add: "+vCredits+" Credits new: "+(vBallance + vCredits)+"\n");
+	vBallance = (vBallance + vCredits);
+	ePlayer.setVectorVar("mrmCredits",vBallance);
+	
+	thread mrn_uiUpdateCredits(ePlayer);
+	
+	return vBallance;
+}
+
+vector mrm_removeFromPlayerBalance(entity ePlayer,vector vCredits)
+{
+//===================================
+//menu
+//===================================
+	vector vBallance;
+	vBallance = ePlayer.getVectorVar("mrmCredits");
+	vBallance = (vBallance - vCredits);
+//ePlayer.hudprint("Current Credits: "+vBallance+" remove: "+vCredits+" Credits new: "+(vBallance - vCredits)+"\n");
+	ePlayer.setVectorVar("mrmCredits",vBallance);
+
+	thread mrn_uiUpdateCredits(ePlayer);
+	
+	return vBallance;
+}
+
+void mrm_accept(entity ePlayer)
+//===================================
+// accepts the transaction and closes the menu
+//===================================
+{
+	if(mrm_hasRequiredInventory(ePlayer) != 1){
+		//play reject sound on player
+		ePlayer.playsound("sound/misc/menu/reject.wav",0,2,100);
+		
+		if(!doesEntityExist(ePlayer)){ return; }
+		globalCoop_player_widgetCmd(ePlayer,"mrmAccept","disable","");
+		wait(1);
+		
+		if(!doesEntityExist(ePlayer)){ return; }
+		
+		globalCoop_player_widgetCmd(ePlayer,"mrmAccept","enable","");
+		return;
+	}
+	
+	//play click sound on player
+	ePlayer.playsound("sound/misc/menu/click.wav",0,2,100);
+	
+	//let the scripts know player is done
+	ePlayer.setFloatVar("mrmLoadOutComplete",1);
+	
+	//count how many times the player completed this menu
+	float fSucceeded;
+	fSucceeded = ePlayer.getFloatVar("mrmLoadOutSucceeded");
+	fSucceeded++;
+	ePlayer.setFloatVar("mrmLoadOutSucceeded",fSucceeded);
+	
+	//terminate the class updater
+	//terminate(ePlayer.getFloatVar("mrmClassUpdaterThraeNum"));
+	
+	//prevent the player from changing class
+	if(bLockPlayerClass){
+		globalCoop_player_classLocked(ePlayer,1);
+	}
+	
+	//signal MOMy the that we are done
+	//wait a moment for MOMy to take the toys away, before we give new ones
+	if(!doesEntityExist(ePlayer)){ return; }
+	sendclientcommand(ePlayer,"use Knife");
+	wait(0.1);
+	thread mrm_giveItems(ePlayer);
+	
+	//run thread - player complete - so the mission scripts know
+	//[b60025] Chrissstrahl - added entity check
+	if(doesEntityExist(ePlayer)){
+		ePlayer.coop_runThread("playerIsEquiped");
+	}
+}
+
+void mrm_giveItems(entity ePlayer)
+//===================================
+// gives items after the player has accepted
+//===================================
+{
+	if(!doesEntityExist(ePlayer)){ return; }
+	
+	float fInv;
+	float fInventoryItem;
+	string sItem;
+	for(fInv=1;fInv<=5;fInv++){
+		fInventoryItem = ePlayer.getFloatVar("mrmInvAssociation"+fInv);
+		if(fInventoryItem != 0){
+			sItem = ePlayer.getStringVar("mrmItemBuy"+fInventoryItem);
+			
+			entity eSpawned;
+			eSpawned = spawn(sItem,"origin",""+ePlayer.getOrigin(),"scale","0.01");
+			if(globalCoop_return_integerStringFind(sItem,"item") != -1 ){
+				thread mrm_checkItemUsed(ePlayer,eSpawned,fInventoryItem);
+			}else{
+				ePlayer.give(sItem);
+			}
+			//item
+			//HoldableItem
+			//Health
+			//Powerup
+			//Rune
+			//BasicArmor
+			//AmmoEntity
+		}
+	}	
+	//play pickup sound on player
+	ePlayer.playsound("sound/player/player_invpickup.wav",0,2,100);
+}
+
+void mrm_checkItemUsed(entity ePlayer, entity eItem,float fInvAssociation)
+//===================================
+// waits and checks if player actually picks up that item
+//===================================
+{
+	wait(0.15);
+	if(!doesEntityExist(ePlayer)){return;}
+	if(doesEntityExist(eItem)){
+		//not picked up
+		//ePlayer.hudprint("Item "+eItem.getModelName()+" could not be picked up!\n");
+		
+		string sItem;
+		sItem = ePlayer.getStringVar("mrmItemBuy"+fInvAssociation);
+		
+		//if it is a health item, auto use it if player has low health
+		if(globalCoop_return_integerStringFind(sItem,"hypospray") != -1 ){
+			thread mrm_autoUseItemHealth(ePlayer,fInvAssociation);
+		}
+		
+		eItem.remove(); //prevent it to be pickedup by others
+	}else{
+		//picked up, clear from inventory
+		ePlayer.setFloatVar("mrmInvAssociation"+fInvAssociation,0);
+	}
+}
+
+void mrm_autoUseItemHealth(entity ePlayer,float fInv)
+//===================================
+// waits and checks if player actually picks up that item
+//===================================
+{
+	if(doesEntityExist(ePlayer)!= 1 || ePlayer.getFloatVar("mrmAutoUseHealthActive")){ return; }
+	ePlayer.setFloatVar("mrmAutoUseHealthActive",1);
+	
+	float fHealth;
+	fHealth = ePlayer.getHealth();
+	while(doesEntityExist(ePlayer) == 1 && fHealth > 0){
+		if(ePlayer.getHealth() < 50){
+			entity eSpawned;
+			string sItem;
+			sItem = ePlayer.getStringVar("mrmItemBuy"+fInv);
+			eSpawned = spawn(sItem,"origin",""+ePlayer.getOrigin(),"scale","0.01");
+			thread mrm_checkItemUsed(ePlayer,eSpawned,fInv);
+			return;
+		}
+		wait(1);
+		if(doesEntityExist(ePlayer)){
+			fHealth = ePlayer.getHealth();
+		}
+	}
+	if(doesEntityExist(ePlayer)){
+		ePlayer.setFloatVar("mrmAutoUseHealthActive",0);
+	}
+}
+
+float mrm_isEquiped(entity ePlayer)
+//===================================
+// returns bool if player is equipt or not
+//===================================
+{
+	//[b60025] Chrissstrahl - fixed possible script error
+	if(!doesEntityExist(ePlayer)){
+		return 0;
+	}
+	if(!ePlayer.doesVarExist("mrmLoadOutComplete")){
+		ePlayer.setFloatVar("mrmLoadOutComplete",0);
+	}
+	return ePlayer.getFloatVar("mrmLoadOutComplete");
+}
+
+void mrm_printMessageNoSpam(entity ePlayer,string sMessage)
+//=============================
+// prints a message without spamming (with a cooldown time)
+//=============================
+{
+	if(doesEntityExist(ePlayer) != 1 || sMessage == "" || (ePlayer.getFloatVar("mrmLastMsgTime") + 2) > getLevelTime()){ return; }
+	ePlayer.setFloatVar("mrmLastMsgTime",getLevelTime());
+	ePlayer.hudprint(sMessage+"\n");
+}
+
+vector mrm_returnNoNegativeCredit(vector vCred)
+//===================================
+// makes sure player credits don't go into negative value
+//===================================
+{
+	if(vCred_x < 0){vCred_x = 0;}
+	if(vCred_y < 0){vCred_y = 0;}
+	if(vCred_z < 0){vCred_z = 0;}
+	return vCred;
+}
+
+vector mrm_returnVectorFromString(string sVec)
+//===================================
+// adds or substracts energy credits from player
+//===================================
+{
+	return coop_getVector(sVec);
+}
+
+void mrm_giveCreditsEnergy(entity ePlayer,float fCredits)
+//===================================
+// adds or substracts energy credits from player, does not go below 0
+//===================================
+{
+	vector vCredits;
+	vCredits = ePlayer.getVectorVar("mrmCredits");
+	vCredits_y = floor((vCredits_y + fCredits));
+	if(vCredits_y < 0){vCredits_y = 0;}
+	ePlayer.setVectorVar("mrmCredits",vCredits);
+	thread mrn_uiUpdateCredits(ePlayer);
+	globalCoop_main_print("ADD ENERGY:"+fCredits);
+}
+
+void mrm_giveCreditsRequisition(entity ePlayer,float fCredits)
+//===================================
+// adds or substracts requisition credits from player, does not go below 0
+//===================================
+{
+	vector vCredits;
+	vCredits = ePlayer.getVectorVar("mrmCredits");
+	vCredits_x = floor((vCredits_x + fCredits));
+	if(vCredits_x < 0){vCredits_x = 0;}
+	ePlayer.setVectorVar("mrmCredits",vCredits);
+	thread mrn_uiUpdateCredits(ePlayer);
+	globalCoop_main_print("ADD REQUISITION:"+fCredits);
+}

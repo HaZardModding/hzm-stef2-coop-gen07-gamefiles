@@ -1,0 +1,36 @@
+TIKI
+
+setup
+	{
+   scale 1
+   fade_dist_mod 1
+   lod 2000 1 6000 0.75 25000
+	path models/vehicle/centaur
+	surface material1 shader F_Centaur_A.tga
+	surface material2 shader F_Centaur_B.tga
+	}
+
+init
+   {	
+		//[b60025] chrissstrahl - fixed bad boundingbox size
+		server
+		{
+		setsize "-16 -9 -3" "15 9 3"
+		}
+		client
+		{
+		}
+   }
+
+animations 
+	{
+
+	idle	centaur.tan
+		{
+		}
+
+	}
+
+/*QUAKED  vehicle_centaur  (1 0.5 0)  (0 0 0)  (0 0 0)
+Centaur
+*/

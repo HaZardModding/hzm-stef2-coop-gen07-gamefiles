@@ -1,0 +1,31 @@
+menu "coop_modifying" 192 48 NONE 0
+bgcolor 0 0 0 0
+hideDuringLoad
+align centerx centery
+nomouse
+noescape 0
+depth 0.35
+gamefocus
+
+hidecommand	"ui_removehud coop_modifying\n"
+
+include "co-op/ui/timerhud.inc"
+
+resource
+Label
+{
+name "coop_modifyingText"
+rect 0 0 192 48
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 0.50 0.50 0.50 0.00
+borderstyle "NONE"
+title "$$c#140$$"
+font serpentinemedium-10
+horizontaljustify center
+verticaljustify center
+ordernumber 2
+textshadowcolor 0 0 0 1
+hovertextshadowcolor 0 0 0 1
+}
+
+end.

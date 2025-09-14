@@ -1,0 +1,103 @@
+/////////////// HEALTH AND ENERGY TERMINALS /////////////////
+/////////////// HEALTH AND ENERGY TERMINALS /////////////////
+/////////////// HEALTH AND ENERGY TERMINALS /////////////////
+
+HealthTerminalRadar		"Health Terminal"
+EnergyTerminalRadar		"Energy Terminal"
+
+EnterpriseHealthTerminalDesc1	"Health Terminal"
+EnterpriseHealthTerminalDesc2	"Health Terminal"
+EnterpriseHealthTerminalDesc3	"Description: Use to restore shield\nand health energy"
+
+EnterpriseEnergyTerminalDesc1	"Energy Terminal"
+EnterpriseEnergyTerminalDesc2	"Energy Terminal"
+EnterpriseEnergyTerminalDesc3	"Description: Use to recharge\nplasma weapon energy"
+
+KlingonEnergyTerminalDesc1	"Energy Terminal"
+KlingonEnergyTerminalDesc2	"Energy Terminal"
+KlingonEnergyTerminalDesc3	"Description: Use to recharge\nplasma weapon energy"
+
+KlingonHealthTerminalDesc1	"Health Terminal"
+KlingonHealthTerminalDesc2	"Health Terminal"
+KlingonHealthTerminalDesc3	"Description: Use to restore shield\nand health energy"
+
+RomulanEnergyTerminalDesc1	"Energy Terminal"
+RomulanEnergyTerminalDesc2	"Energy Terminal"
+RomulanEnergyTerminalDesc3	"Description: Use to recharge\nweapon energy"
+
+RomulanHealthTerminalDesc1	"Health Terminal"
+RomulanHealthTerminalDesc2	"Health Terminal"
+RomulanHealthTerminalDesc3	"Description: Use to heal"
+HealthTerminalRadar			"Health Terminal"
+
+
+
+/////////////// ENTERPRISE STARFLEET ACADEMY ENVIROMENT /////////////////
+/////////////// ENTERPRISE STARFLEET ACADEMY ENVIROMENT /////////////////
+/////////////// ENTERPRISE STARFLEET ACADEMY ENVIROMENT /////////////////
+
+EnterpriseLaptopDesc2 "Name: Laptop"
+EnterpriseLaptopDesc3 "Description: Tool used to input\nand store valuable data"
+
+ReadyRoomDeskDesc2 "Name: Desk"
+ReadyRoomDeskDesc3 "Description: Used to hold valuable equipment"
+
+EnterpriseChair2Desc2 "Name: Chair"
+EnterpriseChair2Desc3 "Description: Decorative furniture."
+
+koi6Desc2 "Name: Taisho-Sanke"
+koi6Desc3 "Description: Carp imported from Japan"
+koi6Radar "Taisho-Sanke"
+
+
+
+/////////////// IDRYLL ENVIROMENT /////////////////
+/////////////// IDRYLL ENVIROMENT /////////////////
+/////////////// IDRYLL ENVIROMENT /////////////////
+
+BugSmallDesc1			"Brood Fiend"
+BugSmallDesc2			"Name: Brood Fiend Sibling"
+BugSmallDesc3			"Description: Bug-like alien from Viok Epsilon 5"
+BugSmallRadar			"Brood Fiend"
+
+BugSmallExplosiveDesc1	"Brood Fiend"
+BugSmallExplosiveDesc2	"Name: Brood Fiend Sibling"
+BugSmallExplosiveDesc3	"Description: Bug-like alien from Viok Epsilon 5"
+BugSmallExplosiveRadar	"Brood Fiend"
+
+
+
+/////////////// ROMULAN ENVIROMENT /////////////////
+/////////////// ROMULAN ENVIROMENT /////////////////
+/////////////// ROMULAN ENVIROMENT /////////////////
+
+RomulanMaleHoloDesc2	"Name: Romulan Commander"
+RomulanMaleHoloDesc3	"Description: Bipedal lifeform\nfrom the planet Romulus"
+RomulanMaleHoloRadar	"Romulan"
+
+RomulanCommanderM10PistolDesc1	"Romulan Commander"
+RomulanCommanderM10PistolDesc2	"Name: Romulan Commander"
+RomulanCommanderM10PistolDesc3	"Description: Bipedal lifeform\nfrom the planet Romulus"
+RomulanCommanderRadar "Romulan Commander"
+
+RomulanInformantDesc1	"Informant"
+RomulanInformantDesc2	"Name: Operative 93"
+RomulanInformantDesc3	"Description: Tal'Shiar operative working as a spy for the Federation"
+RomulanInformantRadar	"Informant"
+
+RomulanInformantBossDesc2	"Name: Operative 93"
+RomulanInformantBossDesc3	"Description: Tal'Shiar operative."
+
+RomulanRebelM11PhotonDesc2	"Romulan Photon Lance Soldier"
+RomulanRebelM11PhotonDesc3	"Description: Bipedal lifeform\nfrom the planet Romulus"
+
+RomRebelM11PistolDesc2	"Romulan Pistol Soldier"
+RomRebelM11PistolDesc3	"Description: Bipedal lifeform\nfrom the planet Romulus"
+
+RomulanRebelM11SniperDesc2	"Romulan Sniper"
+RomulanRebelM11SniperDesc3	"Description: Bipedal lifeform\nfrom the planet Romulus"
+
+RomulanSoldierM10RifleDesc2	"Romulan Soldier"
+RomulanSoldierM10RifleDesc3	"Description: Bipedal lifeform\nfrom the planet Romulus"
+
+RomulanSoldierRadar			"Romulan Soldier"

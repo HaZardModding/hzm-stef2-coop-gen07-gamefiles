@@ -1,0 +1,82 @@
+menu "branchdialog" 640 480 NONE 0
+bgcolor 0 0 0 0
+borderstyle NONE
+noEscape 1
+depth 0.1
+showcommand "ui_showmouse;\n"
+hidecommand "ui_hidemouse\n"
+
+
+resource
+Label
+{
+	name "BranchQuestion"
+	font serpentinemedium-14
+	rect 20 70 600 160 //rect 0 320 640 52
+	bgcolor 1.00 0.00 0.00 0.00
+	fgcolor 			1.000 1.000 1.000 1.000
+	textshadowcolor			0.000 0.000 0.000 1.000
+	borderstyle "none"
+	ordernumber 0
+	verticaljustify top
+}
+
+
+resource
+Button
+{
+	name "BranchOption1"
+	font serpentinemedium-12
+	rect 20 240 600 70
+	bgcolor 0.00 1.00 0.00 0.00
+	fgcolor 		0.278 0.365 0.510 1.000 
+	textshadowcolor		0.000 0.000 0.000 0.500
+	hoverfgcolor		0.953 0.667 0.271 1.000
+	hovertextshadowcolor	0.000 0.000 0.000 0.750
+	selectedfgcolor 	1.000 1.000 1.000 1.000
+	selectedtextshadowcolor	0.000 0.000 0.000 1.000
+	armedfgcolor		1.000 1.000 1.000 1.000
+	armedtextshadowcolor	0.000 0.000 0.000 1.000
+	borderstyle "none"
+	stuffcommand "popmenu 0\n"
+}
+
+resource
+Button
+{
+	name "BranchOption2"
+	font serpentinemedium-12
+	rect 20 320 600 70
+	bgcolor 0.00 0.00 1.00 0.00
+	fgcolor 		0.278 0.365 0.510 1.000 
+	textshadowcolor		0.000 0.000 0.000 0.500
+	hoverfgcolor		0.953 0.667 0.271 1.000
+	hovertextshadowcolor	0.000 0.000 0.000 0.750
+	selectedfgcolor 	1.000 1.000 1.000 1.000
+	selectedtextshadowcolor	0.000 0.000 0.000 1.000
+	armedfgcolor		1.000 1.000 1.000 1.000
+	armedtextshadowcolor	0.000 0.000 0.000 1.000
+	borderstyle "none"
+	stuffcommand "popmenu 0\n"
+}
+
+resource
+Button
+{
+	name "BranchOption3"
+	font serpentinemedium-12
+	rect 20 400 600 70
+	bgcolor 0.00 1.00 1.00 0.00
+	fgcolor 		0.278 0.365 0.510 1.000 
+	textshadowcolor		0.000 0.000 0.000 0.500
+	hoverfgcolor		0.953 0.667 0.271 1.000
+	hovertextshadowcolor	0.000 0.000 0.000 0.750
+	selectedfgcolor 	1.000 1.000 1.000 1.000
+	selectedtextshadowcolor	0.000 0.000 0.000 1.000
+	armedfgcolor		1.000 1.000 1.000 1.000
+	armedtextshadowcolor	0.000 0.000 0.000 1.000
+	borderstyle "none"
+	stuffcommand "popmenu 0\n"
+}
+
+end.

@@ -1,0 +1,140 @@
+void main();
+void coop_setuplevel();
+void coop_justEntered();
+void coop_justSpawned();
+void coop_justDied();
+void coop_justChangedModel();
+void coop_justBecameSpectator();
+void coop_justLeft();
+void coop_endLevel();
+
+#include "co-op/matrix/main.scr"
+//#include "coop_mod/matrix/gpdb.scr"
+
+void main()
+//------------------------------------------------------------------------------
+//this threads starts on level load
+//------------------------------------------------------------------------------
+{
+	coop_string_weapon1 = "models/weapons/worldmodel-tricorder-stx.tik";
+
+//Start the Co-Op Script
+	globalCoop_main();
+//START SETUP ROUTINE\
+	thread coop_setuplevel();
+}
+
+void setGpdFloat(string sObject, string sPropName, float fValue)
+//------------------------------------------------------------------------------
+//Sets a property float value on an object 
+//------------------------------------------------------------------------------
+{
+	setgameplayfloat(sObject,sPropName,fValue);
+}
+
+void setGpdString(string sObject, string sPropName, string sValue)
+//------------------------------------------------------------------------------
+//Sets a property float value on an object 
+//------------------------------------------------------------------------------
+{
+	setgameplaystring(sObject,sPropName,sValue);
+}
+
+void coop_setuplevel()
+//------------------------------------------------------------------------------
+//
+//------------------------------------------------------------------------------
+{
+	waitForPlayer();
+	wait(1);
+	//DATA USED HERE IS FOUND IN base/pak0.pk3/global/gameplay.gdb
+	
+	while(1)
+	{
+	//$inigor
+	setGpdString("IdryllFather","Description1","M6Deck1Bridge");
+	setGpdString("IdryllFather","Description2","DMMobiusDesc");
+	setGpdString("IdryllFather","Description3","Ruins2LoadingText");
+	setGpdString("IdryllFather","RadarDescription","DMT2Desc");
+	
+	//$lurker
+	setGpdString("Lurker","Description1","KleeyaDesc1");
+	setGpdString("Lurker","Description2","KleeyaDesc2");
+	setGpdString("Lurker","Description3","KleeyaDesc3");
+	setGpdString("Lurker","RadarDescription","KleeyaRadar");
+	
+	//$archeopendra
+	setGpdString("CrabBoss","Description2","AndorianMercDesc2");
+	setGpdString("CrabBoss","Description3","AndorianMercDesc3");
+	wait(1);
+	}
+}
+
+void coop_justEntered()
+//------------------------------------------------------------------------------
+//Started by the coop mod on event: new player enters the level
+//------------------------------------------------------------------------------
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){ return; }
+}
+
+void coop_justSpawned()
+//------------------------------------------------------------------------------
+//Started by the coop mod on event: player spawns/respawns
+//------------------------------------------------------------------------------
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){ return; }
+}
+
+void coop_justDied()
+//------------------------------------------------------------------------------
+//Started by the coop mod on event: player died
+//------------------------------------------------------------------------------
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){ return; }
+}
+
+void coop_justChangedModel()
+//------------------------------------------------------------------------------
+//Started by the coop mod on event: player changed model
+//------------------------------------------------------------------------------
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){ return; }
+}
+
+void coop_justBecameSpectator()
+//------------------------------------------------------------------------------
+//Started by the coop mod on event: player changed model
+//------------------------------------------------------------------------------
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){ return; }
+}
+
+void coop_justLeft()
+//------------------------------------------------------------------------------
+//Started by the coop mod on event: player changed model
+//------------------------------------------------------------------------------
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){ return; }
+}
+
+void coop_endLevel()
+//------------------------------------------------------------------------------
+//Level end - End the current level, SUCESSFULLY
+//And load the map specified on the mission complete trigger with->uservar1
+//------------------------------------------------------------------------------
+{	
+	thread globalCoop_mission_completed("prf_gpdb");
+}

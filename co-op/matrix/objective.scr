@@ -1,0 +1,45 @@
+//-----------------------------------------------------------------------------------
+// Script By:	Christian Sebastian Strahl (Chrissstrahl)
+// Created on:	2007.09.29
+// E-Mail:		chrissstrahl@yahoo.de
+//-----------------------------------------------------------------------------------
+// CONTAININS OBJECTIVE RELATED FUNCTIONS FOR THE CO-OP MOD
+//-----------------------------------------------------------------------------------
+
+
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////FUNCTIONS
+////////////////////////////////////////////////////////////////////////////////
+void globalCoop_objectives_update_dll(string objectiveState,string objectiveItem,string objectiveshowNow)
+//----------------------------------------------------------------------
+// DUMMY FUNCTION, REQUIRED FOR THE C++ DLL CODE TO CATCH THE OBJECTIVES
+//----------------------------------------------------------------------
+{
+	//globalCoop_main_print("globalCoop_objectives_update_dll DUMMY CALLED"+objectiveState+""+objectiveItem+""+objectiveshowNow+"");
+}
+
+void globalCoop_objectives_update(string objectiveState , float objectiveItem , float objectiveshowNow)
+//----------------------------------------------------------------------
+// Show Objectives, for each player
+//----------------------------------------------------------------------
+{
+	//[b70000] Chrissstrahl - use new script command for objectives
+	coop_objectiveUpdate(objectiveState, objectiveItem ,objectiveshowNow);
+}
+
+void globalCoop_objectives_set(string objectiveText, string objectiveState , float objectiveItem , float objectiveshowNow)
+//----------------------------------------------------------------------
+// Show Objectives, for each player
+//----------------------------------------------------------------------
+{
+	if(objectiveItem < 1 || objectiveItem > 8){ return; }
+	
+	if(coop_getStringVariable("coop_string_objectiveItem"+objectiveItem) == ""){
+		coop_setStringVariable("coop_string_objectiveItem"+objectiveItem,objectiveText);
+		globalCoop_main_waitAFrame(); //[b60011] chrissstrahl - make sure the var is set before it is accsessed in game code
+	}
+	
+	//[b70000] Chrissstrahl - use new script command for objectives
+	coop_objectiveUpdate(objectiveState, objectiveItem ,objectiveshowNow);
+}
+

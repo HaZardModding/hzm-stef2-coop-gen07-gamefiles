@@ -1,0 +1,12 @@
+path sound/coop_greatDekuTree 
+normal normal.mp3 
+
+path sound/music/romulan/m10l2
+action romulan_infoact.mp3
+
+!normal loop 
+!normal volume .35
+
+!action loop 
+!action interrupt 
+!action volume .7

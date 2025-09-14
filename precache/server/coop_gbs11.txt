@@ -1,0 +1,28 @@
+/////////////////////////////////////////////////////
+//Precache Generator - 1.0.1 by chrissstrahl
+//2017.August.06 - 17:07
+//Level: coop_gbs11
+/////////////////////////////////////////////////////
+// models
+// sound
+// sound
+cache localization/sound/dialog/gbs/stevens/ihope.mp3
+cache localization/sound/dialog/gbs/stammheim/stayforever.mp3
+cache localization/sound/dialog/gbs/stevens/donotbestupid.mp3
+cache localization/sound/dialog/gbs/stevens/iknowyou.mp3
+cache localization/sound/dialog/gbs/stevens/nextmission.mp3
+cache localization/sound/dialog/gbs/stevens/meetingpoint.mp3
+cache localization/sound/dialog/gbs/illia/beautifulsky.mp3
+cache localization/sound/dialog/gbs/tebok/sitdown.mp3
+cache localization/sound/dialog/gbs/tebok/starttelling.mp3
+cache localization/sound/dialog/gbs/illia/withpleasure.mp3
+cache localization/sound/dialog/gbs/illia/story.mp3
+cache localization/sound/dialog/gbs/illia/everythingbegan.mp3
+cache localization/sound/dialog/gbs/illia/thatishowigot.mp3
+cache localization/sound/dialog/gbs/tebok/cooperation.mp3
+cache localization/sound/dialog/gbs/tebok/factremains.mp3
+cache localization/sound/dialog/gbs/tebok/executionis.mp3
+cache localization/sound/dialog/gbs/tebok/ifyourcooperation.mp3
+cache localization/sound/dialog/gbs/tebok/followguard.mp3
+cache localization/sound/dialog/gbs/tebok/seeagain.mp3
+// textures
