@@ -1,0 +1,8 @@
+*.tmp
+*.bak
+*.bsp
+*.pth
+*.prt
+*Desktop.ini
+*.zip
+*.exe
