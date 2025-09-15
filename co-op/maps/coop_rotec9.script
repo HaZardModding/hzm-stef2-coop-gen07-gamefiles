@@ -2014,7 +2014,6 @@ void borgCube_npcBeamIn()
 	//ready antigrav units
 	//$anigravUnitFederation0Gravnode.bind($anigravUnitFederation0Origin);
 	$anigravUnitFederation0UseSymbol.bind($anigravUnitFederation0Origin);
-	$anigravUnitFederation0Puzzle.bind($anigravUnitFederation0Origin);
 	$anigravUnitFederation0Cap.bind($anigravUnitFederation0Origin);
 	$anigravUnitFederation0.bind($anigravUnitFederation0Origin);
 	$anigravUnitFederation0WalkTo.bind($anigravUnitFederation0Origin);
@@ -2056,7 +2055,6 @@ void borgCube_npcBeamIn()
 	
 	//$anigravUnitFederation1Gravnode.bind($anigravUnitFederation1Origin);
 	$anigravUnitFederation1UseSymbol.bind($anigravUnitFederation1Origin);
-	$anigravUnitFederation1Puzzle.bind($anigravUnitFederation1Origin);
 	$anigravUnitFederation1Cap.bind($anigravUnitFederation1Origin);
 	$anigravUnitFederation1.bind($anigravUnitFederation1Origin);
 	$anigravUnitFederation1WalkTo.bind($anigravUnitFederation1Origin);
@@ -2106,6 +2104,7 @@ void borgCube_gravunitPath1End()
 	$anigravUnitFederation0Puzzle.puzzleobject_itemusedthread( "borgCube_tricorderPuzzle0" );
 	
 	$anigravUnitFederation0UseSymbol.scale(1);
+	$anigravUnitFederation0Puzzle.origin($anigravUnitFederation0UseSymbol.getOrigin());
 }
 
 void borgCube_gravunitPath2End()
@@ -2124,6 +2123,7 @@ void borgCube_gravunitPath2End()
 	$anigravUnitFederation1Puzzle.puzzleobject_itemusedthread( "borgCube_tricorderPuzzle1" );
 	
 	$anigravUnitFederation1UseSymbol.scale(1);
+	$anigravUnitFederation1Puzzle.origin($anigravUnitFederation1UseSymbol.getOrigin());
 }
 
 //---------------------
