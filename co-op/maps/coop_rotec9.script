@@ -163,8 +163,7 @@ void main ()
 	coop_string_objectiveItem2 = "$$Rotec9DefendStation$$";
 	coop_string_objectiveItem3 = "$$Rotec9ObtainEvosuitInCargobay$$";
 	coop_string_objectiveItem4 = "$$Rotec9InfiltrateBorgCube$$";
-	coop_string_objectiveItem5 = "$$Rotec9ProtectChell$$";
-	coop_string_objectiveItem6 = "$$Rotec9DefendDemolitionTeams$$";
+	coop_string_objectiveItem5 = "$$Rotec9DefendDemolitionTeams$$";
 	coop_string_objectiveTacticalInfo1 = "$$Rotec9Story";
 
 
