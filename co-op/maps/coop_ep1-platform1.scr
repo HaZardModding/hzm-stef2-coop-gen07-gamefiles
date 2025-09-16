@@ -125,11 +125,12 @@ void introCin()
 		return;
 	}*/
 	
+	cam_fadeout( 0.1, 0, 0, 0, 1, 0 );
+	
 	//if(getCvarInt("g_gameType") == 0){
 		globalCoop_main_waitForWarmupTime();
 		
 		forcemusic("aux1","normal");
-		cam_fadeout( 0.1, 0, 0, 0, 1, 0 );
 		freezeplayer();
 		cinematic();
 		letterbox( .01 );
@@ -896,6 +897,8 @@ void pickupAttraxGun()
 // attraxian gun picked up
 //------------------------------------------------------------------------------
 {
+	globalCoop_player_giveAll("models/weapons/worldmodel-attrex-rifle.tik",-1);
+	centerprint("New Weapon in Inventory =^= Neue Waffe im Inventar\n");
 }
 
 void pickupRomGun()
@@ -903,6 +906,8 @@ void pickupRomGun()
 // romulan gun picked up
 //------------------------------------------------------------------------------
 {
+	globalCoop_player_giveAll("models/weapons/worldmodel-rom-disruptor.tik",-1);
+	centerprint("New Weapon in Inventory =^= Neue Waffe im Inventar\n");
 }
 
 void pickupSniperGun()
@@ -910,6 +915,8 @@ void pickupSniperGun()
 // sniper gun picked up
 //------------------------------------------------------------------------------
 {
+	globalCoop_player_giveAll("models/weapons/worldmodel-sniperrifle.tik",-1);
+	centerprint("New Weapon in Inventory =^= Neue Waffe im Inventar\n");
 }
 
 void eatFood()
