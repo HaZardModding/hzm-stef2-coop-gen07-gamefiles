@@ -17,7 +17,7 @@ Label
 resource
 Button
 {
-	title "!transport 0"
+	title "$$Empty$$"
 	name "coop_comTran0"
 	rect 12 55 320 18
 	borderstyle "NONE"
@@ -35,7 +35,7 @@ Button
 resource
 Button
 {
-	title "!transport 1"
+	title "$$Empty$$"
 	name "coop_comTran1"
 	rect 12 75 320 18
 	borderstyle "NONE"
@@ -53,7 +53,7 @@ Button
 resource
 Button
 {
-	title "!transport 2"
+	title "$$Empty$$"
 	name "coop_comTran2"
 	rect 12 95 320 18
 	borderstyle "NONE"
@@ -71,7 +71,7 @@ Button
 resource
 Button
 {
-	title "!transport 3"
+	title "$$Empty$$"
 	name "coop_comTran3"
 	rect 12 115 320 18
 	borderstyle "NONE"
@@ -88,7 +88,7 @@ Button
 resource
 Button
 {
-	title "!transport 4"
+	title "$$Empty$$"
 	name "coop_comTran4"
 	rect 12 135 320 18
 	borderstyle "NONE"
@@ -105,7 +105,7 @@ Button
 resource
 Button
 {
-	title "!transport 5"
+	title "$$Empty$$"
 	name "coop_comTran5"
 	rect 12 155 320 18
 	borderstyle "NONE"
@@ -122,7 +122,7 @@ Button
 resource
 Button
 {
-	title "!transport 6"
+	title "$$Empty$$"
 	name "coop_comTran6"
 	rect 12 175 320 18
 	borderstyle "NONE"
@@ -139,7 +139,7 @@ Button
 resource
 Button
 {
-	title "!transport 7"
+	title "$$Empty$$"
 	name "coop_comTran7"
 	rect 12 195 320 18
 	borderstyle "NONE"
