@@ -1264,7 +1264,7 @@ Button
 resource 
 Label
 {
-	title	"Radar size" //radar size
+	title	"$$c#174$$" //radar size
 	name	"coop_settings_radarSize"
 	rect	290 348 300 22
     bgcolor 0.000 0.000 0.000 0.000

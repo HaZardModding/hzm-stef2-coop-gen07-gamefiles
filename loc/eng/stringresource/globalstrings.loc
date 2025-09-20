@@ -57,6 +57,7 @@ c#151	"Can help resolve driver issues. (Triangles)"
 c#004	"Hold use!"
 
 //coop_settings.urc
+c#174	"Radar size"
 c#165	"Limit FPS to keep them steady for best experience."
 c#166	"Coop Mod related settings."
 c#167	"Broadband (rec'd) ~87.89 KB/s"
