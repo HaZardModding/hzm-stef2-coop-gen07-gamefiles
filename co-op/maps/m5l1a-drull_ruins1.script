@@ -714,7 +714,7 @@ void endOfLevel()
 	dontSaveOrientation();
 	
 	//hzm coop mod chrissstrahl - spawn a gathering area, players must gather here for the game to continue
-	thread globalCoop_level_gatheringArea("coop_playerGatherIngArea","coop_endLevel",100,'420 420 300','12815 -5562 -20');
+	thread globalCoop_level_gatheringArea("coop_playerGatherIngArea","coop_endLevel",100,'600 600 600','12815 -5562 -100');
 	/*
 	wait( .1 );
 	spawn ( "trigger_changelevel", "targetname", "trigger_endlevel", "map", "m5l1b-drull_ruins1" );
