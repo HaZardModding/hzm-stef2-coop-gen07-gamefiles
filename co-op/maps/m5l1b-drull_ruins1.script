@@ -1501,6 +1501,10 @@ void cinematicScoutingParty()
 	//--- Fade Out
 	cam_fadeout( .5, 0, 0, 0, 1, 0 );
 	wait ( .75 );
+	
+	
+	//Coop - make sure spawned bug does not disrupt cinematics - Chrissstrahl
+	removeActorsNamed( "MaleBug" );
 
 	freezeplayer();
 	cinematic();   
