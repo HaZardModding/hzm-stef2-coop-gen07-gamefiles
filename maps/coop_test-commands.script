@@ -2,6 +2,8 @@
 //Used to test all coop script functions
 //if they are working properly
 
+#include "co-op/matrix/weld.script"
+#include "co-op/matrix/barrel.script"
 
 void main();
 void coop_printMessage(string sMessage);
@@ -17,6 +19,7 @@ float TEST_float_1;
 float coop_removeViewmodeTest_status;
 
 //coop test functions
+void coop_getCoopClassTest();
 void coop_getActorType();
 void coop_scriptVariables();
 void coop_configStrings();
@@ -45,8 +48,49 @@ void coop_playerStats3Test();
 void coop_playerStats4Test();
 void coop_cameraTest();
 
+void coop_testWaterbarrel();
+void coop_testWaterbarrelOnDamage();
+
+void coop_testWaterbarrelOnDamage()
+{
+	$puddle0_patch.bind($puddle0);
+	$puddle0.open($world);
+	
+	$waterBarrel0.onDamage("coop_testWaterbarrel");
+	pause();
+}
+void coop_testWaterbarrel()
+{
+	entity eTarget;
+	eTarget = getEntity($waterBarrel0.getTarget(0));
+	if(doesEntityExist(eTarget)){
+		triggerEntity(eTarget);
+	}
+	
+	$waterBarrel0_damaged.solid();
+	$waterBarrel0_damaged.show();
+	$waterBarrel0.remove();
+	spawn("models/fx/fx-waterspray-medium.tik","origin",""+$waterBarrel0_damaged.getOrigin());
+	spawn("models/fx/fx-explosion-waterburst-brown.tik","origin",""+$waterBarrel0_damaged.getOrigin());
+	entity eSteam;
+	eSteam = spawn("models/fx/fx-steam-directional-heavy.tik","origin",""+$waterBarrel0_damaged.getOrigin(),"angle","-1");
+	float fScale;
+	for(fScale=1;fScale>0.05;fScale-= 0.01){
+		wait(0.1);
+		if(!doesEntityExist(eSteam)){
+			return;
+		}
+		eSteam.scale(fScale);
+	}
+	if(doesEntityExist(eSteam)){
+		eSteam.remove();
+	}
+}
+
 void main()
 {
+	thread coop_testWaterbarrelOnDamage();
+
 	//get gametype
 	coop_GAMETYPE = getCvarInt("g_gametype");
 
@@ -64,6 +108,18 @@ void main()
 	}
 	
 	spawn("camera","targetname","cam1");
+
+	//test welding doors
+	thread weld_setupDoor($weldedDoor1,$weldedDoor1_weld,"normal","technician",1);
+	thread weld_setupDoor($weldedDoor2,$weldedDoor2_weld,"welded","none",0);
+	
+	
+	wait(3);
+	
+	//water barrel
+	//-> Water Barrel will explode if damaged, water will then leak out
+	//Barrel-normal, Barrel-damaged, Barrel-cap (if you want it to fly off), fluid-func_door, fluid-type, thread-to-start
+	thread barrel_setup($waterBarrel0, $waterBarrel0_damaged, $null, $waterBarrel0_puddle, "water",'0 0 0',"");
 }
 void coop_printMessage(string sMessage)
 {
@@ -95,6 +151,22 @@ float coop_isPowerOfGiven(float fValue,float fGiven)
 }
 
 
+void coop_getCoopClassTest()
+{
+	//grab current trigger, then grab player activating it
+	entity eTrigger;
+	entity ePlayer;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	coop_printMessage("Player COOP Class is: "+ePlayer.coop_getCoopClass()+"\n");
+}
 
 void coop_getActorType()
 //get actor type from actor entity
@@ -793,4 +865,9 @@ void coop_languageTest()
 	bLangDeu = ePlayer.coop_hasLanguageGerman();
 	bLangEng = ePlayer.coop_hasLanguageEnglish();
 	coop_printMessage(sTargetname+" Language - GERMAN: "+bLangDeu+", ENGLISH: "+bLangEng);
+}
+
+void tooglePathNodes()
+{
+	stuffcmd("toggle ai_showRoutes");
 }
