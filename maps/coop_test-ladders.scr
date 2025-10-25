@@ -1,0 +1,6 @@
+void main()
+{
+	wait(3);
+	$xxx.movenorth(10);
+	$xxx.time(10);
+}
