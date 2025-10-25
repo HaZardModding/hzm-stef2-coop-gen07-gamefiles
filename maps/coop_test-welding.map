@@ -1,0 +1,1523 @@
+{
+"classname" "worldspawn"
+// brush 0
+{
+( 3304 488 0 ) ( 3304 -144 0 ) ( 3624 -144 0 ) common/caulk 32 0 90 0.5 0.5 0 1184 0 
+( 3624 -288 320 ) ( 3304 -288 320 ) ( 3304 344 320 ) common/caulk 32 0 90 0.5 0.5 0 1184 0 
+( 3200 448 8 ) ( 3200 -184 8 ) ( 3200 -184 0 ) common/caulk 32 0 0 0.5 0.5 0 1184 0 
+( 3208 -176 0 ) ( 3208 456 0 ) ( 3208 -176 -8 ) attrexian-station/acpenismightier 96 0 0 0.5 0.5 0 0 0 
+( 3312 -168 0 ) ( 3296 -168 0 ) ( 3304 -168 328 ) common/caulk 0 -7 -180 0.5 -0.5 0 1184 0 
+( 3296 256 0 ) ( 3312 256 0 ) ( 3304 256 328 ) common/caulk 0 -7 -180 0.5 -0.5 0 1184 0 
+}
+// brush 1
+{
+( 3784 144 328 ) ( 3784 152 328 ) ( 3912 152 328 ) common/caulk 48 0 0 0.5 0.5 0 1184 0 
+( 3912 152 320 ) ( 3784 152 320 ) ( 3784 144 320 ) attrexian-station/asbase2 112 0 0 0.5 0.5 0 0 0 
+( 4000 -168 328 ) ( 4000 -168 320 ) ( 3872 -168 320 ) common/caulk 48 32 0 0.5 0.5 0 1184 0 
+( 4288 160 328 ) ( 4288 160 320 ) ( 4288 152 320 ) common/caulk 0 32 0 0.5 0.5 0 1184 0 
+( 3752 144 328 ) ( 3752 144 320 ) ( 3880 144 320 ) common/caulk 48 32 0 0.5 0.5 0 1184 0 
+( 3920 245 320 ) ( 3920 248 320 ) ( 3920 246.5 328 ) common/caulk 0 32 0 0.5 0.5 0 1184 0 
+}
+// brush 2
+{
+( 3440 144 328 ) ( 3440 152 328 ) ( 3568 152 328 ) common/caulk -32 0 0 0.5 0.5 0 1184 0 
+( 3568 152 320 ) ( 3440 152 320 ) ( 3440 144 320 ) attrexian-station/asbase2 -224 0 0 0.5 0.5 0 0 0 
+( 3672 -192 328 ) ( 3672 -192 320 ) ( 3544 -192 320 ) common/caulk -32 32 0 0.5 0.5 0 1184 0 
+( 3920 160 328 ) ( 3920 160 320 ) ( 3920 152 320 ) common/caulk 0 32 0 0.5 0.5 0 1184 0 
+( 3416 256 328 ) ( 3416 256 320 ) ( 3544 256 320 ) common/caulk -32 32 0 0.5 0.5 0 1184 0 
+( 3576 245 320 ) ( 3576 248 320 ) ( 3576 246.5 328 ) common/caulk 0 32 0 0.5 0.5 0 1184 0 
+}
+// brush 3
+{
+( 3920 168 0 ) ( 3920 144 0 ) ( 4232 144 0 ) common/caulk -32 22 90 0.5 0.5 0 1184 0 
+( 4232 144 328 ) ( 3920 144 328 ) ( 3920 168 328 ) common/caulk -32 22 90 0.5 0.5 0 1184 0 
+( 4288 176 328 ) ( 4288 176 0 ) ( 4288 152 0 ) common/caulk -32 0 0 0.5 0.5 0 1184 0 
+( 3928 256 328 ) ( 3928 256 0 ) ( 4240 256 0 ) common/caulk -22 -9 -180 0.5 -0.5 0 1184 0 
+( 3920 144 328 ) ( 3920 144 0 ) ( 3920 168 0 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 4232 144 328 ) ( 4232 144 0 ) ( 3920 144 0 ) attrexian-station/acpenismightier -22 -1 -180 0.5 -0.5 0 0 0 
+}
+// brush 4
+{
+( 3728 160 0 ) ( 3728 176 0 ) ( 3728 168 328 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3119 144 0 ) ( 3751 144 0 ) ( 3119 144 -8 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3727 256 8 ) ( 3095 256 8 ) ( 3095 256 0 ) common/caulk -30 0 0 0.5 0.5 0 1184 0 
+( 3776 -176 0 ) ( 3776 144 0 ) ( 3776 144 -8 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 2975 -168 320 ) ( 2975 152 320 ) ( 3607 152 320 ) common/caulk -30 0 0 0.5 0.5 0 1184 0 
+( 3728 200 128 ) ( 3728 192 128 ) ( 3776 196 128 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 5
+{
+( 3728 160 0 ) ( 3728 176 0 ) ( 3728 168 328 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3119 144 0 ) ( 3751 144 0 ) ( 3119 144 -8 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3743 168 8 ) ( 3111 168 8 ) ( 3111 168 0 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3776 -176 0 ) ( 3776 144 0 ) ( 3776 144 -8 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3751 152 0 ) ( 3119 152 0 ) ( 3119 -168 0 ) common/caulk -30 0 0 0.5 0.5 0 1184 0 
+( 3728 192 128 ) ( 3728 200 128 ) ( 3776 196 128 ) common/caulk -30 0 0 0.5 0.5 0 1184 0 
+}
+// brush 6
+{
+( 3576 -168 328 ) ( 3576 -168 0 ) ( 3720 -168 0 ) attrexian-station/acpenismightier -328 0 0 0.5 0.5 0 0 0 
+( 4288 -144 0 ) ( 4288 -168 0 ) ( 4288 -168 328 ) common/caulk -18 -8 -180 0.5 -0.5 0 1184 0 
+( 3912 -192 0 ) ( 3600 -192 0 ) ( 3600 -192 328 ) common/caulk -8 0 0 0.5 0.5 0 1184 0 
+( 3600 -192 328 ) ( 3600 -168 328 ) ( 3912 -168 328 ) common/caulk -18 8 -90 0.5 0.5 0 1184 0 
+( 3600 -168 0 ) ( 3600 -192 0 ) ( 3912 -192 0 ) common/caulk -18 8 -90 0.5 0.5 0 1184 0 
+( 3840 -174 0 ) ( 3840 -168 0 ) ( 3840 -171 328 ) attrexian-station/asfloor2 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 7
+{
+( 3512 -192 328 ) ( 3512 -192 0 ) ( 3656 -192 0 ) attrexian-station/asfloor2 0 0 0 0.5 0.5 0 0 0 
+( 3912 -216 0 ) ( 3600 -216 0 ) ( 3600 -216 328 ) common/caulk -8 0 0 0.5 0.5 0 1184 0 
+( 3600 -216 328 ) ( 3600 -192 328 ) ( 3912 -192 328 ) common/caulk -2 8 -90 0.5 0.5 0 1184 0 
+( 3600 -192 0 ) ( 3600 -216 0 ) ( 3912 -216 0 ) common/caulk -2 8 -90 0.5 0.5 0 1184 0 
+( 3712 -199 0 ) ( 3712 -192 0 ) ( 3712 -195.5 328 ) common/caulk -18 -40 -90 0.5 0.5 0 1184 0 
+( 3840 -192 0 ) ( 3840 -198 0 ) ( 3840 -195 328 ) common/caulk -18 -40 -90 0.5 0.5 0 1184 0 
+}
+// brush 8
+{
+( 3576 -168 328 ) ( 3576 -168 0 ) ( 3720 -168 0 ) attrexian-station/acpenismightier -328 0 0 0.5 0.5 0 0 0 
+( 3208 -192 0 ) ( 3208 -192 328 ) ( 3712 -192 328 ) common/caulk -8 0 0 0.5 0.5 0 1184 0 
+( 3208 -192 328 ) ( 3208 -192 0 ) ( 3208 -168 0 ) common/caulk -18 -8 -180 0.5 -0.5 0 1184 0 
+( 3600 -192 328 ) ( 3600 -168 328 ) ( 3912 -168 328 ) common/caulk -18 8 -90 0.5 0.5 0 1184 0 
+( 3600 -168 0 ) ( 3600 -192 0 ) ( 3912 -192 0 ) common/caulk -18 8 -90 0.5 0.5 0 1184 0 
+( 3712 -176 0 ) ( 3712 -183 0 ) ( 3712 -179.5 328 ) attrexian-station/asfloor2 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 9
+{
+( 3824 168 0 ) ( 3776 168 0 ) ( 3776 144 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3776 144 320 ) ( 3776 168 320 ) ( 3824 168 320 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3776 144 320 ) ( 3824 144 320 ) ( 3824 144 0 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3824 144 320 ) ( 3824 168 320 ) ( 3824 168 0 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3824 168 320 ) ( 3776 168 320 ) ( 3776 168 0 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3776 168 320 ) ( 3776 144 320 ) ( 3776 144 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 10
+{
+( 3720 168 0 ) ( 3712 168 0 ) ( 3712 144 0 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+( 3712 144 128 ) ( 3712 168 128 ) ( 3720 168 128 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+( 3712 144 128 ) ( 3720 144 128 ) ( 3720 144 0 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+( 3728 144 128 ) ( 3728 168 128 ) ( 3728 168 0 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+( 3720 168 128 ) ( 3712 168 128 ) ( 3712 168 0 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+( 3720 168 128 ) ( 3720 144 128 ) ( 3720 144 0 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+}
+// brush 11
+{
+( 3640 168 0 ) ( 3632 168 0 ) ( 3632 144 0 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+( 3632 144 128 ) ( 3632 168 128 ) ( 3640 168 128 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+( 3632 144 128 ) ( 3640 144 128 ) ( 3640 144 0 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+( 3640 144 128 ) ( 3640 168 128 ) ( 3640 168 0 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+( 3640 168 128 ) ( 3632 168 128 ) ( 3632 168 0 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+( 3632 168 128 ) ( 3632 144 128 ) ( 3632 144 0 ) common/moveclip 0 0 0 0.5 0.5 196608 16529 0 surfaceColor 0.322483 0.323024 0.189190 
+}
+// brush 12
+{
+( 3632 152 0 ) ( 3632 168 0 ) ( 3632 160 328 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 2975 144 0 ) ( 3607 144 0 ) ( 2975 144 -8 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3591 168 8 ) ( 2959 168 8 ) ( 2959 168 0 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3728 -176 0 ) ( 3728 144 0 ) ( 3728 144 -8 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 2831 -168 320 ) ( 2831 152 320 ) ( 3463 152 320 ) common/caulk 2 0 0 0.5 0.5 0 1184 0 
+( 3582 152 128 ) ( 2950 152 128 ) ( 2950 -168 128 ) attrexian-station/asbase1 0 0 0 0.5 0.5 0 0 0 
+}
+// brush 13
+{
+( 3544 184 0 ) ( 3544 144 0 ) ( 3560 168 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3560 184 320 ) ( 3560 168 320 ) ( 3544 144 320 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3560 184 0 ) ( 3560 168 0 ) ( 3560 168 320 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3560 168 0 ) ( 3544 144 0 ) ( 3544 144 320 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3544 144 0 ) ( 3544 184 0 ) ( 3544 184 320 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3544 168 0 ) ( 3560 168 0 ) ( 3560 168 320 ) attrexian-colony/acpipe1 64 0 0 -0.125 0.625 0 0 0 
+}
+// brush 14
+{
+( 3576 168 320 ) ( 3576 168 0 ) ( 3560 168 0 ) common/caulk 32 0 0 0.5 0.5 0 1184 0 
+( 3560 248 320 ) ( 3560 248 0 ) ( 3560 256 0 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3560 256 320 ) ( 3560 256 0 ) ( 3576 256 0 ) common/caulk 32 0 0 0.5 0.5 0 1184 0 
+( 3576 256 320 ) ( 3576 256 0 ) ( 3576 248 0 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3576 248 320 ) ( 3560 248 320 ) ( 3560 256 320 ) common/caulk 32 0 0 0.5 0.5 0 1184 0 
+( 3608 240 128 ) ( 3600 256 128 ) ( 3592 240 128 ) attrexian-station/asbase1 32 0 0 0.5 0.5 0 0 0 
+}
+// brush 15
+{
+( 3912 152 -8 ) ( 3784 152 -8 ) ( 3784 144 -8 ) common/caulk 48 0 0 0.5 0.5 0 1184 0 
+( 3784 144 0 ) ( 3784 152 0 ) ( 3912 152 0 ) attrexian-station/asbase2 -144 0 0 0.5 0.5 0 0 0 
+( 3784 144 0 ) ( 3912 144 0 ) ( 3912 144 -8 ) common/caulk 48 0 0 0.5 0.5 0 1184 0 
+( 3920 152 0 ) ( 3920 160 0 ) ( 3920 160 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3888 256 0 ) ( 3760 256 0 ) ( 3760 256 -8 ) common/caulk 48 0 0 0.5 0.5 0 1184 0 
+( 3728 160 0 ) ( 3728 152 0 ) ( 3728 152 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 16
+{
+( 4176 160 0 ) ( 3544 160 0 ) ( 3544 -160 0 ) common/caulk -48 16 0 0.5 0.5 0 1184 0 
+( 3400 -160 320 ) ( 3400 160 320 ) ( 4032 160 320 ) common/caulk -48 16 0 0.5 0.5 0 1184 0 
+( 4128 264 8 ) ( 3496 264 8 ) ( 3496 264 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3520 256 0 ) ( 4152 256 0 ) ( 3520 256 -8 ) attrexian-station/acpenismightier -112 0 0 0.5 0.5 0 0 0 
+( 3728 152 0 ) ( 3728 168 0 ) ( 3728 160 328 ) common/caulk -16 0 0 0.5 0.5 0 1184 0 
+( 3920 164 0 ) ( 3920 148 0 ) ( 3920 156 328 ) common/caulk -16 0 0 0.5 0.5 0 1184 0 
+}
+// brush 17
+{
+( 3824 160 0 ) ( 3824 176 0 ) ( 3824 168 328 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3119 144 0 ) ( 3751 144 0 ) ( 3119 144 -8 ) attrexian-station/acpenismightier -286 0 0 0.5 0.5 0 0 0 
+( 3735 168 8 ) ( 3103 168 8 ) ( 3103 168 0 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3920 -176 0 ) ( 3920 144 0 ) ( 3920 144 -8 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 2975 -168 320 ) ( 2975 152 320 ) ( 3607 152 320 ) common/caulk 34 0 0 0.5 0.5 0 1184 0 
+( 3727 152 129 ) ( 3095 152 129 ) ( 3095 -168 129 ) attrexian-station/asbase1 -32 0 0 0.5 0.5 0 0 0 
+}
+// brush 18
+{
+( -352 152 0 ) ( 280 152 0 ) ( -352 -168 0 ) attrexian-station/asbase1 0 0 0 0.5 0.5 0 0 0 
+( 296 256 0 ) ( -336 256 0 ) ( -336 256 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 280 152 -8 ) ( -352 152 -8 ) ( -352 -168 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3208 -168 -8 ) ( 3208 -166 -8 ) ( 3208 -167 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3211 -168 -8 ) ( 3209 -168 -8 ) ( 3210 -168 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3576 -96 -8 ) ( 3576 -160 -8 ) ( 3576 -128 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 19
+{
+( -352 152 0 ) ( 280 152 0 ) ( -352 -168 0 ) attrexian-station/asbase1 0 0 0 0.5 0.5 0 0 0 
+( 280 144 0 ) ( -352 144 0 ) ( -352 144 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 4288 -159 0 ) ( 4288 161 0 ) ( 4288 161 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 280 152 -8 ) ( -352 152 -8 ) ( -352 -168 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3219 -192 -8 ) ( 3217 -192 -8 ) ( 3218 -192 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3576 -160 -8 ) ( 3576 -96 -8 ) ( 3576 -128 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 20
+{
+( 3992 160 0 ) ( 3360 160 0 ) ( 3360 -160 0 ) common/caulk 0 16 0 0.5 0.5 0 1184 0 
+( 3216 -160 320 ) ( 3216 160 320 ) ( 3848 160 320 ) common/caulk 0 16 0 0.5 0.5 0 1184 0 
+( 3936 264 8 ) ( 3304 264 8 ) ( 3304 264 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3328 256 0 ) ( 3960 256 0 ) ( 3328 256 -8 ) attrexian-station/acpenismightier -256 0 0 0.5 0.5 0 0 0 
+( 3576 152 0 ) ( 3576 168 0 ) ( 3576 160 328 ) common/caulk -16 0 0 0.5 0.5 0 1184 0 
+( 3728 167 0 ) ( 3728 151 0 ) ( 3728 159 328 ) common/caulk -16 0 0 0.5 0.5 0 1184 0 
+}
+// brush 21
+{
+( 3728 152 -8 ) ( 3600 152 -8 ) ( 3600 144 -8 ) common/caulk 32 0 0 0.5 0.5 0 1184 0 
+( 3600 144 0 ) ( 3600 152 0 ) ( 3728 152 0 ) attrexian-station/asbase2 -32 0 0 0.5 0.5 0 0 0 
+( 3600 144 0 ) ( 3728 144 0 ) ( 3728 144 -8 ) common/caulk 32 0 0 0.5 0.5 0 1184 0 
+( 3728 144 0 ) ( 3728 152 0 ) ( 3728 152 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3704 256 0 ) ( 3576 256 0 ) ( 3576 256 -8 ) common/caulk 32 0 0 0.5 0.5 0 1184 0 
+( 3576 152 0 ) ( 3576 144 0 ) ( 3576 144 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 22
+{
+( 3072 144 328 ) ( 3072 152 328 ) ( 3200 152 328 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3200 152 320 ) ( 3072 152 320 ) ( 3072 144 320 ) attrexian-station/asbase2 0 0 0 0.5 0.5 0 0 0 
+( 3288 -168 328 ) ( 3288 -168 320 ) ( 3160 -168 320 ) common/caulk 0 32 0 0.5 0.5 0 1184 0 
+( 3576 168 328 ) ( 3576 168 320 ) ( 3576 160 320 ) common/caulk 0 32 0 0.5 0.5 0 1184 0 
+( 3048 256 328 ) ( 3048 256 320 ) ( 3176 256 320 ) common/caulk 0 32 0 0.5 0.5 0 1184 0 
+( 3208 245 320 ) ( 3208 248 320 ) ( 3208 246.5 328 ) common/caulk 0 32 0 0.5 0.5 0 1184 0 
+}
+// brush 23
+{
+( 3864 160 0 ) ( 3232 160 0 ) ( 3232 -160 0 ) common/caulk 0 16 0 0.5 0.5 0 1184 0 
+( 3088 -160 320 ) ( 3088 160 320 ) ( 3720 160 320 ) common/caulk 0 16 0 0.5 0.5 0 1184 0 
+( 3824 264 8 ) ( 3192 264 8 ) ( 3192 264 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3200 256 0 ) ( 3832 256 0 ) ( 3200 256 -8 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3208 152 0 ) ( 3208 168 0 ) ( 3208 160 328 ) common/caulk -16 0 0 0.5 0.5 0 1184 0 
+( 3576 168 0 ) ( 3576 152 0 ) ( 3576 160 328 ) common/caulk -16 0 0 0.5 0.5 0 1184 0 
+}
+// brush 24
+{
+( 3591 152 0 ) ( 2959 152 0 ) ( 2959 -168 0 ) common/caulk 32 0 0 0.5 0.5 0 1184 0 
+( 2815 -168 320 ) ( 2815 152 320 ) ( 3447 152 320 ) common/caulk 32 0 0 0.5 0.5 0 1184 0 
+( 3632 -180 0 ) ( 3632 140 0 ) ( 3632 140 -8 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3576 168 320 ) ( 3576 168 0 ) ( 3616 168 0 ) attrexian-station/acpenismightier 32 0 0 0.5 0.5 0 0 0 
+( 2959 144 0 ) ( 3591 144 0 ) ( 2959 144 -8 ) attrexian-station/acpenismightier 0 0 0 0.5 0.5 0 0 0 
+( 3560 168 0 ) ( 3560 168 320 ) ( 3544 144 320 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 25
+{
+( 4312 144 0 ) ( 4288 144 0 ) ( 4288 -168 0 ) common/caulk 0 22 0 0.5 0.5 0 1184 0 
+( 4288 -168 328 ) ( 4288 144 328 ) ( 4312 144 328 ) common/caulk 0 22 0 0.5 0.5 0 1184 0 
+( 4312 -168 328 ) ( 4312 -168 0 ) ( 4288 -168 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 4312 144 328 ) ( 4312 144 0 ) ( 4312 -168 0 ) common/caulk -22 0 0 0.5 0.5 0 1184 0 
+( 4288 144 328 ) ( 4288 144 0 ) ( 4312 144 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 4288 -168 328 ) ( 4288 -168 0 ) ( 4288 144 0 ) attrexian-station/acpenismightier 42 0 0 0.5 0.5 0 0 0 
+}
+}
+// entity 1
+{
+"classname" "info_pathnode"
+"origin" "3768 216 0"
+}
+// entity 2
+{
+"classname" "detail"
+// brush 0
+{
+( 3790 151 36 ) ( 3790 143 36 ) ( 3790 143 -12 ) attrexian-station/asbase1 -32 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3808 144 36 ) ( 3792 144 36 ) ( 3792 144 -12 ) attrexian-station/asbase1 -124 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3792 136 51 ) ( 3792 144 51 ) ( 3792 144 3 ) attrexian-station/asbase1 -32 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3790 143 36 ) ( 3806 143 36 ) ( 3806 143 -12 ) attrexian-station/asbase1 -124 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3783 143 53 ) ( 3783 151 53 ) ( 3799 151 53 ) attrexian-station/asbase1 -124 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3803 151 34 ) ( 3787 151 34 ) ( 3787 143 34 ) attrexian-station/asbase1 -124 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 1
+{
+( 3792 144 45 ) ( 3792 143 45 ) ( 3792 143 43 ) attrexian-station/asbase1 -32 -90 0 0.5 0.5 0 0 0 
+( 3795 144 45 ) ( 3792 144 45 ) ( 3792 144 43 ) attrexian-station/asbase1 34 -90 0 0.5 0.5 0 0 0 
+( 3795 143 45 ) ( 3795 144 45 ) ( 3795 144 43 ) attrexian-station/asbase1 -32 -90 0 0.5 0.5 0 0 0 
+( 3792 143 45 ) ( 3795 143 45 ) ( 3795 143 43 ) attrexian-station/asbase1 34 -90 0 0.5 0.5 0 0 0 
+( 3792 143 45 ) ( 3792 144 45 ) ( 3795 144 45 ) attrexian-station/asbase1 34 32 0 0.5 0.5 0 0 0 
+( 3795 144 43 ) ( 3792 144 43 ) ( 3792 143 43 ) attrexian-station/asbase1 34 32 0 0.5 0.5 0 0 0 
+}
+// brush 2
+{
+( 3792 144 53 ) ( 3792 143 53 ) ( 3792 143 51 ) attrexian-station/asbase1 -32 -92 0 0.5 0.5 0 0 0 
+( 3795 144 53 ) ( 3792 144 53 ) ( 3792 144 51 ) attrexian-station/asbase1 34 -92 0 0.5 0.5 0 0 0 
+( 3795 143 53 ) ( 3795 144 53 ) ( 3795 144 51 ) attrexian-station/asbase1 -32 -92 0 0.5 0.5 0 0 0 
+( 3792 143 53 ) ( 3795 143 53 ) ( 3795 143 51 ) attrexian-station/asbase1 34 -92 0 0.5 0.5 0 0 0 
+( 3792 143 53 ) ( 3792 144 53 ) ( 3795 144 53 ) attrexian-station/asbase1 34 32 0 0.5 0.5 0 0 0 
+( 3795 144 51 ) ( 3792 144 51 ) ( 3792 143 51 ) attrexian-station/asbase1 34 32 0 0.5 0.5 0 0 0 
+}
+// brush 3
+{
+( 3795 151 36 ) ( 3795 143 36 ) ( 3795 143 -12 ) attrexian-station/asbase1 -32 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3813 144 36 ) ( 3797 144 36 ) ( 3797 144 -12 ) attrexian-station/asbase1 -134 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3797 136 51 ) ( 3797 144 51 ) ( 3797 144 3 ) attrexian-station/asbase1 -32 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3795 143 36 ) ( 3811 143 36 ) ( 3811 143 -12 ) attrexian-station/asbase1 -134 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3788 143 53 ) ( 3788 151 53 ) ( 3804 151 53 ) attrexian-station/asbase1 -134 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3808 151 34 ) ( 3792 151 34 ) ( 3792 143 34 ) attrexian-station/asbase1 -134 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 4
+{
+( 3812 151 34 ) ( 3796 151 34 ) ( 3796 143 34 ) attrexian-station/asbase1 -142 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3792 143 53 ) ( 3792 151 53 ) ( 3808 151 53 ) attrexian-station/asbase1 -142 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3799 143 36 ) ( 3815 143 36 ) ( 3815 143 -12 ) attrexian-station/asbase1 -142 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3801 136 51 ) ( 3801 144 51 ) ( 3801 144 3 ) attrexian-station/asbase1 224 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3817 144 36 ) ( 3801 144 36 ) ( 3801 144 -12 ) attrexian-station/asbase1 -142 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3799 151 36 ) ( 3799 143 36 ) ( 3799 143 -12 ) attrexian-station/asbase1 224 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 5
+{
+( 3819 151 34 ) ( 3803 151 34 ) ( 3803 143 34 ) attrexian-station/asbase1 -156 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3799 143 53 ) ( 3799 151 53 ) ( 3815 151 53 ) attrexian-station/asbase1 -156 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3806 143 36 ) ( 3822 143 36 ) ( 3822 143 -12 ) attrexian-station/asbase1 -156 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3808 136 51 ) ( 3808 144 51 ) ( 3808 144 3 ) attrexian-station/asbase1 224 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3824 144 36 ) ( 3808 144 36 ) ( 3808 144 -12 ) attrexian-station/asbase1 -156 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3806 151 36 ) ( 3806 143 36 ) ( 3806 143 -12 ) attrexian-station/asbase1 224 -152 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 6
+{
+( 3811 144 34 ) ( 3808 144 34 ) ( 3808 143 34 ) attrexian-station/asbase1 2 -224 0 0.5 0.5 0 0 0 
+( 3808 143 36 ) ( 3808 144 36 ) ( 3811 144 36 ) attrexian-station/asbase1 2 -224 0 0.5 0.5 0 0 0 
+( 3808 143 36 ) ( 3811 143 36 ) ( 3811 143 34 ) attrexian-station/asbase1 2 -108 0 0.5 0.5 0 0 0 
+( 3811 143 36 ) ( 3811 144 36 ) ( 3811 144 34 ) attrexian-station/asbase1 224 -108 0 0.5 0.5 0 0 0 
+( 3811 144 36 ) ( 3808 144 36 ) ( 3808 144 34 ) attrexian-station/asbase1 2 -108 0 0.5 0.5 0 0 0 
+( 3808 144 36 ) ( 3808 143 36 ) ( 3808 143 34 ) attrexian-station/asbase1 224 -108 0 0.5 0.5 0 0 0 
+}
+// brush 7
+{
+( 3804 144 34 ) ( 3801 144 34 ) ( 3801 143 34 ) attrexian-station/asbase1 -240 -224 0 0.5 0.5 0 0 0 
+( 3801 143 36 ) ( 3801 144 36 ) ( 3804 144 36 ) attrexian-station/asbase1 -240 -224 0 0.5 0.5 0 0 0 
+( 3801 143 36 ) ( 3804 143 36 ) ( 3804 143 34 ) attrexian-station/asbase1 -240 -108 0 0.5 0.5 0 0 0 
+( 3804 143 36 ) ( 3804 144 36 ) ( 3804 144 34 ) attrexian-station/asbase1 224 -108 0 0.5 0.5 0 0 0 
+( 3804 144 36 ) ( 3801 144 36 ) ( 3801 144 34 ) attrexian-station/asbase1 -240 -108 0 0.5 0.5 0 0 0 
+( 3801 144 36 ) ( 3801 143 36 ) ( 3801 143 34 ) attrexian-station/asbase1 224 -108 0 0.5 0.5 0 0 0 
+}
+}
+// entity 3
+{
+"classname" "detail"
+// brush 0
+{
+( 3825 143 29 ) ( 3825 143 31 ) ( 3825 144 31 ) attrexian-station/asbase1 -32 -140 0 0.5 0.5 0 0 0 
+( 3817 144 27 ) ( 3817 144 29 ) ( 3814 144 29 ) attrexian-station/asbase1 104 -140 0 0.5 0.5 0 0 0 
+( 3813 143 35 ) ( 3813 143 22 ) ( 3813 144 22 ) attrexian-station/asbase1 -32 -140 0 0.5 0.5 0 0 0 
+( 3814 143 27 ) ( 3814 143 29 ) ( 3817 143 29 ) attrexian-station/asbase1 104 -140 0 0.5 0.5 0 0 0 
+( 3811 144 35 ) ( 3822 144 29 ) ( 3822 143 29 ) attrexian-station/asbase1 104 32 0 0.5 0.5 0 0 0 
+( 3825 144 29 ) ( 3814 144 24 ) ( 3814 143 24 ) attrexian-station/asbase1 104 32 0 0.5 0.5 0 0 0 
+}
+// brush 1
+{
+( 3813 143 28 ) ( 3813 143 30 ) ( 3813 144 30 ) attrexian-station/asbase1 -32 -142 0 0.5 0.5 0 0 0 
+( 3811 144 26 ) ( 3811 144 28 ) ( 3808 144 28 ) attrexian-station/asbase1 92 -142 0 0.5 0.5 0 0 0 
+( 3790 144 20 ) ( 3790 144 22 ) ( 3790 143 22 ) attrexian-station/asbase1 -32 -142 0 0.5 0.5 0 0 0 
+( 3808 143 26 ) ( 3808 143 28 ) ( 3811 143 28 ) attrexian-station/asbase1 92 -142 0 0.5 0.5 0 0 0 
+( 3809 144 30 ) ( 3812 144 30 ) ( 3812 143 30 ) attrexian-station/asbase1 92 32 0 0.5 0.5 0 0 0 
+( 3812 143 28 ) ( 3812 144 28 ) ( 3809 144 28 ) attrexian-station/asbase1 92 32 0 0.5 0.5 0 0 0 
+}
+}
+// entity 4
+{
+"classname" "detail"
+// brush 0
+{
+( 3728 144 97 ) ( 3728 143 97 ) ( 3728 143 95 ) attrexian-station/asbase1 -32 -8 0 0.5 0.5 0 0 0 
+( 3739 144 95 ) ( 3736 144 95 ) ( 3736 144 93 ) attrexian-station/asbase1 146 -8 0 0.5 0.5 0 0 0 
+( 3740 144 88 ) ( 3740 143 88 ) ( 3740 143 101 ) attrexian-station/asbase1 -32 -8 0 0.5 0.5 0 0 0 
+( 3736 143 95 ) ( 3739 143 95 ) ( 3739 143 93 ) attrexian-station/asbase1 146 -8 0 0.5 0.5 0 0 0 
+( 3731 143 95 ) ( 3731 144 95 ) ( 3742 144 101 ) attrexian-station/asbase1 146 32 0 0.5 0.5 0 0 0 
+( 3739 143 90 ) ( 3739 144 90 ) ( 3728 144 95 ) attrexian-station/asbase1 146 32 0 0.5 0.5 0 0 0 
+}
+// brush 1
+{
+( 3740 144 96 ) ( 3740 143 96 ) ( 3740 143 94 ) attrexian-station/asbase1 -32 -10 0 0.5 0.5 0 0 0 
+( 3745 144 94 ) ( 3742 144 94 ) ( 3742 144 92 ) attrexian-station/asbase1 134 -10 0 0.5 0.5 0 0 0 
+( 3803 143 84 ) ( 3803 144 84 ) ( 3803 144 82 ) attrexian-station/asbase1 -32 -10 0 0.5 0.5 0 0 0 
+( 3742 143 94 ) ( 3745 143 94 ) ( 3745 143 92 ) attrexian-station/asbase1 134 -10 0 0.5 0.5 0 0 0 
+( 3741 143 96 ) ( 3741 144 96 ) ( 3744 144 96 ) attrexian-station/asbase1 134 32 0 0.5 0.5 0 0 0 
+( 3744 144 94 ) ( 3741 144 94 ) ( 3741 143 94 ) attrexian-station/asbase1 134 32 0 0.5 0.5 0 0 0 
+}
+}
+// entity 5
+{
+"classname" "detail"
+// brush 0
+{
+( 3761 151 45 ) ( 3745 151 45 ) ( 3745 143 45 ) attrexian-station/asbase1 -40 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3741 143 64 ) ( 3741 151 64 ) ( 3757 151 64 ) attrexian-station/asbase1 -40 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3748 143 47 ) ( 3764 143 47 ) ( 3764 143 -1 ) attrexian-station/asbase1 -40 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3750 136 62 ) ( 3750 144 62 ) ( 3750 144 14 ) attrexian-station/asbase1 224 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3766 144 47 ) ( 3750 144 47 ) ( 3750 144 -1 ) attrexian-station/asbase1 -40 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3748 151 47 ) ( 3748 143 47 ) ( 3748 143 -1 ) attrexian-station/asbase1 224 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 1
+{
+( 3753 144 45 ) ( 3750 144 45 ) ( 3750 143 45 ) attrexian-station/asbase1 -138 -224 0 0.5 0.5 0 0 0 
+( 3750 143 47 ) ( 3750 144 47 ) ( 3753 144 47 ) attrexian-station/asbase1 -138 -224 0 0.5 0.5 0 0 0 
+( 3750 143 47 ) ( 3753 143 47 ) ( 3753 143 45 ) attrexian-station/asbase1 -138 -86 0 0.5 0.5 0 0 0 
+( 3753 143 47 ) ( 3753 144 47 ) ( 3753 144 45 ) attrexian-station/asbase1 224 -86 0 0.5 0.5 0 0 0 
+( 3753 144 47 ) ( 3750 144 47 ) ( 3750 144 45 ) attrexian-station/asbase1 -138 -86 0 0.5 0.5 0 0 0 
+( 3750 144 47 ) ( 3750 143 47 ) ( 3750 143 45 ) attrexian-station/asbase1 224 -86 0 0.5 0.5 0 0 0 
+}
+// brush 2
+{
+( 3757 151 45 ) ( 3741 151 45 ) ( 3741 143 45 ) attrexian-station/asbase1 -32 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3737 143 64 ) ( 3737 151 64 ) ( 3753 151 64 ) attrexian-station/asbase1 -32 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3744 143 47 ) ( 3760 143 47 ) ( 3760 143 -1 ) attrexian-station/asbase1 -32 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3746 136 62 ) ( 3746 144 62 ) ( 3746 144 14 ) attrexian-station/asbase1 224 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3762 144 47 ) ( 3746 144 47 ) ( 3746 144 -1 ) attrexian-station/asbase1 -32 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3744 151 47 ) ( 3744 143 47 ) ( 3744 143 -1 ) attrexian-station/asbase1 224 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 3
+{
+( 3752 151 45 ) ( 3736 151 45 ) ( 3736 143 45 ) attrexian-station/asbase1 -22 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3732 143 64 ) ( 3732 151 64 ) ( 3748 151 64 ) attrexian-station/asbase1 -22 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3739 143 47 ) ( 3755 143 47 ) ( 3755 143 -1 ) attrexian-station/asbase1 -22 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3741 136 62 ) ( 3741 144 62 ) ( 3741 144 14 ) attrexian-station/asbase1 224 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3757 144 47 ) ( 3741 144 47 ) ( 3741 144 -1 ) attrexian-station/asbase1 -22 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3739 151 47 ) ( 3739 143 47 ) ( 3739 143 -1 ) attrexian-station/asbase1 224 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 4
+{
+( 3741 144 58 ) ( 3741 143 58 ) ( 3744 143 45 ) attrexian-station/asbase1 42 -80 0 0.5 0.5 0 0 0 
+( 3744 144 51 ) ( 3744 143 51 ) ( 3741 143 64 ) attrexian-station/asbase1 42 -80 0 0.5 0.5 0 0 0 
+( 3741 143 64 ) ( 3744 143 64 ) ( 3744 143 62 ) attrexian-station/asbase1 -120 -70 0 0.5 0.5 0 0 0 
+( 3744 143 51 ) ( 3744 144 51 ) ( 3744 144 45 ) attrexian-station/asbase1 224 -70 0 0.5 0.5 0 0 0 
+( 3744 144 64 ) ( 3741 144 64 ) ( 3741 144 62 ) attrexian-station/asbase1 -120 -70 0 0.5 0.5 0 0 0 
+( 3741 143 58 ) ( 3741 144 58 ) ( 3741 144 64 ) attrexian-station/asbase1 224 -70 0 0.5 0.5 0 0 0 
+}
+// brush 5
+{
+( 3732 143 45 ) ( 3732 143 64 ) ( 3732 144 64 ) attrexian-station/asbase1 -32 -70 0 0.5 0.5 0 0 0 
+( 3732 144 45 ) ( 3732 144 64 ) ( 3730 144 64 ) attrexian-station/asbase1 -92 -70 0 0.5 0.5 0 0 0 
+( 3730 143 62 ) ( 3730 143 47 ) ( 3730 144 47 ) attrexian-station/asbase1 -32 -70 0 0.5 0.5 0 0 0 
+( 3730 143 45 ) ( 3730 143 64 ) ( 3732 143 64 ) attrexian-station/asbase1 -92 -70 0 0.5 0.5 0 0 0 
+( 3732 143 64 ) ( 3730 143 62 ) ( 3730 144 62 ) attrexian-station/asbase1 -92 32 0 0.5 0.5 0 0 0 
+( 3732 144 45 ) ( 3730 144 47 ) ( 3730 143 47 ) attrexian-station/asbase1 -92 32 0 0.5 0.5 0 0 0 
+}
+// brush 6
+{
+( 3732 144 47 ) ( 3732 143 47 ) ( 3732 143 45 ) attrexian-station/asbase1 -32 -86 0 0.5 0.5 0 0 0 
+( 3735 144 47 ) ( 3732 144 47 ) ( 3732 144 45 ) attrexian-station/asbase1 -102 -86 0 0.5 0.5 0 0 0 
+( 3735 143 47 ) ( 3735 144 47 ) ( 3735 144 45 ) attrexian-station/asbase1 -32 -86 0 0.5 0.5 0 0 0 
+( 3732 143 47 ) ( 3735 143 47 ) ( 3735 143 45 ) attrexian-station/asbase1 -102 -86 0 0.5 0.5 0 0 0 
+( 3732 143 47 ) ( 3732 144 47 ) ( 3735 144 47 ) attrexian-station/asbase1 -102 32 0 0.5 0.5 0 0 0 
+( 3735 144 45 ) ( 3732 144 45 ) ( 3732 143 45 ) attrexian-station/asbase1 -102 32 0 0.5 0.5 0 0 0 
+}
+// brush 7
+{
+( 3732 144 64 ) ( 3732 143 64 ) ( 3732 143 62 ) attrexian-station/asbase1 -32 -70 0 0.5 0.5 0 0 0 
+( 3735 144 64 ) ( 3732 144 64 ) ( 3732 144 62 ) attrexian-station/asbase1 -102 -70 0 0.5 0.5 0 0 0 
+( 3735 143 64 ) ( 3735 144 64 ) ( 3735 144 62 ) attrexian-station/asbase1 -32 -70 0 0.5 0.5 0 0 0 
+( 3732 143 64 ) ( 3735 143 64 ) ( 3735 143 62 ) attrexian-station/asbase1 -102 -70 0 0.5 0.5 0 0 0 
+( 3732 143 64 ) ( 3732 144 64 ) ( 3735 144 64 ) attrexian-station/asbase1 -102 32 0 0.5 0.5 0 0 0 
+( 3735 144 62 ) ( 3732 144 62 ) ( 3732 143 62 ) attrexian-station/asbase1 -102 32 0 0.5 0.5 0 0 0 
+}
+// brush 8
+{
+( 3735 144 64 ) ( 3735 143 64 ) ( 3735 143 45 ) attrexian-station/asbase1 -32 -70 0 0.5 0.5 0 0 0 
+( 3737 144 64 ) ( 3735 144 64 ) ( 3735 144 45 ) attrexian-station/asbase1 -102 -70 0 0.5 0.5 0 0 0 
+( 3737 144 47 ) ( 3737 143 47 ) ( 3737 143 62 ) attrexian-station/asbase1 -32 -70 0 0.5 0.5 0 0 0 
+( 3735 143 64 ) ( 3737 143 64 ) ( 3737 143 45 ) attrexian-station/asbase1 -102 -70 0 0.5 0.5 0 0 0 
+( 3737 144 62 ) ( 3737 143 62 ) ( 3735 143 64 ) attrexian-station/asbase1 -102 32 0 0.5 0.5 0 0 0 
+( 3737 143 47 ) ( 3737 144 47 ) ( 3735 144 45 ) attrexian-station/asbase1 -102 32 0 0.5 0.5 0 0 0 
+}
+// brush 9
+{
+( 3757 144 54 ) ( 3757 143 54 ) ( 3757 143 52 ) attrexian-station/asbase1 224 -72 0 0.5 0.5 0 0 0 
+( 3759 144 54 ) ( 3756 144 54 ) ( 3756 144 52 ) attrexian-station/asbase1 -150 -72 0 0.5 0.5 0 0 0 
+( 3759 143 54 ) ( 3759 144 54 ) ( 3759 144 52 ) attrexian-station/asbase1 224 -72 0 0.5 0.5 0 0 0 
+( 3756 143 54 ) ( 3759 143 54 ) ( 3759 143 52 ) attrexian-station/asbase1 -150 -72 0 0.5 0.5 0 0 0 
+( 3755 143 56 ) ( 3755 144 56 ) ( 3758 144 56 ) attrexian-station/asbase1 -150 -224 0 0.5 0.5 0 0 0 
+( 3759 144 45 ) ( 3756 144 45 ) ( 3756 143 45 ) attrexian-station/asbase1 -150 -224 0 0.5 0.5 0 0 0 
+}
+// brush 10
+{
+( 3770 151 54 ) ( 3754 151 54 ) ( 3754 143 54 ) attrexian-station/asbase1 -62 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3759 143 62 ) ( 3759 144 62 ) ( 3761 144 64 ) attrexian-station/asbase1 -62 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3759 143 47 ) ( 3775 143 47 ) ( 3775 143 -1 ) attrexian-station/asbase1 -62 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3761 136 62 ) ( 3761 144 62 ) ( 3761 144 14 ) attrexian-station/asbase1 224 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3777 144 47 ) ( 3761 144 47 ) ( 3761 144 -1 ) attrexian-station/asbase1 -62 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3759 144 62 ) ( 3759 143 62 ) ( 3759 143 45 ) attrexian-station/asbase1 224 -130 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 11
+{
+( 3757 144 62 ) ( 3757 143 62 ) ( 3755 143 64 ) attrexian-station/asbase1 -142 -224 0 0.5 0.5 0 0 0 
+( 3755 143 64 ) ( 3757 143 64 ) ( 3757 143 45 ) attrexian-station/asbase1 -142 -70 0 0.5 0.5 0 0 0 
+( 3757 143 62 ) ( 3757 144 62 ) ( 3757 144 45 ) attrexian-station/asbase1 224 -70 0 0.5 0.5 0 0 0 
+( 3757 144 64 ) ( 3755 144 64 ) ( 3755 144 45 ) attrexian-station/asbase1 -142 -70 0 0.5 0.5 0 0 0 
+( 3755 144 64 ) ( 3755 143 64 ) ( 3755 143 45 ) attrexian-station/asbase1 224 -70 0 0.5 0.5 0 0 0 
+( 3757 144 54 ) ( 3756 143 54 ) ( 3758 143 54 ) attrexian-station/asbase1 12 -224 0 0.5 0.5 0 0 0 
+}
+}
+// entity 6
+{
+"classname" "detail"
+// brush 0
+{
+( 3787 151 68 ) ( 3787 143 68 ) ( 3787 143 20 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3805 144 68 ) ( 3789 144 68 ) ( 3789 144 20 ) attrexian-station/asbase1 -118 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3789 136 83 ) ( 3789 144 83 ) ( 3789 144 35 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3787 143 68 ) ( 3803 143 68 ) ( 3803 143 20 ) attrexian-station/asbase1 -118 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3780 143 85 ) ( 3780 151 85 ) ( 3796 151 85 ) attrexian-station/asbase1 -118 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3800 151 66 ) ( 3784 151 66 ) ( 3784 143 66 ) attrexian-station/asbase1 -118 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 1
+{
+( 3730 144 86 ) ( 3730 143 86 ) ( 3730 143 84 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3738 144 85 ) ( 3735 144 85 ) ( 3735 144 83 ) attrexian-station/asbase1 148 -28 0 0.5 0.5 0 0 0 
+( 3738 143 85 ) ( 3738 144 85 ) ( 3738 144 83 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3735 143 85 ) ( 3738 143 85 ) ( 3738 143 83 ) attrexian-station/asbase1 148 -28 0 0.5 0.5 0 0 0 
+( 3735 143 85 ) ( 3735 144 85 ) ( 3738 144 85 ) attrexian-station/asbase1 148 32 0 0.5 0.5 0 0 0 
+( 3738 144 83 ) ( 3735 144 83 ) ( 3735 143 83 ) attrexian-station/asbase1 148 32 0 0.5 0.5 0 0 0 
+}
+// brush 2
+{
+( 3776 151 66 ) ( 3760 151 66 ) ( 3760 143 66 ) attrexian-station/asbase1 -70 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3756 143 85 ) ( 3756 151 85 ) ( 3772 151 85 ) attrexian-station/asbase1 -70 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3763 143 68 ) ( 3779 143 68 ) ( 3779 143 20 ) attrexian-station/asbase1 -70 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3765 136 83 ) ( 3765 144 83 ) ( 3765 144 35 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3781 144 68 ) ( 3765 144 68 ) ( 3765 144 20 ) attrexian-station/asbase1 -70 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3763 151 68 ) ( 3763 143 68 ) ( 3763 143 20 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 3
+{
+( 3781 151 66 ) ( 3765 151 66 ) ( 3765 143 66 ) attrexian-station/asbase1 -80 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3761 143 85 ) ( 3761 151 85 ) ( 3777 151 85 ) attrexian-station/asbase1 -80 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3768 143 68 ) ( 3784 143 68 ) ( 3784 143 20 ) attrexian-station/asbase1 -80 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3770 136 83 ) ( 3770 144 83 ) ( 3770 144 35 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3786 144 68 ) ( 3770 144 68 ) ( 3770 144 20 ) attrexian-station/asbase1 -80 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3768 151 68 ) ( 3768 143 68 ) ( 3768 143 20 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 4
+{
+( 3814 151 66 ) ( 3798 151 66 ) ( 3798 143 66 ) attrexian-station/asbase1 -146 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3794 143 85 ) ( 3794 151 85 ) ( 3810 151 85 ) attrexian-station/asbase1 -146 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3801 143 68 ) ( 3817 143 68 ) ( 3817 143 20 ) attrexian-station/asbase1 -146 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3803 136 83 ) ( 3803 144 83 ) ( 3803 144 35 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3819 144 68 ) ( 3803 144 68 ) ( 3803 144 20 ) attrexian-station/asbase1 -146 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3801 151 68 ) ( 3801 143 68 ) ( 3801 143 20 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 5
+{
+( 3792 151 68 ) ( 3792 143 68 ) ( 3792 143 20 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3810 144 68 ) ( 3794 144 68 ) ( 3794 144 20 ) attrexian-station/asbase1 -128 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3794 136 83 ) ( 3794 144 83 ) ( 3794 144 35 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3792 143 68 ) ( 3808 143 68 ) ( 3808 143 20 ) attrexian-station/asbase1 -128 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3785 143 85 ) ( 3785 151 85 ) ( 3801 151 85 ) attrexian-station/asbase1 -128 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3805 151 66 ) ( 3789 151 66 ) ( 3789 143 66 ) attrexian-station/asbase1 -128 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 6
+{
+( 3789 144 85 ) ( 3789 143 85 ) ( 3789 143 83 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3792 144 85 ) ( 3789 144 85 ) ( 3789 144 83 ) attrexian-station/asbase1 40 -28 0 0.5 0.5 0 0 0 
+( 3792 143 85 ) ( 3792 144 85 ) ( 3792 144 83 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3789 143 85 ) ( 3792 143 85 ) ( 3792 143 83 ) attrexian-station/asbase1 40 -28 0 0.5 0.5 0 0 0 
+( 3789 143 85 ) ( 3789 144 85 ) ( 3792 144 85 ) attrexian-station/asbase1 40 32 0 0.5 0.5 0 0 0 
+( 3792 144 83 ) ( 3789 144 83 ) ( 3789 143 83 ) attrexian-station/asbase1 40 32 0 0.5 0.5 0 0 0 
+}
+// brush 7
+{
+( 3789 144 77 ) ( 3789 143 77 ) ( 3789 143 75 ) attrexian-station/asbase1 -32 -26 0 0.5 0.5 0 0 0 
+( 3792 144 77 ) ( 3789 144 77 ) ( 3789 144 75 ) attrexian-station/asbase1 40 -26 0 0.5 0.5 0 0 0 
+( 3792 143 77 ) ( 3792 144 77 ) ( 3792 144 75 ) attrexian-station/asbase1 -32 -26 0 0.5 0.5 0 0 0 
+( 3789 143 77 ) ( 3792 143 77 ) ( 3792 143 75 ) attrexian-station/asbase1 40 -26 0 0.5 0.5 0 0 0 
+( 3789 143 77 ) ( 3789 144 77 ) ( 3792 144 77 ) attrexian-station/asbase1 40 32 0 0.5 0.5 0 0 0 
+( 3792 144 75 ) ( 3789 144 75 ) ( 3789 143 75 ) attrexian-station/asbase1 40 32 0 0.5 0.5 0 0 0 
+}
+// brush 8
+{
+( 3740 151 68 ) ( 3740 143 68 ) ( 3740 143 20 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3758 144 68 ) ( 3742 144 68 ) ( 3742 144 20 ) attrexian-station/asbase1 -24 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3742 136 83 ) ( 3742 144 83 ) ( 3742 144 35 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3740 143 68 ) ( 3756 143 68 ) ( 3756 143 20 ) attrexian-station/asbase1 -24 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3733 143 85 ) ( 3733 151 85 ) ( 3749 151 85 ) attrexian-station/asbase1 -24 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3753 151 66 ) ( 3737 151 66 ) ( 3737 143 66 ) attrexian-station/asbase1 -24 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 9
+{
+( 3742 144 77 ) ( 3742 143 77 ) ( 3742 143 75 ) attrexian-station/asbase1 -32 -26 0 0.5 0.5 0 0 0 
+( 3745 144 77 ) ( 3742 144 77 ) ( 3742 144 75 ) attrexian-station/asbase1 134 -26 0 0.5 0.5 0 0 0 
+( 3745 143 77 ) ( 3745 144 77 ) ( 3745 144 75 ) attrexian-station/asbase1 -32 -26 0 0.5 0.5 0 0 0 
+( 3742 143 77 ) ( 3745 143 77 ) ( 3745 143 75 ) attrexian-station/asbase1 134 -26 0 0.5 0.5 0 0 0 
+( 3742 143 77 ) ( 3742 144 77 ) ( 3745 144 77 ) attrexian-station/asbase1 134 32 0 0.5 0.5 0 0 0 
+( 3745 144 75 ) ( 3742 144 75 ) ( 3742 143 75 ) attrexian-station/asbase1 134 32 0 0.5 0.5 0 0 0 
+}
+// brush 10
+{
+( 3742 144 85 ) ( 3742 143 85 ) ( 3742 143 83 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3745 144 85 ) ( 3742 144 85 ) ( 3742 144 83 ) attrexian-station/asbase1 134 -28 0 0.5 0.5 0 0 0 
+( 3745 143 85 ) ( 3745 144 85 ) ( 3745 144 83 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3742 143 85 ) ( 3745 143 85 ) ( 3745 143 83 ) attrexian-station/asbase1 134 -28 0 0.5 0.5 0 0 0 
+( 3742 143 85 ) ( 3742 144 85 ) ( 3745 144 85 ) attrexian-station/asbase1 134 32 0 0.5 0.5 0 0 0 
+( 3745 144 83 ) ( 3742 144 83 ) ( 3742 143 83 ) attrexian-station/asbase1 134 32 0 0.5 0.5 0 0 0 
+}
+// brush 11
+{
+( 3796 151 66 ) ( 3780 151 66 ) ( 3780 143 66 ) attrexian-station/asbase1 -110 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3785 144 79 ) ( 3785 143 79 ) ( 3783 143 79 ) attrexian-station/asbase1 -110 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3783 143 68 ) ( 3799 143 68 ) ( 3799 143 20 ) attrexian-station/asbase1 -110 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3785 143 83 ) ( 3785 144 83 ) ( 3785 144 66 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3801 144 68 ) ( 3785 144 68 ) ( 3785 144 20 ) attrexian-station/asbase1 -110 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3783 144 83 ) ( 3783 143 83 ) ( 3783 143 66 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 12
+{
+( 3783 144 85 ) ( 3783 143 85 ) ( 3783 143 83 ) attrexian-station/asbase1 -32 -10 0 0.5 0.5 0 0 0 
+( 3786 144 85 ) ( 3783 144 85 ) ( 3783 144 83 ) attrexian-station/asbase1 -204 -10 0 0.5 0.5 0 0 0 
+( 3785 143 85 ) ( 3785 144 85 ) ( 3785 144 83 ) attrexian-station/asbase1 -32 -10 0 0.5 0.5 0 0 0 
+( 3783 143 85 ) ( 3786 143 85 ) ( 3786 143 83 ) attrexian-station/asbase1 -204 -10 0 0.5 0.5 0 0 0 
+( 3783 143 85 ) ( 3783 144 85 ) ( 3786 144 85 ) attrexian-station/asbase1 -204 32 0 0.5 0.5 0 0 0 
+( 3786 144 81 ) ( 3783 144 81 ) ( 3783 143 81 ) attrexian-station/asbase1 -204 32 0 0.5 0.5 0 0 0 
+}
+// brush 13
+{
+( 3785 151 66 ) ( 3769 151 66 ) ( 3769 143 66 ) attrexian-station/asbase1 -88 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3774 144 79 ) ( 3774 143 79 ) ( 3772 143 79 ) attrexian-station/asbase1 -88 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3772 143 68 ) ( 3788 143 68 ) ( 3788 143 20 ) attrexian-station/asbase1 -88 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3774 143 83 ) ( 3774 144 83 ) ( 3774 144 66 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3790 144 68 ) ( 3774 144 68 ) ( 3774 144 20 ) attrexian-station/asbase1 -88 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3772 144 83 ) ( 3772 143 83 ) ( 3772 143 66 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 14
+{
+( 3772 144 85 ) ( 3772 143 85 ) ( 3772 143 83 ) attrexian-station/asbase1 -32 -10 0 0.5 0.5 0 0 0 
+( 3775 144 85 ) ( 3772 144 85 ) ( 3772 144 83 ) attrexian-station/asbase1 -182 -10 0 0.5 0.5 0 0 0 
+( 3774 143 85 ) ( 3774 144 85 ) ( 3774 144 83 ) attrexian-station/asbase1 -32 -10 0 0.5 0.5 0 0 0 
+( 3772 143 85 ) ( 3775 143 85 ) ( 3775 143 83 ) attrexian-station/asbase1 -182 -10 0 0.5 0.5 0 0 0 
+( 3772 143 85 ) ( 3772 144 85 ) ( 3775 144 85 ) attrexian-station/asbase1 -182 32 0 0.5 0.5 0 0 0 
+( 3775 144 81 ) ( 3772 144 81 ) ( 3772 143 81 ) attrexian-station/asbase1 -182 32 0 0.5 0.5 0 0 0 
+}
+// brush 15
+{
+( 3778 144 85 ) ( 3778 143 85 ) ( 3778 143 83 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3781 144 85 ) ( 3778 144 85 ) ( 3778 144 83 ) attrexian-station/asbase1 62 -28 0 0.5 0.5 0 0 0 
+( 3780 143 85 ) ( 3780 144 85 ) ( 3781 144 83 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3778 143 85 ) ( 3781 143 85 ) ( 3781 143 83 ) attrexian-station/asbase1 62 -28 0 0.5 0.5 0 0 0 
+( 3780 144 85 ) ( 3780 143 85 ) ( 3778 143 85 ) attrexian-station/asbase1 62 32 0 0.5 0.5 0 0 0 
+( 3781 144 83 ) ( 3778 144 83 ) ( 3778 143 83 ) attrexian-station/asbase1 62 32 0 0.5 0.5 0 0 0 
+}
+// brush 16
+{
+( 3776 144 85 ) ( 3776 143 85 ) ( 3776 143 66 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3778 144 85 ) ( 3776 144 85 ) ( 3776 144 66 ) attrexian-station/asbase1 72 -28 0 0.5 0.5 0 0 0 
+( 3778 143 85 ) ( 3778 144 85 ) ( 3778 144 66 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3776 143 85 ) ( 3778 143 85 ) ( 3778 143 66 ) attrexian-station/asbase1 72 -28 0 0.5 0.5 0 0 0 
+( 3776 143 85 ) ( 3776 144 85 ) ( 3778 144 85 ) attrexian-station/asbase1 72 32 0 0.5 0.5 0 0 0 
+( 3778 144 66 ) ( 3776 144 66 ) ( 3776 143 66 ) attrexian-station/asbase1 72 32 0 0.5 0.5 0 0 0 
+}
+// brush 17
+{
+( 3778 144 68 ) ( 3778 143 68 ) ( 3778 143 66 ) attrexian-station/asbase1 -32 -44 0 0.5 0.5 0 0 0 
+( 3781 144 68 ) ( 3778 144 68 ) ( 3778 144 66 ) attrexian-station/asbase1 62 -44 0 0.5 0.5 0 0 0 
+( 3780 144 66 ) ( 3780 143 66 ) ( 3781 143 68 ) attrexian-station/asbase1 -32 -44 0 0.5 0.5 0 0 0 
+( 3778 143 68 ) ( 3781 143 68 ) ( 3781 143 66 ) attrexian-station/asbase1 62 -44 0 0.5 0.5 0 0 0 
+( 3778 143 68 ) ( 3778 144 68 ) ( 3781 144 68 ) attrexian-station/asbase1 62 32 0 0.5 0.5 0 0 0 
+( 3780 143 66 ) ( 3780 144 66 ) ( 3778 144 66 ) attrexian-station/asbase1 62 32 0 0.5 0.5 0 0 0 
+}
+// brush 18
+{
+( 3749 144 68 ) ( 3749 143 68 ) ( 3749 143 66 ) attrexian-station/asbase1 -32 -44 0 0.5 0.5 0 0 0 
+( 3752 144 68 ) ( 3749 144 68 ) ( 3749 144 66 ) attrexian-station/asbase1 120 -44 0 0.5 0.5 0 0 0 
+( 3751 144 66 ) ( 3751 143 66 ) ( 3752 143 68 ) attrexian-station/asbase1 -32 -44 0 0.5 0.5 0 0 0 
+( 3749 143 68 ) ( 3752 143 68 ) ( 3752 143 66 ) attrexian-station/asbase1 120 -44 0 0.5 0.5 0 0 0 
+( 3749 143 68 ) ( 3749 144 68 ) ( 3752 144 68 ) attrexian-station/asbase1 120 32 0 0.5 0.5 0 0 0 
+( 3751 143 66 ) ( 3751 144 66 ) ( 3749 144 66 ) attrexian-station/asbase1 120 32 0 0.5 0.5 0 0 0 
+}
+// brush 19
+{
+( 3747 144 85 ) ( 3747 143 85 ) ( 3747 143 66 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3749 144 85 ) ( 3747 144 85 ) ( 3747 144 66 ) attrexian-station/asbase1 130 -28 0 0.5 0.5 0 0 0 
+( 3749 143 85 ) ( 3749 144 85 ) ( 3749 144 66 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3747 143 85 ) ( 3749 143 85 ) ( 3749 143 66 ) attrexian-station/asbase1 130 -28 0 0.5 0.5 0 0 0 
+( 3747 143 85 ) ( 3747 144 85 ) ( 3749 144 85 ) attrexian-station/asbase1 130 32 0 0.5 0.5 0 0 0 
+( 3749 144 66 ) ( 3747 144 66 ) ( 3747 143 66 ) attrexian-station/asbase1 130 32 0 0.5 0.5 0 0 0 
+}
+// brush 20
+{
+( 3749 144 85 ) ( 3749 143 85 ) ( 3749 143 83 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3752 144 85 ) ( 3749 144 85 ) ( 3749 144 83 ) attrexian-station/asbase1 120 -28 0 0.5 0.5 0 0 0 
+( 3751 143 85 ) ( 3751 144 85 ) ( 3752 144 83 ) attrexian-station/asbase1 -32 -28 0 0.5 0.5 0 0 0 
+( 3749 143 85 ) ( 3752 143 85 ) ( 3752 143 83 ) attrexian-station/asbase1 120 -28 0 0.5 0.5 0 0 0 
+( 3751 144 85 ) ( 3751 143 85 ) ( 3749 143 85 ) attrexian-station/asbase1 120 32 0 0.5 0.5 0 0 0 
+( 3752 144 83 ) ( 3749 144 83 ) ( 3749 143 83 ) attrexian-station/asbase1 120 32 0 0.5 0.5 0 0 0 
+}
+// brush 21
+{
+( 3772 151 66 ) ( 3756 151 66 ) ( 3756 143 66 ) attrexian-station/asbase1 -62 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3752 143 85 ) ( 3752 151 85 ) ( 3768 151 85 ) attrexian-station/asbase1 -62 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3759 143 68 ) ( 3775 143 68 ) ( 3775 143 20 ) attrexian-station/asbase1 -62 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3761 136 83 ) ( 3761 144 83 ) ( 3761 144 35 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3777 144 68 ) ( 3761 144 68 ) ( 3761 144 20 ) attrexian-station/asbase1 -62 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3759 151 68 ) ( 3759 143 68 ) ( 3759 143 20 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 22
+{
+( 3767 151 66 ) ( 3751 151 66 ) ( 3751 143 66 ) attrexian-station/asbase1 -52 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3747 143 85 ) ( 3747 151 85 ) ( 3763 151 85 ) attrexian-station/asbase1 -52 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3754 143 68 ) ( 3770 143 68 ) ( 3770 143 20 ) attrexian-station/asbase1 -52 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3756 136 83 ) ( 3756 144 83 ) ( 3756 144 35 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3772 144 68 ) ( 3756 144 68 ) ( 3756 144 20 ) attrexian-station/asbase1 -52 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3754 151 68 ) ( 3754 143 68 ) ( 3754 143 20 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 23
+{
+( 3759 144 75 ) ( 3756 144 75 ) ( 3756 143 75 ) attrexian-station/asbase1 -150 -224 0 0.5 0.5 0 0 0 
+( 3756 143 77 ) ( 3756 144 77 ) ( 3759 144 77 ) attrexian-station/asbase1 -150 -224 0 0.5 0.5 0 0 0 
+( 3756 143 77 ) ( 3759 143 77 ) ( 3759 143 75 ) attrexian-station/asbase1 -150 -26 0 0.5 0.5 0 0 0 
+( 3759 143 77 ) ( 3759 144 77 ) ( 3759 144 75 ) attrexian-station/asbase1 224 -26 0 0.5 0.5 0 0 0 
+( 3759 144 77 ) ( 3756 144 77 ) ( 3756 144 75 ) attrexian-station/asbase1 -150 -26 0 0.5 0.5 0 0 0 
+( 3756 144 77 ) ( 3756 143 77 ) ( 3756 143 75 ) attrexian-station/asbase1 224 -26 0 0.5 0.5 0 0 0 
+}
+// brush 24
+{
+( 3742 144 68 ) ( 3742 143 68 ) ( 3742 143 66 ) attrexian-station/asbase1 -32 -44 0 0.5 0.5 0 0 0 
+( 3745 144 68 ) ( 3742 144 68 ) ( 3742 144 66 ) attrexian-station/asbase1 134 -44 0 0.5 0.5 0 0 0 
+( 3745 143 68 ) ( 3745 144 68 ) ( 3745 144 66 ) attrexian-station/asbase1 -32 -44 0 0.5 0.5 0 0 0 
+( 3742 143 68 ) ( 3745 143 68 ) ( 3745 143 66 ) attrexian-station/asbase1 134 -44 0 0.5 0.5 0 0 0 
+( 3742 143 68 ) ( 3742 144 68 ) ( 3745 144 68 ) attrexian-station/asbase1 134 32 0 0.5 0.5 0 0 0 
+( 3745 144 66 ) ( 3742 144 66 ) ( 3742 143 66 ) attrexian-station/asbase1 134 32 0 0.5 0.5 0 0 0 
+}
+// brush 25
+{
+( 3733 151 68 ) ( 3733 143 68 ) ( 3733 143 20 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3751 144 68 ) ( 3735 144 68 ) ( 3735 144 20 ) attrexian-station/asbase1 -10 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3735 136 83 ) ( 3735 144 83 ) ( 3735 144 35 ) attrexian-station/asbase1 -32 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3733 143 68 ) ( 3749 143 68 ) ( 3749 143 20 ) attrexian-station/asbase1 -10 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3726 143 83 ) ( 3726 151 83 ) ( 3742 151 83 ) attrexian-station/asbase1 -10 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3746 151 66 ) ( 3730 151 66 ) ( 3730 143 66 ) attrexian-station/asbase1 -10 32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 26
+{
+( 3809 151 66 ) ( 3793 151 66 ) ( 3793 143 66 ) attrexian-station/asbase1 -136 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3789 143 85 ) ( 3789 151 85 ) ( 3805 151 85 ) attrexian-station/asbase1 -136 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3796 143 68 ) ( 3812 143 68 ) ( 3812 143 20 ) attrexian-station/asbase1 -136 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3798 136 83 ) ( 3798 144 83 ) ( 3798 144 35 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3814 144 68 ) ( 3798 144 68 ) ( 3798 144 20 ) attrexian-station/asbase1 -136 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3796 151 68 ) ( 3796 143 68 ) ( 3796 143 20 ) attrexian-station/asbase1 224 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 27
+{
+( 3798 144 79 ) ( 3798 143 79 ) ( 3801 143 66 ) attrexian-station/asbase1 42 -38 0 0.5 0.5 0 0 0 
+( 3801 144 72 ) ( 3801 143 72 ) ( 3798 143 85 ) attrexian-station/asbase1 42 -38 0 0.5 0.5 0 0 0 
+( 3798 143 85 ) ( 3801 143 85 ) ( 3801 143 83 ) attrexian-station/asbase1 -234 -28 0 0.5 0.5 0 0 0 
+( 3801 143 72 ) ( 3801 144 72 ) ( 3801 144 66 ) attrexian-station/asbase1 224 -28 0 0.5 0.5 0 0 0 
+( 3801 144 85 ) ( 3798 144 85 ) ( 3798 144 83 ) attrexian-station/asbase1 -234 -28 0 0.5 0.5 0 0 0 
+( 3798 143 79 ) ( 3798 144 79 ) ( 3798 144 85 ) attrexian-station/asbase1 224 -28 0 0.5 0.5 0 0 0 
+}
+// brush 28
+{
+( 3765 144 79 ) ( 3765 143 79 ) ( 3768 143 66 ) attrexian-station/asbase1 42 -38 0 0.5 0.5 0 0 0 
+( 3768 144 72 ) ( 3768 143 72 ) ( 3765 143 85 ) attrexian-station/asbase1 42 -38 0 0.5 0.5 0 0 0 
+( 3765 143 85 ) ( 3768 143 85 ) ( 3768 143 83 ) attrexian-station/asbase1 -168 -28 0 0.5 0.5 0 0 0 
+( 3768 143 72 ) ( 3768 144 72 ) ( 3768 144 66 ) attrexian-station/asbase1 224 -28 0 0.5 0.5 0 0 0 
+( 3768 144 85 ) ( 3765 144 85 ) ( 3765 144 83 ) attrexian-station/asbase1 -168 -28 0 0.5 0.5 0 0 0 
+( 3765 143 79 ) ( 3765 144 79 ) ( 3765 144 85 ) attrexian-station/asbase1 224 -28 0 0.5 0.5 0 0 0 
+}
+}
+// entity 7
+{
+"wait" "2"
+"message" "Toggeling Pathnodes - Works only on a listen server"
+"thread" "tooglePathNodes"
+"classname" "trigger_multiple"
+// brush 0
+{
+( 3840 -168 32 ) ( 3776 -168 32 ) ( 3776 -192 32 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( 3768 -192 64 ) ( 3768 -168 64 ) ( 3832 -168 64 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( 3776 -192 40 ) ( 3840 -192 40 ) ( 3840 -192 32 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( 3824 -192 40 ) ( 3824 -168 40 ) ( 3824 -168 32 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( 3840 -184 40 ) ( 3776 -184 40 ) ( 3776 -184 32 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( 3728 -168 40 ) ( 3728 -192 40 ) ( 3728 -192 32 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+}
+}
+// entity 8
+{
+"note" "this is here as a effect"
+"classname" "detail"
+// brush 0
+{
+( 3584 240 0 ) ( 3576 240 0 ) ( 3576 168 0 ) common/caulk -48 0 0 0.5 0.5 0 1184 0 
+( 3576 168 32 ) ( 3584 168 32 ) ( 3584 168 0 ) common/caulk -48 0 0 0.5 0.5 0 1184 0 
+( 3576 160 32 ) ( 3576 232 32 ) ( 3576 232 0 ) attrexian-station/asglass1 0 0 0 0.5 0.5 536870912 1024 0 
+( 3560 256 32 ) ( 3552 256 32 ) ( 3552 256 0 ) common/caulk -48 0 0 0.5 0.5 0 1184 0 
+( 3568 240 32 ) ( 3568 168 32 ) ( 3568 168 0 ) attrexian-station/asglass1 0 0 0 0.5 0.5 536870912 1024 0 
+( 3568 168 56 ) ( 3572 256 56 ) ( 3576 168 56 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+// brush 1
+{
+( 3584 168 128 ) ( 3584 240 128 ) ( 3592 240 128 ) common/caulk -48 0 0 0.5 0.5 0 1184 0 
+( 3576 168 32 ) ( 3584 168 32 ) ( 3584 168 0 ) common/caulk -48 0 0 0.5 0.5 0 1184 0 
+( 3576 160 32 ) ( 3576 232 32 ) ( 3576 232 0 ) attrexian-station/asglass1 0 0 0 0.5 0.5 536870912 1024 0 
+( 3560 256 32 ) ( 3552 256 32 ) ( 3552 256 0 ) common/caulk -48 0 0 0.5 0.5 0 1184 0 
+( 3568 240 32 ) ( 3568 168 32 ) ( 3568 168 0 ) attrexian-station/asglass1 0 0 0 0.5 0.5 536870912 1024 0 
+( 3570.5 256 64 ) ( 3569 168 64 ) ( 3572 168 64 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+}
+// entity 9
+{
+"target" "weldedDoor1_pathNode2"
+"targetname" "weldedDoor1_pathNode1"
+"origin" "3680 216 0"
+"classname" "info_pathnode"
+}
+// entity 10
+{
+"spawnflags" "1"
+"targetname" "weldedDoor1_weldMark"
+"classname" "script_object"
+// brush 0
+ {
+  patchDef2
+  {
+   attrexian-colony/blast1
+   ( 3 3 671088640 536888320 0  )
+(
+( ( 3674 160 30 0 1 ) ( 3674 160 16.500000 0 -2 ) ( 3674 160 3 0 -5 ) )
+( ( 3680 164 30 0.500000 1 ) ( 3680 164 16.500000 0.500000 -2 ) ( 3680 164 3 0.500000 -5 ) )
+( ( 3686 160 30 1 1 ) ( 3686 160 16.500000 1 -2 ) ( 3686 160 3 1 -5 ) )
+)
+  }
+ }
+// brush 1
+ {
+  patchDef2
+  {
+   attrexian-colony/blast1
+   ( 3 3 671088640 536888320 0  )
+(
+( ( 3706 160 77 0 1 ) ( 3706 160 63 0 -2 ) ( 3706 160 49 0 -5 ) )
+( ( 3712 164 77 0.500000 1 ) ( 3712 164 63 0.500000 -2 ) ( 3712 164 49 0.500000 -5 ) )
+( ( 3718 160 77 1 1 ) ( 3718 160 63 1 -2 ) ( 3718 160 49 1 -5 ) )
+)
+  }
+ }
+}
+// entity 11
+{
+"targetname" "weldedDoor1"
+"classname" "func_door"
+"angle" "180"
+"spawnflags" "64"
+// brush 0
+ {
+  patchDef2
+  {
+   attrexian-colony/blast1
+   ( 3 3 671088640 536888320 0  )
+(
+( ( 3712 152 46 0 0.500000 ) ( 3709 151 46 0 0.750000 ) ( 3702 152 46 0 1 ) )
+( ( 3712 152 63.639526 0.500000 0.500000 ) ( 3712 149 65.360474 0.500000 0.750000 ) ( 3702 152 63.639526 0.500000 1 ) )
+( ( 3712 152 81.279053 1 0.500000 ) ( 3709 151 83 1 0.750000 ) ( 3702 152 81.279053 1 1 ) )
+)
+  }
+ }
+// brush 1
+ {
+  patchDef2
+  {
+   attrexian-colony/blast1
+   ( 3 3 671088640 536888320 0  )
+(
+( ( 3680 152 -2.000002 0 0.500000 ) ( 3677 151 -2.000002 0 0.750000 ) ( 3670 152 -2.000002 0 1 ) )
+( ( 3680 152 15.639534 0.500000 0.500000 ) ( 3680 149 17.360462 0.500000 0.750000 ) ( 3670 152 15.639534 0.500000 1 ) )
+( ( 3680 152 33.279076 1 0.500000 ) ( 3677 151 35 1 0.750000 ) ( 3670 152 33.279076 1 1 ) )
+)
+  }
+ }
+// brush 2
+{
+( 3728 168 0 ) ( 3640 168 0 ) ( 3640 144 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3640 144 128 ) ( 3640 168 128 ) ( 3728 168 128 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3640 152 128 ) ( 3728 152 128 ) ( 3728 152 0 ) k-7_starbase/k7_door1a -192 0 0 0.25 0.25 0 0 0 
+( 3728 160 128 ) ( 3640 160 128 ) ( 3640 160 0 ) k-7_starbase/k7_door1a -192 0 0 0.25 0.25 0 0 0 
+( 3632 168 128 ) ( 3632 144 128 ) ( 3632 144 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3680 160 0 ) ( 3680 152 0 ) ( 3680 156 128 ) attrexian-colony/acpipe1 0 0 0 -0.0625 0.25 0 0 0 
+}
+// brush 3
+{
+( 3640 152 128 ) ( 3728 152 128 ) ( 3728 152 0 ) k-7_starbase/k7_door1a -192 0 0 0.25 0.25 0 0 0 
+( 3728 160 128 ) ( 3640 160 128 ) ( 3640 160 0 ) k-7_starbase/k7_door1a -192 0 0 0.25 0.25 0 0 0 
+( 3680 152 32 ) ( 3680 160 32 ) ( 3680 160 96 ) attrexian-colony/acpipe1 0 0 0 -0.0625 0.25 0 0 0 
+( 3712 160 48 ) ( 3712 152 48 ) ( 3712 152 80 ) attrexian-colony/acpipe1 0 255 0 -0.0625 0.0625076 0 0 0 
+( 3712 160 80 ) ( 3712 152 80 ) ( 3680 152 96 ) attrexian-colony/acpipe1 127 0 90 -0.0625 -0.0625 0 0 0 
+( 3680 160 32 ) ( 3680 152 32 ) ( 3712 152 48 ) attrexian-colony/acpipe1 127 0 90 -0.0625 -0.0625 0 0 0 
+}
+}
+// entity 12
+{
+"spawnflags" "64"
+"angle" "0"
+"classname" "func_door"
+// brush 0
+ {
+  patchDef2
+  {
+   attrexian-colony/blast1
+   ( 3 3 671088640 536888320 0  )
+(
+( ( 3882 152 17.999990 0 1 ) ( 3875 151 17.999990 0 0.750000 ) ( 3872 152 17.999990 0 0.500000 ) )
+( ( 3882 152 45.174438 0.500000 1 ) ( 3872 149 47.825562 0.500000 0.750000 ) ( 3872 152 45.174438 0.500000 0.500000 ) )
+( ( 3882 152 72.348877 1 1 ) ( 3875 151 75 1 0.750000 ) ( 3872 152 72.348877 1 0.500000 ) )
+)
+  }
+ }
+// brush 1
+{
+( 3872 152 1 ) ( 3872 160 1 ) ( 3872 156 129 ) attrexian-colony/acpipe1 0 0 0 -0.0625 0.25 0 0 0 
+( 3920 160 128 ) ( 3832 160 128 ) ( 3832 160 0 ) forever/fdoor_bridge2 213 0 0 -0.375 0.25 0 0 0 
+( 3920 144 128 ) ( 3920 168 128 ) ( 3920 168 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3832 152 128 ) ( 3920 152 128 ) ( 3920 152 0 ) forever/fdoor_bridge2 -214 0 0 0.375 0.25 0 0 0 
+( 3832 144 129 ) ( 3832 168 129 ) ( 3920 168 129 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3920 168 0 ) ( 3832 168 0 ) ( 3832 144 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+}
+// entity 13
+{
+"spawnflags" "64"
+"angle" "180"
+"classname" "func_door"
+"targetname" "weldedDoor2"
+// brush 0
+ {
+  patchDef2
+  {
+   attrexian-colony/blast1
+   ( 3 3 671088640 536888320 0  )
+(
+( ( 3872 152 17.999990 0 0.500000 ) ( 3869 151 17.999990 0 0.750000 ) ( 3862 152 17.999990 0 1 ) )
+( ( 3872 152 45.174438 0.500000 0.500000 ) ( 3872 149 47.825562 0.500000 0.750000 ) ( 3862 152 45.174438 0.500000 1 ) )
+( ( 3872 152 72.348877 1 0.500000 ) ( 3867 151 75 1 0.750000 ) ( 3862 152 72.348877 1 1 ) )
+)
+  }
+ }
+// brush 1
+{
+( 3872 160 1 ) ( 3872 152 1 ) ( 3872 156 129 ) attrexian-colony/acpipe1 0 0 0 -0.0625 0.25 0 0 0 
+( 3824 168 128 ) ( 3824 144 128 ) ( 3824 144 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3920 160 128 ) ( 3832 160 128 ) ( 3832 160 0 ) forever/fdoor_bridge2 213 0 0 -0.375 0.25 0 0 0 
+( 3832 152 128 ) ( 3920 152 128 ) ( 3920 152 0 ) forever/fdoor_bridge2 -214 0 0 0.375 0.25 0 0 0 
+( 3832 144 129 ) ( 3832 168 129 ) ( 3920 168 129 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3920 168 0 ) ( 3832 168 0 ) ( 3832 144 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+}
+}
+// entity 14
+{
+"classname" "func_door"
+"angle" "0"
+"spawnflags" "64"
+// brush 0
+{
+( 3728 168 0 ) ( 3640 168 0 ) ( 3640 144 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3640 152 128 ) ( 3728 152 128 ) ( 3728 152 0 ) k-7_starbase/k7_door1a -192 0 0 0.25 0.25 0 0 0 
+( 3728 160 128 ) ( 3640 160 128 ) ( 3640 160 0 ) k-7_starbase/k7_door1a -192 0 0 0.25 0.25 0 0 0 
+( 3680 152 0 ) ( 3680 160 0 ) ( 3680 156 128 ) attrexian-colony/acpipe1 0 0 0 -0.0625 0.25 0 0 0 
+( 3712 152 48 ) ( 3712 160 48 ) ( 3712 160 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3712 160 48 ) ( 3712 152 48 ) ( 3680 152 32 ) attrexian-colony/acpipe1 127 0 90 -0.0625 -0.0625 0 0 0 
+}
+// brush 1
+{
+( 3640 144 128 ) ( 3640 168 128 ) ( 3728 168 128 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3640 152 128 ) ( 3728 152 128 ) ( 3728 152 0 ) k-7_starbase/k7_door1a -192 0 0 0.25 0.25 0 0 0 
+( 3728 160 128 ) ( 3640 160 128 ) ( 3640 160 0 ) k-7_starbase/k7_door1a -192 0 0 0.25 0.25 0 0 0 
+( 3680 152 96 ) ( 3680 160 96 ) ( 3680 160 128 ) attrexian-colony/acpipe1 0 0 0 -0.0625 0.25 0 0 0 
+( 3712 160 80 ) ( 3712 152 80 ) ( 3712 152 128 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3680 160 96 ) ( 3680 152 96 ) ( 3712 152 80 ) attrexian-colony/acpipe1 127 0 90 -0.0625 -0.0625 0 0 0 
+}
+// brush 2
+{
+( 3728 168 0 ) ( 3640 168 0 ) ( 3640 144 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3640 144 128 ) ( 3640 168 128 ) ( 3728 168 128 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3640 152 128 ) ( 3728 152 128 ) ( 3728 152 0 ) k-7_starbase/k7_door1a -192 0 0 0.25 0.25 0 0 0 
+( 3728 144 128 ) ( 3728 168 128 ) ( 3728 168 0 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 3728 160 128 ) ( 3640 160 128 ) ( 3640 160 0 ) k-7_starbase/k7_door1a -192 0 0 0.25 0.25 0 0 0 
+( 3712 154 0 ) ( 3712 157 0 ) ( 3712 155.5 128 ) attrexian-colony/acpipe1 0 0 0 -0.0625 0.25 0 0 0 
+}
+// brush 3
+ {
+  patchDef2
+  {
+   attrexian-colony/blast1
+   ( 3 3 671088640 536888320 0  )
+(
+( ( 3722 152 46 0 1 ) ( 3715 151 46 0 0.750000 ) ( 3712 152 46 0 0.500000 ) )
+( ( 3722 152 63.639526 0.500000 1 ) ( 3712 149 65.360474 0.500000 0.750000 ) ( 3712 152 63.639526 0.500000 0.500000 ) )
+( ( 3722 152 81.279053 1 1 ) ( 3715 151 83 1 0.750000 ) ( 3712 152 81.279053 1 0.500000 ) )
+)
+  }
+ }
+// brush 4
+ {
+  patchDef2
+  {
+   attrexian-colony/blast1
+   ( 3 3 671088640 536888320 0  )
+(
+( ( 3690 152 -2.000001 0 1 ) ( 3683 151 -2.000001 0 0.750000 ) ( 3680 152 -2.000001 0 0.500000 ) )
+( ( 3690 152 15.639534 0.500000 1 ) ( 3680 149 17.360462 0.500000 0.750000 ) ( 3680 152 15.639534 0.500000 0.500000 ) )
+( ( 3690 152 33.279076 1 1 ) ( 3683 151 35 1 0.750000 ) ( 3680 152 33.279076 1 0.500000 ) )
+)
+  }
+ }
+}
+// entity 15
+{
+"origin" "3712.00 152.00 72.00"
+"targetname" "weldedDoor1_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 16
+{
+"classname" "detail"
+// brush 0
+{
+( 3737 144 109 ) ( 3735 144 109 ) ( 3735 143 109 ) attrexian-station/asbase1 -102 -224 0 0.5 0.5 0 0 0 
+( 3735 143 128 ) ( 3735 144 128 ) ( 3737 144 128 ) attrexian-station/asbase1 -102 -224 0 0.5 0.5 0 0 0 
+( 3735 143 128 ) ( 3737 143 128 ) ( 3737 143 109 ) attrexian-station/asbase1 -102 58 0 0.5 0.5 0 0 0 
+( 3737 143 128 ) ( 3737 144 128 ) ( 3737 144 109 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+( 3737 144 128 ) ( 3735 144 128 ) ( 3735 144 109 ) attrexian-station/asbase1 -102 58 0 0.5 0.5 0 0 0 
+( 3735 144 128 ) ( 3735 143 128 ) ( 3735 143 109 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+}
+// brush 1
+{
+( 3745 144 109 ) ( 3743 144 109 ) ( 3743 143 109 ) attrexian-station/asbase1 -118 -224 0 0.5 0.5 0 0 0 
+( 3743 143 128 ) ( 3743 144 128 ) ( 3745 144 128 ) attrexian-station/asbase1 -118 -224 0 0.5 0.5 0 0 0 
+( 3743 143 128 ) ( 3745 143 128 ) ( 3745 143 109 ) attrexian-station/asbase1 -118 58 0 0.5 0.5 0 0 0 
+( 3745 143 128 ) ( 3745 144 128 ) ( 3745 144 109 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+( 3745 144 128 ) ( 3743 144 128 ) ( 3743 144 109 ) attrexian-station/asbase1 -118 58 0 0.5 0.5 0 0 0 
+( 3743 144 128 ) ( 3743 143 128 ) ( 3743 143 109 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+}
+// brush 2
+{
+( 3752 144 126 ) ( 3749 144 126 ) ( 3749 143 126 ) attrexian-station/asbase1 -136 -224 0 0.5 0.5 0 0 0 
+( 3749 143 128 ) ( 3749 144 128 ) ( 3752 144 128 ) attrexian-station/asbase1 -136 -224 0 0.5 0.5 0 0 0 
+( 3749 143 128 ) ( 3752 143 128 ) ( 3752 143 126 ) attrexian-station/asbase1 -136 58 0 0.5 0.5 0 0 0 
+( 3752 143 128 ) ( 3752 144 128 ) ( 3752 144 126 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+( 3752 144 128 ) ( 3749 144 128 ) ( 3749 144 126 ) attrexian-station/asbase1 -136 58 0 0.5 0.5 0 0 0 
+( 3749 144 128 ) ( 3749 143 128 ) ( 3749 143 126 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+}
+// brush 3
+{
+( 3752 144 118 ) ( 3749 144 118 ) ( 3749 143 118 ) attrexian-station/asbase1 -136 -224 0 0.5 0.5 0 0 0 
+( 3749 143 120 ) ( 3749 144 120 ) ( 3752 144 120 ) attrexian-station/asbase1 -136 -224 0 0.5 0.5 0 0 0 
+( 3749 143 120 ) ( 3752 143 120 ) ( 3752 143 118 ) attrexian-station/asbase1 -136 60 0 0.5 0.5 0 0 0 
+( 3752 143 120 ) ( 3752 144 120 ) ( 3752 144 118 ) attrexian-station/asbase1 224 60 0 0.5 0.5 0 0 0 
+( 3752 144 120 ) ( 3749 144 120 ) ( 3749 144 118 ) attrexian-station/asbase1 -136 60 0 0.5 0.5 0 0 0 
+( 3749 144 120 ) ( 3749 143 120 ) ( 3749 143 118 ) attrexian-station/asbase1 224 60 0 0.5 0.5 0 0 0 
+}
+// brush 4
+{
+( 3752 144 109 ) ( 3749 144 109 ) ( 3749 143 109 ) attrexian-station/asbase1 -136 -224 0 0.5 0.5 0 0 0 
+( 3749 143 111 ) ( 3749 144 111 ) ( 3752 144 111 ) attrexian-station/asbase1 -136 -224 0 0.5 0.5 0 0 0 
+( 3749 143 111 ) ( 3752 143 111 ) ( 3752 143 109 ) attrexian-station/asbase1 -136 42 0 0.5 0.5 0 0 0 
+( 3752 143 111 ) ( 3752 144 111 ) ( 3752 144 109 ) attrexian-station/asbase1 224 42 0 0.5 0.5 0 0 0 
+( 3752 144 111 ) ( 3749 144 111 ) ( 3749 144 109 ) attrexian-station/asbase1 -136 42 0 0.5 0.5 0 0 0 
+( 3749 144 111 ) ( 3749 143 111 ) ( 3749 143 109 ) attrexian-station/asbase1 224 42 0 0.5 0.5 0 0 0 
+}
+// brush 5
+{
+( 3760 151 109 ) ( 3744 151 109 ) ( 3744 143 109 ) attrexian-station/asbase1 -38 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3740 143 128 ) ( 3740 151 128 ) ( 3756 151 128 ) attrexian-station/asbase1 -38 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3747 143 111 ) ( 3763 143 111 ) ( 3763 143 63 ) attrexian-station/asbase1 -38 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3749 136 126 ) ( 3749 144 126 ) ( 3749 144 78 ) attrexian-station/asbase1 224 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3765 144 111 ) ( 3749 144 111 ) ( 3749 144 63 ) attrexian-station/asbase1 -38 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3747 151 111 ) ( 3747 143 111 ) ( 3747 143 63 ) attrexian-station/asbase1 224 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 6
+{
+( 3767 151 109 ) ( 3751 151 109 ) ( 3751 143 109 ) attrexian-station/asbase1 -52 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3747 143 128 ) ( 3747 151 128 ) ( 3763 151 128 ) attrexian-station/asbase1 -52 -224 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3754 143 111 ) ( 3770 143 111 ) ( 3770 143 63 ) attrexian-station/asbase1 -52 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3756 136 126 ) ( 3756 144 126 ) ( 3756 144 78 ) attrexian-station/asbase1 224 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3772 144 111 ) ( 3756 144 111 ) ( 3756 144 63 ) attrexian-station/asbase1 -52 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3754 151 111 ) ( 3754 143 111 ) ( 3754 143 63 ) attrexian-station/asbase1 224 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 7
+{
+( 3759 144 109 ) ( 3756 144 109 ) ( 3756 143 109 ) attrexian-station/asbase1 -150 -224 0 0.5 0.5 0 0 0 
+( 3756 143 111 ) ( 3756 144 111 ) ( 3759 144 111 ) attrexian-station/asbase1 -150 -224 0 0.5 0.5 0 0 0 
+( 3756 143 111 ) ( 3759 143 111 ) ( 3759 143 109 ) attrexian-station/asbase1 -150 42 0 0.5 0.5 0 0 0 
+( 3759 143 111 ) ( 3759 144 111 ) ( 3759 144 109 ) attrexian-station/asbase1 224 42 0 0.5 0.5 0 0 0 
+( 3759 144 111 ) ( 3756 144 111 ) ( 3756 144 109 ) attrexian-station/asbase1 -150 42 0 0.5 0.5 0 0 0 
+( 3756 144 111 ) ( 3756 143 111 ) ( 3756 143 109 ) attrexian-station/asbase1 224 42 0 0.5 0.5 0 0 0 
+}
+// brush 8
+{
+( 3766 144 126 ) ( 3763 144 126 ) ( 3763 143 126 ) attrexian-station/asbase1 -164 -224 0 0.5 0.5 0 0 0 
+( 3763 143 128 ) ( 3763 144 128 ) ( 3766 144 128 ) attrexian-station/asbase1 -164 -224 0 0.5 0.5 0 0 0 
+( 3763 143 128 ) ( 3766 143 128 ) ( 3766 143 126 ) attrexian-station/asbase1 -164 58 0 0.5 0.5 0 0 0 
+( 3766 143 128 ) ( 3766 144 128 ) ( 3766 144 126 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+( 3766 144 128 ) ( 3763 144 128 ) ( 3763 144 126 ) attrexian-station/asbase1 -164 58 0 0.5 0.5 0 0 0 
+( 3763 144 128 ) ( 3763 143 128 ) ( 3763 143 126 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+}
+// brush 9
+{
+( 3763 144 109 ) ( 3761 144 109 ) ( 3761 143 109 ) attrexian-station/asbase1 -154 -224 0 0.5 0.5 0 0 0 
+( 3761 143 128 ) ( 3761 144 128 ) ( 3763 144 128 ) attrexian-station/asbase1 -154 -224 0 0.5 0.5 0 0 0 
+( 3761 143 128 ) ( 3763 143 128 ) ( 3763 143 109 ) attrexian-station/asbase1 -154 58 0 0.5 0.5 0 0 0 
+( 3763 143 128 ) ( 3763 144 128 ) ( 3763 144 109 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+( 3763 144 128 ) ( 3761 144 128 ) ( 3761 144 109 ) attrexian-station/asbase1 -154 58 0 0.5 0.5 0 0 0 
+( 3761 144 128 ) ( 3761 143 128 ) ( 3761 143 109 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+}
+// brush 10
+{
+( 3766 144 109 ) ( 3763 144 109 ) ( 3763 143 109 ) attrexian-station/asbase1 -164 -224 0 0.5 0.5 0 0 0 
+( 3763 143 111 ) ( 3763 144 111 ) ( 3766 144 111 ) attrexian-station/asbase1 -164 -224 0 0.5 0.5 0 0 0 
+( 3763 143 111 ) ( 3766 143 111 ) ( 3766 143 109 ) attrexian-station/asbase1 -164 42 0 0.5 0.5 0 0 0 
+( 3766 143 111 ) ( 3766 144 111 ) ( 3766 144 109 ) attrexian-station/asbase1 224 42 0 0.5 0.5 0 0 0 
+( 3766 144 111 ) ( 3763 144 111 ) ( 3763 144 109 ) attrexian-station/asbase1 -164 42 0 0.5 0.5 0 0 0 
+( 3763 144 111 ) ( 3763 143 111 ) ( 3763 143 109 ) attrexian-station/asbase1 224 42 0 0.5 0.5 0 0 0 
+}
+// brush 11
+{
+( 3768 143 111 ) ( 3768 144 111 ) ( 3766 144 109 ) attrexian-station/asbase1 -164 -224 0 0.5 0.5 0 0 0 
+( 3768 144 126 ) ( 3768 143 126 ) ( 3766 143 128 ) attrexian-station/asbase1 -164 -224 0 0.5 0.5 0 0 0 
+( 3766 143 128 ) ( 3768 143 128 ) ( 3768 143 109 ) attrexian-station/asbase1 -164 58 0 0.5 0.5 0 0 0 
+( 3768 144 111 ) ( 3768 143 111 ) ( 3768 143 126 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+( 3768 144 128 ) ( 3766 144 128 ) ( 3766 144 109 ) attrexian-station/asbase1 -164 58 0 0.5 0.5 0 0 0 
+( 3766 144 128 ) ( 3766 143 128 ) ( 3766 143 109 ) attrexian-station/asbase1 224 58 0 0.5 0.5 0 0 0 
+}
+// brush 12
+{
+( 3737 144 109 ) ( 3737 144 114 ) ( 3737 143 114 ) attrexian-station/asbase1 202 50 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3740 143 120 ) ( 3740 144 120 ) ( 3740 144 113 ) attrexian-station/asbase1 162 90 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3723 143 63 ) ( 3723 143 111 ) ( 3739 143 111 ) attrexian-station/asbase1 -26 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3740 144 120 ) ( 3740 143 120 ) ( 3737 143 114 ) attrexian-station/asbase1 224 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3737 144 63 ) ( 3737 144 111 ) ( 3721 144 111 ) attrexian-station/asbase1 -26 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3737 143 109 ) ( 3740 143 113 ) ( 3740 144 113 ) attrexian-station/asbase1 224 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+// brush 13
+{
+( 3743 143 114 ) ( 3743 144 114 ) ( 3743 144 109 ) attrexian-station/asbase1 202 50 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3740 144 120 ) ( 3740 143 120 ) ( 3740 143 113 ) attrexian-station/asbase1 162 90 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3741 143 111 ) ( 3757 143 111 ) ( 3757 143 63 ) attrexian-station/asbase1 -26 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3740 143 120 ) ( 3740 144 120 ) ( 3743 144 114 ) attrexian-station/asbase1 224 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3759 144 111 ) ( 3743 144 111 ) ( 3743 144 63 ) attrexian-station/asbase1 -26 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 3740 144 113 ) ( 3740 143 113 ) ( 3743 143 109 ) attrexian-station/asbase1 224 -2 0 0.5 0.5 0 0 0 +surfaceparm detail 
+}
+}
+// entity 17
+{
+"origin" "3673.00 -151.00 61.00"
+"model" "models/weapons/worldmodel-tricorder.tik"
+"classname" "weapons_federation-tricorder"
+}
+// entity 18
+{
+"origin" "3674.00 -96.00 45.00"
+"model" "models/weapons/worldmodel-phaser-stx.tik"
+"classname" "weapons_federation-phaser-stx"
+}
+// entity 19
+{
+"classname" "char_borg_drone-male"
+"model" "models/char/borg_drone-male.tik"
+"origin" "3671.00 223.00  0.00"
+"targetname" "drone"
+}
+// entity 20
+{
+"classname" "info_player_deathmatch"
+"origin" "3536 33 0"
+"targetname" "ipd2"
+}
+// entity 21
+{
+"classname" "info_player_start"
+"origin" "3536 -7 0"
+}
+// entity 22
+{
+"origin" "3536 -47 0"
+"classname" "info_player_deathmatch"
+"targetname" "ipd3"
+}
+// entity 23
+{
+"origin" "3536 89 0"
+"classname" "info_player_deathmatch"
+"targetname" "ipd1"
+}
+// entity 24
+{
+"classname" "info_player_deathmatch"
+"origin" "3536 -111 0"
+"targetname" "ipd4"
+}
+// entity 25
+{
+"origin" "3872.00 152.00 62.00"
+"targetname" "weldedDoor2_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 26
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor2_weld"
+"origin" "3872.00 152.00 59.00"
+}
+// entity 27
+{
+"origin" "3872.00 152.00 56.00"
+"targetname" "weldedDoor2_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 28
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor2_weld"
+"origin" "3872.00 152.00 53.00"
+}
+// entity 29
+{
+"origin" "3872.00 152.00 50.00"
+"targetname" "weldedDoor2_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 30
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor2_weld"
+"origin" "3872.00 152.00 46.00"
+}
+// entity 31
+{
+"origin" "3872.00 152.00 43.00"
+"targetname" "weldedDoor2_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 32
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor1_weld"
+"origin" "3712.00 152.00 68.00"
+}
+// entity 33
+{
+"origin" "3712.00 152.00 65.00"
+"targetname" "weldedDoor1_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 34
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor1_weld"
+"origin" "3712.00 152.00 62.00"
+}
+// entity 35
+{
+"origin" "3712.00 152.00 59.00"
+"targetname" "weldedDoor1_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 36
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor1_weld"
+"origin" "3712.00 152.00 55.00"
+}
+// entity 37
+{
+"origin" "3712.00 152.00 52.00"
+"targetname" "weldedDoor1_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 38
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor1_weld"
+"origin" "3680.00 152.00 25.00"
+}
+// entity 39
+{
+"origin" "3680.00 152.00 22.00"
+"targetname" "weldedDoor1_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 40
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor1_weld"
+"origin" "3680.00 152.00 19.00"
+}
+// entity 41
+{
+"origin" "3680.00 152.00 16.00"
+"targetname" "weldedDoor1_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 42
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor1_weld"
+"origin" "3680.00 152.00 13.00"
+}
+// entity 43
+{
+"origin" "3680.00 152.00  9.00"
+"targetname" "weldedDoor1_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 44
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor1_weld"
+"origin" "3680.00 152.00  6.00"
+}
+// entity 45
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor2_weld"
+"origin" "3872.00 152.00 41.00"
+}
+// entity 46
+{
+"origin" "3872.00 152.00 38.00"
+"targetname" "weldedDoor2_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 47
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor2_weld"
+"origin" "3872.00 152.00 35.00"
+}
+// entity 48
+{
+"origin" "3872.00 152.00 31.00"
+"targetname" "weldedDoor2_weld"
+"classname" "coop_weld_weld"
+"model" "models/coop/weld/weld.tik"
+}
+// entity 49
+{
+"model" "models/coop/weld/weld.tik"
+"classname" "coop_weld_weld"
+"targetname" "weldedDoor2_weld"
+"origin" "3872.00 152.00 28.00"
+}
+// entity 50
+{
+"spawnflags" "1"
+"targetname" "weldedDoor2_weldMark"
+"classname" "script_object"
+// brush 0
+ {
+  patchDef2
+  {
+   attrexian-colony/blast1
+   ( 3 3 671088640 536888320 0  )
+(
+( ( 3866 160 71 0 1 ) ( 3866 160 46.500000 0 -2 ) ( 3866 160 21.999985 0 -5 ) )
+( ( 3872 163 71 0.500000 1 ) ( 3872 163 46.500000 0.500000 -2 ) ( 3872 163 21.999985 0.500000 -5 ) )
+( ( 3878 160 71 1 1 ) ( 3878 160 46.500000 1 -2 ) ( 3878 160 21.999985 1 -5 ) )
+)
+  }
+ }
+}
+// entity 51
+{
+"classname" "info_pathnode"
+"origin" "3608 216 0"
+}
+// entity 52
+{
+"classname" "info_pathnode"
+"origin" "3496 64 0"
+}
+// entity 53
+{
+"target" "weldedDoor1_pathNode1"
+"targetname" "weldedDoor1_pathNode2"
+"classname" "info_pathnode"
+"origin" "3680 96 0"
+}
+// entity 54
+{
+"origin" "3600 96 0"
+"classname" "info_pathnode"
+}
+// entity 55
+{
+"origin" "3776 96 0"
+"classname" "info_pathnode"
+}
+// entity 56
+{
+"target" "weldedDoor2_pathNode1"
+"targetname" "weldedDoor2_pathNode2"
+"classname" "info_pathnode"
+"origin" "3872 96 0"
+}
+// entity 57
+{
+"target" "weldedDoor2_pathNode2"
+"targetname" "weldedDoor2_pathNode1"
+"origin" "3872 216 0"
+"classname" "info_pathnode"
+}
+// entity 58
+{
+"origin" "3872 32 0"
+"classname" "info_pathnode"
+"targetname" "weldedDoor2_pathNode3"
+"target" "weldedDoor2_pathNode3"
+}
+// entity 59
+{
+"target" "weldedDoor2_pathNode4"
+"targetname" "weldedDoor2_pathNode4"
+"classname" "info_pathnode"
+"origin" "3872 -32 0"
+}
+// entity 60
+{
+"origin" "3592 -8 0"
+"classname" "info_pathnode"
+}
+// entity 61
+{
+"origin" "3384 64 0"
+"classname" "info_pathnode"
+}
+// entity 62
+{
+"classname" "info_pathnode"
+"origin" "3256 64 0"
+}
+// entity 63
+{
+"origin" "3496 -96 0"
+"classname" "info_pathnode"
+}
+// entity 64
+{
+"classname" "info_pathnode"
+"origin" "3384 -96 0"
+}
+// entity 65
+{
+"origin" "3256 -96 0"
+"classname" "info_pathnode"
+}
+// entity 66
+{
+"classname" "info_pathnode"
+"origin" "3592 -96 0"
+}
+// entity 67
+{
+"origin" "3680 -96 0"
+"classname" "info_pathnode"
+}
+// entity 68
+{
+"classname" "info_pathnode"
+"origin" "3776 -96 0"
+}
+// entity 69
+{
+"origin" "3872 -96 0"
+"classname" "info_pathnode"
+}
+// entity 70
+{
+"classname" "info_pathnode"
+"origin" "3728 0 0"
+}
+// entity 71
+{
+"classname" "info_pathnode"
+"origin" "3392 208 0"
+}
+// entity 72
+{
+"origin" "3264 208 0"
+"classname" "info_pathnode"
+}
+// entity 73
+{
+"origin" "3488 208 0"
+"classname" "info_pathnode"
+}
+// entity 74
+{
+"classname" "info_pathnode"
+"origin" "4008 96 0"
+}
+// entity 75
+{
+"origin" "4008 -96 0"
+"classname" "info_pathnode"
+}
+// entity 76
+{
+"origin" "4192 96 0"
+"classname" "info_pathnode"
+}
+// entity 77
+{
+"classname" "info_pathnode"
+"origin" "4192 -96 0"
+}
+// entity 78
+{
+"classname" "info_pathnode"
+"origin" "4000 200 0"
+}
+// entity 79
+{
+"origin" "4216 200 0"
+"classname" "info_pathnode"
+}
+// entity 80
+{
+"classname" "info_pathnode"
+"origin" "4112 208 0"
+}

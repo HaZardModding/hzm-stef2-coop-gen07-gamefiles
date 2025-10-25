@@ -1,0 +1,59 @@
+TIKI
+setup
+{
+scale 1
+fade_dist_mod 1
+lod_scale 2000
+path models/obj/debris/rock
+surface material1 shader textures/enterprise/metal_env
+}
+
+
+init
+{
+server
+	{
+	//archetype "CoopWeld"
+	setsize "-3 -3 -3" "3 3 3"
+	classname "scriptmodel"
+	notsolid
+	}
+}
+
+animations
+{
+idle 	swiperock.tan
+{
+	client
+	{
+	}
+}
+}
+
+/*QUAKED    coop_weld_weld    (0.5 0.25 0.25)    (0 0 0)    (0 0 0)
+Coop Mod WeldPoint - Used for setting up weld points.
+Example level: coop_test-welding
+
+1. Place one or max of 20 at each door you want to weld.
+- All the WeldPoints for one door will group together
+- All the WeldPoint for one door need the same targetname
+
+2. Give a uniqe targetname to the door and the WeldPoint group
+- Example: Door: door1, WeldPoint: door1_weld
+
+3. In the level script include the weld script:
+- #include "co-op/matrix/weld.script"
+
+4. In the level script run setup in main like this
+- thread weld_setupDoor($door1,$door1_weld,"welded","Technician",1);
+- thread weld_setupDoor($door2,$door2_weld,"normal","",0);
+
+Parameters:
+$door1 -> The door destined for welding
+$door1_weld -> The WeldPoint group
+"welded" -> If you want the door welded at start, if not use "normal"
+"Technician" -> Class that should exclusively allowed to weld this, use "" for everyone
+1 -> 1 allowes infinate welding, 0 allowes welding or unwelding just once
+
+
+*/

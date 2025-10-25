@@ -1,0 +1,543 @@
+void weld_setupDoor(entity eDoor, entity eWeld,string sWelded, string sRequiredClass, float bInfinateWeld);
+void weld_handle(entity eDoor, entity eWeld);
+void weld_waitForDoorClosed(entity eDoor);
+void weld_onDamage( entity eWeld );
+void weld_damagedPart();
+void weld_damagedPartUnweld(entity eWeld, entity eDoor, float fDamageCount);
+void weld_damagedPartWeld(entity eWeld, entity eDoor,float fDamageCount);
+void weld_managePaths(string sDoorBaseTargetName, float fDisconnect);
+
+//how often a weldpoint has to be damaged to trigger
+float WELD_DAMAGE_COUNT = 1;
+float UNWELD_DAMAGE_COUNT = 3;
+
+//////////////////////////////////////////////
+//Example level: coop_test-welding
+//
+//	1. Place one or max of 20 at each door you want to weld (models/coop/weld/weld.tik)
+//	- All the WeldPoints for one door will group together
+//	- All the WeldPoint for one door need the same targetname
+//	
+//	2. Give a uniqe targetname to the door and the WeldPoint group
+//	- Example: Door: door1, WeldPoint: door1_weld
+//	
+//	3. In the level script include the weld script:
+//	- #include "co-op/matrix/weld.script"
+//	
+//	4. In the level script run setup in main like this
+//	- thread weld_setupDoor($door1,$door1_weld,"welded","Technician",1);
+//	- thread weld_setupDoor($door2,$door2_weld,"normal","",0);
+//	
+//	Parameters:
+//	eDoor -> The door destined for welding
+//	eWeld -> The WeldPoint group
+//	sWelded -> If you want the door welded at start use "welded", if not use "normal"
+//	sRequiredClass -> Coop Class that should exclusively allowed to weld this, use "" for everyone
+//	bInfinateWeld -> 1 allowes infinate welding, 0 allowes welding or unwelding just once
+//	
+void weld_setupDoor(entity eDoor, entity eWeld, string sWelded, string sRequiredClass, float bInfinateWeld)
+{
+	if(!doesEntityExist(eDoor)){
+		print("Error: weld_setupDoorThread(door,weld,weldstate) door entity does not exist\n");
+		return;
+	}
+	if(!doesEntityExist(eWeld)){
+		print("Error: weld_setupDoorThread(door,weld,weldstate) weld entity does not exist\n");
+		return;
+	}
+			
+	string sTargetNameDoor;
+	sTargetNameDoor = eDoor.getRawTargetName();
+	
+	//weldmark - setup
+	entity eWeldMark;
+	eWeldMark = getEntity(sTargetNameDoor+"_weldMark");
+	if(doesEntityExist(eWeldMark)){
+		eWeldMark.notsolid();
+		eWeldMark.hide();
+	}	
+	
+	//wait for the door to close, if it was for what ever reason open
+	weld_waitForDoorClosed(eDoor);
+	
+	//something went wrong - exit here
+	if(!doesEntityExist(eDoor)){
+		return;
+	}
+	if(!doesEntityExist(eWeld)){
+		return;
+	}
+	
+	//change all to lowercase
+	sRequiredClass	= coop_toLower(sRequiredClass);
+	sWelded			= coop_toLower(sWelded);
+	
+	//remember weld state
+	float bIsWelded;
+	if(sWelded == "welded"){
+		bIsWelded = 1;
+	}
+	
+	//remember door entity number
+	float iDoorEntNum;
+	iDoorEntNum = eDoor.coop_getEntnum();
+	
+	//weld mark (on the opposite) of the door, hidden on default
+	if(doesEntityExist(eWeldMark)){
+		if(bIsWelded){
+			eWeldMark.show();
+		}
+	}
+
+	//iterate trough the each weld item (basically targetnamed model)
+	float iPartsCount;	
+	while(eWeld){
+		//count parts
+		iPartsCount++;
+		
+		//set how often this part was damaged by the phaser
+		eWeld.setFloatVar("damageCount",0);
+		
+		//set entity number of door master
+		eWeld.setFloatVar("doorEntity",iDoorEntNum);
+		
+		//setup weld item - if not welded but weldable show in structuralk integrity mode
+		if(bIsWelded) {
+			eWeld.solid();
+		}
+		else{
+			eWeld.model("fx/fx-plasmachunk-borg.tik");
+			eWeld.viewmode("structuralintegrity");
+			eWeld.notsolid();
+		}
+		
+		//randomize the welds aligment a bit
+		vector vRandAngels;
+		vRandAngels_y = randomInt(360);
+		eWeld.angles(vRandAngels);
+		eWeld.scale(1);
+
+		//start thread for each weld item, and tell the item what its (weld_handle) thread number is
+		float iThraedNum;
+		iThraedNum = thread weld_handle(eDoor,eWeld);
+		eWeld.setFloatVar("weldThreadNum",iThraedNum);
+		
+		//grab next weld item with same targetname
+		eWeld = getNextEntity(eWeld);
+	}
+	
+	//update every part of the door - this fixes issues we where having in gamecode
+	//gamecode handels each part of the door seperately, script does not
+	entity eDoorPart;
+	eDoorPart = getEntity(sTargetNameDoor);
+	while(doesEntityExist(eDoorPart)) {
+		eDoor.setFloatVar("isWelded",bIsWelded);
+		eDoorPart = getNextEntity(eDoorPart);
+	}
+	
+	eDoor.setFloatVar("infinateWeld",bInfinateWeld);
+	eDoor.setFloatVar("partsCount",iPartsCount);
+	eDoor.setFloatVar("needUnweld",bIsWelded);
+	eDoor.setFloatVar("partsDone",0);
+	
+	//if given set required class
+	if( getCvarInt("g_gameType") != 0 && sRequiredClass != "" && sRequiredClass != "none"){
+		eDoor.setStringVar("requiredClass",sRequiredClass);
+	}
+	
+	//pathnodes - setup - disconnect all 4 pathnodes
+	//We are assuming there aren't more than 4 pathnodes per door
+	if(bIsWelded){
+		weld_managePaths(sTargetNameDoor,1);
+	}
+}
+
+void weld_waitForDoorClosed(entity eDoor)
+{
+	waitForPlayer();
+	if(!doesEntityExist(eDoor)){
+		print("Error: weld_waitForDoorClosed(door) door entity does not exist\n");
+		return;
+	}
+	
+	while(doesEntityExist(eDoor)) {
+		if(eDoor.coop_getDoorState() == 4){
+			return;
+		}
+		wait(0.05);
+	}
+}
+
+void weld_handle(entity eDoor, entity eWeld)
+{
+	if(!doesEntityExist(eDoor)){
+		print("Error: weld_handle(door,weld) door entity does not exist\n");
+		return;
+	}
+	if(!doesEntityExist(eWeld)){
+		print("Error: weld_handle(door,weld) weld entity does not exist\n");
+		return;
+	}
+	
+	eWeld.addrequireddamagemod( "phaser" );
+	eWeld.addrequireddamagemod( "vaporize" );
+	eWeld.setsize('-3 -3 -3','3 3 3');
+	
+	thread weld_onDamage(eWeld);
+	
+	float iState;
+	float iStateLast;
+	while(doesEntityExist(eWeld)) {
+		iState = eDoor.coop_getDoorState();
+		if(iStateLast != iState){
+			iStateLast = iState;
+			
+			if(eWeld.getFloatVar("damageCount") == 0){
+				if(iState == 4){
+					eWeld.solid();
+					eWeld.show();
+				}
+				else {
+					eWeld.notsolid();
+					eWeld.hide();
+				}			
+			}
+		}
+		wait(0.05);
+	}
+}
+
+void weld_onDamage( entity eWeld )
+{
+	if(!doesEntityExist(eWeld)){
+		return;
+	}
+	eWeld.ondamage( "weld_damagedPart" );
+	pause();
+}
+
+void weld_damagedPart()
+{
+	entity eWeld;
+	eWeld = getcurrententity();
+	if(!doesEntityExist(eWeld)){
+		return;
+	}
+	
+	//disable
+	eWeld.nodamage();
+	
+	entity ePlayer;
+	ePlayer = eWeld.getLastActivatingEntity();
+	/* if(doesEntityExist(ePlayer)){
+		//check if attacker was a player
+		if(coop_getClassOf(ePlayer) != "Player"){
+		wait(0.05);
+		if(doesEntityExist(eWeld)){
+		thread weld_onDamage( eWeld );
+		}
+		return;
+		}
+	}*/
+	
+	//grab door
+	entity eDoor;
+	eDoor = getEntity("*"+eWeld.getFloatVar("doorEntity"));
+	if(!doesEntityExist(eDoor)){
+		print("weld_damagedPart - can't find door for weld\n");
+		return;
+	}
+	
+	//check if player is of correct class
+	if(doesEntityExist(ePlayer)){
+		string sRequiredClass;
+		sRequiredClass = eDoor.getStringVar("requiredClass");
+		if(sRequiredClass != "" && sRequiredClass != "none"){
+			if(sRequiredClass != coop_toLower(ePlayer.coop_getCoopClass())){
+				wait(0.05);
+				if(doesEntityExist(eWeld)){
+					thread weld_onDamage( eWeld );
+				}
+				return;
+			}
+		}
+	}
+	
+	//door is open - retry later
+	if(eDoor.coop_getDoorState() != 4){
+		wait(0.1);
+		thread weld_onDamage( eWeld );
+		return;
+	}
+	
+	//update damagecount
+	float fDamageCount;
+	fDamageCount = eWeld.getFloatVar("damageCount");
+	fDamageCount++;
+	eWeld.setFloatVar("damageCount",fDamageCount);
+	
+	//kill hide/show thread
+	killthread(eWeld.getFloatVar("weldThreadNum"));
+	
+	//differenciate between weld and unweld
+	if(eDoor.getFloatVar("needUnweld")){
+		thread weld_damagedPartUnweld(eWeld,eDoor,fDamageCount);
+	}else{
+		thread weld_damagedPartWeld(eWeld,eDoor,fDamageCount);
+	}
+}
+
+void weld_damagedPartUnweld(entity eWeld, entity eDoor, float fDamageCount)
+{
+	if(!doesEntityExist(eDoor)){
+		return;
+	}
+	if(!doesEntityExist(eWeld)){
+		return;
+	}
+	
+	if(fDamageCount == UNWELD_DAMAGE_COUNT) {
+		eWeld.setsize('-1 -1 -1','1 1 1');
+		eWeld.notsolid();
+		eWeld.model("fx/fx-plasmachunk-grenade.tik");
+		float fScale;
+		fScale = 1.25;
+		while(fScale > 0.01){
+			eWeld.scale(fScale);
+			fScale = fScale - 0.05;
+			wait(0.05);
+			if(!doesEntityExist(eWeld)){
+				return;
+			}
+		}
+		
+		if(!doesEntityExist(eDoor)){
+			return;
+		}
+		
+		eWeld.hide();
+		eWeld.notsolid();
+		
+		//update the info on the door
+		float fPartsDone,iPartsCount;
+		fPartsDone = eDoor.getFloatVar("partsDone");
+		iPartsCount = eDoor.getFloatVar("partsCount");
+		fPartsDone++;
+		eDoor.setFloatVar("partsDone",fPartsDone);
+			
+		if(fPartsDone == iPartsCount){
+			string sTargetNameDoor;
+			sTargetNameDoor = eDoor.getRawTargetName();
+			
+			//update every part of the door - this fixes issues we where having in code
+			//gamecode handels each part of the door seperately, script does not
+			entity eFuck;
+			eFuck = getEntity(sTargetNameDoor);
+			while(doesEntityExist(eFuck)) {
+				eFuck.setFloatVar("isWelded",0.0);
+				eFuck = getNextEntity(eFuck);
+			}
+			
+			eDoor.setFloatVar("partsDone",0.0);
+			eDoor.setFloatVar("needUnweld",0.0);
+			
+			//weldmark on the opposite of the door
+			entity eWeldMark;
+			eWeldMark = getEntity(sTargetNameDoor+"_weldMark");
+			if(doesEntityExist(eWeldMark)){
+				eWeldMark.hide();
+			}
+			
+			//connect pathnodes again 1<->2 and 3<->4
+			wait(0.1);
+			weld_managePaths(sTargetNameDoor,0);
+			wait(0.1);
+			
+			//set door status to unwelded
+			if(!doesEntityExist(eDoor)){
+				return;
+			}
+			
+			//if it is meant to be only unwelded or welded once
+			if(eDoor.getFloatVar("infinateWeld") != 1){
+				eWeld = getEntity(eWeld.getRawTargetName());
+				while(doesEntityExist(eWeld)){
+					entity eWeldToDelete;
+					eWeldToDelete = eWeld;					
+					eWeld = getNextEntity(eWeld);
+					eWeldToDelete.remove();
+				}
+				
+				//weldmark on the opposite of the door
+				if(doesEntityExist(eWeldMark)){
+					eWeldMark.remove();
+				}
+				return;
+			}
+			
+			eWeld = getEntity(eWeld.getRawTargetName());
+			while(doesEntityExist(eWeld)){
+				eWeld.model("fx/fx-plasmachunk-borg.tik");
+				//eWeld.model("models/coop/weld/weld.tik");
+				eWeld.viewmode("structuralintegrity");
+				eWeld.solid();
+				eWeld.scale(1);
+				
+				eWeld.setFloatVar("damageCount",0);
+				
+				float iThraedNum;
+				iThraedNum = thread weld_handle(eDoor,eWeld);
+				eWeld.setFloatVar("weldThreadNum",iThraedNum);
+				
+				eWeld = getNextEntity(eWeld);
+			}
+		}
+		return;
+	}
+	wait(0.1);
+	thread weld_onDamage( eWeld );
+}
+
+void weld_damagedPartWeld(entity eWeld, entity eDoor,float fDamageCount)
+{
+	if(!doesEntityExist(eDoor)){
+		return;
+	}
+	if(!doesEntityExist(eWeld)){
+		return;
+	}
+	
+	if(fDamageCount == WELD_DAMAGE_COUNT) {		
+		//make visible normaly again
+		eWeld.coop_removeViewmode("structuralintegrity");
+		eWeld.model("fx/fx-plasmachunk-grenade2.tik");
+		eWeld.notsolid();
+		eWeld.setsize('-1 -1 -1','1 1 1');
+	
+		//update the info on the door
+		float fPartsDone,iPartsCount;
+		fPartsDone = eDoor.getFloatVar("partsDone");
+		iPartsCount = eDoor.getFloatVar("partsCount");
+		fPartsDone++;
+		eDoor.setFloatVar("partsDone",fPartsDone);
+		
+		//weld in place, lock door
+		if(fPartsDone == 1){
+			if(!doesEntityExist(eDoor)){
+				return;
+			}
+			
+			string sTargetNameDoor;
+			sTargetNameDoor = eDoor.getRawTargetName();
+			
+			//disconnect pathnodes
+			weld_managePaths(sTargetNameDoor,1);
+			
+			//mark as welded
+			//update every part of the door - this fixes issues we where having in gamecode
+			//gamecode handels each part of the door seperately, script does not
+			entity eDoorPart;
+			eDoorPart = getEntity(sTargetNameDoor);
+			while(doesEntityExist(eDoorPart)) {
+				eDoor.setFloatVar("isWelded",1);
+				eDoorPart = getNextEntity(eDoorPart);
+			}
+						
+			//weld mark (on the opposite) of the door
+			entity eWeldMark;
+			eWeldMark = getEntity(sTargetNameDoor+"_weldMark");
+			if(doesEntityExist(eWeldMark)){
+				eWeldMark.show();
+			}
+		}
+		
+		//after a moment stop glowing
+		float fScale;
+		fScale = 0.1;	
+		while(fScale < 1.15){
+			eWeld.scale(fScale);
+			fScale = fScale + 0.05;
+			wait(0.05);
+			if(!doesEntityExist(eWeld)){
+				return;
+			}
+		}	
+
+		eWeld.scale(1);
+		eWeld.model("fx/fx-plasmachunk-borg.tik");
+		
+		if(fPartsDone == iPartsCount){
+			entity eWeldTemp;
+			eWeldTemp = eWeld;
+			eWeldTemp = getEntity(eWeld.getRawTargetName());
+			while(doesEntityExist(eWeldTemp)){			
+				eWeldTemp.model("models/coop/weld/weld.tik");
+				eWeldTemp = getNextEntity(eWeldTemp);
+			}
+			
+			wait(1);
+			if(!doesEntityExist(eDoor)){
+				return;
+			}
+			
+			eDoor.setFloatVar("partsDone",0);
+			eDoor.setFloatVar("needUnweld",1);
+			
+			//if it is meant to be only unwelded or welded once
+			if(eDoor.getFloatVar("infinateWeld") == 1){
+				eWeld = getEntity(eWeld.getRawTargetName());
+				while(doesEntityExist(eWeld)){			
+					eWeld.solid();
+					eWeld.setFloatVar("damageCount",0);
+					
+					float iThraedNum;
+					iThraedNum = thread weld_handle(eDoor,eWeld);
+					eWeld.setFloatVar("weldThreadNum",iThraedNum);
+					
+					eWeld = getNextEntity(eWeld);
+				}
+			}
+		}
+		return;
+	}
+	
+	wait(0.1);
+	thread weld_onDamage( eWeld );
+}
+
+void weld_managePaths(string sDoorBaseTargetName, float fDisconnect)
+{
+	//when disconnecting, make sure we disconnect everything
+	if(fDisconnect){
+		float iNode1,iNode2;
+		for(iNode1=1;iNode1<5;iNode1++){
+			for(iNode2=1;iNode2<5;iNode2++){
+				if(iNode1 != iNode2){ //you don't need to disconnect the node from it self
+					disconnectPathNodes(sDoorBaseTargetName+"_pathNode"+iNode1,sDoorBaseTargetName+"_pathNode"+iNode2);
+					print("disconnect:"+sDoorBaseTargetName+"_pathNode"+iNode1+"--"+sDoorBaseTargetName+"_pathNode"+iNode2+"\n");
+				}
+			}
+		}
+	}
+	//we have to be careful when reconnecting pathnodes
+	//we assume the layout is as follows: 1<->2 and 3<->4
+	else{
+		float iNode1,iNode2;
+		//NODE 1<->2
+		for(iNode1=1;iNode1<3;iNode1++){
+			for(iNode2=1;iNode2<3;iNode2++){
+				if(iNode1 != iNode2){ //you don't need to disconnect the node from it self
+					connectPathNodes(sDoorBaseTargetName+"_pathNode"+iNode1,sDoorBaseTargetName+"_pathNode"+iNode2);
+				}
+			}
+		}
+		//NODE 3<->4
+		for(iNode1=3;iNode1<5;iNode1++){ 
+			for(iNode2=3;iNode2<5;iNode2++){
+				if(iNode1 != iNode2){ //you don't need to disconnect the node from it self
+					connectPathNodes(sDoorBaseTargetName+"_pathNode"+iNode1,sDoorBaseTargetName+"_pathNode"+iNode2);
+				}
+			}
+		}
+	}
+}

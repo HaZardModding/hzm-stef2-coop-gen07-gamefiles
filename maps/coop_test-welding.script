@@ -1,0 +1,22 @@
+void main();
+void tooglePathNodes();
+
+#include "co-op/matrix/weld.script"
+
+void main()
+{
+	//welding doors
+	//Setup:
+	//$weldedDoor1 - door that should be weldable
+	//$weldedDoor1_weld - WeldPoint Models for this door
+	//"normal" - Door does not start welded, use "welded" to make door welded at level start
+	//"technician" - Only class Technician can weld this, use "none" to allow everyone to weld
+	//1 - Infinite weld/unweld, use 0 to allow welding/unwelding only once
+	thread weld_setupDoor($weldedDoor1,$weldedDoor1_weld,"normal","technician",1);
+	thread weld_setupDoor($weldedDoor2,$weldedDoor2_weld,"welded","none",0);
+}
+
+void tooglePathNodes()
+{
+	stuffcmd("toggle ai_showRoutes");
+}
