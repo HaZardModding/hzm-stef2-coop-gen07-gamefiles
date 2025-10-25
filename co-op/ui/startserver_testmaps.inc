@@ -230,11 +230,13 @@ Button
 	hovercommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"Chrissstrahl\""
 	hoverexitcommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"\""
 }
+
+
 resource
 Button
 {
 	cvarvisibility coop_ui_vt 20 ==
-	title "Coop Test Everyone"
+	title "TEST ALL NEW Script Commands"
 	name 	"coopHzmTestLvlStartSv9"
 	rect	275 303 328 20
 	font serpentinemedium-10
@@ -247,10 +249,12 @@ Button
 
 	clicksound sound/misc/menu/click.wav
  
-	stuffcommand "set ui_startmap coop_test-everyone\n"
+	stuffcommand "set ui_startmap coop_test-commands\n"
 	hovercommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"Chrissstrahl\""
 	hoverexitcommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"\""
 }
+
+
 resource
 Button
 {
@@ -635,7 +639,7 @@ Label
 	cvarvisibility coop_ui_vt 22 ==
 	
 	title "$$c#041$$"
-	name "coopHzmTestLvlStartSvTitle4"
+	name "coopHzmTestLvlStartSvTitle3"
 	rect		274 89 330 24
 	fgcolor 1.000 0.000 0.000 0.800
 	bgcolor 0.12 0.15 0.25 1.00
@@ -966,6 +970,27 @@ Button
 	
 	cvarvisibility coop_ui_vt 23 ==
 }
+
+resource
+Label
+{
+	cvarvisibility coop_ui_vt 23 ==
+	
+	title "$$c#041$$"
+	name "coopHzmTestLvlStartSvTitle4"
+	rect		274 89 330 24
+	fgcolor 1.000 0.000 0.000 0.800
+	bgcolor 0.12 0.15 0.25 1.00
+	
+	borderstyle "3D_BORDER"
+	
+	horizontaljustify left
+	verticaljustify top
+	font 	serpentinemedium-10
+	
+	hovercommand "globalwidgetcommand tooltip_coop_startserver title \"Test levels from HaZardModding...\""
+    hoverexitcommand "globalwidgetcommand tooltip_coop_startserver title \"\""
+}
 resource
 Button
 {
@@ -1089,6 +1114,94 @@ Button
 	clicksound sound/misc/menu/click.wav
  
 	stuffcommand "set ui_startmap coop_test-pointAndClick\n"
+	hovercommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"Chrissstrahl\""
+	hoverexitcommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"\""
+}
+
+resource
+Button
+{
+	cvarvisibility coop_ui_vt 23 ==
+	title "Coop Test Everyone"
+	name 	"coopHzmTestLvlStartSv46"
+	rect	275 240 328 20
+	font serpentinemedium-10
+	fgcolor 		1.000 1.000 1.000 0.800
+	bgcolor 		0.12 0.15 0.25 0.7
+	hoverbgcolor 	0.22 0.25 0.35 1.0
+	
+	horizontaljustify left
+	verticaljustify top
+
+	clicksound sound/misc/menu/click.wav
+ 
+	stuffcommand "set ui_startmap coop_test-everyone\n"
+	hovercommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"Chrissstrahl\""
+	hoverexitcommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"\""
+}
+
+resource
+Button
+{
+	cvarvisibility coop_ui_vt 23 ==
+	title "Coop Test Barrels"
+	name 	"coopHzmTestLvlStartSv47"
+	rect	275 261 328 20
+	font serpentinemedium-10
+	fgcolor 		1.000 1.000 1.000 0.800
+	bgcolor 		0.12 0.15 0.25 0.7
+	hoverbgcolor 	0.22 0.25 0.35 1.0
+	
+	horizontaljustify left
+	verticaljustify top
+
+	clicksound sound/misc/menu/click.wav
+ 
+	stuffcommand "set ui_startmap coop_test-barrels\n"
+	hovercommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"Chrissstrahl\""
+	hoverexitcommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"\""
+}
+
+resource
+Button
+{
+	cvarvisibility coop_ui_vt 23 ==
+	title "Coop Test Welding"
+	name 	"coopHzmTestLvlStartSv48"
+	rect	275 282 328 20
+	font serpentinemedium-10
+	fgcolor 		1.000 1.000 1.000 0.800
+	bgcolor 		0.12 0.15 0.25 0.7
+	hoverbgcolor 	0.22 0.25 0.35 1.0
+	
+	horizontaljustify left
+	verticaljustify top
+
+	clicksound sound/misc/menu/click.wav
+ 
+	stuffcommand "set ui_startmap coop_test-welding\n"
+	hovercommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"Chrissstrahl\""
+	hoverexitcommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"\""
+}
+
+resource
+Button
+{
+	cvarvisibility coop_ui_vt 23 ==
+	title "Coop Test Ladders"
+	name 	"coopHzmTestLvlStartSv49"
+	rect	275 303 328 20
+	font serpentinemedium-10
+	fgcolor 		1.000 1.000 1.000 0.800
+	bgcolor 		0.12 0.15 0.25 0.7
+	hoverbgcolor 	0.22 0.25 0.35 1.0
+	
+	horizontaljustify left
+	verticaljustify top
+
+	clicksound sound/misc/menu/click.wav
+ 
+	stuffcommand "set ui_startmap coop_test-ladders\n"
 	hovercommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"Chrissstrahl\""
 	hoverexitcommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"\""
 }
