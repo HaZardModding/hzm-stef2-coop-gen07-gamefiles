@@ -1,0 +1,53 @@
+menu "test_widgetmove" 640 480 NONE 0.1
+align  top center
+bgcolor 0 0 0 0
+borderstyle NONE
+noresize
+depth 0.1
+
+resource
+button
+{
+title "klick to move"
+name "test_widgetmove1"
+font tahoma-10
+rect 10 10 200 100
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 1.00 0.00 0.00 1.00
+borderstyle "none"
+ordernumber 1
+stuffcommand "globalwidgetcommand test_widgetmove1 mwc_move 10 20 0.15"
+}
+
+resource
+button
+{
+title "klick to move2"
+name "test_widgetmove2"
+font tahoma-10
+rect 100 100 200 100
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 1.00 0.00 0.00 1.00
+borderstyle "none"
+ordernumber 1
+stuffcommand "globalwidgetcommand test_widgetmove2 mwc_move 100 -20 0.5"
+}
+
+resource
+button
+{
+title "klick to reset"
+name "test_widgetmove3"
+font tahoma-10
+rect 200 100 200 100
+fgcolor 1.00 1.00 1.00 1.00
+bgcolor 1.00 0.00 0.00 1.00
+borderstyle "none"
+ordernumber 1
+//stuffcommand "globalwidgetcommand test_widgetmove1 rect 10 10 200 100"
+//stuffcommand "globalwidgetcommand test_widgetmove1 restartcommands"
+//stuffcommand "globalwidgetcommand test_widgetmove1 clearcommands"
+//stuffcommand "globalwidgetcommand test_widgetmove1 mwc_restart"
+}
+
+end.

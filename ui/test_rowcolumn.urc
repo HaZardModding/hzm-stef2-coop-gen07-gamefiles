@@ -1,0 +1,94 @@
+menu "test_rowcolumn" 640 480 NONE 0
+bgcolor 0 0 0 0.75
+borderstyle NONE
+depth 0.2
+//rowcolomn test menu
+
+resource
+vertscroll
+{
+	name "test_rowcolumnscroll"
+	fgcolor 		0.937 0.643 0.129 1.000
+	bgcolor			0.125 0.157 0.251 0.500
+	scrollbar_thumbcolor	0.125 0.157 0.251 1.000
+	borderstyle "3D_BORDER"
+}
+
+
+resource 
+Button
+{
+	name	"test_rowcolumn0"
+	title	"NULLz\n sdhsdhkshds \n sjgdksgdkjgs"
+	
+	fgcolor 0.953 0.667 0.271 1.000
+	bgcolor 0.125 0.157 0.251 1.000
+	font serpentinemedium-10
+	horizontaljustify left
+	hoverbgcolor	0.278 0.365 0.510 1.000
+	hoverfgcolor	1.000 1.000 1.000 1.000
+	verticaljustify top
+}
+resource 
+Button
+{
+	name	"test_rowcolumn2"
+	title	"Zwo\n sdhsdhkshds \n sjgdksgdkjgs"
+	
+	fgcolor 0.953 0.667 0.271 1.000
+	bgcolor 0.125 0.157 0.251 1.000
+	font serpentinemedium-10
+	horizontaljustify left
+	hoverbgcolor	0.278 0.365 0.510 1.000
+	hoverfgcolor	1.000 1.000 1.000 1.000
+	verticaljustify top
+}
+
+resource 
+label
+{
+	name	"test_rowcolumn1"
+	title	"Labelz"
+	
+	fgcolor 0.953 0.667 0.271 1.000
+	bgcolor 0.125 0.157 1.251 1.000
+	font serpentinemedium-10
+	horizontaljustify left
+	//hoverbgcolor	0.278 0.365 0.510 1.000
+	//hoverfgcolor	1.000 1.000 1.000 1.000
+	verticaljustify top
+}
+
+resource
+RowColumn
+{
+	name 					"test_rowcolumnlist"
+	rect 					34 134 572 262
+	fgcolor 				0.937 0.643 0.129 0.850
+	bgcolor 				0.000 0.000 0.000 0.850
+	
+	font serpentinemedium-10
+	itemheight 44				//keep em big for widescreen - 44
+
+	
+	borderstyle	"OUTLINE_BORDER"
+	bordercolor	0.125 0.157 0.251 1.000
+	
+	//sorttype ascending
+	
+	//hoverbgcolor	0.278 0.365 0.510 1.000
+	//hoverfgcolor	1.000 1.000 1.000 1.000
+	
+	//column "Default" 518 button
+	column "test_rowcolumnscroll" 560 button
+	scrollbartemplate "test_rowcolumnscroll"
+	//scrollbar_width 0	
+	
+   // norowselect	
+	
+	addrowwidgets   "test_rowcolumn0"
+	addrowwidgets   "test_rowcolumn1"
+	addrowwidgets   "test_rowcolumn2"
+}
+
+end.

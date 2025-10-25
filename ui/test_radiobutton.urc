@@ -1,0 +1,77 @@
+menu "test_radiobutton" 640 480 NONE 0
+bgcolor 0 0 0 0.75
+borderstyle NONE
+depth 0.2
+//radobutton test menu
+
+resource
+RadioButton
+{
+	rect 0 0 80 22
+	fgcolor 0.937 0.643 0.129 0.850
+	bgcolor 1.000 0.000 0.000 0.850
+    bindcvar test
+    buttonsize 50 20
+    padding -12 0
+    radiobutton returnstring label1
+    rowheight 22
+	buttonshader "co-op/active"
+    selectshader "co-op/cleared"
+}
+resource
+RadioButton
+{
+	rect 0 24 80 22
+	fgcolor 0.937 0.643 0.129 0.850
+	bgcolor 0.000 1.000 0.000 0.850
+    bindcvar test
+    buttonsize 50 20
+    padding -12 0
+    radiobutton returnstring2 label2
+    rowheight 22
+	buttonshader "co-op/active"
+    selectshader "co-op/cleared"
+}
+resource
+RadioButton
+{
+	rect 0 48 80 22
+	fgcolor 0.937 0.643 0.129 0.850
+	bgcolor 0.000 0.000 1.000 0.850
+    bindcvar test
+    buttonsize 50 20
+    padding -12 0
+    radiobutton returnstring3 label3
+    rowheight 22
+	buttonshader "co-op/active"
+    selectshader "co-op/cleared"
+}
+resource
+RadioButton
+{
+	rect 0 72 80 22
+	fgcolor 0.937 0.643 0.129 0.850
+	bgcolor 1.000 1.000 0.000 0.850
+    bindcvar test
+    buttonsize 50 20
+    padding -12 0
+    radiobutton returnstring4 label4
+    rowheight 22
+	buttonshader "co-op/active"
+    selectshader "co-op/cleared"
+}
+resource
+RadioButton
+{
+	rect 0 96 80 22
+	fgcolor 0.937 0.643 0.129 0.850
+	bgcolor 1.000 1.000 1.000 0.850
+    bindcvar test
+    buttonsize 50 20
+    padding -12 0
+    radiobutton returnstring5 label5
+    rowheight 22
+	buttonshader "co-op/active"
+    selectshader "co-op/cleared"
+}
+end.
