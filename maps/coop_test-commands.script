@@ -119,7 +119,7 @@ void main()
 	//water barrel
 	//-> Water Barrel will explode if damaged, water will then leak out
 	//Barrel-normal, Barrel-damaged, Barrel-cap (if you want it to fly off), fluid-func_door, fluid-type, thread-to-start
-	thread barrel_setup($waterBarrel0, $waterBarrel0_damaged, $null, $waterBarrel0_puddle, "water",'0 0 0',"");
+	thread barrel_setup($waterBarrel0, $waterBarrel0_damaged, $waterBarrel0_damagedCap, $waterBarrel0_puddle, "water",'0 0 0',"");
 }
 void coop_printMessage(string sMessage)
 {
