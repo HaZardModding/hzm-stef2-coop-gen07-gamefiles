@@ -1,0 +1,235 @@
+//Makes script_object barrels explode and leak fluid on damage
+void barrel_setup(entity eBarrelNormal, entity eBarrelDamaged, entity eBarrelDamagedCap, entity eBarrelFluid, string sBarrelType, vector vMoveTo, string sThread);
+void barrel_onDamageExplode(entity eBarrel);
+void barrel_explode();
+void barrel_scaleModel(string sModel, vector vOrigin, float fAngle);
+float barrel_capFlyOff(entity eCap);
+void barrel_runThread(entity eActivator, string sThread);
+
+//SETUP
+//eBarrelNormal - The normal undamaged Barrel script_object entity
+//eBarrelDamaged - The Damaged Barrel version of the script_object entity
+//eBarrelDamagedCap - OPTIONAL seperate Cap of Damaged Barrel script_object - use $null to skip
+//eBarrelFluid - The actual func_door water or fluid entity
+//sBarrelType - The contents of the barrel "water" can explode when vaporized, use "" to skip
+//vMoveTo - Vector where to move the Damaged Barrel to, can create the illucion of physical reaction - use '0 0 0' to skip
+//sThread - Function in script to run when Barrel is destroyed/damaged, use "" to skip
+void barrel_setup(entity eBarrelNormal, entity eBarrelDamaged, entity eBarrelDamagedCap, entity eBarrelFluid, string sBarrelType, vector vMoveTo, string sThread)
+{
+	if(!doesEntityExist(eBarrelNormal)){
+		print("barrel_setup: could not find normalBarrel Entity");
+		return;
+	}
+	if(!doesEntityExist(eBarrelDamaged)){
+		print("barrel_setup: could not find damagedBarrel Entity");
+		return;
+	}
+	if(!doesEntityExist(eBarrelFluid)){
+		print("barrel_setup: could not find barrelFluid Entity");
+		return;
+	}
+	
+	//setup the fluid - hide it
+	triggerEntity(eBarrelFluid);
+	
+	//setup damaged barrel - hide it
+	eBarrelDamaged.hide();
+	eBarrelDamaged.notsolid();
+	
+	//save parameters on Barrel for later
+	eBarrelNormal.setStringVar("barrel_contents",coop_toLower(sBarrelType));
+	eBarrelNormal.setFloatVar("barrel_fluid",eBarrelFluid.coop_getEntNum());
+	eBarrelNormal.setStringVar("barrel_thread",sThread);
+	if(vMoveTo != '0 0 0'){
+		eBarrelNormal.setVectorVar("barrel_moveto",vMoveTo);
+	}
+	
+	//setup barrel connections - used later
+	eBarrelNormal.target(""+eBarrelDamaged.getRawTargetName());
+	if(doesEntityExist(eBarrelDamagedCap)){
+		eBarrelDamaged.target(eBarrelDamagedCap.getRawTargetName());
+		
+		//setup cap of damaged barrel - hide it
+		eBarrelDamagedCap.notsolid();
+		eBarrelDamagedCap.hide();
+	}
+	
+	//make barrel sensitive to damage
+	thread barrel_onDamageExplode(eBarrelNormal);
+}
+
+void barrel_onDamageExplode(entity eBarrel)
+{
+	eBarrel.onDamage("barrel_explode");
+	pause();
+}
+
+void barrel_explode()
+{
+	entity eBarrel;
+	eBarrel = getCurrentEntity();
+	if(!doesEntityExist(eBarrel)){
+		return;
+	}
+	
+	//stop responding to damage event
+	eBarrel.nodamage();
+
+	//grab activator
+	entity ePlayer;
+	ePlayer = eBarrel.getLastActivatingEntity();
+	
+	//grab weapon type of player
+	string sPlayerWeapon;
+	if(doesEntityExist(ePlayer)){
+		if(coop_getClassOf(ePlayer) == "Player"){
+			sPlayerWeapon = ePlayer.getActiveWeaponName();
+		}
+	}
+	
+	//run thread
+	thread barrel_runThread(ePlayer, eBarrel.getStringVar("barrel_thread"));
+	
+	//get barrel contents
+	string sBarrelType;
+	sBarrelType = coop_toLower(eBarrel.getStringVar("barrel_contents"));
+	
+	//trigger/activate fluid (func_door) now
+	entity eFluid;
+	eFluid = getEntity("*"+eBarrel.getFloatVar("barrel_fluid"));
+	if(doesEntityExist(eFluid)){
+		triggerEntity(eFluid);
+	}
+	
+	//abbort if damaged barrel is missing
+	entity eBarrelDamaged;
+	eBarrelDamaged = getEntity(eBarrel.getTarget());
+	if(!doesEntityExist(eBarrelDamaged)){
+		return;
+	}
+	
+	//show damaged barrel
+	eBarrelDamaged.solid();
+	eBarrelDamaged.show();
+	
+	//bind damaged barrel cap before possibly moving it, and show it
+	entity eBarrelDamagedCap;
+	eBarrelDamagedCap = getEntity(eBarrelDamaged.getTarget());
+	if(doesEntityExist(eBarrelDamagedCap)){
+		eBarrelDamagedCap.bind(eBarrelDamaged);
+		eBarrelDamagedCap.show();
+	}
+	
+	//remove normal barrel
+	if(doesEntityExist(eBarrel)){
+		eBarrel.remove();
+	}
+	
+	//possibly move damaged Barrel - to make it look like it did physically react
+	vector vMove;
+	vMove = eBarrel.getVectorVar("barrel_moveto");
+	if(vMove != '0 0 0'){
+		eBarrelDamaged.moveToPos(vMove);
+		eBarrelDamaged.time(0.1);
+	}
+	
+	float bRemoveCap;
+	vector vDamagedBarrelOrigin;
+	vDamagedBarrelOrigin = eBarrelDamaged.getOrigin();
+	
+	//spawn effect model for contents
+	if(sBarrelType == "water"){
+		//vector vOffset;
+		//vOffset = vDamagedBarrelOrigin;
+		//vOffset_z += 32;
+
+		//spawn water explosion model
+		spawn("models/fx/fx-explosion-waterburst-brown.tik","origin",""+vDamagedBarrelOrigin,"scale","0.7");
+	}
+	else if(sBarrelType == "chemical"){
+		float placeholder; //placeholder
+	}
+	
+	//check if it should explode
+	if(sPlayerWeapon != ""){
+		if(sBarrelType == "water"){
+			if(sPlayerWeapon == "Phaser" || sPlayerWeapon == "Phaser-stx" || sPlayerWeapon == "FederationSniperRifle"){
+				//handle cap flying off - because it gets blown up
+				bRemoveCap = barrel_capFlyOff(eBarrelDamagedCap);
+				
+				//spawn and scale down steam model - if is removed/flying off
+				if(bRemoveCap){
+					thread barrel_scaleModel("models/fx/fx-steam-directional-heavy.tik",vDamagedBarrelOrigin,-1);
+				}
+			}
+		}
+	}
+	
+	//remove cap of damaged barrel if it did fly off
+	if(bRemoveCap){		
+		wait( 1 );
+		if(doesEntityExist(eBarrelDamagedCap)){
+			eBarrelDamagedCap.remove();
+		}
+	}
+	
+	/* //allow the fluid to fade away after some time
+	wait(3);
+	if(doesEntityExist(eFluid)){
+		eFluid.time(50);
+		triggerEntity(eFluid);
+	} */
+}
+
+void barrel_scaleModel(string sModel, vector vOrigin, float fAngle)
+//scale model down, then remove it
+{
+	entity eModel;
+	eModel = spawn(sModel,"origin",""+vOrigin,"angle",""+fAngle);
+	
+	float fScale;
+	for(fScale=1;fScale>0.05;fScale-= 0.01){
+		wait(0.1);
+		if(!doesEntityExist(eModel)){
+			return;
+		}
+		eModel.scale(fScale);
+	}
+	if(doesEntityExist(eModel)){
+		eModel.remove();
+	}
+}
+
+float barrel_capFlyOff(entity eCap)
+//make cap fly off
+{
+	if(doesEntityExist(eCap)){
+		eCap.rotatex(randomint(290));
+		eCap.rotatey(randomint(290));
+		eCap.rotatez(randomint(290));
+		eCap.moveUp(500);
+		eCap.time(1);
+		return 1;
+	}
+	return 0;
+}
+
+void barrel_runThread(entity eActivator, string sThread)
+//start thread, if possible also give Entity who damaged Barrel
+{
+	if(sThread == ""){
+		return;
+	}
+	
+	entity eTrigger;
+	eTrigger = spawn("trigger_relay","thread",sThread);
+	wait(0.05);
+	if(doesEntityExist(eTrigger)){
+		if(doesEntityExist(eActivator)){
+			eTrigger.doActivate(eActivator);
+			return;
+		}
+
+		triggerEntity(eTrigger);
+	}
+}

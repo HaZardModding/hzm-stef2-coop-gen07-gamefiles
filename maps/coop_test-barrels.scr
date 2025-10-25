@@ -1,0 +1,49 @@
+void main();
+void setupBarrels();
+void waterBarrel1_makeFireStop();
+
+#include "co-op/matrix/barrel.script"
+
+void main()
+{
+	wait(3);
+	setupBarrels();
+}
+
+void setupBarrels()
+{
+	//Chemical barrel
+	//-> Chemical Barrel is activated by trigger_useOnce, it will be drained
+	//everything else is setup in the radaiant
+	
+	//water barrel
+	//-> Water Barrel will explode if damaged, water will then leak out
+	//Barrel-normal, Barrel-damaged, Barrel-cap (if you want it to fly off), fluid-func_door, fluid-type, position-to-move-to thread-to-start
+	thread barrel_setup($waterBarrel0, $waterBarrel0_damaged, $waterBarrel0_damagedCap, $waterBarrel0_puddle, "water",'107 265 4',"");
+	
+	thread barrel_setup($waterBarrel1, $waterBarrel1_damaged, $waterBarrel1_damagedCap, $waterBarrel1_puddle, "water",'0 0 0',"waterBarrel1_makeFireStop");
+}
+
+void waterBarrel1_makeFireStop()
+{
+	entity eTrigger;
+	entity ePlayer;
+	eTrigger = getCurrentEntity();
+	if(doesEntityExist(eTrigger)){
+		ePlayer = eTrigger.getLastActivatingEntity();
+		if(doesEntityExist(ePlayer)){
+			//multiplayer
+			if(getCvarInt("g_gametype") == 1){
+				ePlayer.hudPrint("Boom\n");
+			}
+			else{
+				centerprint("Boom\n");
+			}
+		}
+	}
+	
+	//wait for the water to reach the fire
+	wait(0.5);
+	$fire.remove();
+	$fireTrigger.remove();
+}
