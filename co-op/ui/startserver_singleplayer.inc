@@ -120,7 +120,7 @@ resource
 Button
 {
 	cvarvisibility coop_ui_sm 1 ==
-	title "Prolog"
+	title "$$PrologueSave$$"
 	name 	"mision1Level0"
 	rect	275 114 328 20
 	font serpentinemedium-10
