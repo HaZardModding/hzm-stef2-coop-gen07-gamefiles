@@ -187,17 +187,165 @@ void main()
 	coop_string_objectiveTacticalInfo2 = "";
 	coop_string_objectiveTacticalInfo3 = "";
 	
+	//--- fade the world out
+	cam_fadeout( .1, 0, 0, 0, 1, 0 );
+	letterbox( .1 );
+	cinematic();
+	freezePlayer(); //[b60021] chrissstrahl - moved up here, used to be after waitforplayer
+	
 	//hzm coop mod chrissstrahl, position players upon spawn (mapstart)
 	
 	//chrissstrahl - [b607] make players start where the weapons attrexian is (kinda loading save game)
 	if(sLevelTooken == "escort"){
-		//there could be some cleanup be done.... removing entities that will never trigger now that we have skipped ahead
-		//there could be some cleanup be done....
-		//there could be some cleanup be done....
-		//there could be some cleanup be done....
-		
 		//set spawnlocations
-		thread coop_spawnPlayerNearBarricade();
+		thread coop_spawnPlayerNearBarricade();	
+
+//START
+//[b70200] Added a lot of objects to be removed if the mission is loaded with parameter escort
+		
+		//remove entities that are not reachable - behind locked door
+		globalCoop_level_remove($shuttlebay_field);
+		//remove camera paths
+		globalCoop_level_removePath($m4l1a_intro01);
+		globalCoop_level_removePath($m4l1a_intro02);
+		globalCoop_level_removePath($m4l1a_intro03);
+		globalCoop_level_removePath($m4l1a_intro04);
+		globalCoop_level_removePath($m4l1a_intro05);
+		globalCoop_level_removePath($m4l1a_intro06);
+		
+		//shuttlebay explosion
+		globalCoop_level_remove($fakecrate1);
+		globalCoop_level_remove($fakecrate2);
+		globalCoop_level_remove($fakecrate3);
+		globalCoop_level_remove($crane);
+		globalCoop_level_remove($beams);
+		
+		//shuttlebay failsafe trigger for shuttlebay attack
+		globalCoop_level_remove($shuttlebay_failsafe_trigger);
+		//shuttlebay flyin paths for exos
+		float fPaths;
+		for(fPaths=1;fPaths<10;fPaths++){
+			globalCoop_level_removePath(getEntity("swarmSpawner"+fPaths));
+			globalCoop_main_waitAFrame();
+		}
+		
+		//shutlebay steam puzzle
+		globalCoop_level_remove($steamHurt1);
+		globalCoop_level_remove($steamHurt2);
+		globalCoop_level_remove($steamHurt3);
+		globalCoop_level_remove($busted_brace1);
+		globalCoop_level_remove($busted_brace2);
+		globalCoop_level_remove($busted_brace3);
+		
+		//npc
+		globalCoop_level_remove($deadgus1);
+		globalCoop_level_remove($deadgus2);
+		globalCoop_level_remove($deadgus3);
+		globalCoop_level_remove($deadgus4);
+		globalCoop_level_remove($cowergus1);
+		globalCoop_level_remove($guseater1);
+		globalCoop_level_remove($guseater2);
+		globalCoop_level_remove($guseater3);
+		
+		//cart
+		globalCoop_level_remove($cartMonsterHurt);
+		globalCoop_level_remove($CartSparks1);
+		globalCoop_level_remove($CartSparks2);
+		globalCoop_level_remove($Cart);
+		globalCoop_level_remove($CartClip);
+		globalCoop_level_remove($cartHurt);
+		globalCoop_level_remove($CartSwitchTrigger);
+		globalCoop_level_remove($arch_cartpanel);
+		globalCoop_level_remove($cartControlStage1);
+		globalCoop_level_remove($cartControlStage2);
+		globalCoop_level_remove($cartControlStage3);
+		globalCoop_level_remove($cartControlStage4);
+		globalCoop_level_remove($cartPuzzle);
+		globalCoop_level_remove($arch_cartlever);
+		globalCoop_level_remove($rail_clip);
+		globalCoop_level_remove($cartDerail_railing);
+		globalCoop_level_remove($trigger_attrexian_mauled);
+		globalCoop_level_remove($HeavyDoor);
+		globalCoop_level_remove($HeavyDoor_Bust1);
+		globalCoop_level_remove($HeavyDoor_Bust2);
+		globalCoop_level_remove($HeavyDoor_Bust3);
+		globalCoop_level_remove($HeavyDoorClip);
+		globalCoop_level_remove($doomedAttrexian);
+		globalCoop_level_remove($doomedAttrexianDoor);
+		globalCoop_level_remove($door_bent);
+		globalCoop_level_remove($door_unbent);
+		//cart spawner
+		globalCoop_level_remove($powerRoomSpawner3);
+		globalCoop_level_remove($powerRoomSpawner2);
+		globalCoop_level_remove($powerRoomSpawner1);
+		globalCoop_level_remove($cartDerail_explosion3);
+		globalCoop_level_remove($cartDerail_explosion2);
+		globalCoop_level_remove($cartDerail_explosion1);
+		globalCoop_level_remove($HeavyDoorDebris);
+		globalCoop_level_remove($HeavyDoorExplosion);
+		globalCoop_level_remove($HeavyDoorQuake);
+		
+		//chewer hallway explode
+		globalCoop_level_remove($t566);
+		globalCoop_level_remove($chewer_explodedoor);
+		globalCoop_level_remove($chewer_explodedoor_fx2);
+		globalCoop_level_remove($chewer_explodedoor_fx1);
+		globalCoop_level_remove($chewyAttrexian);
+		globalCoop_level_remove($chewy);
+		globalCoop_level_remove($chewer_explodedoor_spawner);
+		globalCoop_level_remove($t1030);
+		globalCoop_level_remove($fallingwires);
+		globalCoop_level_remove($corridorGrate);
+		
+		//doors
+		entity eRemove;
+		eRemove = getEntity("door2");
+		while(doesEntityExist(eRemove)){
+			entity eDelete;
+			eDelete = eRemove;
+			eRemove = getNextEntity(eRemove);
+			eDelete.remove();
+		}
+		eRemove = getEntity("door3");
+		while(doesEntityExist(eRemove)){
+			entity eDelete;
+			eDelete = eRemove;
+			eRemove = getNextEntity(eRemove);
+			eDelete.remove();
+		}
+		eRemove = getEntity("t1044");
+		while(doesEntityExist(eRemove)){
+			entity eDelete;
+			eDelete = eRemove;
+			eRemove = getNextEntity(eRemove);
+			eDelete.remove();
+		}
+		eRemove = getEntity("t1045");
+		while(doesEntityExist(eRemove)){
+			entity eDelete;
+			eDelete = eRemove;
+			eRemove = getNextEntity(eRemove);
+			eDelete.remove();
+		}
+		globalCoop_level_remove($arch_doorpanel1);		
+		
+		//spawners
+		globalCoop_level_remove($ShuttleBayGroupOne1);
+		globalCoop_level_remove($ShuttleBayGroupOne2);
+		globalCoop_level_remove($ShuttleBayGroupOne2);
+		globalCoop_level_remove($ShuttleBayGroupOne3);
+		globalCoop_level_remove($ShuttleBayGroupOne4);
+		globalCoop_level_remove($ShuttleBayGroupOne6);
+		globalCoop_level_remove($ShuttleBayGroupOne5);
+		
+		//cargobay secret
+		globalCoop_level_remove($secretDoorLockedTrigger);
+		globalCoop_level_remove($secretDoorStructuralIntegrity);
+		globalCoop_level_remove($secretdoorfx);
+		globalCoop_level_remove($arch_exaust);
+		globalCoop_level_remove($steamPuzzle);
+//[b70200] Added a lot of objects to be removed if the mission is loaded with parameter escort
+//END
 
 		//set correct objectives
 		globalCoop_objectives_set("$$ProceedToCommandCenter$$","complete",1,0);
@@ -231,12 +379,6 @@ void main()
 		coop_vector_spawnOrigin2 			= '-4020 10533 -400';
 		coop_vector_spawnOrigin1 			= '-3950 10533 -400';
 	}
-
-	//--- fade the world out
-	cam_fadeout( .1, 0, 0, 0, 1, 0 );
-	letterbox( .1 );
-	cinematic();
-	freezePlayer(); //[b60021] chrissstrahl - moved up here, used to be after waitforplayer
 	
 	//[b60021] Chrissstrahl - disallow dead bodies to stay - this is meant to reduce network issues
 	$world.setFloatVar("coop_disableDeadBodies",1);
@@ -250,14 +392,18 @@ void main()
 	thread init();
 	
 	waitForPlayer();
-	wait(3);
 	soundtrack( "music/m4l1a-attrexian_station.mus" );
 	
 	//chrissstrahl - [b607] skip instantly when tooken is set (kinda loading save game)
 	if(sLevelTooken != "escort"){
 		//hzm coop mod chrissstrahl - Wait until the Game Starts in Multiplayer
+		level_ai(0);
 		globalCoop_main_waitForWarmupTime();
-		wait( 1 );
+		//--- reset the sky
+		$sky.rendereffects( "+skyorigin" );
+		wait(0.4);
+		level_ai(1);
+		return;
 	}
 
 	M4EntIntro();
@@ -670,10 +816,22 @@ void cinematic_intro_skipthread()
 	noncinematic();
 	clearletterbox( 1 );
 	cueplayer();
+	
+	//[b607] chrissstrahl - remove combat dialogs for these chars, as they really are not active on this map
+	coop_configstringRemoveCombatSounds("chell");
+	coop_configstringRemoveCombatSounds("jurot");
+	coop_configstringRemoveCombatSounds("chang");
+	coop_configstringRemoveCombatSounds("sydney");
+	
+	// setup dynamic lights
+	$world.light_lightstyle( "attrexianMuzzleFlash" , "a" , 0 );
+	$world.light_lightstyle( "lightBoomLights" , "z" , 0 );	
+	$world.light_lightstyle( "coridor_flicker" , "zaaaazzzzaaaazzzzzdadaadamadamadamadamadamzzzaaaazzzzaaaaaazzaadam" , 0 );	
 
 	//chrissstrahl - [b607] skip instantly when tooken is set (kinda loading save game)
 	if(sLevelTooken == "escort"){
 		cam_fadein( 1, 0, 0, 0, 1, 0 );
+		releaseplayer();
 		return;
 	}
 	wait( 1 );
@@ -686,28 +844,15 @@ void cinematic_intro_skipthread()
 	globalCoop_objectives_set("$$ProceedToCommandCenter$$","incomplete",1,0);
 	globalCoop_objectives_set("$$FindDallasCrew$$","incomplete",2,1);
 	
-	//[b607] chrissstrahl - remove combat dialogs for these chars, as they really are not active on this map
-	coop_configstringRemoveCombatSounds("chell");
-	coop_configstringRemoveCombatSounds("jurot");
-	coop_configstringRemoveCombatSounds("chang");
-	coop_configstringRemoveCombatSounds("sydney");
-	
 	wait( 4 );
 	
 	//[b60021] chrissstrahl - remove camera paths
-	if(sLevelTooken == "escort"){
-		globalCoop_level_removePath($m4l1a_intro01);
-		globalCoop_level_removePath($m4l1a_intro02);
-		globalCoop_level_removePath($m4l1a_intro03);
-		globalCoop_level_removePath($m4l1a_intro04);
-		globalCoop_level_removePath($m4l1a_intro05);
-		globalCoop_level_removePath($m4l1a_intro06);
-	}
-	
-	// setup dynamic lights
-	$world.light_lightstyle( "attrexianMuzzleFlash" , "a" , 0 );
-	$world.light_lightstyle( "lightBoomLights" , "z" , 0 );	
-	$world.light_lightstyle( "coridor_flicker" , "zaaaazzzzaaaazzzzzdadaadamadamadamadamadamzzzaaaazzzzaaaaaazzaadam" , 0 );	
+	globalCoop_level_removePath($m4l1a_intro01);
+	globalCoop_level_removePath($m4l1a_intro02);
+	globalCoop_level_removePath($m4l1a_intro03);
+	globalCoop_level_removePath($m4l1a_intro04);
+	globalCoop_level_removePath($m4l1a_intro05);
+	globalCoop_level_removePath($m4l1a_intro06);
 	
 	thread shuttleBayWaveBattle();
 	
@@ -767,6 +912,10 @@ void steamPuzzle_setup()
 	//[b60021] chrissstrahl - make sure this isn't running if server is empty
 	waitForPlayer();
 	wait(3);
+	
+	if(sLevelTooken == "escort"){
+		return;
+	}
 	
 	//steamOneOn = 1;
 	thread steamJimmy1();
@@ -3127,6 +3276,7 @@ void coop_SideScrollerPlayerExit(entity ePlayer)
 void coop_spawnPlayerNearBarricade()
 {
 	coop_float_spawnAngle0 				= 0;
+										//-1300
 	coop_vector_spawnOrigin8 			= '-1305 7340 64';
 	coop_vector_spawnOrigin7 			= '-1305 7410 64';
 	coop_vector_spawnOrigin6 			= '-1305 7480 64';
