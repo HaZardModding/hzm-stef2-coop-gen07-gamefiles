@@ -1,7 +1,7 @@
 LevelProperties
 {
 	mapname				"m0-intro"
-	longmapname			"EF2 Campaign - ^2Prolog ^5[START]"
+	longmapname			"EF2 Campaign - ^2$$PrologueSave$$ ^5[START]"
 	screenshot			"sysimg/mapshots/m0-intro.tga"
 	
 	gametype			"HZM_Coop_Mod"
