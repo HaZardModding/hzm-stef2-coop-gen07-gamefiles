@@ -222,7 +222,7 @@ void barrel_runThread(entity eActivator, string sThread)
 	}
 	
 	entity eTrigger;
-	eTrigger = spawn("trigger_relay","thread",sThread);
+	eTrigger = spawn("trigger_relay","thread",sThread,"cnt","1");
 	wait(0.05);
 	if(doesEntityExist(eTrigger)){
 		if(doesEntityExist(eActivator)){
