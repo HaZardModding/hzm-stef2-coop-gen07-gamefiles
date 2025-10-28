@@ -2392,6 +2392,8 @@ void seqGreatHall_HolodeckTransition()
 					ePlayer.warp(globalCoop_return_vectorPlayerSpawnOrigin(fPlayerIdInUse));
 				}
 				ePlayer.immobilize(0);
+				//make sure players don't get stuck - there are some at spawnlocations and some randomly else where inside holodeck
+				thread globalCoop_player_makeSolidASAP(ePlayer);
 			}
 		}
 	}
