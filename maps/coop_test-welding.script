@@ -5,6 +5,9 @@ void tooglePathNodes();
 
 void main()
 {
+	//add this to make weldingpoints visible with tricorder
+	$world.addAvailableViewMode("structuralintegrity");
+	
 	//welding doors
 	//Setup:
 	//$weldedDoor1 - door that should be weldable
