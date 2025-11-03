@@ -1,23 +1,22 @@
-menu coop_scan 400 480 NONE 1
+menu coop_scan 400 480 NONE 0
 bgcolor 0 0 0 0
 align center bottom
 depth 0.3
 hideDuringLoad
-//gamefocus
 
 resource 
 Label
 {
     name "Descr1"
     title ""
-    rect 0 180 400 40
+    rect 35 100 400 40
     //fgcolor 			0.3 0.8 0.1 1
     fgcolor 			1 1 1 1
     bgcolor 			0 1 0 0
     borderstyle "NONE"
     
    	font serpentinemedium-14
-	horizontaljustify center
+	horizontaljustify left
 	verticaljustify center
 	
 	linkcvar coop_scan0
@@ -32,14 +31,14 @@ Label
 {
     name "Descr2"
     title ""
-    rect 0 260 400 100
+    rect 35 180 400 100
     //fgcolor 			0.3 0.8 0.1 1
     fgcolor 			0.9 0.9 0.9 1
     bgcolor 			1 0 0 0
     borderstyle "NONE"
     
    	font serpentinemedium-10
-	horizontaljustify center
+	horizontaljustify left
 	verticaljustify center
 	
 	linkcvar coop_scan1
@@ -54,14 +53,14 @@ Label
 {
     name "Descr3"
     title ""
-    rect 0 360 400 120
+    rect 35 280 400 120
     //fgcolor 			0.80 0.20 0.20 1.00
     fgcolor 			0.8 0.8 0.8 1
     bgcolor 			0 0 1 0
     borderstyle "NONE"
     
     font serpentinemedium-10
-	horizontaljustify center
+	horizontaljustify left
 	verticaljustify top
 	
 	linkcvar coop_scan2
