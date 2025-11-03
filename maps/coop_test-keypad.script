@@ -102,7 +102,7 @@ void keypad_clear(entity eTrigger, string sBaseName, string sText)
 		return;
 	}
 	
-	wait(1.5);
+	wait(0.25);
 	
 	eTrigger.setFloatVar("keypadCodepos",1);
 	if(doesEntityExist(eText)){
@@ -114,7 +114,7 @@ void keypad_clear(entity eTrigger, string sBaseName, string sText)
 		
 	}
 
-	wait(0.5);
+	wait(0.25);
 	
 	//show entered digit empty symbol
 	for(iButton=1;iButton<=6;iButton++){
@@ -129,8 +129,13 @@ void keypad_clear(entity eTrigger, string sBaseName, string sText)
 	}
 }
 
-void keypad_abbort(entity eTrigger, string sBaseName)
+void keypad_abbort(entity eTrigger, entity ePlayer, string sBaseName)
 {
+	if(doesEntityExist(ePlayer)){
+		ePlayer.safeholster(0);
+		ePlayer.disableuseweapon(0);
+	}
+	
 	if(!doesEntityExist(eTrigger)){
 		print("keypad_abbort: eTrigger missing\n");
 		return;
@@ -210,24 +215,28 @@ void keypad_manage(entity eTrigger, entity ePlayer)
 		eMarkerSelected.notsolid();
 	}
 	
+	//ePlayer.disableinventory(1);
+	ePlayer.safeholster(1);
+	ePlayer.disableuseweapon(1);
+	
 	while(1){
 		if(!doesEntityExist(eTrigger)){
 			return;
 		}
 		
 		if(!doesEntityExist(ePlayer)){
-			keypad_abbort(eTrigger, sBaseName);
+			keypad_abbort(eTrigger, $null, sBaseName);
 			return;
 		}
 		
 		if(ePlayer.getHealth() <= 0 || ePlayer.coop_isSpectator() == 1){
-			keypad_abbort(eTrigger, sBaseName);
+			keypad_abbort(eTrigger, ePlayer, sBaseName);
 			return;
 		}
 		
 		vPlayer = ePlayer.getOrigin();
 		if(vectorLength(vTrigger - vPlayer) > 64){
-			keypad_abbort(eTrigger, sBaseName);
+			keypad_abbort(eTrigger, ePlayer, sBaseName);
 			return;
 		}
 		eTarget = ePlayer.coop_getTargetedEntity();
@@ -288,6 +297,12 @@ void keypad_manage(entity eTrigger, entity ePlayer)
 								bCleared = 1;
 								sInputChain = "";
 								iCodePos = 0;
+								
+								if(doesEntityExist(ePlayer)){
+									ePlayer.safeholster(0);
+									ePlayer.disableuseweapon(0);
+								}
+								
 								keypad_clear(eTrigger, sBaseName, sText);
 								return;
 							}
