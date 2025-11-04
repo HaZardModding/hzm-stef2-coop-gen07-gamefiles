@@ -2,7 +2,7 @@ void main();
 void setupBarrels();
 void waterBarrel1_makeFireStop();
 
-#include "co-op/matrix/barrel.script"
+#include "co-op/matrix/barrel.scr"
 
 void main()
 {
