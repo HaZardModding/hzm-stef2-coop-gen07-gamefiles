@@ -1223,7 +1223,7 @@ Button
 
 	clicksound sound/misc/menu/click.wav
  
-	stuffcommand "set ui_startmap coop_test-keypad\n"
+	stuffcommand "set ui_startmap coop_test-keypadEnv\n"
 	hovercommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"Chrissstrahl\""
 	hoverexitcommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"\""
 }

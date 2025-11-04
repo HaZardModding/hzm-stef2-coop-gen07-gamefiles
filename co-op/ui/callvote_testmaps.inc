@@ -1209,7 +1209,7 @@ Button
 
 	clicksound sound/misc/menu/click.wav
  
-	stuffcommand "callvote map coop_test-keypad;popmenu 1;popmenu 0\n"
+	stuffcommand "callvote map coop_test-keypadEnv;popmenu 1;popmenu 0\n"
 	hovercommand "globalwidgetcommand coopShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coopName title \"Chrissstrahl\""
 	hoverexitcommand "globalwidgetcommand coopShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coopName title \"\""
 }
