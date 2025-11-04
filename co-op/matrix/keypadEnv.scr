@@ -1,11 +1,67 @@
-float fThreadTime;
+void keypadEnv_start();
+void keypadEnv_runThread(entity eActivator, string sThread);
+float keypadEnv_validEntity(entity eTarget, string sBaseName);
+void keypadEnv_clear(entity eTrigger, string sBaseName, string sText);
+void keypadEnv_abbort(entity eTrigger, entity ePlayer, string sBaseName);
+void keypadEnv_manage(entity eTrigger, entity ePlayer);
 
-void main();
-void keypad1_solved();
+//this gets started by a trigger, recommended: trigger_multiple with Key:wait Value:1
+//The trigger has the nessary variables set
+//
+//targetname should contain the trigger base name, like: keypad1_trigger
+//uservar1	sets the basename: keypad1
+//uservar2	sets the code, max 6 digits, only numeric 0-9
+//uservar3	sets script thread to run if solved: keypad1_solved
+//uservar4	sets how many tries are allowed before the keypad stops working
+//thread	needs to be: keypadEnv_start
+//
+//Fixed setup:
+//- Failurethread after X(uservar4) tries is always: basename+_failure, in example script that is: keypad1_failure
+//- the level script you want to use this with needs to include this script: #include "co-op/matrix/keypadEnv.scr"
+//- All the script_object parts start need sto start with the basename, in the example that will be: keypad1_ - keypad1_1 for key number1
+//- A keypad consits of about 31 script_objects and 1 detailed brush group
+//- example level: coop_test-keypadEnv
+void keypadEnv_start()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	
+	//disable input
+	eTrigger.notTriggerable();
+	eTrigger.setFloatVar("keypadEnvCodepos",1);
+	eTrigger.setFloatVar("keypadEnvSolved",0);
+	
+	//prevent issues with getCurrentEntity out of range
+	eTrigger = eTrigger;
+	
+	vector vTrigger;
+	vector vPlayer;
+	vTrigger = eTrigger.getOrigin();
+	
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(doesEntityExist(ePlayer)){
+		keypadEnv_manage(eTrigger, ePlayer);
+	}
+	
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	
+	if(eTrigger.getFloatVar("keypadEnvSolved")){
+		return;
+	}
+	if(eTrigger.getFloatVar("keypadEnvFailed")){
+		return;
+	}
+	
+	eTrigger.triggerable();
+}
 
-void keypad_runThread(entity eActivator, string sThread);
-
-void keypad_runThread(entity eActivator, string sThread)
+void keypadEnv_runThread(entity eActivator, string sThread)
 //start thread, if possible also give Entity who damaged Barrel
 {
 	if(sThread == ""){
@@ -25,7 +81,7 @@ void keypad_runThread(entity eActivator, string sThread)
 	}
 }
 
-float keypad_validEntity(entity eTarget, string sBaseName)
+float keypadEnv_validEntity(entity eTarget, string sBaseName)
 {
 	if(!doesEntityExist(eTarget)){
 		return 0;
@@ -47,7 +103,7 @@ float keypad_validEntity(entity eTarget, string sBaseName)
 	return 0;
 }
 
-void keypad_clear(entity eTrigger, string sBaseName, string sText)
+void keypadEnv_clear(entity eTrigger, string sBaseName, string sText)
 {
 	if(!doesEntityExist(eTrigger)){
 		return;
@@ -93,7 +149,7 @@ void keypad_clear(entity eTrigger, string sBaseName, string sText)
 	}	
 
 	//solved or failed
-	if(eTrigger.getFloatVar("keypadSolved") == 1 || eTrigger.getFloatVar("keypadFailed") == 1){
+	if(eTrigger.getFloatVar("keypadEnvSolved") == 1 || eTrigger.getFloatVar("keypadEnvFailed") == 1){
 		entity eMarker;
 		eMarker = getEntity(sBaseName+"_marker");
 		if(doesEntityExist(eMarker)){
@@ -104,7 +160,7 @@ void keypad_clear(entity eTrigger, string sBaseName, string sText)
 	
 	wait(0.25);
 	
-	eTrigger.setFloatVar("keypadCodepos",1);
+	eTrigger.setFloatVar("keypadEnvCodepos",1);
 	if(doesEntityExist(eText)){
 		if(doesEntityExist(eReady)){
 			eText.warp(eReady.getOrigin());
@@ -129,7 +185,7 @@ void keypad_clear(entity eTrigger, string sBaseName, string sText)
 	}
 }
 
-void keypad_abbort(entity eTrigger, entity ePlayer, string sBaseName)
+void keypadEnv_abbort(entity eTrigger, entity ePlayer, string sBaseName)
 {
 	if(doesEntityExist(ePlayer)){
 		ePlayer.safeholster(0);
@@ -137,7 +193,7 @@ void keypad_abbort(entity eTrigger, entity ePlayer, string sBaseName)
 	}
 	
 	if(!doesEntityExist(eTrigger)){
-		print("keypad_abbort: eTrigger missing\n");
+		print("keypadEnv_abbort: eTrigger missing\n");
 		return;
 	}
 
@@ -148,37 +204,37 @@ void keypad_abbort(entity eTrigger, entity ePlayer, string sBaseName)
 		eMarker.hide();
 	}
 	
-	keypad_clear(eTrigger,sBaseName,"error");
+	keypadEnv_clear(eTrigger,sBaseName,"error");
 	eTrigger.triggerable();
 }
 
 
-void keypad_manage(entity eTrigger, entity ePlayer)
+void keypadEnv_manage(entity eTrigger, entity ePlayer)
 {
 	string sBaseName;
 	string sCode;
 	string sThread;
 	if(!doesEntityExist(eTrigger)){
-		print("keypad_manage: eTrigger missing\n");
+		print("keypadEnv_manage: eTrigger missing\n");
 		return;
 	}
 	if(!doesEntityExist(ePlayer)){
-		print("keypad_manage: ePlayer missing\n");
+		print("keypadEnv_manage: ePlayer missing\n");
 		return;
 	}
 	sBaseName = eTrigger.getStringvar("uservar1");
 	if(sBaseName == ""){
-		print("keypad_manage: uservar1 for baseName is empty\n");
+		print("keypadEnv_manage: uservar1 for baseName is empty\n");
 		return;
 	}	
 	sCode = eTrigger.getStringvar("uservar2");
 	if(sCode == ""){
-		print("keypad_manage: uservar2 for code is empty\n");
+		print("keypadEnv_manage: uservar2 for code is empty\n");
 		return;
 	}
 	sThread = eTrigger.getStringvar("uservar3");
 	if(sThread == ""){
-		print("keypad_manage: uservar3 for thread is empty\n");
+		print("keypadEnv_manage: uservar3 for thread is empty\n");
 		return;
 	}
 	
@@ -225,18 +281,18 @@ void keypad_manage(entity eTrigger, entity ePlayer)
 		}
 		
 		if(!doesEntityExist(ePlayer)){
-			keypad_abbort(eTrigger, $null, sBaseName);
+			keypadEnv_abbort(eTrigger, $null, sBaseName);
 			return;
 		}
 		
 		if(ePlayer.getHealth() <= 0 || ePlayer.coop_isSpectator() == 1){
-			keypad_abbort(eTrigger, ePlayer, sBaseName);
+			keypadEnv_abbort(eTrigger, ePlayer, sBaseName);
 			return;
 		}
 		
 		vPlayer = ePlayer.getOrigin();
 		if(vectorLength(vTrigger - vPlayer) > 64){
-			keypad_abbort(eTrigger, ePlayer, sBaseName);
+			keypadEnv_abbort(eTrigger, ePlayer, sBaseName);
 			return;
 		}
 		eTarget = ePlayer.coop_getTargetedEntity();
@@ -247,12 +303,12 @@ void keypad_manage(entity eTrigger, entity ePlayer)
 					bMarkerVisible = 0;
 					wait(0.1);
 				}
-				else if (keypad_validEntity(eTarget,sBaseName)){				
+				else if (keypadEnv_validEntity(eTarget,sBaseName)){				
 					eMarker.warp(eTarget.getOrigin());
 					
 					if(bMarkerVisible){
 						if(ePlayer.coop_checkFire() == 1 || ePlayer.coop_checkUse() ){							
-							iCodePos = eTrigger.getFloatVar("keypadCodepos");
+							iCodePos = eTrigger.getFloatVar("keypadEnvCodepos");
 							if(iCodePos > 6){
 								iCodePos = 6;
 							}
@@ -266,7 +322,7 @@ void keypad_manage(entity eTrigger, entity ePlayer)
 								bCleared = 1;
 								sInputChain = "";
 								iCodePos = 0;
-								keypad_clear(eTrigger, sBaseName,"clear");
+								keypadEnv_clear(eTrigger, sBaseName,"clear");
 							}
 							
 							//accept code
@@ -276,23 +332,21 @@ void keypad_manage(entity eTrigger, entity ePlayer)
 								//check if code is correct
 								if(sCode == sInputChain){
 									sText = "ok";
-									eTrigger.setFloatVar("keypadSolved",1);
-									thread keypad_runThread(ePlayer,sThread);
+									eTrigger.setFloatVar("keypadEnvSolved",1);
+									thread keypadEnv_runThread(ePlayer,sThread);
 								}else{
 									sText = "error";
 
 									if(iMaxFailure > 0){
-										iFailures = eTrigger.getFloatVar("keypadFailures");
+										iFailures = eTrigger.getFloatVar("keypadEnvFailures");
 										iFailures++;
 										
-										if(iFailures >= iMaxFailure){
-											eTrigger.setFloatVar("keypadFailed",1);
-											//if(doesEntityExist(eMarker)){
-												//eMarker.selfDetonate();
-											//}
+										if(iFailures == iMaxFailure){
+											eTrigger.setFloatVar("keypadEnvFailed",1);
+											thread keypadEnv_runThread(ePlayer,sBaseName+"_failure");
 										}
 									}
-									eTrigger.setFloatVar("keypadFailures",iFailures);
+									eTrigger.setFloatVar("keypadEnvFailures",iFailures);
 								}
 								bCleared = 1;
 								sInputChain = "";
@@ -303,12 +357,11 @@ void keypad_manage(entity eTrigger, entity ePlayer)
 									ePlayer.disableuseweapon(0);
 								}
 								
-								keypad_clear(eTrigger, sBaseName, sText);
+								keypadEnv_clear(eTrigger, sBaseName, sText);
 								return;
 							}
 							
 							sInputChain = (sInputChain + sInput);
-							//ePlayer.hudprint("You selected: "+sInput+"\n");
 							
 							if(!bCleared){
 								eMarker.hide();
@@ -348,7 +401,7 @@ void keypad_manage(entity eTrigger, entity ePlayer)
 								}
 								
 								iCodePos++;
-								eTrigger.setFloatVar("keypadCodepos",iCodePos);
+								eTrigger.setFloatVar("keypadEnvCodepos",iCodePos);
 							}
 							bCleared=0;
 						}
@@ -366,64 +419,5 @@ void keypad_manage(entity eTrigger, entity ePlayer)
 		}
 		
 		wait(0.05);
-	}
-}
-
-void keypad_start()
-{
-	if( (fThreadTime + 1) > getLevelTime() ){
-		return;
-	}
-	fThreadTime = getLevelTime();
-	
-	entity eTrigger;
-	eTrigger = getCurrentEntity();
-	if(!doesEntityExist(eTrigger)){
-		return;
-	}
-	
-	//disable input
-	eTrigger.notTriggerable();
-	eTrigger.setFloatVar("keypadCodepos",1);
-	eTrigger.setFloatVar("keypadSolved",0);
-	
-	//prevent issues with getCurrentEntity out of range
-	eTrigger = eTrigger;
-	
-	vector vTrigger;
-	vector vPlayer;
-	vTrigger = eTrigger.getOrigin();
-	
-	entity ePlayer;
-	ePlayer = eTrigger.getLastActivatingEntity();
-	if(doesEntityExist(ePlayer)){
-		keypad_manage(eTrigger, ePlayer);
-	}
-	
-	if(!doesEntityExist(eTrigger)){
-		return;
-	}
-	
-	if(eTrigger.getFloatVar("keypadSolved")){
-		return;
-	}
-	if(eTrigger.getFloatVar("keypadFailed")){
-		return;
-	}
-	
-	eTrigger.triggerable();
-}
-
-void main()
-{
-
-}
-
-void keypad1_solved()
-{
-	entity eDoor;
-	eDoor = getEntity("door");
-	if(doesEntityExist(eDoor)){
-		triggerEntity(eDoor);
 	}
 }

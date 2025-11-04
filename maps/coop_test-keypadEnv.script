@@ -1,0 +1,41 @@
+//this gets started by a trigger, recommended: trigger_multiple with Key:wait Value:1
+//The trigger has the nessary variables set
+//
+//targetname should contain the trigger base name, like: keypad1_trigger
+//uservar1 sets the basename: keypad1
+//uservar2 sets the code, max 6 digits, only numeric 0-9
+//uservar3 sets script thread to run if solved: keypad1_solved
+//uservar4 sets how many tries are allowed before the keypad stops working
+//thread needs to be: keypadEnv_start
+//
+//Fixed setup:
+//- Failurethread after X(uservar4) tries is always: basename+_failure, in example script that is: keypad1_failure
+//- the level script you want to use this with needs to include this script
+//#include "co-op/matrix/keypadEnv.scr"
+//- All the script_object parts start need sto start with the basename, in the example that will be: keypad1_ - keypad1_1 for key number1
+//- A keypad consits of about 31 script_objects and 1 detailed brush group
+
+void main();
+void keypad1_solved();
+
+
+#include "co-op/matrix/keypadEnv.scr"
+
+
+void main()
+{
+}
+
+void keypad1_solved()
+{
+	entity eDoor;
+	eDoor = getEntity("door");
+	if(doesEntityExist(eDoor)){
+		triggerEntity(eDoor);
+	}
+}
+
+void keypad1_failure()
+{
+	$door.selfdetonate();
+}
