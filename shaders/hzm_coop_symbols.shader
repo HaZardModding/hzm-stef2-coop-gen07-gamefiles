@@ -1,6 +1,21 @@
 //--------------------------------------------------------------------
 // Mod Additional Textures
 //--------------------------------------------------------------------
+textures/coop_mod/symbols/useBig.tga
+{
+   nomipmaps
+   nopicmip
+   cull none
+   {
+		map textures/coop_mod/use.tga
+		blendfunc blend
+		alphaFunc GT0
+		alphaGen global
+   }
+}
+
+
+
 coop_use
 {
    nomipmaps
