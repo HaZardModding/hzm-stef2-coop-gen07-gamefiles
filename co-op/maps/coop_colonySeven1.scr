@@ -23,6 +23,8 @@ string strWeapon1;
 //common scripts
 #include "co-op/maps/coop_colonySeven/sounds.scr"
 #include "co-op/maps/coop_colonySeven/webs.scr"
+#include "co-op/maps/coop_colonySeven/laptop.scr"
+#include "co-op/maps/coop_colonySeven/datapad.scr"
 
 //mission specific scripts are in this master file you are currently reading
 //room specific scripts are in these
@@ -43,6 +45,17 @@ OBJ_BEAMOUT			"Help Ms. Ling to harmonize the plasma stream."
 OBJ_NEUTRALIZE15		"Gehen Sie zur Arbeit."
 OBJ_RESUPPLY			"Gehen Sie zu Lt. Nortons Büro."
 OBJ_BEAMOUT			"Helfen Sie Mrs. Ling, den Plasmastrom zu harmonisieren."
+
+viewspawnquicklist -> select list
+viewlistmodelname
+viewlistprev
+viewlistjump
+viewlistnext
+viewlistliftmodel 33-> z-height
+viewscale 1.0
+viewroll  -180 to 180
+viewpitch  -180 to 180
+viewyaw  -180 to 180
 */
 
 void main()
@@ -56,6 +69,23 @@ void main()
 	thread playerSetup();
 	
 	thread introCin();
+	
+	vector vOr;
+	while(1){
+		wait(2);
+		if(doesEntityExist($red)){
+			vOr = $red.getOrigin();
+		}else{
+			if(doesEntityExist($player0)){
+				//$player0.hudprint($player0.getRawTargetname()+"_"+$player0.getActiveWeaponName()+"\n");
+				//$player0.weaponcommand("dual","weaponviewmodel","models/weapons/viewmodel-attrex-rifle.tik");
+				$player0.weaponcommand("dual","targetname","red");
+			//	$player0.weaponcommand("dual","weaponviewmodel","models/fx/fx-dummy.tik");
+			}
+		}
+		//$player0.hudprint(vOr+"\n");
+		//$red.weaponviewmodel("models/weapons/viewmodel-attrex-rifle.tik");
+	}
 }
 
 void playerSetup()

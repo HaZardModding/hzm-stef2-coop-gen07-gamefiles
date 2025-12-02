@@ -10,6 +10,7 @@ $quarters_datapad2
 $quarters_replicatorSecret
 */
 
+
 void quarters_setup()
 {
 	//$dufresne.anim("ent-sickbed-sitting-idle");
@@ -23,6 +24,29 @@ void quarters_setup()
 	globalArchetype_Setup( $quarters_archeType1, "Weapon-Batleth" );
 	globalArchetype_Setup( $quarters_archeType1, "Batleth" );
 	globalArchetype_Setup( $quarters_archeType2, "KorbanDoorPanel" );
+	
+	//interactable
+	thread onUseAction($quarters_laptop1,"laptopToggle");
+	thread onUseAction($quarters_laptop2,"laptopToggle");
+	
+	//coop_subString
+	//coop_find "-"
+	//playerTargetName+getLevelTime()
+	//
+	
+	//disabled tricorder puzzle for laptops in laptop.scr because we don't have time to finish it
+	
+	//This is temporarly disabled, because we don't have the time to finsih this right
+	/* 
+	float fdataP;
+	entity eData;
+	for(fdataP=0;fdataP<5;fdataP++){
+		eData = getEntity("quarters_datapad"+fdataP);
+		if(doesEntityExist(eData)){
+			thread datapadSetup(eData,"abc");
+			thread onUseAction(eData,"datapadPickup");
+		}
+	}*/
 	
 	//add lots of scanable - teppich, bilder, vasen, pads, bett,
 	

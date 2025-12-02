@@ -1,0 +1,51 @@
+void laptopToggle();
+
+//Used for Laptops - Open Close
+void laptopToggle()
+{
+	entity e;
+	e = getCurrentEntity();
+	if(!doesEntityExist(e)){
+		return;
+	}
+	e.noUse();
+	
+	//entity ePlayer;
+	//ePlayer = e.getLastActivatingEntity();
+	//if(doesEntityExist(ePlayer)){
+	//}
+	
+	string sBaseName;
+	sBaseName = e.getRawTargetName();
+	entity ePuzzle;
+	ePuzzle=getEntity(sBaseName+"_puzzle");
+	
+	float laptopState;
+	laptopState = e.getFloatVar("isOpen");
+	if(laptopState == 0){
+		e.anim("opening");
+		waitForAnimation(e,"opening");
+		e.anim("open_idle");
+		laptopState = 1;
+//disabled because we don't have time to finish it
+		//if(doesEntityExist(ePuzzle)){
+			//ePuzzle.puzzleobject_activate();
+		//}
+	}else{
+//disabled because we don'tg hav etime to finish it
+		//if(doesEntityExist(ePuzzle)){
+			//ePuzzle.puzzleobject_deactivate();
+		//}
+		e.anim("closing");
+		waitForAnimation(e,"closing");
+		e.anim("closed");
+		laptopState = 0;
+	}
+	wait(0.5);
+	
+	if(!doesEntityExist(e)){
+		return;
+	}
+	e.setFloatVar("isOpen",laptopState);
+	thread onUseAction(e,"laptopToggle");
+}

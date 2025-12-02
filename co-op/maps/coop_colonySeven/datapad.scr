@@ -1,0 +1,137 @@
+void datapadSetup(entity e, string sThread);
+void datapadPickupScale(entity e);
+void datapadPickup();
+
+void abc()
+{
+$player0.hudprint("pick\n");
+}
+
+void datapadSetup(entity e, string sThread)
+{
+	if(!doesEntityExist(e)){
+		printConsole("ERROR: datapadSetup, entity does not exist with thread: "+sThread+"\n");
+		return;
+	}
+	e.notsolid();
+	e.setSize('-5 -5 -10','5 5 20');
+	e.setStringVar("pickupThread",sThread);
+}
+
+void datapadPickupScale(entity e)
+{
+	float fScale = 1;
+	while(fScale > 0.1)
+	{
+		if(!doesEntityExist(e)){
+			return;
+		}
+		fScale -= 0.05;
+		e.scale(fScale);
+		wait(0.05);
+	}
+}
+
+void datapadPickup()
+{
+float MAX_DISTANCE_XY = 45;
+float MAX_DISTANCE_Z = 50;
+float MOVE_UNITS_PERFRAME = 10;
+ 
+	entity e;
+	e = getCurrentEntity();
+	if(!doesEntityExist(e)){
+		return;
+	}
+	
+	entity ePlayer;
+	ePlayer = e.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	e.noUse();
+	
+	//move datapad towards player to make it kina look like a pickup
+	string sThread;
+	sThread = e.getStringVar("pickupThread");
+	vector vDatapad;
+	vector vPlayer;
+	vDatapad = e.getOrigin();
+	vPlayer = ePlayer.getOrigin();
+	float exitNow;
+	
+	//requires the coop mod 
+	/* This would actually require the datapad to be solid, that could lead to player getting stuck
+	entity eTargeted;
+	eTargeted = ePlayer.coop_getTargetedEntity();
+	if(eTargeted.getRawTargetName() != e.getRawTargetName()){
+		$player0.hudprint("not targeted\n");
+		exitNow=1;
+	}
+	*/
+	
+	//check if player is actually in range
+	vector v1,v2;
+
+	// Z distance
+	/*v1_z = vPlayer_z;
+	v2_z = vDatapad_z;
+	if(vectorLength(v1 - v2) > MAX_DISTANCE_Z){
+		exitNow=1;
+	}*/
+	
+	// X/Y distance
+	if(!exitNow){
+		v1 = vDatapad;
+		v2 = vPlayer;
+		v1_z = 0;
+		v2_z = 0;
+		if(vectorLength(v1 - v2) > MAX_DISTANCE_XY){
+			exitNow=1;
+		}
+	}
+
+	//$player0.hudprint("distance "+vectorLength(v1 - v2)+"\n");
+
+	if(exitNow){
+		wait(0.15);
+		thread onUseAction(e,"datapadPickup");
+		return;
+	}
+
+	if(!doesEntityExist(e)){
+		return;
+	}
+	
+	//GRAB DATA FROM PAD
+	//
+	//
+	//
+	
+	float fPercentage;
+	float fPlayerZ;
+	vector vOffset;
+	fPlayerZ = vectorGetZ(ePlayer.getMaxs());
+	fPercentage = 65;
+	if(fPlayerZ > 49){
+		fPercentage = 70;
+	}
+	vOffset_z = (fPlayerZ / 100 * fPercentage);
+	
+	//MOVE PAD TO PLAYER
+	objectFollowObject(e, ePlayer, 0.25, vOffset);
+	if(doesEntityExist(e)){
+		if(doesEntityExist(ePlayer)){
+			e.remove();
+		}
+	}
+
+	wait(0.15);
+	if(doesEntityExist(e)){
+		thread onUseAction(e,"datapadPickup");		
+	}
+	
+	if(sThread != ""){
+		thread callReliablyActivator(sThread, ePlayer);	
+	}
+}
