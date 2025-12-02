@@ -1962,8 +1962,16 @@ void coop_endLevel()
 		stuffcmd("disconnect\n");
 		return;
 	}
+	
+	//use a different map load order for testing all levels
+	if(getCvarInt("coop_dev") == 1){
+		if(getCvarInt("coop_diag") == 1){
+			thread globalCoop_mission_completed("secret1");
+			return;
+		}
+	}
 
 //load next map
-	thread globalCoop_mission_completed("secret1");
+	thread globalCoop_mission_completed("coop_rotec1");
 }
 

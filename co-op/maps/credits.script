@@ -293,7 +293,7 @@ void coop_endLevel()
 	}
 	//eof hzm
 	
-	thread globalCoop_mission_completed("secret1");
+	thread globalCoop_mission_completed("coop_lvlSelection");
 }
 
 
