@@ -62,7 +62,7 @@ void keypadEnv_start()
 }
 
 void keypadEnv_runThread(entity eActivator, string sThread)
-//start thread, if possible also give Entity who damaged Barrel
+//start thread, if possible also give Entity who activated it
 {
 	if(sThread == ""){
 		return;
