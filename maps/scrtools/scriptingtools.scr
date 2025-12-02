@@ -35,6 +35,7 @@ void printConsole(string sMessage);
 void consoleSound();
 void waitForWarmupTime();
 void callReliably(string sTreadName);
+void callReliablyActivator(string sTreadName, entity eActivator);
 void npcSetup(entity eActor);
 void npcMakeMortal(entity eActor);
 void npcMakeEnemy(entity eActor);
@@ -214,6 +215,33 @@ void callReliably(string sTreadName)
 		triggerEntity(eTrigger);
 	}else{
 		printConsole("callReliably FAILED - could not spawn trigger");
+	}
+}
+
+void callReliablyActivator(string sTreadName, entity eActivator)
+//----------------------------------------------------------------------
+//Calls a thread from a trigger...
+//This does not crash the game if that thread does not exist
+//----------------------------------------------------------------------
+{
+	if(sTreadName == ""){
+		printConsole("callReliablyActivator no thread name given");
+		return;
+	}
+	
+	setupVariables_internal(); //update[2]
+	
+	entity eTrigger;
+	eTrigger = spawn("trigger_relay","thread",sTreadName);
+	waitFrameTime();
+	if(doesEntityExist(eTrigger)){
+		if(doesEntityExist(eActivator)){
+			eActivator.doActivate(eTrigger);
+		}else{
+			triggerEntity(eTrigger);
+		}
+	}else{
+		printConsole("callReliablyActivator FAILED - could not spawn trigger");
 	}
 }
 
