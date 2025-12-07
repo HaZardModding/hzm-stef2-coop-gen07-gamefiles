@@ -2,8 +2,8 @@
 //Used to test all coop script functions
 //if they are working properly
 
-#include "co-op/matrix/weld.script"
-#include "co-op/matrix/barrel.script"
+#include "co-op/matrix/weld.scr"
+#include "co-op/matrix/barrel.scr"
 
 void main();
 void coop_printMessage(string sMessage);
