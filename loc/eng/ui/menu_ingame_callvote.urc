@@ -173,7 +173,7 @@ Button
 	//bordercolor 0.12 0.15 0.25 1.00
 
 	//[b607] chrissstrahl - added kickbots option to list
-	stuffcommand "ui_setvotetype kick;seta coop_ui_vt 1; globalwidgetcommand VoteOptionList addrow ^5$$c#050$$ kickbots"
+	stuffcommand "ui_setvotetype kick;seta coop_ui_vt 1;set coop_ui_sm -1;globalwidgetcommand VoteOptionList addrow ^5$$c#050$$ kickbots"
 	
     hovercommand "globalwidgetcommand tooltip_callvote title \"$$KickPlayerToolTip$$\""
     hoverexitcommand "globalwidgetcommand tooltip_callvote title \"\""
@@ -218,7 +218,7 @@ Button
 	//borderwidth 1
 	//bordercolor 0.12 0.15 0.25 1.00
 
-	stuffcommand "ui_setvotetype map;seta coop_ui_vt 3\n"
+	stuffcommand "ui_setvotetype map;seta coop_ui_vt 3;set coop_ui_sm -1\n"
 	
     hovercommand "globalwidgetcommand tooltip_callvote title \"$$ChangeMapToolTip$$\""
     hoverexitcommand "globalwidgetcommand tooltip_callvote title \"\""
