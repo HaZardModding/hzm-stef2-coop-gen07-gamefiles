@@ -181,8 +181,8 @@ void coop_spawnTurboliftNearArmory()
 	coop_vector_spawnOrigin1 			= '-12250 -2205 0';
 	coop_vector_spawnOrigin2 			= '-12176 -2215 0';
 	coop_vector_spawnOrigin3 			= '-12252 -2273 0';
-	coop_vector_spawnOrigin4 			= '-12296 -2563 0';
-	coop_vector_spawnOrigin5 			= '-12249 -2614 0';
+	coop_vector_spawnOrigin4 			= '-12334 -2588 0';
+	coop_vector_spawnOrigin5 			= '-12277 -2642 0';
 	coop_vector_spawnOrigin6 			= '-12288 -2543 0';
 	coop_vector_spawnOrigin7 			= '-12233 -2602 0';
 	coop_vector_spawnOrigin8 			= '-12168 -2537 0';
@@ -244,6 +244,8 @@ void checkMissionNumber()
 		missionEnterprise = 1;
 	}
 	setfloatvar ( "game.globalMissionEnterprise", missionEnterprise );
+	
+	coop_spawnTurboliftNearArmory();
 	
 	if( missionEnterprise == 1 )
 	{

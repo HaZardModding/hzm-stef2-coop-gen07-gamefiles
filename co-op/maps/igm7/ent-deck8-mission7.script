@@ -108,6 +108,8 @@ void setupMission7Deck8()
 		setfloatvar(  "level.deckToChangeToIGM", 71 );
 		
 	}else if(getfloatvar( "game.checkEntMission7RoomsVisited" ) == 5){
+		coop_spawnTurboliftNearArmory();
+	
 		//hzm coop mod Chrissstrahl - set the objective
 		globalCoop_objectives_set("$$IGM7GoToBrig$$","complete",1,0);
 		globalCoop_objectives_set("$$IGM7GoToArmory$$","complete",2,0);
