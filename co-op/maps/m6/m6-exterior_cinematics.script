@@ -143,6 +143,21 @@ void cinematicEndStage1()
 	//--- change the music
 	forcemusic( "aux2" );
 	
+	
+	//[b70300] Chrissstrahl - take weapons
+	//This fixes issues with slow/delayed clients that retain weapons
+	entity ePlayer;
+	float fPlayerIdInUse=0;
+	
+	while(fPlayerIdInUse<coop_integer_maxPlayers){
+		ePlayer = getEntity("*"+fPlayerIdInUse);
+		if(doesEntityExist(ePlayer)) {
+			ePlayer.freeInventory();
+			ePlayer.safeholster(1);
+		}
+		fPlayerIdInUse++;
+	}
+	
 	//[b60011] chrissstrahl - 
 	float fSkipCinStage2;
 	fSkipCinStage2 = coop_getFloat(coop_getLevelParamater("skipcin"));
@@ -152,7 +167,22 @@ void cinematicEndStage1()
 	}	
 
 	cam_fadeout( .5, 0, 0, 0, 1, 0 );
-	wait( .6 );
+	
+	//[b70300] chrisstrahl - Wait until the Game Starts in Multiplayer
+	if(coop_fForceStage2){
+		globalCoop_main_waitForWarmupTime();
+	}else{
+		//[b70300] Chrissstrahl - remove tricorder hud
+		//This fixes issues with slow/delayed clients that get stuck in the modulate hud
+		fPlayerIdInUse=0;
+		while(fPlayerIdInUse<coop_integer_maxPlayers){
+			ePlayer = getEntity("*"+fPlayerIdInUse);
+			if(doesEntityExist(ePlayer)) {
+				sendClientCommand(ePlayer,"ui_removehud timerhud");
+			}
+			fPlayerIdInUse++;
+		}
+	}
 
 	//hzm coop mod chrissstrahl - wait for tuvok to spawn and position
 	wait(2);
@@ -346,32 +376,10 @@ void endStage2Cinematic()
 	
 	//hzm coop mod Chrissstrahl - set the objective
 	globalCoop_objectives_set("$$DisableIdryllCommandShip$$","complete",2,1);
-	
-	//hzm coop mod Chrissstrahl - holster weapon
-	entity ePlayer;
-	float fPlayerIdInUse;
-	//[b60025] Chrissstrahl - now using Entity numbers instead of targetnames
-	for(fPlayerIdInUse=0;fPlayerIdInUse<coop_integer_maxPlayers;fPlayerIdInUse++){
-		ePlayer = getEntity("*"+fPlayerIdInUse);
-		if(doesEntityExist(ePlayer)){
-			if(globalCoop_check_playerSpectator(ePlayer) == 0){
-				ePlayer.holster ( );
-			}
-		}
-	}
-	
+	 
+	//[b70300] Chrissstrahl - take weapon
+	globalCoop_player_takeAll("EnterpriseCannon");
 	wait(0.1);
-	
-	//hzm coop mod Chrissstrahl - take weapon
-	//[b60025] Chrissstrahl - now using Entity numbers instead of targetnames
-	for(fPlayerIdInUse=0;fPlayerIdInUse<coop_integer_maxPlayers;fPlayerIdInUse++){
-		ePlayer = getEntity("*"+fPlayerIdInUse);
-		if(doesEntityExist(ePlayer)){
-			if(globalCoop_check_playerSpectator(ePlayer) == 0){
-				ePlayer.take ( "EnterpriseCannon" );
-			}
-		}
-	}
 	
 	inCinematic = 0;
 	//--- Fade out
