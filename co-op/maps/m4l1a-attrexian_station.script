@@ -168,7 +168,9 @@ void	coop_findAndTargetnameEntities();
 // Level start thread
 //---------------------
 void main()
-{	
+{
+	level_ai(0);
+	
 	//hzm coop moc chrissstrahl - [b607] retrive tooken if there is one
 	//.coop_getFloat(sTooken);
 	sLevelTooken	= coop_getLevelParamater("load");
@@ -394,17 +396,7 @@ void main()
 	waitForPlayer();
 	soundtrack( "music/m4l1a-attrexian_station.mus" );
 	
-	//chrissstrahl - [b607] skip instantly when tooken is set (kinda loading save game)
-	if(sLevelTooken != "escort"){
-		//hzm coop mod chrissstrahl - Wait until the Game Starts in Multiplayer
-		level_ai(0);
-		globalCoop_main_waitForWarmupTime();
-		//--- reset the sky
-		$sky.rendereffects( "+skyorigin" );
-		wait(0.4);
-		level_ai(1);
-		return;
-	}
+	globalCoop_main_waitForWarmupTime();
 
 	M4EntIntro();
 
@@ -858,6 +850,8 @@ void cinematic_intro_skipthread()
 	
 	// steam puzzle setup
 	thread steamPuzzle_setup();
+	
+	level_ai(1);
 }
 
 //---------------------
@@ -2032,6 +2026,9 @@ void attrexian_barricade_setup()
 		//trigger the chewers at where the players spawn //set spawns
 		wait(1);
 		thread attrexian_barricade();
+		
+		level_ai(1);
+		
 		//trigger the targets of the trigger that was suppose to start the above thread
 		trigger("$t645");
 	}
