@@ -82,6 +82,7 @@ float Generator3Button_ModulateAmount = 0;
 /////////////////////////////////////////////////////////////////////////
 void	coop_endLevel();
 void	coop_endLevelAlt();
+void	coop_spawnlocations_liftDown();
 entity	entityPlayerGlobal;
 
 #include "co-op/matrix/main.scr"
@@ -584,7 +585,6 @@ void coop_moveLiftDown()
 	//fix em getting pushed by weapons fire, fix only now, not before!!! So if they are fucking arround we can force em into the stupid lift
 	$chell.mass(999999);
 	$telsia.mass(999999);
-	//eof hzm
 
 	$SecondPathLift.playsound( "sound/environment/machine/solanlift.wav", 8, 1, 1500 );
 	$SecondPathLift.time ( 7 );
@@ -595,30 +595,8 @@ void coop_moveLiftDown()
 	$chell.ai_on();
 	$telsia.ai_on();
 	
-	//hzm coop mod chrissstrahl - spawpoints, have a new set here
-	//set new spawnpoints based upon a base vector
-	float i;
-	float f;
-	vector v;
-	//player 8 to 4
-	v = '1370 4250 -1599';
-	f = v_x;
-	for(i=coop_integer_maxPlayers;i>3;i--){
-		coop_setFloatVariable("coop_float_spawnAngle"+i,90);
-		v_x = f;
-		coop_setVectorVariable("coop_vector_spawnOrigin"+i,v);
-		f += 50;
-	}
-	//player 3 to 1
-	v = '1420 4350 -1599';
-	f = v_x;
-	for(i=3;i>0;i--){
-		coop_setFloatVariable("coop_float_spawnAngle"+i,90);
-		v_x = f;
-		coop_setVectorVariable("coop_vector_spawnOrigin"+i,v);
-		f += 50;
-	}
-	//eof hzm
+	//update spawnlocations - lift down
+	coop_spawnlocations_liftDown();
 }
 
 //---------------------
@@ -659,6 +637,10 @@ void SecondPathLift_ShortMoveDown1()
 	$SecondPathLift.playsound( "sound/environment/machine/solanlift_stop.wav", 8, 1, 1500 );
 	$SecondPathLift_ShortMoveDown2Trigger.triggerable();
 	$SecondPathLiftClip.notsolid();
+	
+	$telsia.ai_on();
+	$chell.ai_on();
+	//$Chang.ai_on();
 }
 
 //---------------------
@@ -674,6 +656,9 @@ void SecondPathLift_ShortMoveDown2()
 	$SecondPathLift.movedown (1412);
 	waitfor ( $SecondPathLift );
 	$SecondPathLift.playsound( "sound/environment/machine/solanlift_stop.wav", 8, 1, 1500 );
+	
+	//update spawnlocations - lift down
+	coop_spawnlocations_liftDown();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1227,22 +1212,31 @@ void SecondPathLift_Warp()
 	//$SecondPathLiftTopClip.solid();
 	
 	thread globalCoop_player_makeSolidASAP($SecondPathLiftTopClip);
+	
+	$player0.hudprint("SecondPathLift_Warp\n");
 
 	$chell.ai_off();
+	$telsia.ai_off();
+	$telsia.anim("idle");
+	$chell.anim("idle");
+	
 	$chell.warpto ( "$SecondPathLiftWaypoint_Chell" );
 	thread globalCoop_player_makeSolidASAP($chell);
+	
+	$telsia.warpto ( "$SecondPathLiftWaypoint_Telsia" );
+	thread globalCoop_player_makeSolidASAP($telsia);	
+	
+	//fix em getting pushed by weapons fire
+	$chell.mass(999999);
+	$telsia.mass(999999);
 
 	//$Chang.ai_off();
 	//$Chang.warpto ( "$SecondPathLiftWaypoint_Chang" );
 
-	$telsia.ai_off();
-	$telsia.warpto ( "$SecondPathLiftWaypoint_Telsia" );
-	thread globalCoop_player_makeSolidASAP($telsia);
-	wait( .1 );
-	$telsia.ai_on();
-	
-	wait (.1);
-	$chell.ai_on();
+
+	//wait( .1 );
+	//$telsia.ai_on();
+	//$chell.ai_on();
 	//$Chang.ai_on();
 }
 
@@ -1442,6 +1436,40 @@ void LevelEnd()
 	spawn ( "trigger_changelevel", "targetname", "trigger_endlevel", "map", "m1l3-borg_boss" );
 	wait ( .5 );
 	trigger ( "$trigger_endlevel" );
+}
+
+void coop_spawnlocations_liftDown()
+//------------------------------------------------------------------------------
+//HZM Coop Mod - move spawn points down the lift
+//------------------------------------------------------------------------------
+{
+	//hzm coop mod chrissstrahl - spawpoints, have a new set here
+	//set new spawnpoints based upon a base vector
+	float i;
+	float f;
+	vector v;
+	//player 8 to 4
+	v = '1370 4250 -1599';
+	f = v_x;
+	for(i=coop_integer_maxPlayers;i>3;i--){
+		coop_setFloatVariable("coop_float_spawnAngle"+i,90);
+		v_x = f;
+		coop_setVectorVariable("coop_vector_spawnOrigin"+i,v);
+		f += 50;
+	}
+	//player 3 to 1
+	v = '1420 4350 -1599';
+	f = v_x;
+	for(i=3;i>0;i--){
+		coop_setFloatVariable("coop_float_spawnAngle"+i,90);
+		v_x = f;
+		coop_setVectorVariable("coop_vector_spawnOrigin"+i,v);
+		f += 50;
+	}
+	
+	//restore normal mass
+	$chell.mass(200);
+	$telsia.mass(200);
 }
 
 void coop_endLevelAlt()
