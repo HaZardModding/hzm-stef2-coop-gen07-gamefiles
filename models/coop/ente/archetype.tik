@@ -1,0 +1,30 @@
+TIKI
+setup
+	{
+	scale 1.0
+	fade_dist_mod 1
+	lod 2000 1.0 6000 .75 25000
+	
+	
+	path models/coop/ente/res
+	
+	surface material1 shader textures/enterprise/hazops
+	}
+init
+	{
+		server
+		{
+		}
+		client
+		{ 
+		}
+	}        
+animations
+	{
+	idle        viewscreen.tan
+	}
+   
+   
+/*QUAKED coop_ent-e_archetype (0.5 0.25 0.25) (-24 -5 -2) (0 5 15)
+pseudo archtype - used as a replacement to real archetypes
+*/

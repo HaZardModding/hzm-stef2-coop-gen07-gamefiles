@@ -1,0 +1,49 @@
+TIKI
+setup
+	{
+	scale 1.0
+	fade_dist_mod 1
+	lod 200 1.0 6000 .75 25000
+	radius 20
+	
+	path models/enviro/enterprise/warpcore/
+	surface material1 shader warp-blue
+	surface material3 shader warp-red
+	surface material2 shader supports
+	surface material4 shader core-01
+	}
+init
+	{
+		server
+		{
+		setsize "-125 -120 -532" "127 120 432"
+		}
+		client
+		{ 
+		}
+	}        
+animations
+	{
+	idle warpcore.tan
+	off warpcore.tan
+		{
+			server
+			{
+			//entry surface material1 shader warp-blue
+			//entry surface material3 shader warp-red
+			//exit surface material1 shader textures/ENTE/warp-blue-off
+			//exit surface material3 shader textures/ENTE/warp-red-off
+			
+			entry surface material2 +skin1
+			exit surface material2 -skin1
+			}
+		}
+	}
+   
+   
+/*QUAKED coop_ent-e_warpcore (0.5 0.25 0.25) (0 0 0) (0 0 0)
+enterprise warp core rpg
+Animations:
+idle
+off
+*/
