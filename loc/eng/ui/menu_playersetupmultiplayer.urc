@@ -8,6 +8,7 @@ include "loc/Eng/ui/background.inc"
 include "loc/Eng/ui/mp-background.inc"
 
 showcommand "globalwidgetcommand playerselectionlist deleteallitems;ui_getdmmodels playerselectionlist\n"
+showcommand "globalwidgetcommand playersetup_coopWarn disable\n"
 
 resource
 Widget
