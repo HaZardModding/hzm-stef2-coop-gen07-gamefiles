@@ -1,14 +1,38 @@
 //chrissstrahl - 2022.04.18 - this is MOM 4.0
-//using a new command coopInput with the hzm coop mod
-//player can send text input to server
-//server does recognize command coopInput
-//starts thread (playerInput) on player (with new coop_runThread)
-//and set entityStringVar(coopInputData) with player input text on executing player
 
-//every input is constructed to a thread name like this:
-// parameter0 + "_" + parameter1
-//usually parameter0 is the name of the menu
-//usually parameter1 is the action/task/button pressed or wanted
+//URC/MENU shortinfo
+//MENU BODY: showcommand "ui_showmouse;coopInput menuName open\n"
+//MENU BODY: hidecommand "ui_removehud menuName;ui_hidemouse;coopInput menuName hide\n"
+//BUTTON: stuffcommand "coopInput menuName buttonName1"
+//BUTTON: stuffcommand "coopInput menuName buttonName2"
+//BUTTON: stuffcommand "coopInput menuName buttonName3"
+//BUTTON: stuffcommand "coopInput menuName buttonName4"
+
+
+//EXAMPLE HOW IT WORKS:
+//- You need a menu that the player can click in multiplayer
+//- the menu needs to be added with the scriptcommand "addhud" for coopInput to work
+//- Then you add adjusted showcommand/hidecommand and buttons with stuffcommand, like shown above
+//- See coop_bCommander.urc as example and coop_test-bCommander.scr (+includes)
+//
+//1.0 A trigger adds a mom4 menu to the user
+//2.0 This menu will send command when added: coopInput menuName open
+//3.1 Server will setStringVar("coopInputData") on player
+//3.2 Server will start thread "playerInput" in this script
+//4.0 "playerInput" in this script will call "coop_momInputProcess" with parameters
+//5.1 "coop_momInputProcess" in this script can extract up to 3 parameters
+//5.2 "coop_momInputProcess" removes previous set menu from player
+//5.3 "coop_momInputProcess" and sets new menu on player
+//5.4 "coop_momInputProcess" accepts commands open/hide to set/remove a menu
+//5.5 "coop_momInputProcess" prevents menus to be opened twiche (0.6 sec cooldown)
+//5.6 "coop_momInputProcess" runs "coop_momMenuMaster" for player when open command is used
+//5.7 "coop_momInputProcess" executes script thread menuName_buttonName1 (and sets player as trigger/caller)
+//
+//6.0 This is where your custom script comes it, it has functionnames in this format:
+//	menuName_buttonName1
+//
+//7.0 "coop_momMenuMaster" handels menu exit exceptions (player dies/spectator/quit)
+
 void playerInput()
 {
 	entity ePlayer;
@@ -70,6 +94,7 @@ void coop_momInputProcess(entity ePlayer, string sInput)
 	
 	fLength = globalCoop_return_stringLength(sInput);
 	
+	//extract up to 3 Parameters - seperator: " "
 	for(fCurrent=0;fCurrent<fLength;fCurrent++){
 		sCurrentChar = globalCoop_return_stringFromWithLength(sInput,fCurrent,1);
 
