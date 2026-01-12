@@ -421,6 +421,23 @@ RenderModel
     bordercolor	0.125 0.157 0.251 1.000
 }
 
+//[b70300] Added: Warning label if player selects an unsupported skin
+resource 
+label
+{
+    name "playersetup_coopWarn"
+    rect 423 230 123 60
+	bgcolor 0.7 0.2 0.2 0.75
+	fgcolor 1 1 1 1
+	title "$$c#175$$"
+	font serpentinemedium-12
+	horizontaljustify center
+	verticaljustify top
+	
+	fadedelay 2
+	disable
+}
+
 resource
 Button
 {
