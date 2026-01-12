@@ -6,6 +6,7 @@
 // - 14.05.2023 moved functions into this global file
 // - 14.05.2023 renamed functions and variables for global file usage
 // - 14.05.2023 [bCommander_captain] added check for other player being captain
+// - 12.01.2026 added actors/models being highlighted, so players can see what is interactive
 
 
 void	bCommander_setupTargetable(entity e);
@@ -20,7 +21,15 @@ void	bCommander_playerExit(entity ePlayer,string sLastHud);
 void	bCommander_actorTimer(entity eActor,string sDialog);
 void	bCommander_captain();
 
+void	bCommander_effectActorManage(entity eActor, float fOn);
+
+
+entity bCommander_effectActor;
 float bCommander_max_bridgeTargets = 10;
+float bCommander_tooltip_delay = 2;
+string bCommander_shaderHighlightEffect = "disruptor_death"; //transport
+entity bCommander_lastTarget;
+
 
 
 void bCommander_setupTargetable(entity e)
@@ -72,6 +81,7 @@ void bCommander_actorTalk(entity eActor,string sDialog)
 {
 	eActor.stopDialog();
 	eActor.headwatch($bCommander_headwatchMarker,33);
+	eActor.setFloatVar("bCommander_startedTalking",getLevelTime());
 	eActor.setFloatVar("talking",1);
 	eActor.playdialog(sDialog, 1, 300, 0);
 	thread bCommander_actorTimer(eActor,sDialog);
@@ -216,11 +226,21 @@ void bCommander_actorTimer(entity eActor,string sDialog)
 		return;
 	}
 
+	float fDialogStartedAt;
+	fDialogStartedAt = eActor.getFloatVar("bCommander_startedTalking");
+
 	//rename this function so it can be killed else where by name reference
 	threadname("bCommander_actorTimer"+eActor.getRawTargetName());
 	
 	waitDialogLength(sDialog);
 	if(doesEntityExist(eActor)){
+		//do not reset if another dialog was selected
+		float fCurrentTalkStart;
+		fCurrentTalkStart = eActor.getFloatVar("bCommander_startedTalking");
+		if(fDialogStartedAt != fCurrentTalkStart){
+			return;
+		}
+		
 		thread bCommander_actorReset(eActor);
 	}
 }
@@ -389,13 +409,14 @@ void bCommander_captain()
 						if(ePlayer.getFloatVar("bCommander_showingTT") == 1){
 							ePlayer.removehud("coop_fireUse");
 							ePlayer.setFloatVar("bCommander_showingTT",0);
+							bCommander_effectActorManage($NULL,0);
 						}
 						
 						//close previous menu/hud
 						if(ePlayer.getFloatVar("bCommander_inMenu")){
 							if(sHudMenuLast != ""){
 								ePlayer.removeHud(""+sHudMenuLast);
-								wait(0.1);
+								globalCoop_main_waitAFrame();
 							}
 						}
 						
@@ -452,9 +473,35 @@ void bCommander_captain()
 		else{
 			if(ePlayer.getFloatVar("bCommander_inMenu") == 0){
 				if(bCommander_isValidTarget(eTarget)){
+				
+					//more responsive visual feedback than the hud tooltip
+					//remove highlighting from previous model/actor
+					if(doesEntityExist(bCommander_lastTarget)){
+						float entNum1 = 0;
+						float entNum2 = 999;
+						entNum1 = eTarget.coop_getEntNum();
+						entNum2 = bCommander_lastTarget.coop_getEntNum();
+						if(entNum1 != entNum2){
+							bCommander_effectActorManage($NULL,0);
+						}
+					}
+					bCommander_lastTarget = eTarget;
+				
 					if(eTarget.getStringVar("uservar3") != "" || ePlayer.getFloatVar("bCommander_isZooming") == 0){
-						if(ePlayer.getFloatVar("bCommander_showingTT") == 0){
-							if( iToolTipDelay >= 6){
+						//highlight the related actor
+						string sUservar1;
+						sUservar1 = eTarget.getStringVar("uservar1");
+						if(sUservar1 != ""){
+							entity eActor;
+							eActor = getEntity(sUservar1);
+							if(doesEntityExist(eActor)){
+								bCommander_effectActorManage(eActor,1);
+							}
+						}
+
+					
+						if(ePlayer.getFloatVar("bCommander_showingTT") == 0){								
+							if( iToolTipDelay >= bCommander_tooltip_delay){								
 								ePlayer.addhud("coop_fireUse");
 								ePlayer.setFloatVar("bCommander_showingTT",1);
 							}
@@ -466,6 +513,7 @@ void bCommander_captain()
 					if(ePlayer.getFloatVar("bCommander_showingTT") == 1){
 						ePlayer.removehud("coop_fireUse");
 						ePlayer.setFloatVar("bCommander_showingTT",0);
+						bCommander_effectActorManage($NULL,0);
 					}
 				}
 			}
@@ -501,5 +549,28 @@ void bCommander_captain()
 		}
 		
 		sPlayerLastActiveWeapon = ePlayer.getActiveWeaponName();
+	}
+}
+
+void bCommander_effectActorManage(entity eActor, float fOn)
+{
+	//check if we should clear old shader
+	float fClearOld = 1;
+	if(!doesEntityExist(bCommander_effectActor)){
+		fClearOld = 0;
+	}
+	if(doesEntityExist(eActor)){
+		if(fClearOld == 1 && eActor.coop_getEntNum() == bCommander_effectActor.coop_getEntNum() && fOn == 1){
+			fClearOld = 0;
+		}
+	}
+	if(fClearOld){
+		bCommander_effectActor.clearcustomshader(bCommander_shaderHighlightEffect);
+	}
+	
+	//set new shader
+	if(doesEntityExist(eActor)){
+		eActor.setcustomshader(bCommander_shaderHighlightEffect);
+		bCommander_effectActor = eActor;
 	}
 }

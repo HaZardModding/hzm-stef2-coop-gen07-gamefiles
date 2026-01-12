@@ -1,7 +1,6 @@
 menu "coop_fireUse" 128 80 NONE 1
 bgcolor 0.0 0.0 0.0 0.0
 align bottom center
-direction from_bottom 0.1
 depth 0.2
 hideDuringLoad
 gamefocus
