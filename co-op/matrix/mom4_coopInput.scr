@@ -53,6 +53,9 @@ void coop_momMenuExit(entity ePlayer,string sMenu)
 	//can't use removehud as this will only remove huds, not menus
 	//removehuds should not be changed, so this is the better alternative
 	if(sMenu != ""){
+		//we might need a function that removes the hud from the active list
+		//and then might as well have a function that check if a hud is active in the first place
+		ePlayer.removehud(sMenu);
 		sendClientCommand(ePlayer,"ui_removehud "+sMenu+"\n");
 	}
 	
@@ -133,13 +136,12 @@ void coop_momInputProcess(entity ePlayer, string sInput)
 		
 	//run manager on open command
 	if(sParameter1 == "open"){
-		if((ePlayer.getFloatVar("coopMomMenuOpenTime") + 0.6) > getLevelTime()){
+		if((ePlayer.getFloatVar("coopMomMenuOpenTime") + 0.4) > getLevelTime()){
 			return;
 		}
 		
 		//do not open same menu twice
 		if(sParameter0 == sMenu){
-			coop_momMenuExit(ePlayer,sMenu);
 			globalCoop_main_waitAFrame();
 			return;
 		}
