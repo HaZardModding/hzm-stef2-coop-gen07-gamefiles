@@ -1,26 +1,16 @@
-menu "coop_ente-turbo" 640 480 NONE 1
+menu "coop_enteTurbo" 640 480 NONE 1
 borderstyle NONE
 bgcolor 0 0 0 0
-align center
+align left
 hideDuringLoad
 depth 0.1
-noescape 1
 noresize 1
 fullscreen 0
+noescape 1
+direction from_left 0.3
 
-showcommand "exec ui/coop_ente/cfg/turbolift_reset.cfg;"
-pushcommand "exec ui/coop_ente/cfg/turbolift_reset.cfg;"
-//showcommand "use Knife\nui_showmouse;"
-//pushcommand "use Knife\nui_showmouse;"
-
-hidecommand "ui_hidemouse\nui_removehud coop_ente-turbo"
-popcommand "ui_hidemouse\nui_removehud coop_ente-turbo"
-
-direction from_bottom 0
-
-//using ui_failurereason due to issues with cvar limitations
-//ui_failurereason is used to display the mission failure reason
-//ui_failurereason can saftly be used to display anything else temporarly
+showcommand "ui_showmouse;coopInput coop_enteTurbo open\n"
+hidecommand "ui_hidemouse;coopInput coop_enteTurbo hide\n"
 
 resource
 Widget
@@ -28,7 +18,7 @@ Widget
 	ordernumber 10
 	name ""
 	rect 192 48 256 384
-	bgcolor 0 0 0 .6
+	bgcolor 0 0 0 .9
 }
 
 resource
@@ -62,8 +52,8 @@ resource
 button
 {
 	title "Bridge - Left"
-	name "ente_turbolift0Text"
-	stuffcommand "use Zero"
+	name ""
+	stuffcommand "coopInput coop_enteTurbo deck1Left;ui_removehud coop_enteTurbo"
 	rect 198 70 200 30
 	borderstyle "NONE"
 	font serpentinemedium-10
@@ -85,8 +75,6 @@ label
 	font serpentinemedium-16
 	fgcolor 0 1 1 1
 	bgcolor 0 0 0 0
-	//hoverbgcolor 0 1 0 0.7
-	//hoverfgcolor 1 1 1 1
 	horizontaljustify center
 	verticaljustify top
 }
@@ -94,8 +82,8 @@ resource
 Button
 {
 	title "Bridge - Right"
-	name "ente_turbolift1Text"
-	stuffcommand "use One"
+	name ""
+	stuffcommand "coopInput coop_enteTurbo deck1Right;ui_removehud coop_enteTurbo"
 	rect 198 102 200 30
 	borderstyle "NONE"
 	font serpentinemedium-10
@@ -124,8 +112,8 @@ resource
 Button
 {
 	title "Shuttlebay"
-	name "ente_turbolift2Text"
-	stuffcommand "use Two"
+	name ""
+	stuffcommand "coopInput coop_enteTurbo deck7Shuttlebay;ui_removehud coop_enteTurbo"
 	rect 198 134 200 30
 	borderstyle "NONE"
 	font serpentinemedium-10
@@ -154,8 +142,8 @@ resource
 Button
 {
 	title "Crew Quarters"
-	name "ente_turbolift3Text"
-	stuffcommand "use Three"
+	name ""
+	stuffcommand "coopInput coop_enteTurbo deck7Crewquarters;ui_removehud coop_enteTurbo"
 	rect 198 166 200 30
 	borderstyle "NONE"
 	font serpentinemedium-10
@@ -184,8 +172,8 @@ resource
 Button
 {
 	title "Hazard Ops"
-	name "ente_turbolift4Text"
-	stuffcommand "use Four"
+	name ""
+	stuffcommand "coopInput coop_enteTurbo deck7Hazardops;ui_removehud coop_enteTurbo"
 	rect 198 198 200 30
 	borderstyle "NONE"
 	font serpentinemedium-10
@@ -214,8 +202,8 @@ resource
 Button
 {
 	title "Transporter, Brig"
-	name "ente_turbolift5Text"
-	stuffcommand "use Five"
+	name ""
+	stuffcommand "coopInput coop_enteTurbo deck8Transporter;ui_removehud coop_enteTurbo"
 	rect 198 230 200 30
 	borderstyle "NONE"
 	font serpentinemedium-10
@@ -244,8 +232,8 @@ resource
 Button
 {
 	title "Sickbay, Armory, Holodeck"
-	name "ente_turbolift6Text"
-	stuffcommand "use Six"
+	name ""
+	stuffcommand "coopInput coop_enteTurbo deck8Sickbay;ui_removehud coop_enteTurbo"
 	rect 198 262 200 30
 	borderstyle "NONE"
 	font serpentinemedium-10
@@ -274,8 +262,8 @@ resource
 Button
 {
 	title "Library, Astrometrics"
-	name "ente_turbolift7Text"
-	stuffcommand "use Seven"
+	name ""
+	stuffcommand "coopInput coop_enteTurbo deck11Astrometrics;ui_removehud coop_enteTurbo"
 	rect 198 294 200 30
 	borderstyle "NONE"
 	font serpentinemedium-10
@@ -304,8 +292,8 @@ resource
 Button
 {
 	title "Engineering"
-	name "ente_turbolift8Text"
-	stuffcommand "use Eight"
+	name ""
+	stuffcommand "coopInput coop_enteTurbo deck16Engineering;ui_removehud coop_enteTurbo"
 	rect 198 326 200 30
 	borderstyle "NONE"
 	font serpentinemedium-10
@@ -326,11 +314,10 @@ Button
 	title "Close"
 	name "closeButton"
 	rect 275 406 90 22
-	//fgcolor 0.99 0.80 0.20 1.00
 	fgcolor 1 1 1 1
 	bgcolor 1 1 1 0.5
 	borderstyle "None"
-	stuffcommand "use knife\nui_removehud coop_ente-turbo"
+	stuffcommand "ui_removehud coop_enteTurbo\n"
 	font serpentinemedium-12
 	clicksound sound/misc/menu/back1.wav
 	horizontaljustify center

@@ -1,4 +1,4 @@
-menu "coop_ente-trans" 640 480 NONE 1
+menu "coop_enteTrans" 640 480 NONE 1
 borderstyle "NONE"
 bgcolor 0 0 0 0
 align center
@@ -10,8 +10,8 @@ fullscreen 1
 
 showcommand "exec ui/coop_ente/cfg/trans_reset.cfg;"
 pushcommand "exec ui/coop_ente/cfg/trans_reset.cfg;"
-hidecommand "ui_hidemouse\nui_removehud coop_ente-trans"
-popcommand "ui_hidemouse\nui_removehud coop_ente-trans"
+hidecommand "ui_hidemouse\nui_removehud coop_enteTrans"
+popcommand "ui_hidemouse\nui_removehud coop_enteTrans"
 direction from_bottom 0
 
 //using ui_failurereason due to issues with cvar limitations
@@ -722,7 +722,7 @@ Button
 	name "trans_now"
 	rect 70 140 256 26
 	borderstyle "NONE"
-	stuffcommand "use zero\nui_removehud coop_ente-trans"
+	stuffcommand "use zero\nui_removehud coop_enteTrans"
 	font serpentinemedium-16
 	clicksound sound/ships/enterprise/eng_beep01.wav
 	fgcolor 0.99 0.80 0.20 1.00
@@ -741,7 +741,7 @@ Button
 	name "trans_delayed"
 	rect 70 170 256 26
 	borderstyle "NONE"
-	stuffcommand "use one\nui_removehud coop_ente-trans"
+	stuffcommand "use one\nui_removehud coop_enteTrans"
 	font serpentinemedium-16
 	clicksound sound/ships/enterprise/eng_beep01.wav
 	fgcolor 0.99 0.80 0.20 1.00
@@ -784,7 +784,7 @@ Button
 	fgcolor 1 1 1 1
 	bgcolor 1.00 0.3 0.3 0.6
 	borderstyle "NONE"
-	stuffcommand "use knife\nui_removehud coop_ente-trans"
+	stuffcommand "use knife\nui_removehud coop_enteTrans"
 	font serpentinemedium-12
 	clicksound sound/misc/menu/back1.wav
 	horizontaljustify center
