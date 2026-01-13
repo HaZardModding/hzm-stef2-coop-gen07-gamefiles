@@ -9,50 +9,6 @@
 //if definied outside a function, just like this
 ////////////////////////////////////////////////////////////////////////////////
 
-
-void coop_bCommander_1()
-{
-	entity eTrigger;
-	eTrigger = getCurrentEntity();
-	if(doesEntityExist(eTrigger)){
-		eTrigger.hudprint("Turbo Button 1\n");
-	}
-}
-
-void coop_bCommander_2()
-{
-	entity eTrigger;
-	eTrigger = getCurrentEntity();
-	if(doesEntityExist(eTrigger)){
-		eTrigger.hudprint("Turbo Button 2\n");
-	}
-}
-
-void coop_bCommander_3()
-{
-	entity eTrigger;
-	eTrigger = getCurrentEntity();
-	if(doesEntityExist(eTrigger)){
-		eTrigger.hudprint("Turbo Button 2\n");
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //declaration
 ////////////////////////////////////////////////////////////////////////////////
 void turbolift_playerSetOriginAndAngle(float fClient,vector vCurrentOrigin,vector vTargetOrigin,vector vCurrentAngle,vector vTargetAngle);
@@ -106,26 +62,236 @@ void turbolift_uiDisableWidget(entity ePlayer, string sTargetname)
 	globalCoop_player_transmitter(ePlayer,"globalwidgetcommand "+sWidgetCmd+" disable\n");
 }
 
+
 void mom_turbolift()
 //------------------------------------------------------------------------------
 //	This is executed when the player uses a turbolift trigger 
 //------------------------------------------------------------------------------
 {
-	return;
 	entity eTrigger;
 	entity ePlayer;
+	
+	//no trigger - exit
 	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	
+	//no player - exit
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	//add menu
+	ePlayer.addHud("coop_enteTurbo");
+	
+	//grab trigger name
+	string sBasename;
+	sBasename = eTrigger.getRawTargetName();
+	ePlayer.setStringVar("enteStartingLoc",sBasename);
+	
+	/*
 	ePlayer = mom_returnPlayerForTrigger(eTrigger);
+	//ePlayer.hudprint(sBasename+" targetname \n");
+	turbolift_uiDisableWidget(ePlayer,sBasename);
+	//coop_ente-turbo.urc
+	*/
+}
+
+void coop_enteTurbo_open()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	if(ePlayer.getHealth() <= 0){
+		return;
+	}
 	
 	string sBasename;
-	sBasename = eTrigger.getRawTargetName();	
-	
-	//ePlayer.hudprint(sBasename+" targetname \n");
-	
-	turbolift_uiDisableWidget(ePlayer,sBasename);
-	
-	//coop_ente-turbo.urc
+	sBasename = ePlayer.getStringVar("enteStartingLoc");
+//ePlayer.hudprint(sBasename+" startingloc\n");
 }
+
+void coop_enteTurbo_hide()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	if(ePlayer.getHealth() <= 0){
+		return;
+	}
+	ePlayer.removehud("coop_enteTurbo");
+}
+
+//turbolift_deck1_0_origin -> 01 Bridge Left
+//turbolift_deck1_1_origin -> 01 Bridge Right
+//turbolift_deck7_0_origin -> 07 Crewquarters
+//turbolift_deck7_1_origin -> 07 Shuttlebay
+//turbolift_deck7_2_origin -> 07 Hazard Ops
+//turbolift_deck8_0_origin -> 08 Transporter
+//turbolift_deck8_1_origin -> 08 Sickbay
+//turbolift_deck11_0_origin -> 11 Astrometry
+//turbolift_deck16_0_origin -> 16 Engeniering
+
+void coop_enteTurbo_deck1Left()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	if(ePlayer.getHealth() <= 0){
+		return;
+	}
+	
+////PLAYER,CURRENTLIFT,TARGETLIFT(required),ALTERNATIVE-TARGETLIFT(optional)
+	//Parameter3=Targetlift
+	//Parameter4=Alternative Targetlift if first Targetlift is busy
+	string sBasename;
+	sBasename = ePlayer.getStringVar("enteStartingLoc");
+	turbolift_travelFromTo(ePlayer,sBasename,"turbolift_deck1_0","turbolift_deck1_1");
+}
+
+void coop_enteTurbo_deck1Right()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	if(ePlayer.getHealth() <= 0){
+		return;
+	}
+
+	string sBasename;
+	sBasename = ePlayer.getStringVar("enteStartingLoc");
+	turbolift_travelFromTo(ePlayer,sBasename,"turbolift_deck1_1","turbolift_deck1_0");
+}
+
+void coop_enteTurbo_deck7Shuttlebay()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	if(ePlayer.getHealth() <= 0){
+		return;
+	}
+	
+	string sBasename;
+	sBasename = ePlayer.getStringVar("enteStartingLoc");
+	turbolift_travelFromTo(ePlayer,sBasename,"turbolift_deck7_1","turbolift_deck7_0");
+}
+
+void coop_enteTurbo_deck7Crewquarters()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	if(ePlayer.getHealth() <= 0){
+		return;
+	}
+
+	string sBasename;
+	sBasename = ePlayer.getStringVar("enteStartingLoc");
+	turbolift_travelFromTo(ePlayer,sBasename,"turbolift_deck7_0","turbolift_deck7_1");
+}
+
+void coop_enteTurbo_deck7Hazardops()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	if(ePlayer.getHealth() <= 0){
+		return;
+	}
+
+	string sBasename;
+	sBasename = ePlayer.getStringVar("enteStartingLoc");
+	turbolift_travelFromTo(ePlayer,sBasename,"turbolift_deck7_2","turbolift_deck7_0");
+}
+
+void coop_enteTurbo_deck8Transporter()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	if(ePlayer.getHealth() <= 0){
+		return;
+	}
+
+	string sBasename;
+	sBasename = ePlayer.getStringVar("enteStartingLoc");
+	turbolift_travelFromTo(ePlayer,sBasename,"turbolift_deck8_0","turbolift_deck8_1");
+}
+
+void coop_enteTurbo_deck8Sickbay()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	if(ePlayer.getHealth() <= 0){
+		return;
+	}
+
+	string sBasename;
+	sBasename = ePlayer.getStringVar("enteStartingLoc");
+	turbolift_travelFromTo(ePlayer,sBasename,"turbolift_deck8_1","turbolift_deck8_0");
+}
+
+void coop_enteTurbo_deck11Astrometrics()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	if(ePlayer.getHealth() <= 0){
+		return;
+	}
+
+	string sBasename;
+	sBasename = ePlayer.getStringVar("enteStartingLoc");
+	turbolift_travelFromTo(ePlayer,sBasename,"turbolift_deck11_0","");
+}
+
+void coop_enteTurbo_deck16Engineering()
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	if(ePlayer.getHealth() <= 0){
+		return;
+	}
+
+	string sBasename;
+	sBasename = ePlayer.getStringVar("enteStartingLoc");
+	turbolift_travelFromTo(ePlayer,sBasename,"turbolift_deck16_0","");
+}
+
+
+
+
+
+
+
+
 
 //FALLBACK TO USE _origin _door _symbol ....
 //FALLBACK TO USE _origin _door _symbol ....
@@ -398,8 +564,7 @@ void turbolift_travelFromTo( entity ePlayer, string sStartLift,string sTargetLif
 //void turbolift_travelFromTo(float fCurrentDeck,float fTargetDeck)
 //lock the target lift location
 {
-	if(sStartLift == sTargetLift)
-	{
+	if(sStartLift == sTargetLift){
 		ePlayer.hudprint("You are already at this Location!\n");
 		return;
 	}
@@ -434,7 +599,7 @@ void turbolift_travelFromTo( entity ePlayer, string sStartLift,string sTargetLif
 		ePlayer.hudprint("Starting Lift ("+sStartLift+"Origin) does not exist...\n");
 		
 //remove Menu from player screen
-		thread mom_exitMenuPlayer(ePlayer);
+		//thread mom_exitMenuPlayer(ePlayer);
 		return;
 	}
 	if(!doesEntityExist(eTargetLift)){
@@ -461,7 +626,7 @@ void turbolift_travelFromTo( entity ePlayer, string sStartLift,string sTargetLif
 	}
 	
 	//remove Menu from player screen, disable current Turbolift trigger
-	mom_exitMenuPlayer(ePlayer);
+	//mom_exitMenuPlayer(ePlayer);
 	eCurrentLiftTrigger.thread("");//disable trigger this way, because mom overwrites trigger activation (by design)
 	
 	//disable targetlift
@@ -534,7 +699,7 @@ float	fDifferenceLift,
 //allow travel to this lift now again
 	wait(2);
 	//enable start Turbolift triggers again
-	eCurrentLiftTrigger.thread("mom_basic");//enable trigger this way, because mom overwrites trigger activation (by design)
+	eCurrentLiftTrigger.thread("mom_turbolift");//enable trigger this way, because mom overwrites trigger activation (by design)
 	eTargetLiftTrigger.triggerable();
 	eTargetLift.setFloatVar("mom_turboliftIsBusy",0);
 	eCurrentLift.setFloatVar("mom_turboliftIsBusy",0);

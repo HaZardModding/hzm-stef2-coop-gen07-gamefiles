@@ -36,6 +36,11 @@ void main()
 // This function is started by the game after mapload
 //------------------------------------------------------------------------------
 {
+	//this is still missing the correct textures
+	//maybe use textures from ark royale or cygnus
+	$sky_warpStars.hide();
+
+
 	//start the setup of the map
 	thread setupMap();
 	
