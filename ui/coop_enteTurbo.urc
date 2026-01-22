@@ -4,7 +4,7 @@ bgcolor 0 0 0 0
 align left
 hideDuringLoad
 depth 0.1
-noresize 1
+//noresize 1
 fullscreen 0
 noescape 1
 direction from_left 0.3
@@ -275,19 +275,7 @@ Button
 	horizontaljustify right
 	verticaljustify center
 }
-resource
-label
-{
-	title "16"
-	name ""
-	rect 402 326 40 30
-	borderstyle "NONE"
-	font serpentinemedium-16
-	fgcolor 0 1 1 1
-	bgcolor 0 0 0 0
-	horizontaljustify center
-	verticaljustify top
-}
+
 resource
 Button
 {
@@ -305,6 +293,35 @@ Button
 	horizontaljustify right
 	verticaljustify center
 }
+resource
+label
+{
+	title "16"
+	name ""
+	rect 402 326 40 30
+	borderstyle "NONE"
+	font serpentinemedium-16
+	fgcolor 0 1 1 1
+	bgcolor 0 0 0 0
+	horizontaljustify center
+	verticaljustify top
+}
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////CURRENT DESTINATION
+////////////////////////////////////////////////////////////////////////////////
+resource
+label
+{
+	title ""
+	name "coop_enteTurboLoc"
+	rect 198 368 238 30
+	borderstyle "NONE"
+	font serpentinemedium-10
+	fgcolor 0 1 1 1
+	bgcolor 0 0 0 0
+	horizontaljustify center
+	verticaljustify top
+}
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////CLOSE BUTTON
 ////////////////////////////////////////////////////////////////////////////////
@@ -312,7 +329,7 @@ resource
 Button
 {
 	title "Close"
-	name "closeButton"
+	name "coop_enteTurboClose"
 	rect 275 406 90 22
 	fgcolor 1 1 1 1
 	bgcolor 1 1 1 0.5
