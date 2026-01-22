@@ -97,7 +97,7 @@ borderstyle "NONE"
 resource 
 Label
 {
-	title "Star Trek and related marks are trademarks of CBS, Paramount"
+	title "Star Trek and related marks are trademarks of Paramount Skydance Corporation"
     name "coopAlienbetaTesterNames2"
 	font serpentinelight-8
     fgcolor 1 1 1 0.6
