@@ -1,0 +1,35 @@
+
+void hazardOps_office_datapad_pickup()
+{
+	$hazardOps_office_datapad.remove();
+}
+
+void hazardOps_storage_case0_pickup()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	eTrigger.remove();
+}
+
+void hazardOps_storage_case1_pickup()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	eTrigger.remove();
+}
+
+void hazardOps_storage_case2_pickup()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	eTrigger.remove();
+}

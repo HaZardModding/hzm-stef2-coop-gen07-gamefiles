@@ -1,0 +1,51 @@
+void transporterRoom_transporter_forcefield()
+{
+	$player0.hudprint("transporter ff\n");
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	float fStatus;
+	fStatus = eTrigger.getFloatVar("status");
+	
+	if(fStatus == 0){
+		fStatus = 1;
+		$forcefield_deck8_transporter.solid();
+		$forcefield_deck8_transporter.show();
+	}else{
+		fStatus = 0;
+		$forcefield_deck8_transporter.notsolid();
+		$forcefield_deck8_transporter.hide();
+	}
+
+	eTrigger.setFloatVar("status",fStatus);
+}
+
+
+void transporterRoom_transporter_controls()
+{
+	$player0.hudprint("transporter controls\n");
+}
+
+
+void sickbay_holodoc()
+{
+	$npc_deck8_sickbay_holodoc.removeattachedmodel ( "tag_rhand" );;
+	$npc_deck8_sickbay_holodoc.contents("-targetable");
+	$npc_deck8_sickbay_holodoc.solid();
+	$npc_deck8_sickbay_holodoc.forcealpha(1);
+	$npc_deck8_sickbay_holodoc.alpha(0);
+	$npc_deck8_sickbay_holodoc.renderEffects("+fullbright");
+	$npc_deck8_sickbay_holodoc.playsound( "sound/environment/computer/holo_change.wav", 0, 1, 1000 );
+	$npc_deck8_sickbay_holodoc.fadein( 2, 1 );
+	$npc_deck8_sickbay_holodoc.show();
+	wait(0.25);
+	$npc_deck8_sickbay_holodoc.playdialog("localization/sound/dialog/holodoc/medical_emergency.mp3");
+}

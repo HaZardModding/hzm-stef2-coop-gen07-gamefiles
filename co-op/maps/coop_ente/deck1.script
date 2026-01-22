@@ -1,48 +1,95 @@
-void basic_consoleUsed()
-//------------------------------------------------------------------------------
-//makes the trigger that has been used play a beep sound
-//------------------------------------------------------------------------------
+void bridge_conn()
 {
-	entity eTrigger,eLaptop;
-	//retrive trigger which started this thread
+	entity eTrigger;
 	eTrigger = getCurrentEntity();
-	
-	if(doesEntityExist(eTrigger))
-	{
-		eTrigger.playsound("sound/environment/computer/lcars_beep4.wav",0,2,64);
+	if(!doesEntityExist(eTrigger)){
+		return;
 	}
+	
+	float fStatus;
+	fStatus = eTrigger.getFloatVar("status");
+	//off - turn on
+	if(fStatus == 0){
+		fStatus=1;
+		
+		$viewscreen_deck1_bridge.hide(); //hide the viewscreen flatsurface model
+		$viewscreen_deck1_bridge_portal.show(); //portal surface
+		$viewscreen_deck1_bridge_portalSurfaceentity.target("viewscreen_deck1_bridge_camera0"); //select target camera
+		$viewscreen_deck1_bridge_portal.locatecamera(); //portal surface
+		$viewscreen_deck1_bridge_area.close();
+	}
+	else if(fStatus==1){
+		fStatus = 2;
+		
+		$viewscreen_deck1_bridge.hide(); //hide the viewscreen flatsurface model
+		$viewscreen_deck1_bridge_portal.show(); //portal surface
+		$viewscreen_deck1_bridge_portalSurfaceentity.target("viewscreen_deck1_bridge_camera1"); //select target camera
+		$viewscreen_deck1_bridge_portal.locatecamera(); //portal surface
+		$viewscreen_deck1_bridge_area.close();
+	}
+	else if(fStatus==2){
+		fStatus = 3;
+		
+		$viewscreen_deck1_bridge_area.openportal(); //portal hiding skybox
+		$viewscreen_deck1_bridge_portal.hide();
+		$viewscreen_deck1_bridge.hide();
+	}
+	else{
+		fStatus=0;
+		
+		$viewscreen_deck1_bridge_area.close();
+		$viewscreen_deck1_bridge_portal.hide(); //portal surface
+		$viewscreen_deck1_bridge.show(); //show the viewscreen flatsurface model
+	}
+	
+	eTrigger.setFloatVar("status",fStatus);
 }
 
-void basic_laptopToggle()
-//------------------------------------------------------------------------------
-//opens/closes a laptop
-//------------------------------------------------------------------------------
+void observation_display()
 {
-	entity eTrigger,eLaptop;
-	//retrive trigger which started this thread
+	entity eTrigger;
 	eTrigger = getCurrentEntity();
-	
-	if(doesEntityExist(eTrigger))
-	{
-	//grab laptop
-	//check if is open or closed, toggle it
-		eLaptop = eTrigger.getTargetEntity();
-		if(doesEntityExist(eLaptop))
-		{
-			if(eLaptop.getFloatVar("isOpen") != 1)
-			{
-				eLaptop.setFloatVar("isOpen",1);
-				eLaptop.anim("open_idle");
-			}
-			else
-			{
-				eLaptop.setFloatVar("isOpen",0);
-				eLaptop.anim("closed");
-			}
-		}
-		else
-		{
-			centerprint("Laptop does not exist\n");
-		}
+	if(!doesEntityExist(eTrigger)){
+		return;
 	}
+	
+	float fStatus;
+	fStatus = eTrigger.getFloatVar("status");
+	string sShader;
+	string sShaderOld;
+	sShader = $world.getStringVar("display_deck1_observation"+""+fStatus);
+	sShaderOld = eTrigger.getStringVar("customshaderOld");
+	
+	if(sShaderOld != ""){
+		$display_deck1_observation.clearcustomshader(sShaderOld);
+	}
+	if(sShader != ""){
+		eTrigger.setStringVar("customshaderOld",sShader);
+		$display_deck1_observation.setcustomshader(sShader);
+	}
+	
+	if(sShader!=""){
+		fStatus++;
+	}
+	else{
+		fStatus=0;
+	}	
+	eTrigger.setFloatVar("status",fStatus);
 }
+
+void readyRoom_replicator()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	entity ePlayer;
+	ePlayer = eTrigger.getLastActivatingEntity();
+	ePlayer.hudprint("Replicator offline...\n");
+	
+	//$replicator_deck1_readyroom_trigger
+	//$replicator_deck1_readyroom_origin
+}
+
+

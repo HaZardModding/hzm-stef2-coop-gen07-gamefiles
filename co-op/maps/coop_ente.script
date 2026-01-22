@@ -12,20 +12,25 @@ Normal:		hallwaypanel_piece3
 variouse special ENTE models
 */
 
-//hzm coop mod - chrissstrahl - include the required coop level-scripts
-/////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////
-void	coop_endLevel();
-entity	entityPlayerGlobal;
-
-#include "co-op/matrix/main.scr"
-#include "maps/global_scripts/global_common.scr"
+void main();
+void setupSky();
+void setupMap();
+void coop_debugOutput();
+void basic_consoleUsed();
+void basic_laptopToggle();
+void basic_addToArray(string sBaseName, string sValue );
+void coop_endLevel();
 
 //------------------------------------------------------------------------------
 // INCLUDES - So these scripts can be used on with this level
 //------------------------------------------------------------------------------
+#include "co-op/matrix/main.scr"
+#include "maps/global_scripts/global_common.scr"
 #include "maps/global_scripts/global_math.scr"			//needed for some calulations
-#include "co-op/maps/coop_ente/declarations.script"		//so all other scripts can use the functions listed in this file
+#include "co-op/maps/coop_ente/declarations.script"
+#include "co-op/maps/coop_ente/deck1.script"
+#include "co-op/maps/coop_ente/deck7.script"
+#include "co-op/maps/coop_ente/deck8.script"
 #include "co-op/maps/coop_ente/turbolift.scr"			//The turbolift script - does the turbolift magic
 #include "co-op/maps/coop_ente/transporter.scr"			//The transporter script - does the transporter magic
 
@@ -36,65 +41,182 @@ void main()
 // This function is started by the game after mapload
 //------------------------------------------------------------------------------
 {
+	//Force specific gravity and movement settings
+	$world.physicsvar ( "gravity" , 800 );
+	$world.physicsvar ( "maxspeed" , 250 );
+	$world.physicsvar ( "airaccelerate" , 2 );
+	
+	//make sure we don't get any visual glitches if netities fade out to early
+	$world.entity_fade_dist( 32000 );	
+	
+	//clear/set viewmodes avialabe for Tricorder
+	$world.clearAvailableViewModes();	
+	
+	//start the setup of the map
+	thread setupMap();	
+
+	
+	globalCoop_main_waitForWarmupTime();
+	wait(0.1);
+}
+
+void setupSky()
+{
 	//this is still missing the correct textures
 	//maybe use textures from ark royale or cygnus
 	$sky_warpStars.hide();
-
-
-	//start the setup of the map
-	thread setupMap();
-	
-	
-	// Entity fade dist
-	$world.entity_fade_dist( 16000 );
 	
 	//enable sky(skybox)
 	$sky.rendereffects( "+skyorigin" );
-	
-	//clear/set viewmodes avialabe for Tricorder
-	$world.clearAvailableViewModes();
-	
+		
 	//make the model of the enterprise e exterior like it would have light shining on it
 	$shuttleBay_enterpriseHull0.rendereffects("+minlight");
 	$shuttleBay_enterpriseHull1.rendereffects("+minlight");
-	$shuttleBay_enterpriseHull2.rendereffects("+minlight");
+	$shuttleBay_enterpriseHull2.rendereffects("+minlight");	
 	
-	//make the model of the enterprise a exterior like it would have light shining on it
-	$sky_starShip_constitution.rendereffects("+minlight");
-	
-	//spawn a script_origin so that the enterprise a can be constrolled by script
+	//spawn a script_origin so that the enterprise a can be controlled by script
 	//match origin and angle from the model inside the map
 	entity eOrigin;
 	eOrigin = spawn("script_origin","origin",""+$sky_starShip_constitution.getOrigin());
 	wait(0.05);//wait for it to spawn
 	eOrigin.angle(315);
-	$sky_starShip_constitution.bind(eOrigin);//bind model to script_orgin
+	$sky_starShip_constitution.rendereffects("+minlight");	
+	$sky_starShip_constitution.bind(eOrigin);
+	
+}
+
+void setupMap()
+//------------------------------------------------------------------------------
+// Handle all that has to do with setup
+//------------------------------------------------------------------------------
+{
+	thread setupSky();
+	
+	//redalert lights - turn off
+	// //getlightintensity( String light_group_name )
+	// //light_lightstyle( String light_group_name, String light_style, [ Boolean stop_at_end ] )
+	$world.light_intensity("lights_alertRed", 0.0 ); //set to 1.0 for redalert
+	
+	//fullbright various models
+	$viewscreen_deck1_bridge.rendereffects("+fullbright");
+	$viewscreen_deck7_hazardOps.rendereffects("+fullbright");
+	$display_deck1_observation.rendereffects("+fullbright");
+	$datapad_deck7_hazardOps_office.rendereffects("+fullbright");
+	
+	//useable objects
+	thread globalCoop_level_onUse($datapad_deck7_hazardOps_office,"hazardOps_office_datapad_pickup");
+	thread globalCoop_level_onUse($case0_deck7_hazardOps_storage,"hazardOps_storage_case0_pickup");
+	thread globalCoop_level_onUse($case1_deck7_hazardOps_storage,"hazardOps_storage_case1_pickup");
+	thread globalCoop_level_onUse($case2_deck7_hazardOps_storage,"hazardOps_storage_case2_pickup");
+	
+	//transporterroom
+	$forcefield_deck8_transporter.notsolid();
+	$forcefield_deck8_transporter.hide();
 	
 	
-	globalCoop_main_waitForWarmupTime();
-	wait(0.1);
+	//deck1 add multiple screen options for observation display
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_bridge-5a.tga");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_bridge-4a.tga");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_bridge-6a.tga");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_bridge-8a.tga");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_hall-deck11");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_hall-deck16");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_hall-deck7");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_hall-deck7a");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_hall-deck7c");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_hall-deck8b");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_jtubecontrol-1a");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_locker-1a");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_locker-1e");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_sickbay-1d");
+	basic_addToArray("display_deck1_observation","textures/enterprise/eplaque");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_cargo-1a");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_cargo-1b");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_haz-1a");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_haz-1b");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_haz-2a");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_haz-2b");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_libary-1a");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_libary-2a");
+	basic_addToArray("display_deck1_observation","textures/lcars/lcars_libary-3a");
+	basic_addToArray("display_deck1_observation","textures/enterprise/sb_trim01");
+	basic_addToArray("display_deck1_observation","textures/enterprise/table1");
+}
+
+void basic_consoleUsed()
+//------------------------------------------------------------------------------
+//makes the trigger that has been used play a beep sound
+//------------------------------------------------------------------------------
+{
+	entity eTrigger,eLaptop;
+	//retrive trigger which started this thread
+	eTrigger = getCurrentEntity();
 	
-	//change the menu for the turbolift
-	string sTurboliftMenu;
-	sTurboliftMenu = "coop_ente-turbo";
-	//sTurboliftMenu = "coop_ente-turbolift";
-	$deck1Turbolift0.setStringVar("uservar1",sTurboliftMenu);
-	$deck1Turbolift1.setStringVar("uservar1",sTurboliftMenu);
-	$deck7Turbolift0.setStringVar("uservar1",sTurboliftMenu);
-	$deck7Turbolift1.setStringVar("uservar1",sTurboliftMenu);
-	$deck7Turbolift2.setStringVar("uservar1",sTurboliftMenu);
-	$deck8Turbolift0.setStringVar("uservar1",sTurboliftMenu);
-	$deck8Turbolift1.setStringVar("uservar1",sTurboliftMenu);
-	$deck11Turbolift.setStringVar("uservar1",sTurboliftMenu);
-	$deck16Turbolift.setStringVar("uservar1",sTurboliftMenu);
+	if(doesEntityExist(eTrigger))
+	{
+		eTrigger.playsound("sound/environment/computer/lcars_beep4.wav",0,2,64);
+	}
+}
+
+void basic_laptopToggle()
+//------------------------------------------------------------------------------
+//opens/closes a laptop
+//------------------------------------------------------------------------------
+{
+	entity eTrigger,eLaptop;
+	//retrive trigger which started this thread
+	eTrigger = getCurrentEntity();
 	
-	//debug
-	//if(getCvar("username") == "Chrissstrahl"){
-		//$player.origin('2488 -12524 64');
-		//$player0.origin('2488 -12524 64');
-	//}
-	wait(5);
-	return;
+	if(doesEntityExist(eTrigger))
+	{
+	//grab laptop
+	//check if is open or closed, toggle it
+		eLaptop = eTrigger.getTargetEntity();
+		if(doesEntityExist(eLaptop))
+		{
+			if(eLaptop.getFloatVar("isOpen") != 1)
+			{
+				eLaptop.setFloatVar("isOpen",1);
+				eLaptop.anim("open_idle");
+			}
+			else
+			{
+				eLaptop.setFloatVar("isOpen",0);
+				eLaptop.anim("closed");
+			}
+		}
+		else
+		{
+			centerprint("Laptop does not exist\n");
+		}
+	}
+}
+
+void basic_addToArray(string sBaseName, string sValue )
+//------------------------------------------------------------------------------
+//opens/closes a laptop
+//------------------------------------------------------------------------------
+{
+	float bFreeSlot;
+	float iCurrentSlot;
+	string sContents;
+	while(!bFreeSlot){
+		sContents =  $world.getStringVar(sBaseName+""+iCurrentSlot);
+		if(sContents != ""){
+			iCurrentSlot++;
+		}
+		else{
+			bFreeSlot=1;
+		}
+	}
+	$world.setStringVar(sBaseName+""+iCurrentSlot,sValue);
+}
+
+void coop_debugOutput()
+//------------------------------------------------------------------------------
+//print debug output to console for debugging
+//------------------------------------------------------------------------------
+{
 	if(getCvar("username") == "Chrissstrahl"){
 		float i,fMaxentities;
 		entity e;
@@ -120,18 +242,6 @@ void main()
 	}
 }
 
-void setupMap()
-//------------------------------------------------------------------------------
-// Handle all that has to do with setup
-//------------------------------------------------------------------------------
-{
-	//make the enterprise hull have some light on it
-	$deck7HullModel0.rendereffects("+minlight ");//+fullbright
-	$deck7HullModel1.rendereffects("+minlight ");
-	$deck7HullModel2.rendereffects("+minlight ");
-}
-
-//hzm coop mod chrissstrahl - standard coop mod handling
 void coop_endLevel()
 //------------------------------------------------------------------------------
 //Level end
