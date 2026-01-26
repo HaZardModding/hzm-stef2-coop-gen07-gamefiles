@@ -69,6 +69,8 @@ void main()
 	coop_string_story = "Date: Jan 2388. USS Odyssey-A has been ordered to fight off an orbiting warbird, and liberate the planet. You and your teammates must battle through the streets of Attrexia and protect the population from Romulan invasion.";
 	coop_string_story_deu = "Datum: Jan 2388. Die USS Odyssey-A wurde entsannt um einen Warbird zu vertreiben und den Planeten zu befreien. Sie und Ihr Team m$$u$$ssen sich durch die Stra$$S$$en von Attrexia k$$a$$mpfen und die Bev$$o$$lkerung vor den romulanischen Invsoren sch$$u$$tzen.";
 	
+	thread globalCoop_objectives_update("incomplete" , 1 , 1 );//gear up
+	
 	//Remove archetype
 	//$t43.archetype("");
 	
@@ -120,6 +122,7 @@ void main()
 	//cam_fadeout( 1 , 0, 0, 0, 1, 0 );
 	wait(1);
 	noncinematic();
+	cueplayer();
 	releaseplayer();
 	clearletterbox( .1 );
 	//cam_fadeIn( 1 , 0, 0, 0, 0, 0 );
