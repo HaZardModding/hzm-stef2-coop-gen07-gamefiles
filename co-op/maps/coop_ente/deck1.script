@@ -7,32 +7,78 @@ void bridge_conn()
 	}
 	
 	float fStatus;
-	fStatus = eTrigger.getFloatVar("status");
+	//one time setup, rotate surface, because it seems to be filming up side down
+	if(!eTrigger.doesVarExist("status")){
+		$viewscreen_deck1_bridge_portal.rotateXdown(180);
+		$viewscreen_deck1_bridge_portal.time(0.05);
+		$viewscreen_deck1_bridge_portal.notsolid();
+		eTrigger.setFloatVar("status",0);
+		wait(0.05);
+	}else{
+		fStatus = eTrigger.getFloatVar("status");
+	}
+	
 	//off - turn on
-	if(fStatus == 0){
-		fStatus=1;
-		
-		$viewscreen_deck1_bridge.hide(); //hide the viewscreen flatsurface model
-		$viewscreen_deck1_bridge_portal.show(); //portal surface
-		$viewscreen_deck1_bridge_portalSurfaceentity.target("viewscreen_deck1_bridge_camera0"); //select target camera
-		$viewscreen_deck1_bridge_portal.locatecamera(); //portal surface
-		$viewscreen_deck1_bridge_area.close();
-	}
-	else if(fStatus==1){
-		fStatus = 2;
-		
-		$viewscreen_deck1_bridge.hide(); //hide the viewscreen flatsurface model
-		$viewscreen_deck1_bridge_portal.show(); //portal surface
-		$viewscreen_deck1_bridge_portalSurfaceentity.target("viewscreen_deck1_bridge_camera1"); //select target camera
-		$viewscreen_deck1_bridge_portal.locatecamera(); //portal surface
-		$viewscreen_deck1_bridge_area.close();
-	}
-	else if(fStatus==2){
-		fStatus = 3;
+	if(fStatus==0){
+		fStatus = 1;
 		
 		$viewscreen_deck1_bridge_area.openportal(); //portal hiding skybox
 		$viewscreen_deck1_bridge_portal.hide();
 		$viewscreen_deck1_bridge.hide();
+	}
+	if(fStatus == 1){
+		fStatus=2;
+		
+		$viewscreen_deck1_bridge.hide(); //hide the viewscreen flatsurface model
+		$viewscreen_deck1_bridge_portal.show(); //portal surface		
+		$viewscreen_deck1_bridge_portalSurfaceentity.target("viewscreen_deck1_bridge_camera0"); //select target camera
+		$viewscreen_deck1_bridge_portalSurfaceentity.locatecamera(); //portal surface
+		$viewscreen_deck1_bridge_area.closeportal();
+	}
+	else if(fStatus==2){
+		fStatus = 3;
+		
+		$viewscreen_deck1_bridge.hide(); //hide the viewscreen flatsurface model
+		$viewscreen_deck1_bridge_portal.show(); //portal surface
+		$viewscreen_deck1_bridge_portalSurfaceentity.target("viewscreen_deck1_bridge_camera9"); //select target camera
+		$viewscreen_deck1_bridge_portalSurfaceentity.locatecamera(); //portal surface
+		$viewscreen_deck1_bridge_area.closeportal();
+	}
+	else if(fStatus==3){
+		fStatus = 4;
+		
+		$viewscreen_deck1_bridge.hide(); //hide the viewscreen flatsurface model
+		$viewscreen_deck1_bridge_portal.show(); //portal surface
+		$viewscreen_deck1_bridge_portalSurfaceentity.target("viewscreen_deck1_bridge_camera10"); //select target camera
+		$viewscreen_deck1_bridge_portalSurfaceentity.locatecamera(); //portal surface
+		$viewscreen_deck1_bridge_area.closeportal();
+	}
+	else if(fStatus==4){
+		fStatus = 5;
+		
+		$viewscreen_deck1_bridge.hide(); //hide the viewscreen flatsurface model
+		$viewscreen_deck1_bridge_portal.show(); //portal surface
+		$viewscreen_deck1_bridge_portalSurfaceentity.target("viewscreen_deck1_bridge_camera1"); //select target camera
+		$viewscreen_deck1_bridge_portalSurfaceentity.locatecamera(); //portal surface
+		$viewscreen_deck1_bridge_area.closeportal();
+	}
+	else if(fStatus==5){
+		fStatus = 6;
+		
+		$viewscreen_deck1_bridge.hide(); //hide the viewscreen flatsurface model
+		$viewscreen_deck1_bridge_portal.show(); //portal surface
+		$viewscreen_deck1_bridge_portalSurfaceentity.target("viewscreen_deck1_bridge_camera2"); //select target camera
+		$viewscreen_deck1_bridge_portalSurfaceentity.locatecamera(); //portal surface
+		$viewscreen_deck1_bridge_area.closeportal();
+	}
+	else if(fStatus==6){
+		fStatus = 8;
+		
+		$viewscreen_deck1_bridge.hide(); //hide the viewscreen flatsurface model
+		$viewscreen_deck1_bridge_portal.show(); //portal surface
+		$viewscreen_deck1_bridge_portalSurfaceentity.target("viewscreen_deck1_bridge_camera3"); //select target camera
+		$viewscreen_deck1_bridge_portalSurfaceentity.locatecamera(); //portal surface
+		$viewscreen_deck1_bridge_area.closeportal();
 	}
 	else{
 		fStatus=0;
@@ -42,7 +88,9 @@ void bridge_conn()
 		$viewscreen_deck1_bridge.show(); //show the viewscreen flatsurface model
 	}
 	
-	eTrigger.setFloatVar("status",fStatus);
+	if(doesEntityExist(eTrigger)){
+		eTrigger.setFloatVar("status",fStatus);
+	}
 }
 
 void observation_display()

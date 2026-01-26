@@ -62,6 +62,22 @@ void main()
 
 void setupSky()
 {
+	//scale enterprise hull correctly - was made smaller in radiant, because it was making mapping dificult
+	$shuttleBay_enterpriseHull0.scale(60); //-5808.00 -28943.00 -401.00
+	$shuttleBay_enterpriseHull1.scale(60); //-5811.00 -28945.00 -401.00
+	$shuttleBay_enterpriseHull2.scale(60); //-5811.00 -28945.00 -401.00
+
+	//make sure the position is perfect
+	$shuttleBay_enterpriseHull0.origin('-5808.00 -28943.00 -401.00');
+	$shuttleBay_enterpriseHull1.origin('-5811.00 -28945.00 -401.00');
+	$shuttleBay_enterpriseHull2.origin('-5811.00 -28945.00 -401.00');
+	
+	//make the model of the enterprise e exterior like it would have light shining on it
+	$shuttleBay_enterpriseHull0.rendereffects("+minlight");
+	$shuttleBay_enterpriseHull1.rendereffects("+minlight");
+	$shuttleBay_enterpriseHull2.rendereffects("+minlight");		
+	
+
 	//this is still missing the correct textures
 	//maybe use textures from ark royale or cygnus
 	$sky_warpStars.hide();
@@ -69,10 +85,7 @@ void setupSky()
 	//enable sky(skybox)
 	$sky.rendereffects( "+skyorigin" );
 		
-	//make the model of the enterprise e exterior like it would have light shining on it
-	$shuttleBay_enterpriseHull0.rendereffects("+minlight");
-	$shuttleBay_enterpriseHull1.rendereffects("+minlight");
-	$shuttleBay_enterpriseHull2.rendereffects("+minlight");	
+
 	
 	//spawn a script_origin so that the enterprise a can be controlled by script
 	//match origin and angle from the model inside the map
@@ -217,6 +230,7 @@ void coop_debugOutput()
 //print debug output to console for debugging
 //------------------------------------------------------------------------------
 {
+/*
 	if(getCvar("username") == "Chrissstrahl"){
 		float i,fMaxentities;
 		entity e;
@@ -240,6 +254,7 @@ void coop_debugOutput()
 		//quit because we need only the logfile
 		//stuffcmd("quit\n");
 	}
+	*/
 }
 
 void coop_endLevel()

@@ -37,7 +37,7 @@ void transporterRoom_transporter_controls()
 
 void sickbay_holodoc()
 {
-	$npc_deck8_sickbay_holodoc.removeattachedmodel ( "tag_rhand" );;
+	$npc_deck8_sickbay_holodoc.removeattachedmodel ( "tag_rhand" );
 	$npc_deck8_sickbay_holodoc.contents("-targetable");
 	$npc_deck8_sickbay_holodoc.solid();
 	$npc_deck8_sickbay_holodoc.forcealpha(1);
