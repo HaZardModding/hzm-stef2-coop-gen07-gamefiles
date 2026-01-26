@@ -10,14 +10,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////FUNCTIONS
 ////////////////////////////////////////////////////////////////////////////////
-void globalCoop_objectives_update_dll(string objectiveState,string objectiveItem,string objectiveshowNow)
-//----------------------------------------------------------------------
-// DUMMY FUNCTION, REQUIRED FOR THE C++ DLL CODE TO CATCH THE OBJECTIVES
-//----------------------------------------------------------------------
-{
-	//globalCoop_main_print("globalCoop_objectives_update_dll DUMMY CALLED"+objectiveState+""+objectiveItem+""+objectiveshowNow+"");
-}
-
 void globalCoop_objectives_update(string objectiveState , float objectiveItem , float objectiveshowNow)
 //----------------------------------------------------------------------
 // Show Objectives, for each player
