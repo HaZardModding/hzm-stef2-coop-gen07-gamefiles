@@ -691,7 +691,7 @@ void puzzleSolved()
 
 void killBoxOnDestruction()
 {
-	//make sure we have no floating boxes, if box bellow it killed destroy the box that would otherwise float
+	//make sure we have no floating boxes, if box bellow is killed destroy the box that is on top
 	entity eTrigger;
 	string sKillMe;
 	entity eBoxToKill;
