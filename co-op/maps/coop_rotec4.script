@@ -13,6 +13,7 @@ void commandUserKilled();
 void disconnectNodes(float fNum);
 void teamAiWaitHere();
 
+void beamAwaySick(entity eSick);
 void doctorSequenceEnemySpawnManager();
 void evacuationSequenceEnemyKilled();
 
@@ -286,6 +287,18 @@ void evacuationSequenceSpawn()
 		}
 	}
 	
+	//make sure they die quickly if we have less than 2 players
+	if(doesEntityExist(eEnemy)){
+		float fHealth;
+		fHealth = eEnemy.getHealth();
+		if(fHealth > 1){
+			if(globalCoop_return_integerPlayersQuantity(2) < 2){
+				fHealth = (fHealth/2);
+				eEnemy.health(fHealth);
+			}
+		}
+	}
+	
 	if( fSequence2Over ){
 		fSequence2ExtraEnemies++;
 	}
@@ -343,6 +356,17 @@ void evacuationSequenceKilled()
 	globalCoop_mission_failWithReason("The Doctor died.");
 }
 
+void beamAwaySick(entity eSick)
+{
+	if(doesEntityExist(eSick)){
+		eSick.displayeffect("TransportOut","Multiplayer");
+		wait(1.5);
+		if(doesEntityExist(eSick)){
+			eSick.remove();
+		}
+	}
+}
+
 void evacuationSequence()
 {
 	//make medic to from bed to medical table pickup something, go to next pacient, beam old pacient out
@@ -390,7 +414,7 @@ void evacuationSequence()
 		wait(1);
 		
 		$doctor.anim("ent-curvedconsole-gesture");
-		wait(10);
+		wait(6);
 		
 		$doctor.animateonce("communicator");
 		waitforAnimation($doctor,"communicator");
@@ -399,8 +423,8 @@ void evacuationSequence()
 		eSick = getEntity("sick" + i);
 		//eSick.displayeffect("TransportOut","Federation"); //buggy
 		//eSick.displayeffect("TransportOut","FederationWeapons"); //no sound
-		eSick.displayeffect("TransportOut","Multiplayer");
-		wait(1.5);
+		thread beamAwaySick(eSick);
+		wait(0.25);
 		
 		$doctor.walkto("medicaltools" , "walk");
 		waitFor($doctor);
@@ -411,8 +435,6 @@ void evacuationSequence()
 		$doctor.animateonce("twitch");
 		waitforAnimation($doctor,"twitch");
 		$doctor.anim("idle");
-		
-		eSick.remove();
 	}
 	
 	//remove cam now, as we don't need it anymore
@@ -796,7 +818,7 @@ void endSequenceCinematic()
 	$chrashedTram.show();
 	$crashingTram.remove();
 	
-	releaseplayer();
+	releaseplayer();cueplayer();
 	noncinematic();
 	clearletterbox( .1 );
 	
