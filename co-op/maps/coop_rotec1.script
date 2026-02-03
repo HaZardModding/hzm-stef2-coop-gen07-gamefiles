@@ -18,7 +18,7 @@ void endLaptopCin();
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 void	coop_endLevel();
-entity	entityPlayerGlobal;
+vector vOrigin_laptopScreen;
 
 #include "co-op/matrix/main.scr"
 #include "maps/global_scripts/global_common.scr"
@@ -87,6 +87,8 @@ void main()
 	$cam1_origin.origin('744 -904 100');
 	$cam1.follow($cam1_origin);
 	cuecamera($cam1);
+	
+	vOrigin_laptopScreen = $laptopScreen0.getOrigin();
 	
 	waitforplayer();
 	
@@ -228,12 +230,12 @@ void platesHide()
 	//move all the plates in place, they are in a seperate room for lighting and shadow cast issues
 	float i;
 	entity ePlate;
-	vector vOrigin;
-	vOrigin = $laptopScreen0.getOrigin();
 	for(i=0;i<13;i++){
 		ePlate = getEntity("laptopScreen" + i);
-		ePlate.origin(vOrigin);
-		ePlate.hide();
+		if(doesEntityExist(ePlate)){
+			ePlate.origin(vOrigin_laptopScreen);
+			ePlate.hide();
+		}
 	}
 }
 
