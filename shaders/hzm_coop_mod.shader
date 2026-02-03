@@ -1,3 +1,33 @@
+textures/coop_mod/critter/cockroach
+{
+	qer_editorimage textures/coop_mod/critter/cockroach.tga
+	surfaceparm nonsolid
+    surfaceparm alphashadow
+    cull disable
+	
+    {
+        map textures/coop_mod/critter/cockroach.tga
+		depthWrite
+		blendfunc blend
+		alphaFunc GT0
+    }
+}
+
+textures/coop_mod/critter/cockroach_dead
+{
+	qer_editorimage textures/coop_mod/critter/cockroach_dead.tga
+	surfaceparm nonsolid
+    surfaceparm alphashadow
+    cull disable
+	
+    {
+        map textures/coop_mod/critter/cockroach_dead.tga
+		//depthWrite
+		blendfunc blend
+		alphaFunc GT0
+    }
+}
+
 textures/coop_mod/pac/healarea
 {
 	qer_editorimage textures/coop_mod/pac/healarea.tga

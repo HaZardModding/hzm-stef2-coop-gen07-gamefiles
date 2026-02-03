@@ -1,4 +1,11 @@
-c#175 "Not available in Coop."
+CockroachDesc1 "Cockroach"
+CockroachDesc2 "Scavengers originating from Earth now spread across the Galaxy in various mutations."
+CockroachDesc3 "Cockroach pose a health risk to Humans."
+CockroachRadar "Cockroach"
+
+c#177 "Quickstart"
+c#176 "Mission Selection Map"
+c#175 "Not available in Coop"
 
 c#133	"Changing Resolution timed out or failed.\n\nReverted back to a save Resolution.\n\nTry again with a different Resolution"
 c#134	"Keep selected Resolution ?\nReseting in:"

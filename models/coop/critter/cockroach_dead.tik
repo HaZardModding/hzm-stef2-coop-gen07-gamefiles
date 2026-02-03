@@ -1,0 +1,36 @@
+TIKI
+setup
+	{
+	scale 0.025
+	//fade_dist_mod 1
+	lod 2000 1.0 6000 .75 25000
+	
+	//set for radiant
+	texturepath textures/coop_mod/critter
+	surface material1 shader cockroach_dead.tga
+	
+	//set for tan file
+	path models/coop/ente/res
+	}
+init
+	{
+		server
+		{
+		noshadow
+		}
+		client
+		{ 
+		}
+	}        
+animations
+	{
+	idle        viewscreen.tan
+	}
+   
+   
+/*QUAKED coop_char_critter_cockroach-static-d (0.5 0.25 0.25) (-2 -4 -1) (2 4 3)
+This is a 2-Dimensional - DEAD - cockroach Model
+
+- Visible from top only
+- Boundingbox was adjusted to make it float a little over the ground
+*/

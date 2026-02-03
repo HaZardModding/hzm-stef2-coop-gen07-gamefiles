@@ -8004,4 +8004,16 @@ OBJECT Destroy		GlobalEnvironments
 	string RadarDescription		DestroyRadar
 }
 
-
+OBJECT Cockroach		Bugs
+{
+    string Description1		CockroachDesc1
+    string Description2		CockroachDesc2
+    string Description3		CockroachDesc3
+    string InteractiveType		Enemy
+    string RadarDescription		CockroachRadar
+    float fov		360
+    float health		2
+    float playerhatemodifier		1.5
+    float visiondistance		200
+    float PainChance		1
+}

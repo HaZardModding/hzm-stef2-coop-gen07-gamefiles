@@ -1,4 +1,11 @@
-c#175 "Nicht verfügbar in Coop."
+CockroachDesc1 "Kakerlake"
+CockroachDesc2 "Von der Erde stammende Scavengers haben sich inzwischen in verschiedenen Mutationen über die gesamte Galaxie ausgebreitet."
+CockroachDesc3 "Kakerlaken stellen ein Gesundheitsrisiko für den Menschen dar."
+CockroachRadar "Kakerlake"
+
+c#177 "Schnellstart"
+c#176 "Missions Auswahl Level"
+c#175 "Nicht verfügbar in Coop"
 
 c#133	"Zeit abgelaufen oder Auflösung fehlgeschlagen.\n\nZurückgesetzt auf sichere Auflösung.\n\nVersuchen Sie es mit einer anderen Auflösung."
 c#134	"Auflösung behalten ?\nZurücksetzen in:"
