@@ -8,9 +8,7 @@ fadein 0.3
 hideDuringLoad
 
 //[b60014] chrissstrahl - new communicator menu
-//Multiplay Cvars with 1, this will create them with value 0 if they don't exist, they need to exist for the menu to work
-showcommand "scale coop_comT 1;scale coop_comL 1\n"
-showcommand	"ui_showmouse\n"
+showcommand "exec co-op/cfg/coop_com.cfg\n"
 
 ////////////////////////////////////////////////////////////////////////////////
 //BACKGROUND WIDGET
