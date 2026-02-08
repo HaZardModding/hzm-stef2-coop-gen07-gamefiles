@@ -3,6 +3,49 @@ Label
 {
 	cvarvisibility coop_ui_vt 6 ==
 	
+	title "$$c#177$$"
+	name "trainingAndSecertLevelsTitle2"
+	rect		274 330 330 24
+	fgcolor 0.12 0.15 0.25 1.00
+	bgcolor 0.500 1.000 0.000 0.800
+	
+	borderstyle "3D_BORDER"
+	
+	horizontaljustify left
+	verticaljustify top
+	font 	serpentinemedium-10
+	
+	hovercommand "globalwidgetcommand tooltip_coop_startserver title \"\""
+    hoverexitcommand "globalwidgetcommand tooltip_coop_startserver title \"\""
+}
+resource
+Button
+{
+	cvarvisibility coop_ui_vt 6 ==
+	title "$$c#176$$"
+	name 	"trainingAndSecert11"
+	rect	300 360 278 20
+	font serpentinemedium-10
+	fgcolor 		1.000 1.000 1.000 0.800
+	hoverfgcolor 		0.000 0.000 0.000 0.800
+	bgcolor 		0.7 0.15 0.25 0.7
+	hoverbgcolor 	0.8 0.25 0.35 1.0
+	
+	horizontaljustify left
+	verticaljustify top
+	
+	clicksound sound/misc/menu/click.wav
+ 
+	stuffcommand "callvote map coop_start;popmenu 1;popmenu 0\n"
+	hovercommand "globalwidgetcommand coop_startserverShot shader sysimg/mapshots/coop_start.tga;globalwidgetcommand coop_startserverName title \"HaZardModding\""
+    hoverexitcommand "globalwidgetcommand coop_startserverShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coop_startserverName title \"\""
+}
+
+resource 
+Label
+{
+	cvarvisibility coop_ui_vt 6 ==
+	
 	title "$$c#035$$"
 	name "trainingAndSecertLevelsTitle"
 	rect		274 89 330 24
@@ -109,7 +152,7 @@ Button
 	cvarvisibility coop_ui_vt 6 ==
 	title "$$Secret1$$"
 	name 	"trainingAndSecert5"
-	rect	275 219 328 20
+	rect	275 198 328 20
 	font serpentinemedium-10
 	fgcolor 		1.000 1.000 1.000 0.800
 	bgcolor 		0.12 0.15 0.25 0.7
@@ -130,7 +173,7 @@ Button
 	cvarvisibility coop_ui_vt 6 ==
 	title "$$Secret2$$"
 	name 	"trainingAndSecert6"
-	rect	275 240 328 20
+	rect	275 219 328 20
 	font serpentinemedium-10
 	fgcolor 		1.000 1.000 1.000 0.800
 	bgcolor 		0.12 0.15 0.25 0.7
@@ -151,7 +194,7 @@ Button
 	cvarvisibility coop_ui_vt 6 ==
 	title "$$Secret3$$"
 	name 	"trainingAndSecert7"
-	rect	275 261 328 20
+	rect	275 240 328 20
 	font serpentinemedium-10
 	fgcolor 		1.000 1.000 1.000 0.800
 	bgcolor 		0.12 0.15 0.25 0.7
@@ -172,7 +215,7 @@ Button
 	cvarvisibility coop_ui_vt 6 ==
 	title "$$Minigame$$"
 	name 	"trainingAndSecert8"
-	rect	275 282 328 20
+	rect	275 261 328 20
 	font serpentinemedium-10
 	fgcolor 		1.000 1.000 1.000 0.800
 	bgcolor 		0.12 0.15 0.25 0.7
@@ -193,7 +236,7 @@ Button
 	cvarvisibility coop_ui_vt 6 ==
 	title "$$Zoo1$$"
 	name 	"trainingAndSecert9"
-	rect	275 303 328 20
+	rect	275 282 328 20
 	font serpentinemedium-10
 	fgcolor 		1.000 1.000 1.000 0.800
 	bgcolor 		0.12 0.15 0.25 0.7
@@ -208,13 +251,14 @@ Button
 	hovercommand "globalwidgetcommand coopShot shader sysimg/mapshots/zoo1.tga;globalwidgetcommand coopName title \"Ritual Entertainment\""
     hoverexitcommand "globalwidgetcommand coopShot shader sysimg/2d/default-map-screen.tga;globalwidgetcommand coopName title \"\""
 }
+
 resource
 Button
 {
 	cvarvisibility coop_ui_vt 6 ==
 	title "$$Zoo2$$"
 	name 	"trainingAndSecert10"
-	rect	275 324 328 20
+	rect	275 305 328 20
 	font serpentinemedium-10
 	fgcolor 		1.000 1.000 1.000 0.800
 	bgcolor 		0.12 0.15 0.25 0.7
