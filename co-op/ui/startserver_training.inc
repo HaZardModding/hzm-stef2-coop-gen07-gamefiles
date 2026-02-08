@@ -23,7 +23,7 @@ Button
 {
 	cvarvisibility coop_ui_vt 6 ==
 	title "$$c#176$$"
-	name 	"trainingAndSecert10"
+	name 	"trainingAndSecert11"
 	rect	300 360 278 20
 	font serpentinemedium-10
 	fgcolor 		1.000 1.000 1.000 0.800
