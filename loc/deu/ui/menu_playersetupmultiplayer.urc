@@ -144,6 +144,13 @@ RowColumn
 	column "playerprofile" 52 shader //64
 	column "playerprofile" 52 shader //64
 	column "playerprofile" 52 shader //64
+	
+	selectedcolumncommand "seta mp_playermodel" 1 -1
+	selectedcolumncommand "seta mp_playermodel" 2 -1
+	selectedcolumncommand "seta mp_playermodel" 3 -1
+	selectedcolumncommand "seta mp_playermodel" 4 -1
+	selectedcolumncommand "seta mp_playermodel" 5 -1
+	selectedcolumncommand "seta mp_playermodel" 6 -1
 
    	hovercommand "globalwidgetcommand tooltip_playersetup title \"$$SelectAPlayerModel$$\""
 	hoverexitcommand "globalwidgetcommand tooltip_playersetup title \"\""
