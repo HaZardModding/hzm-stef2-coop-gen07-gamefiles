@@ -7,9 +7,7 @@
 
 //NOTES
 /*
-Redalert:	hallwaypanel_piece3r_ENTE
-Normal:		hallwaypanel_piece3
-variouse special ENTE models
+
 */
 
 void main();
@@ -62,22 +60,6 @@ void main()
 
 void setupSky()
 {
-	//scale enterprise hull correctly - was made smaller in radiant, because it was making mapping dificult
-	$shuttleBay_enterpriseHull0.scale(60); //-5808.00 -28943.00 -401.00
-	$shuttleBay_enterpriseHull1.scale(60); //-5811.00 -28945.00 -401.00
-	$shuttleBay_enterpriseHull2.scale(60); //-5811.00 -28945.00 -401.00
-
-	//make sure the position is perfect
-	$shuttleBay_enterpriseHull0.origin('-5808.00 -28943.00 -401.00');
-	$shuttleBay_enterpriseHull1.origin('-5811.00 -28945.00 -401.00');
-	$shuttleBay_enterpriseHull2.origin('-5811.00 -28945.00 -401.00');
-	
-	//make the model of the enterprise e exterior like it would have light shining on it
-	$shuttleBay_enterpriseHull0.rendereffects("+minlight");
-	$shuttleBay_enterpriseHull1.rendereffects("+minlight");
-	$shuttleBay_enterpriseHull2.rendereffects("+minlight");		
-	
-
 	//this is still missing the correct textures
 	//maybe use textures from ark royale or cygnus
 	$sky_warpStars.hide();
@@ -96,6 +78,54 @@ void setupSky()
 	$sky_starShip_constitution.rendereffects("+minlight");	
 	$sky_starShip_constitution.bind(eOrigin);
 	
+	
+	//WE ARE SPAWNING CERTAIN TRIGGERS, BECAUSE WE REACHED INLINE MODEL LIMITS
+	//-----------------------------------------------
+	
+	
+	//WE ARE SPAWNING MODELS, BECAUSE WE REACHED SHADER LIMIT IN BSP
+	//-----------------------------------------------
+	//spawn enterprise e sky/level model
+	spawn("script_model","model","models/vehicle/enterprise-e-01b.tik","targetname","shuttleBay_enterpriseHull0","angle","90");
+	spawn("script_model","model","models/vehicle/enterprise-e-02a.tik","targetname","shuttleBay_enterpriseHull1","angle","90");
+	spawn("script_model","model","models/vehicle/enterprise-e-03.tik","targetname","shuttleBay_enterpriseHull2","angle","90");	
+	
+	
+	//spawn("script_model","model","plant/sf_academy_tree.tik","origin","-5074.00 -7547.00  0.00","scale","1.2","angle","90");
+	//spawn("script_model","model","plant/sf_academy_tree.tik","origin","-4486.00 -9364.00 -84.00","scale","1.2","angle","180");
+	
+	
+	spawn("script_model","model","models/vehicle/e-shuttle-ext.tik","origin","-5683.00 -17612.00 -228.00","targetname","mShuttleExterior1");
+	
+	spawn("script_model","model","models/coop/ente/warpcore-rpg.tik","origin","6876.00 -11671.00 364.00","targetname","warpcore");
+	//spawn("script_model","model","models/coop/ente/coreff.tik","origin","6876.00 -11671.00 -168.00","targetname","warpcore_forceField","hide","1");
+	
+	spawn("actor","model","models/char/voy-doctor.tik","targetname","npc_deck8_sickbay_holodoc","origin","327.00 -11899.00  0.00","ai_off","1");
+	spawn("actor","model","models/char/romulan-m2-rebel-pistol-m.tik","targetname","","origin","-5838.00 -3239.00 2056.00","angle","270");
+	spawn("actor","model","models/char/romulan_tng-female.tik","targetname","","origin","-5788.00 -3004.00 2072.00","angle","270");
+	spawn("actor","model","models/char/romulan-m2-rebel-pistol-m.tik","targetname","","origin","-6011.00 -2774.00 2056.00","angle","270");
+	
+	wait(0.05);//wait for it to spawn
+	
+	$npc_deck8_sickbay_holodoc.notsolid();
+	$npc_deck8_sickbay_holodoc.hide();
+
+	//scale enterprise hull correctly
+	$shuttleBay_enterpriseHull0.scale(60); //-5808.00 -28943.00 -401.00
+	$shuttleBay_enterpriseHull1.scale(60); //-5811.00 -28945.00 -401.00
+	$shuttleBay_enterpriseHull2.scale(60); //-5811.00 -28945.00 -401.00
+
+	//make sure the position is perfect
+	$shuttleBay_enterpriseHull0.origin('-5808.00 -28943.00 -401.00');
+	$shuttleBay_enterpriseHull1.origin('-5811.00 -28945.00 -401.00');
+	$shuttleBay_enterpriseHull2.origin('-5811.00 -28945.00 -401.00');
+	
+	//make the model of the enterprise e exterior like it would have light shining on it
+	$shuttleBay_enterpriseHull0.rendereffects("+minlight");
+	$shuttleBay_enterpriseHull1.rendereffects("+minlight");
+	$shuttleBay_enterpriseHull2.rendereffects("+minlight");
+
+
 }
 
 void setupMap()
@@ -111,6 +141,7 @@ void setupMap()
 	$world.light_intensity("lights_alertRed", 0.0 ); //set to 1.0 for redalert
 	
 	//fullbright various models
+	
 	$viewscreen_deck1_bridge.rendereffects("+fullbright");
 	$viewscreen_deck7_hazardOps.rendereffects("+fullbright");
 	$display_deck1_observation.rendereffects("+fullbright");
@@ -125,6 +156,21 @@ void setupMap()
 	//transporterroom
 	$forcefield_deck8_transporter.notsolid();
 	$forcefield_deck8_transporter.hide();
+	
+	//shuttlebay
+	/*
+	$shuttleBay_gate0
+	shuttleBay_gate0_soundOrigin
+	shuttleBay_gate0Origin
+	
+	shuttleBay_gate1
+	shuttleBay_gate1_soundOrigin
+	
+	shuttleBay_gate2
+	shuttleBay_gate2Origin
+	shuttleBay_gate2_soundOrigin
+	
+	*/
 	
 	
 	//deck1 add multiple screen options for observation display
@@ -154,6 +200,9 @@ void setupMap()
 	basic_addToArray("display_deck1_observation","textures/lcars/lcars_libary-3a");
 	basic_addToArray("display_deck1_observation","textures/enterprise/sb_trim01");
 	basic_addToArray("display_deck1_observation","textures/enterprise/table1");
+	
+	
+	//$viewscreen_deck1_bridge.setcustomshader("textures/cockroach.tga");
 }
 
 void basic_consoleUsed()

@@ -1,6 +1,6 @@
 {
-"classname" "worldspawn"
 "spawnflags" "1"
+"classname" "worldspawn"
 // brush 0
 {
 ( 512 520 84 ) ( 512 520 68 ) ( 512 508 84 ) common/black -60 0 0 0.5 0.5 0 1072 0 +surfaceparm detail 
@@ -6753,9 +6753,9 @@
 }
 // entity 1
 {
-"targetname" "holodeckArea"
-"spawnflags" "1"
 "classname" "script_object"
+"spawnflags" "1"
+"targetname" "holodeckArea"
 // brush 0
 {
 ( 264 904 24 ) ( -184 904 24 ) ( -184 448 24 ) common/nodraw 0 0 0 0.5 0.5 536870912 16512 0 
@@ -6807,11 +6807,11 @@
 }
 // entity 3
 {
-"origin" "116.00 614.00  0.00"
-"model" "models/enviro/academy_holo-deck.tik"
-"classname" "enviro_academy_holo-deck_holo-deck-sfa"
-"spawnflags" "0"
 "targetname" "holodeck"
+"spawnflags" "0"
+"classname" "enviro_academy_holo-deck_holo-deck-sfa"
+"model" "models/enviro/academy_holo-deck.tik"
+"origin" "116.00 614.00  0.00"
 }
 // entity 4
 {
@@ -10831,50 +10831,50 @@
 }
 // entity 10
 {
-"classname" "info_player_start"
 "origin" "561 -4 336"
+"classname" "info_player_start"
 }
 // entity 11
 {
-"origin" "560 119 336"
-"classname" "info_player_deathmatch"
 "targetname" "ipd1"
+"classname" "info_player_deathmatch"
+"origin" "560 119 336"
 }
 // entity 12
 {
-"targetname" "ipd2"
-"classname" "info_player_deathmatch"
 "origin" "560 72 336"
+"classname" "info_player_deathmatch"
+"targetname" "ipd2"
 }
 // entity 13
 {
-"origin" "560 24 336"
-"classname" "info_player_deathmatch"
 "targetname" "ipd3"
+"classname" "info_player_deathmatch"
+"origin" "560 24 336"
 }
 // entity 14
 {
-"targetname" "ipd4"
-"classname" "info_player_deathmatch"
 "origin" "560 -24 336"
+"classname" "info_player_deathmatch"
+"targetname" "ipd4"
 }
 // entity 15
 {
-"origin" "560 -72 336"
-"classname" "info_player_deathmatch"
 "targetname" "ipd5"
+"classname" "info_player_deathmatch"
+"origin" "560 -72 336"
 }
 // entity 16
 {
-"targetname" "ipd6"
-"classname" "info_player_deathmatch"
 "origin" "560 -120 336"
+"classname" "info_player_deathmatch"
+"targetname" "ipd6"
 }
 // entity 17
 {
-"origin" "560 -176 336"
-"classname" "info_player_deathmatch"
 "targetname" "ipd7"
+"classname" "info_player_deathmatch"
+"origin" "560 -176 336"
 }
 // entity 18
 {
@@ -12994,10 +12994,10 @@
 }
 // entity 22
 {
-"hide" "1"
-"spawnflags" "1"
-"targetname" "keypad1_12_item"
 "classname" "script_object"
+"targetname" "keypad1_12_item"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1663 1369 430 ) ( 1663 1366 430 ) ( 1663 1366 427 ) coop_mod/symbols/black_w_dot 169 -342 0 -0.00585938 0.00585938 0 0 0 
@@ -13010,10 +13010,10 @@
 }
 // entity 23
 {
-"hide" "1"
-"spawnflags" "1"
-"targetname" "keypad1_marker"
 "classname" "script_object"
+"targetname" "keypad1_marker"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1664 1365 419 ) ( 1664 1365 422 ) ( 1664 1367 422 ) common/nodraw 42 -5 0 -0.046875 0.046875 536870912 16512 0 
@@ -13026,14 +13026,14 @@
 }
 // entity 24
 {
-"wait" "1"
-"uservar3" "keypad1_solved"
-"uservar2" "1234"
-"uservar1" "keypad1"
-"thread" "keypadEnvLvlSelection_start"
-"targetname" "keypad1_trigger"
-"classname" "trigger_multiple"
 "uservar4" "9999"
+"classname" "trigger_multiple"
+"targetname" "keypad1_trigger"
+"thread" "keypadEnvLvlSelection_start"
+"uservar1" "keypad1"
+"uservar2" "1234"
+"uservar3" "keypad1_solved"
+"wait" "1"
 // brush 0
 {
 ( 1642 1372 404 ) ( 1642 1347 404 ) ( 1642 1347 400 ) common/trigger -36 -32 0 0.5 0.5 0 128 0 
@@ -13046,9 +13046,9 @@
 }
 // entity 25
 {
-"uservar1" "C"
-"targetname" "keypad1_11_item"
 "classname" "script_object"
+"targetname" "keypad1_11_item"
+"uservar1" "C"
 // brush 0
 {
 ( 1662 1371 402 ) ( 1662 1369 402 ) ( 1662 1370 406 ) common/caulk 32 0 0 -0.03125 0.03125 0 1184 0 
@@ -13061,9 +13061,9 @@
 }
 // entity 26
 {
-"uservar1" "0"
-"targetname" "keypad1_0_item"
 "classname" "script_object"
+"targetname" "keypad1_0_item"
+"uservar1" "0"
 // brush 0
 {
 ( 1662 1370 402 ) ( 1662 1368 402 ) ( 1662 1369 406 ) common/caulk 0 0 0 -0.03125 0.03125 0 1184 0 
@@ -13076,9 +13076,9 @@
 }
 // entity 27
 {
-"uservar1" "asterisk"
-"classname" "script_object"
 "targetname" "keypad1_10_item"
+"classname" "script_object"
+"uservar1" "asterisk"
 // brush 0
 {
 ( 1662 1370 402 ) ( 1662 1368 402 ) ( 1662 1369 406 ) common/caulk 32 0 0 -0.03125 0.03125 0 1184 0 
@@ -13091,9 +13091,9 @@
 }
 // entity 28
 {
-"uservar1" "9"
-"classname" "script_object"
 "targetname" "keypad1_9_item"
+"classname" "script_object"
+"uservar1" "9"
 // brush 0
 {
 ( 1662 1371 405 ) ( 1662 1369 405 ) ( 1662 1370 409 ) common/caulk 21 -42 0 -0.046875 0.046875 0 1184 0 
@@ -13106,9 +13106,9 @@
 }
 // entity 29
 {
-"uservar1" "8"
-"classname" "script_object"
 "targetname" "keypad1_8_item"
+"classname" "script_object"
+"uservar1" "8"
 // brush 0
 {
 ( 1662 1370 405 ) ( 1662 1368 405 ) ( 1662 1369 409 ) common/caulk 21 -42 0 -0.046875 0.046875 0 1184 0 
@@ -13121,9 +13121,9 @@
 }
 // entity 30
 {
-"uservar1" "7"
-"classname" "script_object"
 "targetname" "keypad1_7_item"
+"classname" "script_object"
+"uservar1" "7"
 // brush 0
 {
 ( 1662 1370 405 ) ( 1662 1368 405 ) ( 1662 1369 409 ) common/caulk 32 -32 0 -0.03125 0.03125 0 1184 0 
@@ -13136,9 +13136,9 @@
 }
 // entity 31
 {
-"uservar1" "6"
-"classname" "script_object"
 "targetname" "keypad1_6_item"
+"classname" "script_object"
+"uservar1" "6"
 // brush 0
 {
 ( 1662 1371 408 ) ( 1662 1369 408 ) ( 1662 1370 412 ) common/caulk 21 -42 0 -0.046875 0.046875 0 1184 0 
@@ -13151,9 +13151,9 @@
 }
 // entity 32
 {
-"uservar1" "5"
-"classname" "script_object"
 "targetname" "keypad1_5_item"
+"classname" "script_object"
+"uservar1" "5"
 // brush 0
 {
 ( 1662 1370 408 ) ( 1662 1368 408 ) ( 1662 1369 412 ) common/caulk 21 -42 0 -0.046875 0.046875 0 1184 0 
@@ -13166,9 +13166,9 @@
 }
 // entity 33
 {
-"uservar1" "4"
-"classname" "script_object"
 "targetname" "keypad1_4_item"
+"classname" "script_object"
+"uservar1" "4"
 // brush 0
 {
 ( 1662 1370 408 ) ( 1662 1368 408 ) ( 1662 1369 412 ) common/caulk 32 0 0 -0.03125 0.03125 0 1184 0 
@@ -13181,9 +13181,9 @@
 }
 // entity 34
 {
-"uservar1" "3"
-"classname" "script_object"
 "targetname" "keypad1_3_item"
+"classname" "script_object"
+"uservar1" "3"
 // brush 0
 {
 ( 1662 1371 411 ) ( 1662 1369 411 ) ( 1662 1370 415 ) common/caulk 32 -32 0 -0.03125 0.03125 0 1184 0 
@@ -13196,9 +13196,9 @@
 }
 // entity 35
 {
-"uservar1" "2"
-"classname" "script_object"
 "targetname" "keypad1_2_item"
+"classname" "script_object"
+"uservar1" "2"
 // brush 0
 {
 ( 1662 1370 411 ) ( 1662 1368 411 ) ( 1662 1369 415 ) common/caulk 0 -32 0 -0.03125 0.03125 0 1184 0 
@@ -13211,9 +13211,9 @@
 }
 // entity 36
 {
-"uservar1" "1"
-"classname" "script_object"
 "targetname" "keypad1_1_item"
+"classname" "script_object"
+"uservar1" "1"
 // brush 0
 {
 ( 1662 1370 411 ) ( 1662 1368 411 ) ( 1662 1369 415 ) common/caulk 32 -32 0 -0.03125 0.03125 0 1184 0 
@@ -13226,9 +13226,9 @@
 }
 // entity 37
 {
-"spawnflags" "1"
-"classname" "script_object"
 "targetname" "keypad1_ready"
+"classname" "script_object"
+"spawnflags" "1"
 // brush 0
 {
 ( 1660 1369 402 ) ( 1660 1369 399 ) ( 1668 1369 400.5 ) common/caulk -14 -28 0 0.5 0.5 0 1184 0 
@@ -13241,10 +13241,10 @@
 }
 // entity 38
 {
-"hide" "1"
-"spawnflags" "1"
-"classname" "script_object"
 "targetname" "keypad0_2"
+"classname" "script_object"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1655 1356 422 ) ( 1655 1356 419 ) ( 1663 1356 420.5 ) common/caulk -4 -32 0 0.5 0.5 0 1184 0 
@@ -13257,10 +13257,10 @@
 }
 // entity 39
 {
-"hide" "1"
-"spawnflags" "1"
-"targetname" "keypad1_insert"
 "classname" "script_object"
+"targetname" "keypad1_insert"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1655 1356 417 ) ( 1655 1356 414 ) ( 1663 1356 415.5 ) common/caulk -4 -32 0 0.5 0.5 0 1184 0 
@@ -13273,10 +13273,10 @@
 }
 // entity 40
 {
-"hide" "1"
-"spawnflags" "1"
-"classname" "script_object"
 "targetname" "keypad1_ok"
+"classname" "script_object"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1655 1356 411 ) ( 1655 1356 408 ) ( 1663 1356 409.5 ) common/caulk -4 -32 0 0.5 0.5 0 1184 0 
@@ -13289,10 +13289,10 @@
 }
 // entity 41
 {
-"hide" "1"
-"spawnflags" "1"
-"targetname" "keypad1_error"
 "classname" "script_object"
+"targetname" "keypad1_error"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1655 1356 403 ) ( 1655 1356 400 ) ( 1663 1356 401.5 ) common/caulk -4 -32 0 0.5 0.5 0 1184 0 
@@ -13305,10 +13305,10 @@
 }
 // entity 42
 {
-"hide" "1"
-"spawnflags" "1"
-"classname" "script_object"
 "targetname" "keypad1_markerSelected"
+"classname" "script_object"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1663 1362 419 ) ( 1663 1362 422 ) ( 1663 1364 422 ) common/nodraw 42 -5 0 -0.046875 0.046875 536870912 16512 0 
@@ -13321,10 +13321,10 @@
 }
 // entity 43
 {
-"hide" "1"
-"spawnflags" "1"
-"classname" "script_object"
 "targetname" "keypad1_14_item"
+"classname" "script_object"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1663 1363 430 ) ( 1663 1360 430 ) ( 1663 1360 427 ) coop_mod/symbols/black_w_dot 169 -343 0 -0.00585938 0.00585938 0 0 0 
@@ -13337,10 +13337,10 @@
 }
 // entity 44
 {
-"hide" "1"
-"spawnflags" "1"
-"classname" "script_object"
 "targetname" "keypad1_13_item"
+"classname" "script_object"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1663 1366 430 ) ( 1663 1363 430 ) ( 1663 1363 427 ) coop_mod/symbols/black_w_dot 169 -343 0 -0.00585938 0.00585938 0 0 0 
@@ -13353,10 +13353,10 @@
 }
 // entity 45
 {
-"hide" "1"
-"spawnflags" "1"
-"targetname" "keypad1_16_item"
 "classname" "script_object"
+"targetname" "keypad1_16_item"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1663 1366 427 ) ( 1663 1363 427 ) ( 1663 1363 424 ) coop_mod/symbols/black_w_dot 170 -343 0 -0.00585938 0.00585938 0 0 0 
@@ -13369,10 +13369,10 @@
 }
 // entity 46
 {
-"hide" "1"
-"spawnflags" "1"
-"classname" "script_object"
 "targetname" "keypad1_15_item"
+"classname" "script_object"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1663 1369 427 ) ( 1663 1366 427 ) ( 1663 1366 424 ) coop_mod/symbols/black_w_dot 170 -343 0 -0.00585938 0.00585938 0 0 0 
@@ -13385,10 +13385,10 @@
 }
 // entity 47
 {
-"hide" "1"
-"spawnflags" "1"
-"classname" "script_object"
 "targetname" "keypad1_17_item"
+"classname" "script_object"
+"spawnflags" "1"
+"hide" "1"
 // brush 0
 {
 ( 1663 1363 427 ) ( 1663 1360 427 ) ( 1663 1360 424 ) coop_mod/symbols/black_w_dot 170 -343 0 -0.00585938 0.00585938 0 0 0 
@@ -13401,10 +13401,10 @@
 }
 // entity 48
 {
-"hide" "1"
-"classname" "script_object"
-"targetname" "keypad1_1_pos"
 "spawnflags" "1"
+"targetname" "keypad1_1_pos"
+"classname" "script_object"
+"hide" "1"
 // brush 0
 {
 ( 1661 1369 402 ) ( 1661 1366 402 ) ( 1661 1366 399 ) common/black -36 -32 0 0.5 0.5 0 1072 0 
@@ -13417,10 +13417,10 @@
 }
 // entity 49
 {
-"hide" "1"
-"targetname" "keypad1_3_pos"
-"classname" "script_object"
 "spawnflags" "1"
+"classname" "script_object"
+"targetname" "keypad1_3_pos"
+"hide" "1"
 // brush 0
 {
 ( 1661 1363 402 ) ( 1661 1360 402 ) ( 1661 1360 399 ) common/black -36 -32 0 0.5 0.5 0 1072 0 
@@ -13433,10 +13433,10 @@
 }
 // entity 50
 {
-"hide" "1"
-"targetname" "keypad1_2_pos"
-"classname" "script_object"
 "spawnflags" "1"
+"classname" "script_object"
+"targetname" "keypad1_2_pos"
+"hide" "1"
 // brush 0
 {
 ( 1661 1366 402 ) ( 1661 1363 402 ) ( 1661 1363 399 ) common/black -36 -32 0 0.5 0.5 0 1072 0 
@@ -13449,10 +13449,10 @@
 }
 // entity 51
 {
-"hide" "1"
-"classname" "script_object"
-"targetname" "keypad1_5_pos"
 "spawnflags" "1"
+"targetname" "keypad1_5_pos"
+"classname" "script_object"
+"hide" "1"
 // brush 0
 {
 ( 1661 1366 399 ) ( 1661 1363 399 ) ( 1661 1363 396 ) common/black -36 -32 0 0.5 0.5 0 1072 0 
@@ -13465,10 +13465,10 @@
 }
 // entity 52
 {
-"hide" "1"
-"targetname" "keypad1_4_pos"
-"classname" "script_object"
 "spawnflags" "1"
+"classname" "script_object"
+"targetname" "keypad1_4_pos"
+"hide" "1"
 // brush 0
 {
 ( 1661 1369 399 ) ( 1661 1366 399 ) ( 1661 1366 396 ) common/black -36 -32 0 0.5 0.5 0 1072 0 
@@ -13481,10 +13481,10 @@
 }
 // entity 53
 {
-"hide" "1"
-"targetname" "keypad1_6_pos"
-"classname" "script_object"
 "spawnflags" "1"
+"classname" "script_object"
+"targetname" "keypad1_6_pos"
+"hide" "1"
 // brush 0
 {
 ( 1661 1363 399 ) ( 1661 1360 399 ) ( 1661 1360 396 ) common/black -36 -32 0 0.5 0.5 0 1072 0 
