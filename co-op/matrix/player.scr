@@ -771,7 +771,6 @@ void globalCoop_player_widgetCmd(entity ePlayer,string sName,string sCommand1,st
 // [b60025] chrissstrahl - sends widget command to player
 //----------------------------------------------------------------------
 {
-return;
 	if(doesEntityExist(ePlayer)){
 		ePlayer.coop_widgetCmd(sName,sCommand1,sCommand2);
 	}
