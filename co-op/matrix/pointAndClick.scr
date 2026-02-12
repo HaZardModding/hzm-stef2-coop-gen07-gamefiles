@@ -384,7 +384,7 @@ void coop_pacSelectionManager(entity ePlayer)
 				}
 				//ACTIONS - if ALT-FIRE is pressed
 				else if(sCurrentBtn == "alt"){
-$player0.hudprint("class: "+sSelectedClass+"\n");
+//$player0.hudprint("class: "+sSelectedClass+"\n");
 					
 					//we have actor selected
 					if(sSelectedClass == "Actor"){
@@ -2113,7 +2113,7 @@ void coop_pacScriptModelMoveTo(entity eScriptModel,entity eTarget,string sAnim)
 	if(markerZMaxDrop != 0){
 		if(vTarget_z < markerZMaxDrop){
 			vTarget_z = (markerZMaxDrop + 40);
-			$player0.hudprint("Z: "+vTarget+"\n");
+			//$player0.hudprint("Z: "+vTarget+"\n");
 		}
 	}
 	
