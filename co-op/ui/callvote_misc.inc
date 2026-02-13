@@ -269,7 +269,7 @@ Button
 	
 	clicksound sound/misc/menu/click.wav
  
-	stuffcommand "set coop_ui_vt 13;set coop_ui_smn Custom_Maps;set coop_ui_sm 13"
+	stuffcommand "set coop_ui_vt 100;set coop_ui_smn Custom_Maps;set coop_ui_sm 100"
     hovercommand "globalwidgetcommand tooltip_callvote title \"$$c#112$$\""
     hoverexitcommand "globalwidgetcommand tooltip_callvote title \"\""
 }

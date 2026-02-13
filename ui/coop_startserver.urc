@@ -413,10 +413,10 @@ SwitchBox
 
 	option "$$c#035$$" "seta coop_ui_vt 6;set coop_ui_sm -1;\n" 6
     option "$$c#036$$" "seta coop_ui_vt 7;set coop_ui_smn $$mission-m1$$;set coop_ui_sm 1;\n" 7
-	option "$$c#037$$" "seta coop_ui_vt 13;set coop_ui_smn Custom_Maps;set coop_ui_sm 13;\n" 13
-	option "$$c#038$$" "seta coop_ui_vt 14;set coop_ui_smn Custom_Maps;set coop_ui_sm 14;\n" 14
-	option "$$c#039$$" "seta coop_ui_vt 15;set coop_ui_smn Custom_Maps;set coop_ui_sm 15;\n" 15
-	option "$$c#040$$" "seta coop_ui_vt 16;set coop_ui_smn Custom_Maps;set coop_ui_sm 16;\n" 16
+	option "$$c#037$$" "seta coop_ui_vt 100;set coop_ui_smn Custom_Maps;set coop_ui_sm 100;\n" 100
+	option "$$c#038$$" "seta coop_ui_vt 14;set coop_ui_smn GBS_Maps;set coop_ui_sm 14;\n" 14
+	option "$$c#039$$" "seta coop_ui_vt 15;set coop_ui_smn RoteC_Maps;set coop_ui_sm 15;\n" 15
+	option "$$c#040$$" "seta coop_ui_vt 16;set coop_ui_smn Aftermath_Maps;set coop_ui_sm 16;\n" 16
 	option "$$c#041$$" "seta coop_ui_vt 20;set coop_ui_smn Test_Maps;set coop_ui_sm 13;\n" 20
 	
 	//[b608] chrissstrahl - added hover effect, so player actually see they can click this

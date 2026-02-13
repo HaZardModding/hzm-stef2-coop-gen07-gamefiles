@@ -67,13 +67,13 @@ SwitchBox
 //missions
     option "$$c#036$$"  "set coop_ui_vt 7;set coop_ui_smn $$mission-m1$$;set coop_ui_sm 1;\n"   7
 //community
-	option "$$c#037$$" "set coop_ui_vt 13;set coop_ui_smn Custom_Maps;set coop_ui_sm 13;\n" 13
+	option "$$c#037$$" "set coop_ui_vt 100;set coop_ui_smn Custom_Maps;set coop_ui_sm 100;\n" 100
 //gbs mod
-	option "$$c#038$$" "set coop_ui_vt 14;set coop_ui_smn Custom_Maps;set coop_ui_sm 14;\n" 14
+	option "$$c#038$$" "set coop_ui_vt 14;set coop_ui_smn GBS_Maps;set coop_ui_sm 14;\n" 14
 //rotec mod
-	option "$$c#039$$" "set coop_ui_vt 15;set coop_ui_smn Custom_Maps;set coop_ui_sm 15;\n" 15
+	option "$$c#039$$" "set coop_ui_vt 15;set coop_ui_smn RoteC_Maps;set coop_ui_sm 15;\n" 15
 //aftermath mod
-	option "$$c#040$$" "set coop_ui_vt 16;set coop_ui_smn Custom_Maps;set coop_ui_sm 16;\n" 16
+	option "$$c#040$$" "set coop_ui_vt 16;set coop_ui_smn Aftermath_Maps;set coop_ui_sm 16;\n" 16
 //test and example
 	option "$$c#041$$" "set coop_ui_vt 20;set coop_ui_smn Test_Maps;set coop_ui_sm 13;\n" 20
 	 
@@ -105,10 +105,10 @@ PulldownMenuContainer
 	
 	addpopup "pulldown"  "$$c#035$$"	command "set coop_ui_vt 6;set coop_ui_sm -1;\n" 6
     addpopup "pulldown"  "$$c#036$$"	command "set coop_ui_vt 7;set coop_ui_smn $$mission-m1$$;set coop_ui_sm 1;\n"   7
-	addpopup "pulldown"  "$$c#037$$"	command "set coop_ui_vt 13;set coop_ui_smn Custom_Maps;set coop_ui_sm 13;\n" 13
-	addpopup "pulldown"  "$$c#038$$"	command "set coop_ui_vt 14;set coop_ui_smn Custom_Maps;set coop_ui_sm 14;\n" 14
-	addpopup "pulldown"  "$$c#039$$"	command "set coop_ui_vt 15;set coop_ui_smn Custom_Maps;set coop_ui_sm 15;\n" 15
-	addpopup "pulldown"  "$$c#040$$"	command "set coop_ui_vt 16;set coop_ui_smn Custom_Maps;set coop_ui_sm 16;\n" 16
+	addpopup "pulldown"  "$$c#037$$"	command "set coop_ui_vt 100;set coop_ui_smn Custom_Maps;set coop_ui_sm 100;\n" 100
+	addpopup "pulldown"  "$$c#038$$"	command "set coop_ui_vt 14;set coop_ui_smn GBS_Maps;set coop_ui_sm 14;\n" 14
+	addpopup "pulldown"  "$$c#039$$"	command "set coop_ui_vt 15;set coop_ui_smn RoteC_Maps;set coop_ui_sm 15;\n" 15
+	addpopup "pulldown"  "$$c#040$$"	command "set coop_ui_vt 16;set coop_ui_smn Aftermath_Maps;set coop_ui_sm 16;\n" 16
 	addpopup "pulldown"  "$$c#041$$"	command "set coop_ui_vt 20;set coop_ui_smn Test_Maps;set coop_ui_sm 13;\n" 20
 	
 	hovercommand "globalwidgetcommand tooltip_callvote title \"$$c#049$$\""
