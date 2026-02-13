@@ -13,10 +13,13 @@
 void main();
 void setupSky();
 void setupMap();
+void setupShuttle();
 void coop_debugOutput();
 void basic_consoleUsed();
 void basic_laptopToggle();
 void basic_addToArray(string sBaseName, string sValue );
+float playerIsInRangeOf(entity ePlayer,entity eObjectInRange,float fMaxRange);
+float isPlayerAlive(entity ePlayer);
 void coop_endLevel();
 
 //------------------------------------------------------------------------------
@@ -48,7 +51,9 @@ void main()
 	$world.entity_fade_dist( 32000 );	
 	
 	//clear/set viewmodes avialabe for Tricorder
-	$world.clearAvailableViewModes();	
+	$world.clearAvailableViewModes();
+	
+	cache("models/vehicle/e-shuttle-ext.tik");
 	
 	//start the setup of the map
 	thread setupMap();	
@@ -93,9 +98,6 @@ void setupSky()
 	
 	//spawn("script_model","model","plant/sf_academy_tree.tik","origin","-5074.00 -7547.00  0.00","scale","1.2","angle","90");
 	//spawn("script_model","model","plant/sf_academy_tree.tik","origin","-4486.00 -9364.00 -84.00","scale","1.2","angle","180");
-	
-	
-	spawn("script_model","model","models/vehicle/e-shuttle-ext.tik","origin","-5683.00 -17612.00 -228.00","targetname","mShuttleExterior1");
 	
 	spawn("script_model","model","models/coop/ente/warpcore-rpg.tik","origin","6876.00 -11671.00 364.00","targetname","warpcore");
 	//spawn("script_model","model","models/coop/ente/coreff.tik","origin","6876.00 -11671.00 -168.00","targetname","warpcore_forceField","hide","1");
@@ -220,6 +222,58 @@ void basic_consoleUsed()
 	}
 }
 
+void setupShuttle()
+//------------------------------------------------------------------------------
+//opens/closes a laptop
+//------------------------------------------------------------------------------
+{
+	if($world.getFloatVar("shuttleLandedInShuttlebay") == 1){
+		return;
+	}	
+	$world.setFloatVar("shuttleLandedInShuttlebay",1);
+		
+	spawn("script_model","model","models/vehicle/e-shuttle-ext.tik","origin","-5683.00 -17612.00 -228.00","targetname","mShuttleExterior");
+	wait(0.05);
+	$tShuttleDoor5.bind($originShuttleV2s1);
+	$tShuttleDoor6.bind($originShuttleV2s1);
+	$tShuttleDoor7.bind($originShuttleV2s1);
+	$shuttleClip.bind($originShuttleV2s1);
+	$mShuttleInterior.bind($originShuttleV2s1);
+	
+	$mShuttleSeat1.bind($originShuttleV2s1);
+	$mShuttleSeat2.bind($originShuttleV2s1);
+	$mShuttleSeat3.bind($originShuttleV2s1);
+	$mShuttleSeat4.bind($originShuttleV2s1);
+	$mShuttleDoor.bind($originShuttleV2s1);
+	$mShuttleInterior.bind($originShuttleV2s1);
+	$mShuttleExterior.bind($originShuttleV2s1);
+	
+	$shuttleClipDoorBottom.bind($originShuttleDoorBottom);
+	$shuttleClipDoorTop.bind($originShuttleDoorTop);
+	$originShuttleDoorBottom.bind($originShuttleV2s1);
+	$originShuttleDoorTop.bind($originShuttleV2s1);
+	
+	//currently not visible
+	$mShuttleInterior.hide();
+	$mShuttleSeat1.hide();
+	$mShuttleSeat2.hide();
+	$mShuttleSeat3.hide();
+	$mShuttleSeat4.hide();
+	wait(0.05);
+	
+	$originShuttleV2s1.followpath($deck7b_shuttlebay_shuttle_start,"normalangels");
+	$mShuttleExterior.loopsound("sound/vehicles/shuttlecraft/shuttle_interior_loop1.wav",2,512);	
+	$mShuttleExterior.notsolid();	
+	
+	//once landed, bind shuttle to lift
+	waitFor($originShuttleV2s1);
+	$originShuttleV2s1.bind($shuttleBay_liftShuttle1);
+	$mShuttleExterior.stoploopsound();
+	
+	//enable trigger for lift again
+	$shuttleBay_liftShuttle1_trigger.triggerable();
+}
+
 void basic_laptopToggle()
 //------------------------------------------------------------------------------
 //opens/closes a laptop
@@ -304,6 +358,96 @@ void coop_debugOutput()
 		//stuffcmd("quit\n");
 	}
 	*/
+}
+
+void shuttleBay_gate1Toggle()
+{
+	entity eTrigger;
+	entity ePlayer;
+	
+	//check for trigger
+	eTrigger	= getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	
+	//check for player
+	ePlayer = eTrigger.getLastActivatingEntity();
+	if(!doesEntityExist(ePlayer)){
+		return;
+	}
+	
+	//check for distance
+	//if(!playerIsInRangeOf(ePlayer,eTrigger,73)){
+		//return;
+	//}
+	
+	//land shuttle
+	thread setupShuttle();
+	
+	
+	return;
+	
+	if( $gateShuttleBay2.getfloatvar( "IsOPEN" ) == 0 )
+	{
+		$gateShuttleBay2.setfloatvar( "IsOPEN", 2 );
+		
+		$gateShuttleBay2.loopsound( "sound/doors/airlock_open01.wav", 1 ,1024 ); // play the moving sound
+		
+		$gateShuttleBay2.time( 5 ); //set time for Gate 2
+		$gateShuttleBay2.moveDown( 492 ); // move gate 2 down
+		waitfor( $gateShuttleBay2 ); // wait until the two above are finished
+		
+		$gateShuttleBay2.stoploopsound(); // stop loopsound
+		$gateShuttleBay2.playsound( "sound/doors/airlock_close01.wav", 10 ,1 ,1024 ); // play stopsound
+
+		$gateShuttleBay2.setfloatvar( "IsOPEN", 1 );
+	}
+	else if( $gateShuttleBay2.getfloatvar( "IsOPEN" ) == 1 )
+	{
+		$gateShuttleBay2.setfloatvar( "IsOPEN", 2 );
+		
+		$gateShuttleBay2.loopsound( "sound/doors/airlock_open01.wav", 1 ,1024 ); // play the moving sound
+		
+		$gateShuttleBay2.time( 5 ); //set time for Gate 2
+		$gateShuttleBay2.moveup( 492 ); // move gate 2 down
+		waitfor( $gateShuttleBay2 ); // wait until the two above are finished
+		
+		$gateShuttleBay2.stoploopsound(); // stop loopsound
+		$gateShuttleBay2.playsound( "sound/doors/airlock_close01.wav", 10 ,1 ,1024 ); // play stopsound
+
+		$gateShuttleBay2.setfloatvar( "IsOPEN", 0 );
+	}
+}
+
+
+float playerIsInRangeOf(entity ePlayer,entity eObjectInRange,float fMaxRange)
+//------------------------------------------------------------------------------
+// Chek if player is within range of an object
+//------------------------------------------------------------------------------
+{
+	if(doesEntityExist(eObjectInRange)){
+		if(isPlayerAlive(ePlayer)){
+		//Check if player is within range
+			if(ePlayer.isWithinDistanceOf(eObjectInRange,fMaxRange)){
+				return 1;
+			}
+		}
+	}
+	return 0;
+}
+
+float isPlayerAlive(entity ePlayer)
+//------------------------------------------------------------------------------
+// Chek if player is still there and alive
+//------------------------------------------------------------------------------
+{
+	if(doesEntityExist(ePlayer)){
+		if(ePlayer.getHealth() > 0){
+			return 1;
+		}	
+	}
+	return 0;
 }
 
 void coop_endLevel()
