@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_gbsCredits"
 	screenshot			"sysimg/mapshots/coop_gbsCredits.tga"
 	
-	longmapname         "^1! $$No$$ ^8GBS Mod - Credits ^0by THE COLONISTS"
+	longmapname         "^8GBS Mod - Credits ^0by THE COLONISTS"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_bugs"
 	screenshot			"sysimg/mapshots/coop_bugs.tga"
 	
-	longmapname         "^1! $$No$$^8 Bugs ^0by Chrisssstrahl"
+	longmapname         "^8Bugs ^0by Chrisssstrahl"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

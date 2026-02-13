@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_hatoriaOutpost"
 	screenshot			"sysimg/mapshots/coop_hatoriaOutpost.tga"
 	
-	longmapname         "^1! $$No$$^8 H'atoria Outpost ^0by Chrissstrahl"
+	longmapname         "^8H'atoria Outpost ^0by Chrissstrahl"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

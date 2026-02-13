@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_gbs8"
 	screenshot			"sysimg/mapshots/coop_gbs8.tga"
 	
-	longmapname         "^1! $$No$$ ^8GBS Mod - Map8 ^0by THE COLONISTS"
+	longmapname         "^8GBS Mod - Map8 ^0by THE COLONISTS"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

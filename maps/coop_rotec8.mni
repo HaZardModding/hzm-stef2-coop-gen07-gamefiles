@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_rotec8"
 	screenshot			"sysimg/mapshots/coop_rotec8.tga"
 	
-	longmapname         "^1! $$No$$^8 ROTEC - Map8"
+	longmapname         "^8ROTEC - Map8"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

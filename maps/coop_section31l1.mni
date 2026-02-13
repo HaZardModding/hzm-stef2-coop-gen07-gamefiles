@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_section31l1"
 	screenshot			"sysimg/mapshots/coop_section31l1.tga"
 	
-	longmapname         "^1! $$No$$^8 Coop Section 31 L1"
+	longmapname         "^8Coop Section 31 L1"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

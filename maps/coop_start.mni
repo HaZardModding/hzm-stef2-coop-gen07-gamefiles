@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_start"
 	screenshot			"sysimg/mapshots/coop_start.tga"
 	
-	longmapname         "^1! $$No$$^8 Coop Level Selection"
+	longmapname         "^8Coop Level Selection"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

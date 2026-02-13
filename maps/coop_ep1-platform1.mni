@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_ep1-platform1"
 	screenshot			"sysimg/mapshots/coop_ep1-platform1.tga"
 	
-	longmapname         "^1! $$No$$^8 Episode 1 - Starbase"
+	longmapname         "^8Episode 1 - Starbase"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

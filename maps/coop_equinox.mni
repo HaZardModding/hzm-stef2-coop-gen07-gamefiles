@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_equinox"
 	screenshot			"sysimg/mapshots/coop_equinox.tga"
 	
-	longmapname         "^1! $$No$$ ^5Coop Equinox"
+	longmapname         "^8Coop Equinox"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

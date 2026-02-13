@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_coreattack"
 	screenshot			"sysimg/mapshots/coop_coreattack.tga"
 	
-	longmapname         "^1! $$No$$^8 Coop Core Attack"
+	longmapname         "^8Coop Core Attack"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

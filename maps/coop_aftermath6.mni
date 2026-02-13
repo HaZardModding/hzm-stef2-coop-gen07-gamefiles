@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_aftermath6"
 	screenshot			"sysimg/mapshots/coop_aftermath6.tga"
 	
-	longmapname         "^1! $$No$$ ^8Aftermath Mod - Map6 ^0by Daedalus"
+	longmapname         "^8Aftermath Mod - Map6 ^0by Daedalus"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

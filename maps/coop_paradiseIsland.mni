@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_paradiseIsland"
 	screenshot			"sysimg/mapshots/coop_paradiseIsland.tga"
 	
-	longmapname         "^1! $$No$$^8 Paradise Island 1 ^0by Avenger, Daedalus"
+	longmapname         "^8Paradise Island 1 ^0by Avenger, Daedalus"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

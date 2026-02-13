@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_blArena"
 	screenshot			"sysimg/mapshots/coop_blArena.tga"
 	
-	longmapname         "^1! $$No$$^8 Bat'leth Arena ^0by Ancient, Chrissstrahl"
+	longmapname         "^8Bat'leth Arena ^0by Ancient, Chrissstrahl"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

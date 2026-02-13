@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_test-pointAndClick"
 	screenshot			"sysimg/mapshots/coop_test-pointAndClick.tga"
 	
-	longmapname         "^1! $$No$$ ^8Testmap Point and Click"
+	longmapname         "^8Testmap Point and Click"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

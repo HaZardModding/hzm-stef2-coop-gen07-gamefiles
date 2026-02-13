@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_greatDekuTree"
 	screenshot			"sysimg/mapshots/coop_greatDekuTree.tga"
 	
-	longmapname         "^1! $$No$$^8 Great Deku Tree ^0by Fvillha"
+	longmapname         "^8Great Deku Tree ^0by Fvillha"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"

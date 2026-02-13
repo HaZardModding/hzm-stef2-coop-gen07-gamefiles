@@ -3,7 +3,7 @@ LevelProperties
 	mapname          	"coop_rescueChell"
 	screenshot			"sysimg/mapshots/coop_rescueChell.tga"
 	
-	longmapname         "^1! $$No$$^8 Rescue Chell ^0by Daedalus and Chrissstrahl"
+	longmapname         "^8Rescue Chell ^0by Daedalus and Chrissstrahl"
 	
 	//gametype			"Holomatch"
 	//gametype			"TeamHolomatch"
