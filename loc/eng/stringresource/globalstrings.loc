@@ -1380,7 +1380,7 @@ FoundSecretDoor                                             "You've unlocked a s
 
 SwitchedTo													"Switched to"
 Viewmode													"view mode"
-Viewmode-none												"Normal"
+ViewMode-none												"Normal"
 
 //
 // Multiplayer stuff

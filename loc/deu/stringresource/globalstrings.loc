@@ -1380,7 +1380,7 @@ FoundSecretDoor                                             "Versteckte Tür geöf
 
 SwitchedTo													"Gewechselt auf Sichtmodus"
 Viewmode													" "
-Viewmode-none												"Normal"
+ViewMode-none												"Normal"
 
 //
 // Multiplayer stuff
