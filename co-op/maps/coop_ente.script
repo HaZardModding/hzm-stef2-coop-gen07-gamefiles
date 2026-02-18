@@ -7,7 +7,9 @@
 
 //NOTES
 /*
-
+183 surf removed
+40 Shaders removed 15 dublicates
+150 inline models removed
 */
 
 void main();
@@ -20,12 +22,15 @@ void basic_laptopToggle();
 void basic_addToArray(string sBaseName, string sValue );
 float playerIsInRangeOf(entity ePlayer,entity eObjectInRange,float fMaxRange);
 float isPlayerAlive(entity ePlayer);
+void shuttleBlockKill();
 void coop_endLevel();
 
 //------------------------------------------------------------------------------
 // INCLUDES - So these scripts can be used on with this level
 //------------------------------------------------------------------------------
 #include "co-op/matrix/main.scr"
+#include "co-op/matrix/barrel.scr"
+
 #include "maps/global_scripts/global_common.scr"
 #include "maps/global_scripts/global_math.scr"			//needed for some calulations
 #include "co-op/maps/coop_ente/declarations.script"
@@ -61,6 +66,23 @@ void main()
 	
 	globalCoop_main_waitForWarmupTime();
 	wait(0.1);
+}
+
+
+void shuttleBlockKill()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(doesEntityExist(eTrigger)){
+		entity ePlayer;
+		ePlayer = eTrigger.getLastActivatingEntity();
+		if(doesEntityExist(ePlayer)){
+			if(ePlayer.getHealth() > 0){
+				ePlayer.kill();
+				thread globalCoop_level_onBlock($shuttleClip,"shuttleBlockKill");
+			}
+		}
+	}
 }
 
 void setupSky()
@@ -204,6 +226,12 @@ void setupMap()
 	basic_addToArray("display_deck1_observation","textures/enterprise/table1");
 	
 	
+	wait(1);
+	//-> Water Barrel will explode if damaged, water will then leak out
+	//Barrel-normal, Barrel-damaged, Barrel-cap (if you want it to fly off), fluid-func_door, fluid-type, position-to-move-to thread-to-start
+	thread barrel_setup($waterBarrel0, $waterBarrel0_damaged, $waterBarrel0_damagedCap, $waterBarrel0_puddle, "water",'0 0 0',"");
+	
+	
 	//$viewscreen_deck1_bridge.setcustomshader("textures/cockroach.tga");
 }
 
@@ -265,10 +293,21 @@ void setupShuttle()
 	$mShuttleExterior.loopsound("sound/vehicles/shuttlecraft/shuttle_interior_loop1.wav",2,512);	
 	$mShuttleExterior.notsolid();	
 	
+	//kill blocking players
+	globalCoop_level_onBlock($shuttleClip,"shuttleBlockKill");
+	
 	//once landed, bind shuttle to lift
 	waitFor($originShuttleV2s1);
 	$originShuttleV2s1.bind($shuttleBay_liftShuttle1);
 	$mShuttleExterior.stoploopsound();
+	
+	vector vEnd;
+	vEnd = $t1578.getOrigin();
+	$originShuttleV2s1.movetoPos(vEnd);
+	$originShuttleV2s1.time(0.05);
+	
+	//remove path of shuttle, not neded anymore
+	thread globalCoop_level_removePath($deck7b_shuttlebay_shuttle_start);
 	
 	//enable trigger for lift again
 	$shuttleBay_liftShuttle1_trigger.triggerable();
