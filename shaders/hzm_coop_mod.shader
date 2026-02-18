@@ -507,3 +507,39 @@ zombi_blood-green
 }
 
 
+//--------------------------------------------------------------------
+// Coop Enterprise E
+//--------------------------------------------------------------------
+textures/coop_ente/coop_turbo1
+{	
+
+	qer_editorimage textures/coop_ente/coop_turbo1.tga
+	nomipmaps
+ 
+
+
+	{
+		map textures/env/env_dark.tga
+		rgbGen identity
+		tcGen environment
+		tcmod scale 0.475 0.475
+	}
+	{
+		map textures/coop_ente/coop_turbo1.tga
+		blendFunc GL_ONE_MINUS_SRC_ALPHA GL_SRC_ALPHA			
+		rgbGen identity
+		
+	}
+	{
+		map textures/coop_ente/coop_turbo2.tga
+		blendfunc GL_ONE GL_ONE
+		rgbGen wave sin	1 .8 0.1 .5
+		detail
+	}
+	{
+		map $lightmap
+		blendfunc gl_dst_color gl_zero
+		rgbGen identity
+	}
+	
+}
