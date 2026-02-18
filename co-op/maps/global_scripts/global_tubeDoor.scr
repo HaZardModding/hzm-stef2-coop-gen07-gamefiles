@@ -1411,19 +1411,32 @@ void closeDoors( entity entPrimaryDoor , entity entButton)
 	string moveDirection;
 
 	fltDistanceFromDoor = 0.0;
+	
+	//hzm coop mod chrissstrahl - make sure the door closes without any troubles in multiplayer
+	if(!doesEntityExist(entPrimaryDoor)){
+		return;
+	}
+	vecDoorOrigin = entPrimaryDoor.getorigin();
 
 	//--- wait for the player to get a good distance away and then close
-	while( fltDistanceFromDoor < 128 )
+	while( fltDistanceFromDoor < 256 )
 	{
-		//hzm coop mod chrissstrahl - make sure the door closes without any troubles in multiplayer
-		ePlayer = globalCoop_return_playerClosestPreferActive(entPrimaryDoor);
-		vecDoorOrigin = entPrimaryDoor.getorigin();
-		vecPlayerOrigin = ePlayer.getorigin();
-		vecPlayerOrigin_z += 64;
-		vecDistance = vecDoorOrigin - vecPlayerOrigin;
-		fltDistanceFromDoor = vectorlength( vecDistance );		
-		
 		wait( .1 );
+		
+		//hzm coop mod chrissstrahl - make sure the door closes without any troubles in multiplayer
+		if(!doesEntityExist(entPrimaryDoor)){
+			return;
+		}
+		
+		fltDistanceFromDoor = 99999;
+		ePlayer = globalCoop_return_playerClosestPreferActive(entPrimaryDoor);
+		
+		if(doesEntityExist(ePlayer)){
+			vecPlayerOrigin = ePlayer.getorigin();
+			vecPlayerOrigin_z += 64;
+			vecDistance = vecDoorOrigin - vecPlayerOrigin;
+			fltDistanceFromDoor = vectorlength( vecDistance );
+		}
 	}
 	
 	moveDirection = entPrimaryDoor.getstringvar( "doorMoveDirection" );	
