@@ -1554,6 +1554,10 @@ void cinematicTransporterRoom_SkipThread()
 	wait( 1 );
 	cin_transporter.endCinematic( TRUE );
 	killthread( "cinematicTransporterRoom" );
+	
+	//[b70300] chrissstrahl - move all players to the transporter room, so they can't just wait on the bridge
+	globalCoop_player_moveToSpawnIfDistance(1600);
+	
 
 	thread cinematicTransporterRoom_End();
 }
