@@ -52,6 +52,11 @@ void main()
 	coop_bool_showMissionSucessHud	= 1;
 	
    	soundtrack( "/music/map10.mus");
+	
+	//[b70300] chrissstrahl - wait for warmuptime before staring the cinematic
+	cam_fadeout( 0.05, 0, 0, 0, 1, 0 );
+	globalCoop_main_waitForWarmupTime();
+	
 	beach_run = 0;
 	//Prepare for cin mode
 	freezeplayer();
@@ -319,6 +324,9 @@ void doCellCin()
 	spawn ( "Camera" , "targetname" , "c_cam3" );
 	spawn ( "Camera" , "targetname" , "c_cam6" );
 	wait( 0.5 );
+	
+	//[b70300] chrissstrahl - wait for warmuptime before staring the cinematic
+	cam_fadein( 0.5, 0, 0, 0, 1, 0 );
 
 	//Setup the cameras
 	$c_cam1.follow( $cell_cam1 );
