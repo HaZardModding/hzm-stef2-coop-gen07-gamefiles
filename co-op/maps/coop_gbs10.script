@@ -504,10 +504,24 @@ void lift_01_romulaner()
 //************************************************************************** 
 // Manage to open the hall door
 //************************************************************************** 
+void secret_dancer1_openDoor()
+{
+	$secretdoorTrigger.notTriggerable();
+	$trigger_secret_dancer1.notTriggerable();
+	$secretdoor.open($world);
+	wait(3);
+	$secretdoorTrigger.triggerable();
+	$trigger_secret_dancer1.triggerable();
+}
 
 void secret_dancer1()
 //Secret dancer, if player enters the room she starts dancing
 {
+	//[b70300] chrissstrahl - allow players to get out of this location again
+	$trigger_secret_dancer1.thread("secret_dancer1_openDoor");
+	wait(0.25);
+	$trigger_secret_dancer1.target("NULL");
+	
 	//Let her dance
 	while( doesEntityExist( $dancer1 ) )
 	{

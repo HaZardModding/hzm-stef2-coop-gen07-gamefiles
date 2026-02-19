@@ -384,9 +384,9 @@
 }
 // brush 41
 {
-( -72 392 -80 ) ( -72 584 -80 ) ( -232 584 -80 ) romulan_installation/rom-metal2-base 16 25 -90 0.5 0.5 0 0 0 
-( -40 592 -24 ) ( 120 592 -24 ) ( 120 400 -24 ) romulan_installation/rom-metal2-base 16 25 -90 0.5 0.5 0 0 0 
-( -144 384 200 ) ( 16 384 200 ) ( 16 384 176 ) common/caulk -16 0 0 0.5 0.5 0 1184 0 
+( -72 392 -80 ) ( -72 584 -80 ) ( -232 584 -80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -40 592 -24 ) ( 120 592 -24 ) ( 120 400 -24 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -144 384 200 ) ( 16 384 200 ) ( 16 384 176 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
 ( 112 396 -80 ) ( 112 408 -80 ) ( 112 402 -24 ) enterprise_exterior/ent_met3 0 0 0 0.5 0.5 0 0 0 
 ( 116 424 -80 ) ( 124 424 -80 ) ( 120 424 -24 ) enterprise_exterior/ent_met3 0 0 0 0.5 0.5 0 0 0 
 ( 176 557 -80 ) ( 176 552 -80 ) ( 176 554.5 -24 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
@@ -2654,21 +2654,21 @@
 }
 // brush 283
 {
-( 340 408 -40 ) ( 172 408 -40 ) ( 172 388 -40 ) enterprise_exterior/ent_met3 0 -32 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 340 408 -40 ) ( 172 408 -40 ) ( 172 388 -40 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 176 388 -32 ) ( 176 408 -32 ) ( 344 408 -32 ) enterprise_exterior/ent_met3 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 172 384 -44 ) ( 340 384 -44 ) ( 340 384 -52 ) enterprise_exterior/ent_met3 0 8 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 344 388 -44 ) ( 344 408 -44 ) ( 344 408 -52 ) enterprise_exterior/ent_met3 32 8 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 172 384 -44 ) ( 340 384 -44 ) ( 340 384 -52 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( 344 388 -44 ) ( 344 408 -44 ) ( 344 408 -52 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 344 404 -44 ) ( 176 404 -44 ) ( 176 404 -52 ) enterprise_exterior/ent_met3 0 8 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 192 404 -44 ) ( 192 384 -44 ) ( 192 384 -52 ) enterprise_exterior/ent_met3 32 8 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 192 404 -44 ) ( 192 384 -44 ) ( 192 384 -52 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 }
 // brush 284
 {
-( 340 424 -48 ) ( 172 424 -48 ) ( 172 404 -48 ) enterprise_exterior/ent_met3 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 340 424 -48 ) ( 172 424 -48 ) ( 172 404 -48 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 176 404 -40 ) ( 176 424 -40 ) ( 344 424 -40 ) enterprise_exterior/ent_met3 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 176 404 -48 ) ( 344 404 -48 ) ( 344 404 -56 ) enterprise_exterior/ent_met3 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 344 404 -48 ) ( 344 424 -48 ) ( 344 424 -56 ) enterprise_exterior/ent_met3 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 176 404 -48 ) ( 344 404 -48 ) ( 344 404 -56 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( 344 404 -48 ) ( 344 424 -48 ) ( 344 424 -56 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 344 424 -48 ) ( 176 424 -48 ) ( 176 424 -56 ) enterprise_exterior/ent_met3 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 192 420 -48 ) ( 192 400 -48 ) ( 192 400 -56 ) enterprise_exterior/ent_met3 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 192 420 -48 ) ( 192 400 -48 ) ( 192 400 -56 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 }
 // brush 285
 {
@@ -2699,7 +2699,7 @@
 }
 // brush 288
 {
-( 224 504 96 ) ( 0 504 96 ) ( 0 488 96 ) romulan_installation/romlight6 0 507 90 -0.75 -0.552083 0 32 0 +surfaceparm detail 
+( 224 504 96 ) ( 0 504 96 ) ( 0 488 96 ) romulan_installation/romlight6 0 523 90 -0.75 -0.552083 0 32 0 +surfaceparm detail 
 ( 0 488 120 ) ( 0 504 120 ) ( 224 504 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -20 480 104 ) ( 204 480 104 ) ( 204 480 88 ) romulan_installation/romcon1_dark 112 -112 -180 0.5 -0.5 0 0 0 +surfaceparm detail 
 ( 204 504 104 ) ( -20 504 104 ) ( -20 504 88 ) romulan_installation/romcon1_dark 112 -112 -180 0.5 -0.5 0 0 0 +surfaceparm detail 
@@ -2708,7 +2708,7 @@
 }
 // brush 289
 {
-( 224 504 96 ) ( 0 504 96 ) ( 0 488 96 ) romulan_installation/romlight6 0 507 90 -0.75 -0.552083 0 32 0 +surfaceparm detail 
+( 224 504 96 ) ( 0 504 96 ) ( 0 488 96 ) romulan_installation/romlight6 0 88 90 -0.75 -0.8125 0 32 0 +surfaceparm detail 
 ( 0 488 120 ) ( 0 504 120 ) ( 224 504 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 8 480 104 ) ( 232 480 104 ) ( 232 480 88 ) romulan_installation/romcon1_dark 112 -112 -180 0.5 -0.5 0 0 0 +surfaceparm detail 
 ( 280 496 104 ) ( 280 512 104 ) ( 280 512 88 ) romulan_installation/romcon1_dark 112 -112 -180 0.5 -0.5 0 0 0 +surfaceparm detail 
@@ -2871,12 +2871,12 @@
 }
 // brush 307
 {
-( -888 540 -88 ) ( -904 540 -88 ) ( -904 524 -88 ) romulan_installation/romcon1_dark 0 0 0 0.5 0.5 0 0 0 
+( -888 540 -88 ) ( -904 540 -88 ) ( -904 524 -88 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
 ( -900 524 -80 ) ( -900 540 -80 ) ( -884 540 -80 ) romulan_installation/romcon1_dark 0 0 0 0.5 0.5 0 0 0 
-( -908 408 -84 ) ( -892 408 -84 ) ( -892 408 -92 ) romulan_installation/romcon1_dark 0 0 0 0.5 0.5 0 0 0 
-( -888 524 -84 ) ( -888 540 -84 ) ( -888 540 -92 ) romulan_installation/romcon1_dark 0 0 0 0.5 0.5 0 0 0 
-( -880 576 -84 ) ( -896 576 -84 ) ( -896 576 -92 ) romulan_installation/romcon1_dark 0 0 0 0.5 0.5 0 0 0 
-( -904 540 -84 ) ( -904 524 -84 ) ( -904 524 -92 ) romulan_installation/romcon1_dark 0 0 0 0.5 0.5 0 0 0 
+( -908 408 -84 ) ( -892 408 -84 ) ( -892 408 -92 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -888 524 -84 ) ( -888 540 -84 ) ( -888 540 -92 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -880 576 -84 ) ( -896 576 -84 ) ( -896 576 -92 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( -904 540 -84 ) ( -904 524 -84 ) ( -904 524 -92 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
 }
 // brush 308
 {
@@ -4734,21 +4734,21 @@
 }
 // brush 497
 {
-( 1664 -2232 8 ) ( 1656 -2232 8 ) ( 1656 -2240 8 ) romulan_installation/r_wallbase2 0 96 0 0.5 0.5 0 0 0 
-( 1656 -2240 16 ) ( 1656 -2232 16 ) ( 1664 -2232 16 ) romulan_installation/r_wallbase2 0 96 0 0.5 0.5 0 0 0 
-( 1656 -2240 16 ) ( 1664 -2240 16 ) ( 1664 -2240 8 ) romulan_installation/r_wallbase2 0 0 0 0.5 0.5 0 0 0 
-( 1660 -2240 16 ) ( 1660 -2232 16 ) ( 1660 -2232 8 ) romulan_installation/r_wallbase2 -96 0 0 0.5 0.5 0 0 0 
-( 1660 -2232 16 ) ( 1652 -2232 16 ) ( 1652 -2232 8 ) romulan_installation/r_wallbase2 0 0 0 0.5 0.5 0 0 0 
-( 1656 -2232 16 ) ( 1656 -2240 16 ) ( 1656 -2240 8 ) common/caulk -32 0 0 0.5 0.5 0 1184 0 
+( 1664 -2232 8 ) ( 1656 -2232 8 ) ( 1656 -2240 8 ) romulan_installation/r_wallbase2 0 96 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 1656 -2240 16 ) ( 1656 -2232 16 ) ( 1664 -2232 16 ) romulan_installation/r_wallbase2 0 96 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 1656 -2240 16 ) ( 1664 -2240 16 ) ( 1664 -2240 8 ) romulan_installation/r_wallbase2 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 1660 -2240 16 ) ( 1660 -2232 16 ) ( 1660 -2232 8 ) romulan_installation/r_wallbase2 -96 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 1660 -2232 16 ) ( 1652 -2232 16 ) ( 1652 -2232 8 ) romulan_installation/r_wallbase2 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 1656 -2232 16 ) ( 1656 -2240 16 ) ( 1656 -2240 8 ) common/caulk -32 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 }
 // brush 498
 {
-( 1664 -2208 8 ) ( 1656 -2208 8 ) ( 1656 -2216 8 ) romulan_installation/r_wallbase2 0 96 0 0.5 0.5 0 0 0 
-( 1656 -2216 16 ) ( 1656 -2208 16 ) ( 1664 -2208 16 ) romulan_installation/r_wallbase2 0 96 0 0.5 0.5 0 0 0 
-( 1652 -2216 16 ) ( 1660 -2216 16 ) ( 1660 -2216 8 ) romulan_installation/r_wallbase2 0 0 0 0.5 0.5 0 0 0 
-( 1660 -2216 16 ) ( 1660 -2208 16 ) ( 1660 -2208 8 ) romulan_installation/r_wallbase2 -96 0 0 0.5 0.5 0 0 0 
-( 1664 -2208 16 ) ( 1656 -2208 16 ) ( 1656 -2208 8 ) romulan_installation/r_wallbase2 0 0 0 0.5 0.5 0 0 0 
-( 1656 -2208 16 ) ( 1656 -2216 16 ) ( 1656 -2216 8 ) common/caulk -32 0 0 0.5 0.5 0 1184 0 
+( 1664 -2208 8 ) ( 1656 -2208 8 ) ( 1656 -2216 8 ) romulan_installation/r_wallbase2 0 96 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 1656 -2216 16 ) ( 1656 -2208 16 ) ( 1664 -2208 16 ) romulan_installation/r_wallbase2 0 96 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 1652 -2216 16 ) ( 1660 -2216 16 ) ( 1660 -2216 8 ) romulan_installation/r_wallbase2 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 1660 -2216 16 ) ( 1660 -2208 16 ) ( 1660 -2208 8 ) romulan_installation/r_wallbase2 -96 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 1664 -2208 16 ) ( 1656 -2208 16 ) ( 1656 -2208 8 ) romulan_installation/r_wallbase2 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 1656 -2208 16 ) ( 1656 -2216 16 ) ( 1656 -2216 8 ) common/caulk -32 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 }
 // brush 499
 {
@@ -6256,16 +6256,16 @@
  }
 // brush 647
 {
-( 208 -456 -16 ) ( 144 -456 -16 ) ( 144 -528 -16 ) romulan_installation/romi_door1_512 160 0 0 0.5 0.5 0 0 0 
-( 144 -528 -8 ) ( 144 -456 -8 ) ( 208 -456 -8 ) romulan_installation/romi_door1_512 160 0 0 0.5 0.5 0 0 0 
-( 208 -528 -8 ) ( 208 -456 -8 ) ( 208 -456 -16 ) romulan_installation/romi_door1_512 0 0 0 0.5 0.5 0 0 0 
-( 208 -464 -8 ) ( 144 -464 -8 ) ( 144 -464 -16 ) romulan_installation/romi_door1_512 160 0 0 0.5 0.5 0 0 0 
-( 144 -456 -8 ) ( 144 -528 -8 ) ( 144 -528 -16 ) romulan_installation/romi_door1_512 0 0 0 0.5 0.5 0 0 0 
-( 136 -480 -16 ) ( 144 -472 -16 ) ( 140 -476 -8 ) romulan_installation/romi_door1_512 0 0 0 0.5 0.5 0 0 0 
-( 152 -520 -16 ) ( 144 -512 -16 ) ( 148 -516 -8 ) romulan_installation/romi_door1_512 0 0 0 0.5 0.5 0 0 0 
-( 160 -520 -16 ) ( 144 -520 -16 ) ( 152 -520 -8 ) romulan_installation/romi_door1_512 160 0 0 0.5 0.5 0 0 0 
-( 212 -508 -16 ) ( 204 -516 -16 ) ( 208 -512 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
-( 208 -472 -16 ) ( 216 -480 -16 ) ( 212 -476 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 208 -456 -16 ) ( 144 -456 -16 ) ( 144 -528 -16 ) romulan_installation/romi_door1_512 160 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 144 -528 -8 ) ( 144 -456 -8 ) ( 208 -456 -8 ) romulan_installation/romi_door1_512 160 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 208 -528 -8 ) ( 208 -456 -8 ) ( 208 -456 -16 ) romulan_installation/romi_door1_512 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 208 -464 -8 ) ( 144 -464 -8 ) ( 144 -464 -16 ) romulan_installation/romi_door1_512 160 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 144 -456 -8 ) ( 144 -528 -8 ) ( 144 -528 -16 ) romulan_installation/romi_door1_512 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 136 -480 -16 ) ( 144 -472 -16 ) ( 140 -476 -8 ) romulan_installation/romi_door1_512 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 152 -520 -16 ) ( 144 -512 -16 ) ( 148 -516 -8 ) romulan_installation/romi_door1_512 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 160 -520 -16 ) ( 144 -520 -16 ) ( 152 -520 -8 ) romulan_installation/romi_door1_512 160 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 212 -508 -16 ) ( 204 -516 -16 ) ( 208 -512 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( 208 -472 -16 ) ( 216 -480 -16 ) ( 212 -476 -8 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 }
 // brush 648
 {
@@ -39085,11 +39085,11 @@
 ( 580 592 216 ) ( 564 592 216 ) ( 564 592 192 ) romulan_installation/r_wallbase2b 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
 ( -540 576 216 ) ( -524 576 216 ) ( -524 576 192 ) romulan_installation/romcon1_dark 232 -112 -180 0.5 -0.5 0 0 0 +surfaceparm detail 
 ( -176 564 40 ) ( -176 580 40 ) ( -176 572 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
-( -80 592 40 ) ( -80 580 40 ) ( -80 586 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -68 591 40 ) ( -68 579 40 ) ( -68 585 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 }
 // brush 3743
 {
-( 144 416 -80 ) ( 160 416 -80 ) ( 160 544 -80 ) romulan_installation/romcon1_dark -160 -112 -180 0.5 0.5 0 0 0 +surfaceparm detail 
+( 144 416 -80 ) ( 160 416 -80 ) ( 160 544 -80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 176 528 120 ) ( 176 400 120 ) ( 160 400 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 384 592 216 ) ( 368 592 216 ) ( 368 592 192 ) romulan_installation/r_wallbase2b 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
 ( -736 576 216 ) ( -720 576 216 ) ( -720 576 192 ) romulan_installation/romcon1_dark -160 -112 -180 0.5 -0.5 0 0 0 +surfaceparm detail 
@@ -39116,7 +39116,7 @@
 }
 // brush 3746
 {
-( 144 416 -80 ) ( 160 416 -80 ) ( 160 544 -80 ) romulan_installation/romcon1_dark -160 -112 -180 0.5 0.5 0 0 0 +surfaceparm detail 
+( 144 416 -80 ) ( 160 416 -80 ) ( 160 544 -80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 176 528 120 ) ( 176 400 120 ) ( 160 400 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 368 592 216 ) ( 352 592 216 ) ( 352 592 192 ) romulan_installation/r_wallbase2b 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
 ( -712 576 216 ) ( -696 576 216 ) ( -696 576 192 ) romulan_installation/romcon1_dark -160 -112 -180 0.5 -0.5 0 0 0 +surfaceparm detail 
@@ -39255,38 +39255,38 @@
 }
 // brush 3760
 {
-( -206 592 120 ) ( -206 592 112 ) ( -222 592 112 ) romulan_installation/romcon1_medium -416 84 90 0.5 -0.5 0 0 0 +surfaceparm detail 
+( -206 592 120 ) ( -206 592 112 ) ( -222 592 112 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -224 768 112 ) ( -224 768 120 ) ( -224 668 120 ) romulan_installation/romcon1_medium -416 288 90 0.5 -0.5 0 0 0 +surfaceparm detail 
-( -222 768 120 ) ( -206 768 120 ) ( -206 668 120 ) romulan_installation/romcon1_medium -84 288 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -222 768 120 ) ( -206 768 120 ) ( -206 668 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -216 768 120 ) ( -216 768 112 ) ( -216 668 112 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( -206 768 112 ) ( -222 768 112 ) ( -222 668 112 ) romulan_installation/romcon1_medium -84 288 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( -224 768 120 ) ( -224 760 112 ) ( -216 764 116 ) common/caulk -8 0 0 0.5 0.5 0 1184 0 
+( -206 768 112 ) ( -222 768 112 ) ( -222 668 112 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -224 768 120 ) ( -224 760 112 ) ( -216 764 116 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
 }
 // brush 3761
 {
-( -216 778 -80 ) ( -224 778 -80 ) ( -224 762 -80 ) common/caulk -8 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( -216 778 -80 ) ( -224 778 -80 ) ( -224 762 -80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -216 760 112 ) ( -216 776 112 ) ( -216 776 12 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( -216 768 112 ) ( -224 768 112 ) ( -224 768 12 ) romulan_installation/romcon1_medium -256 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -216 768 112 ) ( -224 768 112 ) ( -224 768 12 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -224 776 112 ) ( -224 760 112 ) ( -224 760 12 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( -224 760 112 ) ( -224 768 120 ) ( -216 764 116 ) common/caulk -8 0 0 0.5 0.5 0 1184 0 
+( -224 760 112 ) ( -224 768 120 ) ( -216 764 116 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
 ( -224 760 72 ) ( -224 760 104 ) ( -216 760 88 ) romulan_installation/romcon1_medium -8 0 0 0.5 0.5 0 0 0 
 }
 // brush 3762
 {
 ( -604 778 -80 ) ( -612 778 -80 ) ( -612 762 -80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -604 760 112 ) ( -604 776 112 ) ( -604 776 12 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( -604 768 112 ) ( -612 768 112 ) ( -612 768 12 ) romulan_installation/romcon1_medium 8 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -604 768 112 ) ( -612 768 112 ) ( -612 768 12 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -612 776 112 ) ( -612 760 112 ) ( -612 760 12 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
 ( -612 760 112 ) ( -612 768 120 ) ( -604 764 116 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
 ( -612 760 72 ) ( -612 760 104 ) ( -604 760 88 ) romulan_installation/romcon1_medium 256 0 0 0.5 0.5 0 0 0 
 }
 // brush 3763
 {
-( -594 592 120 ) ( -594 592 112 ) ( -610 592 112 ) romulan_installation/romcon1_medium -416 -180 90 0.5 -0.5 0 0 0 +surfaceparm detail 
+( -594 592 120 ) ( -594 592 112 ) ( -610 592 112 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -612 768 112 ) ( -612 768 120 ) ( -612 668 120 ) romulan_installation/romcon1_medium -416 288 90 0.5 -0.5 0 0 0 +surfaceparm detail 
-( -610 768 120 ) ( -594 768 120 ) ( -594 668 120 ) romulan_installation/romcon1_medium 180 288 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -610 768 120 ) ( -594 768 120 ) ( -594 668 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -604 768 120 ) ( -604 768 112 ) ( -604 668 112 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( -594 768 112 ) ( -610 768 112 ) ( -610 668 112 ) romulan_installation/romcon1_medium 180 288 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -594 768 112 ) ( -610 768 112 ) ( -610 668 112 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -612 768 120 ) ( -612 760 112 ) ( -604 764 116 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
 }
 // brush 3764
@@ -42401,7 +42401,7 @@
 // brush 4097
 {
 ( 216 540 120 ) ( 80 540 120 ) ( 80 408 120 ) romulan_installation/romcon1_medium -32 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 88 408 216 ) ( 88 540 216 ) ( 224 540 216 ) romulan_installation/romcon1_medium 256 -40 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 88 408 216 ) ( 88 540 216 ) ( 224 540 216 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 80 424 228 ) ( 216 424 228 ) ( 216 424 -12 ) romulan_installation/romcon1_medium 256 24 0 0.5 0.5 0 0 0 +surfaceparm detail 
 ( 192 424 120 ) ( 192 464 120 ) ( 192 444 216 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 224 444 120 ) ( 204 424 120 ) ( 214 434 216 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
@@ -42410,7 +42410,7 @@
 // brush 4098
 {
 ( 216 516 120 ) ( 80 516 120 ) ( 80 384 120 ) romulan_installation/romcon1_medium 256 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 80 384 216 ) ( 80 516 216 ) ( 216 516 216 ) romulan_installation/romcon1_medium 256 -88 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 80 384 216 ) ( 80 516 216 ) ( 216 516 216 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 80 384 228 ) ( 216 384 228 ) ( 216 384 -12 ) romulan_installation/romcon1_medium -32 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
 ( 204 420 108 ) ( 204 400 108 ) ( 204 410 216 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
 ( 192 400 120 ) ( 192 428 120 ) ( 192 414 228 ) common/caulk 48 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
@@ -44632,10 +44632,10 @@
 }
 // brush 4337
 {
-( -40 416 -80 ) ( -24 416 -80 ) ( -24 544 -80 ) romulan_installation/romcon1_dark -16 -112 -180 0.5 0.5 0 0 0 +surfaceparm detail 
+( -40 416 -80 ) ( -24 416 -80 ) ( -24 544 -80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 184 592 216 ) ( 168 592 216 ) ( 168 592 192 ) romulan_installation/r_wallbase2b 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
 ( -920 576 216 ) ( -904 576 216 ) ( -904 576 192 ) romulan_installation/romcon1_dark -16 -112 -180 0.5 -0.5 0 0 0 +surfaceparm detail 
-( -512 584 -80 ) ( -512 592 -80 ) ( -512 588 120 ) radiant/notexture 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -512 584 -80 ) ( -512 592 -80 ) ( -512 588 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -328 592 -80 ) ( -328 584 -80 ) ( -328 588 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -512 576 -48 ) ( -496 592 -48 ) ( -480 576 -48 ) romulan_installation/romcon1_dark -16 -112 -180 0.5 -0.5 0 0 0 +surfaceparm detail 
 }
@@ -45859,7 +45859,7 @@
 }
 // brush 4450
 {
-( -448 416 -80 ) ( -432 416 -80 ) ( -432 544 -80 ) romulan_installation/romcon1_medium -96 -40 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( -448 416 -80 ) ( -432 416 -80 ) ( -432 544 -80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -416 528 120 ) ( -416 400 120 ) ( -432 400 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -320 576 216 ) ( -336 576 216 ) ( -336 576 192 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -600 536 224 ) ( -600 408 224 ) ( -600 408 200 ) romulan_installation/romcon1_medium 288 -40 0 0.5 0.5 0 0 0 +surfaceparm detail 
@@ -46031,9 +46031,9 @@
 // brush 4469
 {
 ( 344 444 120 ) ( 208 444 120 ) ( 208 312 120 ) romulan_installation/romcon1_medium 232 24 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 208 312 216 ) ( 208 444 216 ) ( 344 444 216 ) romulan_installation/romcon1_medium 232 24 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 208 312 216 ) ( 208 444 216 ) ( 344 444 216 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 208 296 228 ) ( 344 296 228 ) ( 344 296 -12 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 352 384 228 ) ( 352 516 228 ) ( 352 516 -12 ) romulan_installation/romcon1_medium 232 24 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 352 384 228 ) ( 352 516 228 ) ( 352 516 -12 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 344 444 228 ) ( 208 444 228 ) ( 208 444 -12 ) romulan_installation/romcon1_medium 232 24 0 0.5 0.5 0 0 0 +surfaceparm detail 
 ( 344 452 216 ) ( 344 320 216 ) ( 344 320 -24 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
 ( 348 296 120 ) ( 344 304 120 ) ( 346 300 216 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
@@ -46041,10 +46041,10 @@
 // brush 4470
 {
 ( 344 560 120 ) ( 208 560 120 ) ( 208 428 120 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 208 428 216 ) ( 208 560 216 ) ( 344 560 216 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 208 428 216 ) ( 208 560 216 ) ( 344 560 216 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 208 444 228 ) ( 344 444 228 ) ( 344 444 -12 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 352 428 228 ) ( 352 560 228 ) ( 352 560 -12 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
-( 360 560 228 ) ( 224 560 228 ) ( 224 560 -12 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 352 428 228 ) ( 352 560 228 ) ( 352 560 -12 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
+( 360 560 228 ) ( 224 560 228 ) ( 224 560 -12 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 192 564 216 ) ( 192 432 216 ) ( 192 432 -24 ) romulan_installation/romcon1_medium 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
 }
 // brush 4471
@@ -46129,7 +46129,7 @@
 }
 // brush 4479
 {
-( 128 416 -80 ) ( 144 416 -80 ) ( 144 544 -80 ) romulan_installation/romcon1_medium 288 -40 0 0.5 0.5 0 0 0 +surfaceparm detail 
+( 128 416 -80 ) ( 144 416 -80 ) ( 144 544 -80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 160 528 120 ) ( 160 400 120 ) ( 144 400 120 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( 256 576 216 ) ( 240 576 216 ) ( 240 576 192 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 ( -24 536 224 ) ( -24 408 224 ) ( -24 408 200 ) romulan_installation/romcon1_medium 288 -40 0 0.5 0.5 0 0 0 +surfaceparm detail 
@@ -46150,9 +46150,9 @@
 ( 375 216 -80 ) ( 183 216 -80 ) ( 183 56 -80 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
 ( 184 240 -48 ) ( 184 400 -48 ) ( 376 400 -48 ) romulan_installation/rfloor2 18 153 0 -0.4375 0.46875 0 0 0 
 ( 330 192 232 ) ( 522 192 232 ) ( 522 192 208 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
-( 352 134 200 ) ( 352 294 200 ) ( 352 294 176 ) romulan_installation/romgrate1 0 -160 0 0.5 0.5 0 0 0 
-( 176 280 200 ) ( 176 120 200 ) ( 176 120 176 ) romulan_installation/romstep1 153 0 0 -0.46875 0.25 0 32 0 
-( 144 560 -56 ) ( 160 560 -56 ) ( 152 560 -48 ) common/caulk -16 -16 0 0.5 0.5 0 1184 0 
+( 352 134 200 ) ( 352 294 200 ) ( 352 294 176 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 176 280 200 ) ( 176 120 200 ) ( 176 120 176 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
+( 144 560 -56 ) ( 160 560 -56 ) ( 152 560 -48 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
 }
 // brush 4482
 {
@@ -46654,11 +46654,11 @@
 }
 // brush 4531
 {
-( -32 -448 88 ) ( -32 -520 88 ) ( -40 -520 88 ) romulan_installation/romcon1_dark -176 32 0 0.5 -0.5 0 0 0 
-( -40 -520 -16 ) ( -32 -520 -16 ) ( -32 -448 -16 ) romulan_installation/romcon1_dark -176 32 0 0.5 -0.5 0 0 0 
-( -56 -520 264 ) ( -56 -520 -16 ) ( -56 -448 -16 ) romulan_installation/romcon1_dark -32 -144 -180 0.5 0.5 0 0 0 
-( -32 -520 80 ) ( -32 -520 -200 ) ( -40 -520 -200 ) romulan_installation/romcon1_dark -176 -144 0 0.5 -0.5 0 0 0 
-( -48 -508 -16 ) ( -40 -520 88 ) ( -56 -496 88 ) romulan_installation/romcon1_dark 0 0 0 0.5 0.5 0 0 0 
+( -32 -448 88 ) ( -32 -520 88 ) ( -40 -520 88 ) romulan_installation/romcon1_dark -176 32 0 0.5 -0.5 0 0 0 +surfaceparm detail 
+( -40 -520 -16 ) ( -32 -520 -16 ) ( -32 -448 -16 ) romulan_installation/romcon1_dark -176 32 0 0.5 -0.5 0 0 0 +surfaceparm detail 
+( -56 -520 264 ) ( -56 -520 -16 ) ( -56 -448 -16 ) romulan_installation/romcon1_dark -32 -144 -180 0.5 0.5 0 0 0 +surfaceparm detail 
+( -32 -520 80 ) ( -32 -520 -200 ) ( -40 -520 -200 ) romulan_installation/romcon1_dark -176 -144 0 0.5 -0.5 0 0 0 +surfaceparm detail 
+( -48 -508 -16 ) ( -40 -520 88 ) ( -56 -496 88 ) romulan_installation/romcon1_dark 0 0 0 0.5 0.5 0 0 0 +surfaceparm detail 
 }
 // brush 4532
 {
@@ -46904,6 +46904,24 @@
 }
 // entity 1
 {
+"target" "t131"
+"thread" "secret_dancer1"
+"classname" "trigger_multiple"
+"targetname" "trigger_secret_dancer1"
+"note" "Changed from trigger_once, we are going to use this entity to allow players out of here if some other player locks them in"
+"wait" "0.1"
+// brush 0
+{
+( 152 550 -62 ) ( 105 550 -62 ) ( 105 463 -62 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( 112 463 94 ) ( 112 550 94 ) ( 159 550 94 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( 92 428 456 ) ( 139 428 456 ) ( 139 428 376 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( 112 465 456 ) ( 112 552 456 ) ( 112 552 376 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( 146 557 456 ) ( 99 557 456 ) ( 99 557 376 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+( 59 553 38 ) ( 59 466 38 ) ( 59 466 -42 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
+}
+}
+// entity 2
+{
 "classname" "trigger_secret"
 "spawnflags" "1"
 "thread" "secret_func_rotatingdoor_notsolid"
@@ -46918,7 +46936,7 @@
 ( 1712 -1072 768 ) ( 1712 -1088 768 ) ( 1712 -1088 736 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
 }
 }
-// entity 2
+// entity 3
 {
 "sound_move" "sound/doors/klingon_jtube.wav"
 "lip" "8"
@@ -46938,7 +46956,7 @@
 ( -2192 -3168 176 ) ( -2192 -3104 120 ) ( -2184 -3136 148 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
 }
 }
-// entity 3
+// entity 4
 {
 "thread" "markerShow"
 "classname" "trigger_once"
@@ -46952,7 +46970,7 @@
 ( 2240 -2104 8 ) ( 2240 -2168 8 ) ( 2240 -2168 -72 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
 }
 }
-// entity 4
+// entity 5
 {
 "hide" "1"
 "angle" "135"
@@ -46964,7 +46982,7 @@
 "origin" "-1509.24 -4434.24 72.00"
 "ai_off" "1"
 }
-// entity 5
+// entity 6
 {
 "origin" "-1956.20 -4457.20 72.00"
 "model" "models/char/gbs_stammheim.tik"
@@ -46974,7 +46992,7 @@
 "angle" "0"
 "ai_off" "1"
 }
-// entity 6
+// entity 7
 {
 "classname" "script_object"
 "targetname" "lift_03"
@@ -47032,7 +47050,7 @@
 ( 2628 -3088 -74 ) ( 2628 -3092 -78 ) ( 2748.01 -3090 -76 ) romulan_installation/r_wallbase2 0 0 0 0.5 0.5 0 0 0 
 }
 }
-// entity 7
+// entity 8
 {
 "targetname" "lift_02"
 "type" "patchCapped"
@@ -47174,7 +47192,7 @@
 ( 800 -1616 104 ) ( 760 -1584 104 ) ( 780 -1600 112 ) romulan_installation/r_wallbase2b 0 0 0 0.5 0.5 0 0 0 
 }
 }
-// entity 8
+// entity 9
 {
 "targetname" "lift_01"
 "classname" "script_object"
@@ -47277,7 +47295,7 @@
 ( 1296 -1188 360 ) ( 1296 -1182 360 ) ( 1296 -1185 368 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 
 }
 }
-// entity 9
+// entity 10
 {
 "thread" "grp_hall_door"
 "angle" "0"
@@ -47295,7 +47313,7 @@
 ( 2906 -2610 192 ) ( 2906 -2686 192 ) ( 2906 -2686 184 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
 }
 }
-// entity 10
+// entity 11
 {
 "targetname" "enty_steam_01"
 "origin" "501.70 -1688.00 21.70"
@@ -47304,7 +47322,7 @@
 "scale" "0.70"
 "angles" "26.000000 0.000000 0.000000"
 }
-// entity 11
+// entity 12
 {
 "origin" "2208.00 -476.00 -32.00"
 "model" "models/char/gbs_stammheim.tik"
@@ -47312,7 +47330,7 @@
 "targetname" "stammheim"
 "ai_off" "1"
 }
-// entity 12
+// entity 13
 {
 "targetname" "uschi"
 "classname" "char_romulan_m10_hostile_soldier_pistol-male1"
@@ -47321,41 +47339,41 @@
 "origin" "1948.00 -559.00 704.00"
 "NOTE" "used to be a woman, but we want the actor to patrol"
 }
-// entity 13
+// entity 14
 {
 "targetname" "coop_symbol4"
 "origin" "1668.00 -2144.00 12.00"
 "model" "models/use.tik"
 "classname" "coop_symbol_use"
 }
-// entity 14
+// entity 15
 {
 "origin" "1080.00 -1281.00 441.00"
 "targetname" "coop_symbol1"
 "model" "models/use.tik"
 "classname" "coop_symbol_use"
 }
-// entity 15
+// entity 16
 {
 "origin" "2910.00 -2551.00 195.00"
 "targetname" "coop_symbol0"
 "model" "models/use.tik"
 "classname" "coop_symbol_use"
 }
-// entity 16
+// entity 17
 {
 "angle" "90"
 "origin" "2235 -1370 711"
 "spawnflags" "128"
 "classname" "info_helpernode"
 }
-// entity 17
+// entity 18
 {
 "classname" "info_helpernode"
 "spawnflags" "128"
 "origin" "-370 -976 16"
 }
-// entity 18
+// entity 19
 {
 "classname" "script_object"
 "targetname" "console"
@@ -47369,21 +47387,21 @@
 ( 1748 -408 32 ) ( 1744 -440 32 ) ( 1752 -440 32 ) common/caulk 0 0 0 0.5 0.5 0 1184 0 +surfaceparm detail 
 }
 }
-// entity 19
+// entity 20
 {
 "origin" "2420.00 -1281.00 433.00"
 "angles" "0.000000 270.000000 0.000000"
 "model" "models/item/health_large-hypospray.tik"
 "classname" "item_health_large-hypospray"
 }
-// entity 20
+// entity 21
 {
 "origin" "2828.00 -2524.00 144.00"
 "angle" "90"
 "model" "models/char/romulan-m11-rebel-pistol-m.tik"
 "classname" "char_romulan_m11_pistol_standard-male1"
 }
-// entity 21
+// entity 22
 {
 "target" "t126"
 "targetname" "t125"
@@ -47391,7 +47409,7 @@
 "spawnflags" "16"
 "classname" "info_helpernode"
 }
-// entity 22
+// entity 23
 {
 "target" "t108"
 "targetname" "t107"
@@ -47399,14 +47417,14 @@
 "origin" "29 46 331"
 "classname" "info_helpernode"
 }
-// entity 23
+// entity 24
 {
 "origin" "2512 -2000 12"
 "noise" "sound/ships/romulan/rom_beep_no.wav"
 "classname" "sound_speaker"
 "targetname" "t128"
 }
-// entity 24
+// entity 25
 {
 "classname" "trigger_use"
 "target" "t128"
@@ -47420,13 +47438,13 @@
 ( 2504 -1994 22 ) ( 2504 -2006 22 ) ( 2504 -2006 -58 ) common/trigger 0 12 0 0.5 0.5 0 128 0 
 }
 }
-// entity 25
+// entity 26
 {
 "origin" "2076 -969 738"
 "spawnflags" "128"
 "classname" "info_helpernode"
 }
-// entity 26
+// entity 27
 {
 "target" "t105"
 "targetname" "t104"
@@ -47435,7 +47453,7 @@
 "angles" "0.000000 88.000000 0.000000"
 "classname" "info_helpernode"
 }
-// entity 27
+// entity 28
 {
 "target" "t96"
 "targetname" "t95"
@@ -47443,14 +47461,14 @@
 "origin" "1077 -1280 441"
 "classname" "sound_speaker"
 }
-// entity 28
+// entity 29
 {
 "noise" "sound/doors/door_locked.wav"
 "targetname" "t93"
 "origin" "2444 -1494 770"
 "classname" "sound_speaker"
 }
-// entity 29
+// entity 30
 {
 "target" "t93"
 "classname" "trigger_use"
@@ -47464,7 +47482,7 @@
 ( 2446 -1477 704 ) ( 2450 -1477 704 ) ( 2448 -1477 824 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
 }
 }
-// entity 30
+// entity 31
 {
 "target" "t92"
 "origin" "-2172 -3088 68"
@@ -47472,7 +47490,7 @@
 "noise" "sound/ships/romulan/rom_beep_activate.wav"
 "classname" "sound_speaker"
 }
-// entity 31
+// entity 32
 {
 "target" "t91"
 "classname" "trigger_use"
@@ -47486,13 +47504,13 @@
 ( -2172 -3090 93 ) ( -2172 -3107 93 ) ( -2172 -3107 77 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
 }
 }
-// entity 32
+// entity 33
 {
 "origin" "604 -1089 -130"
 "spawnflags" "128"
 "classname" "info_helpernode"
 }
-// entity 33
+// entity 34
 {
 "origin" "2547 -1801 18"
 "noise" "sound/ships/romulan/rom_beep_no.wav"
@@ -47500,7 +47518,7 @@
 "targetname" "t81"
 "classname" "sound_speaker"
 }
-// entity 34
+// entity 35
 {
 "target" "t81"
 "classname" "trigger_use"
@@ -47514,7 +47532,7 @@
 ( 2546 -1784 27 ) ( 2546 -1824 27 ) ( 2546 -1824 -56 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
 }
 }
-// entity 35
+// entity 36
 {
 "noise" "sound/ships/romulan/rom_beep_activate.wav"
 "target" "t79"
@@ -47522,7 +47540,7 @@
 "targetname" "t78"
 "classname" "sound_speaker"
 }
-// entity 36
+// entity 37
 {
 "target" "t78"
 "classname" "trigger_use"
@@ -47536,7 +47554,7 @@
 ( 1156 -2316 -8 ) ( 1148 -2316 -8 ) ( 1152 -2316 8 ) common/trigger 0 0 0 0.5 0.5 0 128 0 +surfaceparm detail 
 }
 }
-// entity 37
+// entity 38
 {
 "target" "secretdoor0"
 "classname" "trigger_use"
@@ -47550,7 +47568,7 @@
 ( -40 71 389 ) ( -40 71 304 ) ( -57 85 304 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
 }
 }
-// entity 38
+// entity 39
 {
 "target" "t75"
 "classname" "trigger_use"
@@ -47562,22 +47580,6 @@
 ( 1840 -379 716 ) ( 1840 -363 716 ) ( 1840 -363 633 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
 ( 1827 -354 716 ) ( 1810 -354 716 ) ( 1810 -354 633 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
 ( 1799 -360 716 ) ( 1799 -376 716 ) ( 1799 -376 633 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
-}
-}
-// entity 39
-{
-"targetname" "trigger_secret_dancer1"
-"classname" "trigger_once"
-"thread" "secret_dancer1"
-"target" "t131"
-// brush 0
-{
-( 152 550 -62 ) ( 105 550 -62 ) ( 105 463 -62 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
-( 112 463 94 ) ( 112 550 94 ) ( 159 550 94 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
-( 92 428 456 ) ( 139 428 456 ) ( 139 428 376 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
-( 112 465 456 ) ( 112 552 456 ) ( 112 552 376 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
-( 146 557 456 ) ( 99 557 456 ) ( 99 557 376 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
-( 59 553 38 ) ( 59 466 38 ) ( 59 466 -42 ) common/trigger 0 0 0 0.5 0.5 0 128 0 
 }
 }
 // entity 40
@@ -48893,6 +48895,7 @@
 }
 // entity 136
 {
+"ai_off" "1"
 "targetname" "dancer1"
 "angle" "90"
 "script" "$dancer1.ai_off();\n"
@@ -49804,10 +49807,10 @@
 }
 // entity 193
 {
+"targetname" "secretdoorTrigger"
 "classname" "trigger_use"
-"angle" "-1"
 "target" "secretdoor"
-"lip" "2"
+"wait" "2"
 // brush 0
 {
 ( 16 120 48 ) ( -8 120 48 ) ( -8 16 48 ) common/trigger 32 0 0 0.5 0.5 0 128 0 
