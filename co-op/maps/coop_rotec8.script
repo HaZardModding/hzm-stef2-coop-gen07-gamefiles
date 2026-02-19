@@ -131,7 +131,7 @@ void main()
 	coop_string_objectiveItem3_deu = "Replizieren Sie etwas zu essen in Ihrem Quartier.";
 	coop_string_objectiveItem4_deu = "Ihr Replikator ist kaputt, gehen Sie zur Bar zum essen.";
 	coop_string_objectiveItem5_deu = "Gehen Sie in die Sauna oder zum Fittness zum erholen.";
-	coop_string_objectiveItem6_deu = "Nehmen Sie ein Brausebad und bereiten Sie sich für den Einsatz vor.";
+	coop_string_objectiveItem6_deu = "Nehmen Sie ein Brausebad und bereiten Sie sich f$$u$$r den Einsatz vor.";
 	coop_string_objectiveItem7_deu = "Wenn Sie einsatzbereit sind nehmen Sie den Turbolift.";
 	coop_string_objectiveTacticalInfo1_deu = "";//Nutzen Sie die Verwirrung zu Ihrem Vorteil
 

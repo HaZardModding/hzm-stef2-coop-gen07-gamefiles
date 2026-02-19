@@ -180,18 +180,18 @@ cache ("models/hatoria/w1.tik");
 	coop_string_objectiveTacticalInfo3 = "Make use of the Replicators to restore your health";
 	coop_string_story = "You are participating at a Officer exchange Program. Your secondary Objective is to check on the old Federation Outpost, since this Outpost is still used, from time to time by Diplomats";
 
-	coop_string_objectiveItem1_deu	= "Fliehen Sie zum nahegelegenen Föderations Aussenposten";
+	coop_string_objectiveItem1_deu	= "Fliehen Sie zum nahegelegenen F$$o$$derations Aussenposten";
 	coop_string_objectiveItem2_deu	= "Finden Sie eine Waffe zur Selbstverteidigung";
-	coop_string_objectiveItem3_deu	= "Finden Sie einen Weg um die verschloßene Türe zu umgehen";
+	coop_string_objectiveItem3_deu	= "Finden Sie einen Weg um die verschlo$$S$$ene T$$u$$re zu umgehen";
 	coop_string_objectiveItem4_deu	= "Aktuallisiern Sie Ihre Zugriffsrechte um Waffen zu replizieren";
 	coop_string_objectiveItem5_deu	= "Aktivieren Sie die Lichter der Landeplattform";
-	coop_string_objectiveItem6_deu	= "Öffen Sie das Energie Terminal vom Turm aus";
+	coop_string_objectiveItem6_deu	= "$$O$$ffen Sie das Energie Terminal vom Turm aus";
 	coop_string_objectiveItem7_deu	= "Leiten Sie die Energie zur Landeplatform um";
-	coop_string_objectiveItem8_deu	= "Vervollsändigen Sie die Evakuation, das Shuttle erscheint bald";
+	coop_string_objectiveItem8_deu	= "Vervolls$$a$$ndigen Sie die Evakuation, das Shuttle erscheint bald";
 	coop_string_objectiveTacticalInfo1_deu = "Klingonen haben immer irgendwo eine Waffe versteckt";
-	coop_string_objectiveTacticalInfo2_deu = "Das Headmaster Büro verfügt über alle Zugriffscodes";
+	coop_string_objectiveTacticalInfo2_deu = "Das Headmaster B$$u$$ro verf$$u$$gt $$u$$ber alle Zugriffscodes";
 	coop_string_objectiveTacticalInfo3_deu = "Replizieren Sie ein Hypospray um Ihre Gesundheit aufzufrischen";	
-	coop_string_story_deu = "Sie nehmen an einem Offiziersaustausch Programm teil. Ihr Nebenziel ist es den alten föderations Aussensposten zu überprüfen, da er ab und zu von Diplomaten genutzt wird.";	
+	coop_string_story_deu = "Sie nehmen an einem Offiziersaustausch Programm teil. Ihr Nebenziel ist es den alten f$$o$$derations Aussensposten zu $$u$$berpr$$u$$fen, da er ab und zu von Diplomaten genutzt wird.";	
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 	thread setupLevel();
