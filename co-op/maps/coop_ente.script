@@ -15,6 +15,7 @@
 void main();
 void setupSky();
 void setupMap();
+void setupLifts();
 void setupShuttle();
 void coop_debugOutput();
 void basic_consoleUsed();
@@ -158,6 +159,7 @@ void setupMap()
 //------------------------------------------------------------------------------
 {
 	thread setupSky();
+	setupLifts();
 	
 	//redalert lights - turn off
 	// //getlightintensity( String light_group_name )
@@ -233,6 +235,15 @@ void setupMap()
 	
 	
 	//$viewscreen_deck1_bridge.setcustomshader("textures/cockroach.tga");
+}
+
+
+void setupLifts()
+{
+	$shuttleBay_lift3_trigger0.bind($shuttleBay_lift3);
+	$shuttleBay_lift2_trigger0.bind($shuttleBay_lift2);
+	$shuttleBay_lift1_trigger0.bind($shuttleBay_lift1);
+	$shuttleBay_lift0_trigger0.bind($shuttleBay_lift0);
 }
 
 void basic_consoleUsed()
