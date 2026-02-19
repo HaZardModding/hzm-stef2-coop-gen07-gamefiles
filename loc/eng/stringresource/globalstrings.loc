@@ -112,13 +112,13 @@ c#126	"Remove"
 c#127	"This will work only on Mission maps."
 
 //coop mod strings for german letters, used in objectives and other text that is handled via dll
-o														"o"
-O														"O"
-a														"a"
-A														"A"
-U														"U"
-u														"u"
-S														"s"
+o	"o"
+O	"O"
+a	"a"
+A	"A"
+U	"U"
+u	"u"
+S	"s"
 
 //General
 c#010	"set to:"
