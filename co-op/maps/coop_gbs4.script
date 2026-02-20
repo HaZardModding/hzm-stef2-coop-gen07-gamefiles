@@ -51,6 +51,8 @@ void closed_door_sound_2();
 
 void main()
 {
+	soundtrack( "music/m6l1.mus" );
+
 	//hzm coop mod chrissstrahl - mission objective marker for radar
 	$latch.missionobjective(1);
 	

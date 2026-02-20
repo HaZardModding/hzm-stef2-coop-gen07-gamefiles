@@ -36,6 +36,8 @@ entity	entityPlayerGlobal;
 
 void main()
 {
+	soundtrack( "music/dm_ef2-dm1.mus");
+	
 	coop_string_levelAuthor			= "The Colonists";
 
 	//hzm coop mod chrissstrahl - declare objectives - english
