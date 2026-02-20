@@ -1,4 +1,4 @@
-menu "credits-staff-gbs" 640 400 NONE 0.75
+menu "credits-staff-gbs" 640 480 NONE 0.75
 bgcolor 0 0 0 0
 borderstyle NONE
 nomouse
@@ -33,8 +33,8 @@ resource
 label
 {
 name "names"
-title "Argyle\nLTiefland\nAlpharaptor\nBicko\nBjoern\ncaptainshuttle\nCortex\nFlix\nTickNSwisted\nTRon\nDrBob\nPady\nYen-Chih Lin\nMindCrusher Studios\n"
-rect 32 128 288 288
+title "Argyle\nLTiefland\nAlpharaptor\nBicko\nBjoern\ncaptainshuttle\nCortex\nFlix\nTickNSwisted\nTRon\nDrBob\nPady\nChrissstrahl\nYen-Chih Lin\nMindCrusher Studios\n"
+rect 32 128 288 310
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 textshadowcolor 0 0 0 1
@@ -55,9 +55,9 @@ resource
 label
 {
 name "titles"
-title "Project Lead\nVoice-Over Co-ordination\nMapper\nMapper\nMapper\nMapper\nMapper\nMapper\nMapper\nMapper\nScripter\nScripter\nSound Effects\nGerman Voice-Over\n"
+title "Project Lead\nVoice-Over Co-ordination\nMapper\nMapper\nMapper\nMapper\nMapper\nMapper\nMapper\nMapper\nScripter\nScripter\Scripter\nSound Effects\nGerman Voice-Over\n"
 
-rect 320 128 288 288
+rect 320 128 288 310
 fgcolor 1.00 1.00 1.00 1.00
 bgcolor 0.00 0.00 0.00 0.00
 textshadowcolor 0 0 0 1
