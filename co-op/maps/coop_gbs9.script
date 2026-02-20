@@ -95,8 +95,8 @@ void main()
 	coop_string_objectiveItem1_deu = "Dringe in den Maschinenraum ein.";
 	coop_string_objectiveItem2_deu = "Gehe zur Hauptcomputerkontrolle und schleuse einen Virus ein.";
 	coop_string_objectiveItem3_deu = "Fliehe mit einem Shuttle.";
-	coop_string_objectiveItem4_deu = "Finde einen Eingang zu den $$Ue$$berresten des Außenpostens.";
-	coop_string_objectiveItem5_deu = "Gehe auf die Brücke des Warbirds.";
+	coop_string_objectiveItem4_deu = "Finde einen Eingang zu den $$U$$berresten des Au$$S$$enpostens.";
+	coop_string_objectiveItem5_deu = "Gehe auf die Br$$u$$cke des Warbirds.";
 	coop_string_objectiveItem6_deu = "Leite Energie zum Transporter um und beame Dich vom Schiff.";
 	coop_string_objectiveItem7_deu = "Finde Alexander Stammheim. Er wird in einer Zelle sein.";
 	//Gehe zu Stammheims shuttle und fliehe mit Stammheim.
