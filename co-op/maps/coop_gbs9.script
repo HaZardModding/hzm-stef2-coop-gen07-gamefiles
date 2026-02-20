@@ -206,8 +206,9 @@ void intro_cin()
 	skipthread ( "finish_intro_cin" );
 
 	//Make the fakeplayer use the same weapon as you
-//	globalCommon_AiActorUseWeapon( $fakeplayer, "current" );
-	globalCommon_AiActorUseWeapon( $illia, "fieldassaultrifle" );
+	$illia.giveactorweapon("models/actorweapons/fed-fieldassaultrifle.tik");
+	$illia.useactorweapon("models/actorweapons/fed-fieldassaultrifle.tik");
+	
 	$cam3.follow( $map8_intro2 );
 	$cam3.cut();
 	waitForPlayer();
@@ -223,7 +224,11 @@ void intro_cin()
 
 	cam_fadein( 1, 0, 0, 0, 1, 0 );
 	$illia.DisplayEffect( "TransportIn", "Romulan" );
-	wait( 2.7 );
+	wait( 2.0 );
+	
+	$illia.anim("fieldassaultrifle_draw");
+	wait(0.35);
+	$illia.anim("fieldassaultrifle_calm_idle1");
 
 	$illia.show();
 	$illia.solid();
@@ -237,9 +242,9 @@ void intro_cin()
 	wait( 5 );
 
 	cuecamera( $cam3 );
-
-/*	$fakeplayer.playdialog( "localization/sound/dialog/gbs/illia/inshorttime.mp3", 1, 10000, 0 );
-	waitfordialog( $fakeplayer );*/
+	
+	$illia.anim("fieldassaultrifle_tense_idle2");
+	
 	$illia.playdialog( "localization/sound/dialog/gbs/illia/inshorttime.mp3", 1, 10000, 0 );
 	waitfordialog( $illia );
 
@@ -272,10 +277,16 @@ void intro_cin()
 
 /*	$fakeplayer.playdialog( "localization/sound/dialog/gbs/illia/nochoice.mp3", 1, 10000, 0 );
 	waitfordialog( $fakeplayer );*/
+	
+	$illia.headwatchtarget("cam3",10);
+	
+	$illia.anim("fieldassaultrifle_calm_idle1");
+	
 	$illia.playdialog( "localization/sound/dialog/gbs/illia/nochoice.mp3", 1, 10000, 0 );
 	waitfordialog( $illia );
 
 	wait( 0.2 );
+	$illia.headwatchtarget("none",5);
 
 	thread finish_intro_cin();
 }
