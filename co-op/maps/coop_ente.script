@@ -305,17 +305,17 @@ void setupShuttle()
 	$mShuttleExterior.notsolid();	
 	
 	//kill blocking players
-	globalCoop_level_onBlock($shuttleClip,"shuttleBlockKill");
+	thread globalCoop_level_onBlock($shuttleClip,"shuttleBlockKill");
+	
+	//wait for shuttle to reach end of path - or when it is blocked an d breaks
+	waitFor($originShuttleV2s1);
+	
+	//$originShuttleV2s1.followpath($t1578,"normalangels");
+	//wait(1);
 	
 	//once landed, bind shuttle to lift
-	waitFor($originShuttleV2s1);
-	$originShuttleV2s1.bind($shuttleBay_liftShuttle1);
 	$mShuttleExterior.stoploopsound();
-	
-	vector vEnd;
-	vEnd = $t1578.getOrigin();
-	$originShuttleV2s1.movetoPos(vEnd);
-	$originShuttleV2s1.time(0.05);
+	$originShuttleV2s1.bind($shuttleBay_liftShuttle1);
 	
 	//remove path of shuttle, not neded anymore
 	thread globalCoop_level_removePath($deck7b_shuttlebay_shuttle_start);
