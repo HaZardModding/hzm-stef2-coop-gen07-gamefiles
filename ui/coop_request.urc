@@ -144,7 +144,7 @@ Button
 	ordernumber 0
 	title "$$Inventory$$" //Inventory
 	name "coop_requestOption1"
-	rect 228 136 320 24
+	rect 218 136 340 24
 	fgcolor 1 1 1 0.7
 	bgcolor 1 0 0 0
 	font serpentinemedium-16
@@ -159,7 +159,7 @@ Button
 {
 	title "$$Item-health$$" //Health
 	name "coop_requestSlot1"
-	rect 228 160 320 24
+	rect 200 160 364 24
 	borderstyle "NONE"
 	stuffcommand "use one"
 	font serpentinemedium-14
@@ -180,7 +180,7 @@ Button
 {
 	title "$$Ammo-Plasma$$" //ammo plasma
 	name "coop_requestSlot2"
-	rect 228 186 320 24
+	rect 200 186 364 24
 	borderstyle "NONE"
 	stuffcommand "use two"
 	font serpentinemedium-14
@@ -201,7 +201,7 @@ Button
 {
 	title "$$c#124$$" //pattern enhancer
 	name "coop_requestSlot3"
-	rect 228 212 320 24
+	rect 200 212 364 24
 	borderstyle "NONE"
 	stuffcommand "use three"
 	font serpentinemedium-14
@@ -222,7 +222,7 @@ Button
 {
 	title "$$Weapon-BurstRifle$$" //BurstRifle
 	name "coop_requestSlot4"
-	rect 228 238 320 24
+	rect 200 238 364 24
 	borderstyle "NONE"
 	stuffcommand "use five"
 	font serpentinemedium-14
@@ -244,7 +244,7 @@ Button
 {
 	title ""
 	name "coop_requestSlot5"
-	rect 228 264 320 24
+	rect 200 264 364 24
 	borderstyle "NONE"
 	stuffcommand "use six"
 	font serpentinemedium-14
@@ -271,7 +271,7 @@ Button
 disable
 	title "1234"
 	name "coop_requestSlot6"
-	rect 228 290 320 24
+	rect 200 290 364 24
 	borderstyle "NONE"
 	stuffcommand "use four"
 	font serpentinemedium-14
@@ -293,7 +293,7 @@ Button
 {
 	title "$$c#102$$" //transport
 	name "coop_requestOption2"
-	rect 228 296 320 24
+	rect 218 296 340 24
 	fgcolor 1 1 1 0.7
 	bgcolor 0 0 0 0
 	font serpentinemedium-16
@@ -310,7 +310,7 @@ Button
 {
 	title "$$c#122$$" //Beam up
 	name "coop_requestSlot7"
-	rect 228 318 320 24
+	rect 200 318 344 24
 	borderstyle "NONE"
 	stuffcommand "use four"
 	font serpentinemedium-14
