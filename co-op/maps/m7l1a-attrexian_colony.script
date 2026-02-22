@@ -3701,7 +3701,7 @@ void secretWall1_explode()
 void secretWall1_door1Puzzle_start()
 {
 	globalTricorderKeypad_SetSecretCode( secretDigit1 , secretDigit2 , secretDigit3 , secretDigit4 , secretDigit5 , secretDigit6 , secretDigit7 , secretDigit8 , secretDigit9 );
-	globalTricorderKeypad_Run( $secretWall1_door1Puzzle , 10 , 1 );
+	globalTricorderKeypad_Run( $secretWall1_door1Puzzle , 30 , 1 );
 }
 
 //---------------------
