@@ -338,6 +338,23 @@ void warehousePlayerInShaft()
 
 void warehouseEncounter2Spawner()
 {
+	float fNumPlayers;
+	float fNumAllowSpawns = 1;
+	fNumPlayers = globalCoop_return_integerPlayersQuantity(2);
+	
+	//3 Players
+	if(fNumPlayers >= 2){ fNumAllowSpawns++; }
+	//4 Players
+	if(fNumPlayers >= 3){ fNumAllowSpawns++; }
+	//5 Players
+	if(fNumPlayers >= 4){ fNumAllowSpawns++; }
+	//limit spawns
+	if(float_warehouseSpawns >= fNumAllowSpawns ){
+		return;
+	}
+	float_warehouseSpawns++;
+
+
 //SPAN A ENEMY, will be pushed down and triggers the explosion
 	$spawn1.modelName("char/alien-type1b-chewer.tik");
 	$spawn1.setspawngroupID(02);
