@@ -7,27 +7,6 @@ void coop_endLevel();
 #include "maps/global_scripts/global_common.scr"
 #include "maps/global_scripts/global_playerLoadout.scr"
 
-string coop_string_weapon1;
-string coop_string_weapon2;
-string coop_string_weapon3;
-string coop_string_weapon4;
-string coop_string_weapon5;
-string coop_string_weapon6;
-string coop_string_weapon7;
-string coop_string_weapon8;
-string coop_string_weapon9;
-string coop_string_weapon10;
-string coop_string_weapon11;
-string coop_string_weapon12;
-string coop_string_weapon13;
-string coop_string_weapon14;
-string coop_string_weapon15;
-
-vector coop_vector_spawnOrigin0;
-vector coop_vector_spawnOrigin1;
-float coop_float_spawnAngle0;
-float coop_float_spawnAngle1;
-
 
 void coop_justEntered()
 {
@@ -95,10 +74,17 @@ return;
 
 void main()
 {
-coop_float_spawnAngle1 = 180;
-coop_float_spawnAngle0 = 0;
-coop_vector_spawnOrigin1 = '1000 100 400';
-coop_vector_spawnOrigin0 = '0 0 100';
+//coop_vector_spawnOrigins, Spawn Players on those locations, at map start
+	coop_vector_spawnOrigin1 = '-680 188 192';
+ 	coop_vector_spawnOrigin2 = '-680 38 192';
+	coop_vector_spawnOrigin3 = '-800 188 192';
+	coop_vector_spawnOrigin4 = '-800 38 192';
+	coop_vector_spawnOrigin5 = '-900 188 192';
+	coop_vector_spawnOrigin6 = '-900 38 192';
+	coop_vector_spawnOrigin7 = '-1100 188 192';
+	coop_vector_spawnOrigin8 = '-1100 38 192';
+	
+	coop_float_spawnAngle0 = 1;
 
     waitForPlayer();
 
@@ -154,7 +140,8 @@ coop_vector_spawnOrigin0 = '0 0 100';
 
 void end_level()
 {
-	stuffcmd( "disconnect" );
+	//stuffcmd( "disconnect" );
+	thread coop_endLevel();
 }
 
 void coop_endLevel()
