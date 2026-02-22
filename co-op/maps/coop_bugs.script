@@ -10,6 +10,10 @@ void openDustyDoor();
 void blowWallBackToBombs1Show();
 void towerToggleFf();
 void setOnDamageThread(entity e,string sThread);
+void connectTheseNodes();
+void connectNodesSecret();
+void transportManager(entity ePlayer);
+void moveTriggerToAllowDetection(entity eTrigger, string sDir, float fDistance);
 void coop_justDied(); //[b607]
 void coop_endLevel();
 
@@ -53,6 +57,9 @@ void main()
 {
 	soundtrack( "music/m5l1b.mus" );
 	
+	//disable Site-to-site transport
+	$world.setFloatVar("globalCoop_noTransportAllowed",1);
+	
 //set Weapons for this level
 	coop_string_weapon1 = "models/weapons/worldmodel-Phaser-stx.tik";
 	coop_string_weapon2 = "models/weapons/worldmodel-Tricorder-stx.tik";
@@ -60,8 +67,9 @@ void main()
 	cache("models/weapons/worldmodel-CompressionRifle.tik");
 	cache("models/weapons/worldmodel-BurstRifle.tik");
 	$world.farplane_cull( 1 );//0
-	$world.farplane(3600);//5600,3400
+	$world.farplane(4000);//5600,3400
 	$world.farplane_fog(1);
+	$world.entity_fade_dist( 6000 );
 	
 	$pyramide_codePunisher.setStringVar("uservar1","killmessage $$CrushedByTrap$$"); //[b60021] Chrissstrahl - moved to loc file
 	$pyramid_tilesPuzzleCrusher.setStringVar("uservar1","killmessage $$CrushedByTrap$$"); //[b60021] Chrissstrahl - moved to loc file
@@ -139,6 +147,10 @@ void main()
 	thread globalCoop_objectives_update("InComplete",2,1);//State,Item,ShowIt right now
 //relocate player to current work in progress location
 
+	//now that the web is gone connect nodes
+	ai_disconnectNodes("pyramid_stairsBugsSpawner3_node1","pyramid_stairsBugsSpawner3_node2");	
+	ai_disconnectNodes("pyramid_stairsBugsSpawner3_node3","pyramid_stairsBugsSpawner3_node4");	
+
 //$player.origin('2796 -2544 400'); //bug pod
 //$player.origin('2506 -12096 30'); //ente transp.pad
 //$player.origin('19805 -4411 -500'); //pyramid code door
@@ -170,7 +182,13 @@ void pyramid_tilesPuzzleCrusherDamaged()
 //started by the co-op mod it self, every time a new player enters the level
 void coop_justEntered()
 {
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
 	thread lights_newPlayer();
+	
+	if(doesEntityExist(ePlayer)){
+		thread transportManager(ePlayer);
+	}
 }
 
 //handle stuff that is suppose to happen if player spawns/respawns
@@ -184,7 +202,7 @@ void coop_justSpawned()
 	ePlayer.removeAttachedModelByTargetname("patternEnhancer_"+ePlayer.getRawTargetname());
 	
 	if(globalCoop_check_existingLivingEntity(ePlayer))
-	{
+	{	
 		ePlayer.immobilize(1);
 	//player did respawn
 		if( vectorLength( coop_vector_respawnOrigin1 - ePlayer.getOrigin() ) < 100 )
@@ -273,10 +291,7 @@ void campWebBlockadeDestroyed()
 //when blocking web has been destroyed, connect pathnodes, 
 {
 	globalCoop_level_remove($web3Viewmode);
-	//hm, dono if it works at all...
-	//connectPathnodes("campInside","campOutside");
-	ai_connectNodes("campInside","campOutside");
-	
+
 	float fBugs,fCurrentPlayers,fAngle;
 	vector vOrigin;
 	
@@ -313,6 +328,9 @@ void campWebBlockadeDestroyed()
 		}
 		spawn("actor","model","models/char/bug_male.tik","origin",""+vOrigin,"angle",""+fAngle);
 	}
+	
+	//needed to reposition the pathnodes - also removed door marker and targeting of each other
+	ai_connectNodes("campInside","campOutside");
 }
 
 void lockedDoor()
@@ -540,6 +558,133 @@ void pyramid_dimensionalGateUsed()
 	$pyramid_dimensionalGateOrigin.rotateYDown(90);
 	$pyramid_dimensionalGateOrigin.moveleft(50);
 	$pyramid_dimensionalGateOrigin.time(5);
+}
+
+void connectTheseNodes()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(!doesEntityExist(eTrigger)){
+		return;
+	}
+	string sNode1;
+	string sNode2;
+	string sNode3;
+	string sNode4;
+	sNode1 = eTrigger.getStringVar("uservar1");
+	sNode2 = eTrigger.getStringVar("uservar2");
+	sNode2 = eTrigger.getStringVar("uservar3");
+	sNode2 = eTrigger.getStringVar("uservar4");
+	
+	if(sNode1 != "" && sNode2 != ""){
+		ai_connectNodes(sNode1, sNode2 );
+	}
+	if(sNode3 != "" && sNode4 != ""){
+		ai_connectNodes(sNode3, sNode4 );
+	}
+}
+
+void connectNodesSecret()
+{
+	ai_connectNodes("$secretEntr","$secretExit2");
+	ai_connectNodes("$secretEntr","$secretExit1");
+}
+
+void transportManager(entity ePlayer)
+//------------------------------------------------------------------------------
+//detect if a player can be transported to or not
+//Location Enterprise y pos < -10582
+//------------------------------------------------------------------------------
+{
+	vector vPlayerPos;
+	float iLastStatus;
+	float iLastDebug;
+	float __iEnterpriseAreaNum__;
+	float iCurrentAreaNum;
+	vector vLocationEnterprise;
+	iLastStatus = -1;
+	vLocationEnterprise = '0 -10582 0';
+	__iEnterpriseAreaNum__ = 99;
+	
+	while(doesEntityExist(ePlayer)){
+		if(ePlayer.getHealth() <= 0 || globalCoop_check_playerSpectator(ePlayer) == 1){
+			iCurrentAreaNum = 0;
+			if(iLastStatus == __iEnterpriseAreaNum__){
+				ePlayer.setFloatVar("!insideTransportArea_active",0);
+				wait(0.2); //it takes a moment until player respawns use this as a pause
+			}
+		}
+		else{
+			vPlayerPos = ePlayer.getOrigin();
+		
+			//player is on the enterprise
+			if( vPlayerPos_y < vLocationEnterprise_y){
+				ePlayer.setFloatVar("!insideTransportArea_active",__iEnterpriseAreaNum__);
+				iCurrentAreaNum = __iEnterpriseAreaNum__;
+			}
+			//player else where - make sure player is not inside any trigger before we reset
+			else{				
+				if(	globalCoop_check_isEntityInsideOfEntity(ePlayer,$patternenhancer0Trigger, 0) != 1 && 
+					globalCoop_check_isEntityInsideOfEntity(ePlayer,$patternenhancer1Trigger, 0) != 1 &&
+					globalCoop_check_isEntityInsideOfEntity(ePlayer,$patternenhancer2Trigger, 0) != 1 &&
+					globalCoop_check_isEntityInsideOfEntity(ePlayer,$patternenhancer3Trigger, 0) != 1 )
+				{
+					iCurrentAreaNum = 0;
+					ePlayer.setFloatVar("!insideTransportArea_active",0);
+				}
+			
+			}
+		}
+		
+		/*
+		float fDebug;
+		fDebug = ePlayer.getFloatVar("!insideTransportArea_active");
+		if(iLastDebug != fDebug){
+			iLastDebug = fDebug;
+			ePlayer.hudprint("AREA: "+iLastStatus+" - "+fDebug+"\n");	
+		}
+		*/
+		
+		iLastStatus = iCurrentAreaNum;
+		wait(0.1);
+	}
+}
+
+void moveTriggerToAllowDetection(entity eTrigger, string sDir, float fDistance)
+//------------------------------------------------------------------------------
+//Moves a trigger away and brings it back
+//Fixes:  player that is moved inside a trigger by script will not be detected by that trigger
+//------------------------------------------------------------------------------
+{
+	vector vOrigPos;
+	vector vNewPos;
+	if(doesEntityExist(eTrigger)){
+		if(fDistance <= 0){
+			fDistance = 1000;
+		}	
+		vOrigPos = eTrigger.getOrigin();
+		vNewPos = vOrigPos;
+		if(sDir == "up"){
+			vNewPos_z += (vNewPos_z + fDistance);
+		}
+		if(sDir == "left"){
+			vNewPos_y += (vNewPos_y + fDistance);
+		}
+		if(sDir == "right"){
+			vNewPos_y += (vNewPos_y + (fDistance * -1));
+		}
+		else{
+			vNewPos_z += (vNewPos_z + (fDistance * -1));
+		}
+		
+		eTrigger.origin(vNewPos);
+		//$player0.hudprint(""+vNewPos+"\n");
+		globalCoop_main_waitAFrame();
+		globalCoop_main_waitAFrame();
+		globalCoop_main_waitAFrame();
+		//$player0.hudprint(""+vOrigPos+"\n");
+		eTrigger.origin(vOrigPos);
+	}
 }
 
 //------------------------------------------------------------------------------

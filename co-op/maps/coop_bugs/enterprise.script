@@ -154,17 +154,21 @@ void enterprise_beamPlayer(entity ePlayer)
 		if(globalCoop_check_existingLivingEntity(ePlayer))
 		{
 			thread globalCoop_level_warpEntityToVectorSafty(ePlayer,enterprise_beamPlayerReturnVector(ePlayer));
+			
+			thread moveTriggerToAllowDetection($patternenhancer0Trigger,"down",300);
+			
 			ePlayer.immobilize(0);
 			ePlayer.dropToFloor(50);
 			globalCoop_main_waitAFrame();
 			if(globalCoop_check_existingLivingEntity(ePlayer))
 			{
-				ePlayer.displayEffect("TransportIn","Federation");
+				ePlayer.displayEffect("TransportIn","Federation");				
 				wait(2);
 				if(globalCoop_check_existingLivingEntity(ePlayer))
 				{
 					ePlayer.takedamage();
 					ePlayer.resetState();
+					ePlayer.anim("idle");
 				}
 			}
 			
@@ -454,11 +458,6 @@ void enterprise_amory()
 		
 		if(float_armoryCompUsed == 1 && float_armoryBurstUsed == 1 && float_objective_beamDown < 2){
 			$enterprise_beamTrigger0.missionobjective(1);
-			$enterprise_beamTrigger1.missionobjective(1);
-			$enterprise_beamTrigger2.missionobjective(1);
-			$enterprise_beamTrigger3.missionobjective(1);
-			$enterprise_beamTrigger4.missionobjective(1);
-			$enterprise_beamTrigger5.missionobjective(1);
 		}
 	}
 }
@@ -856,28 +855,7 @@ void enterprise_sickbayResurectPlayerReturnToSeat()
 //animates the doctor to walk to the player and heal him
 {
 
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-//add test here spawn each model and remember last, check all 5 beds
-
+//add test here spawn each model and remember last, check all 6 beds
 //check is there somone else that needs help ?
 	float	fSickbed = 1;	
 	entity	eModel,
@@ -898,9 +876,11 @@ void enterprise_sickbayResurectPlayerReturnToSeat()
 		fSickbed++;
 	}
 //return to seat
-	$stevenson.walkto("$sickbay_seat","walk");
+	$stevenson.walkto("$sickbay_stuff1","walk");
+	//$stevenson.walkto("$sickbay_stuff2","walk");
+	//$stevenson.walkto("$sickbay_stuff3","walk");
 	waitFor($stevenson);
-	enterprise_sickbayResurectPlayerReturnToSeatSitdown();
+	//enterprise_sickbayResurectPlayerReturnToSeatSitdown();
 }
 
 void enterprise_sickbayResurectPlayerReturnToSeatSitdown()
@@ -908,7 +888,6 @@ void enterprise_sickbayResurectPlayerReturnToSeatSitdown()
 {
 	if(!enterprise_sickbayResurecting)
 	{
-		$stevenson.warpto("$sickbay_seat");//failsafe, when blocked
 		$stevenson.origin('435 -11721 0');
 		thread globalCoop_level_warpEntityToVectorSafty($stevenson,$stevenson.getOrigin());//if player is blocking, make sure ai and player do not get stuck
 		//$stevenson.anim("ent-seta_sit-scan");

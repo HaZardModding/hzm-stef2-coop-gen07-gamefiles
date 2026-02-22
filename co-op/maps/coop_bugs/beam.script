@@ -16,6 +16,7 @@ void beam_meUp()
 		eTrigger.setcustomshader("transport");
 		wait(2.6);
 		globalCoop_level_remove(eTrigger);
+		
 	//keep track of the dead ppl
 		float_deadBeamed++;
 	}

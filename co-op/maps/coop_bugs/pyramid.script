@@ -4,7 +4,7 @@ void pyramid_stairsFallingWallPice()
 	$pyramid_fallingWallPice.moveto($pyramid_fallingWallPiceLand);
 	$pyramid_fallingWallPice.time(0.25);
 	$pyramid_fallingWallPice.rotateY(150);
-	thread globalCoop_level_onBlock($pyramid_fallingWallPice,"pyramid_stairsFallingWallPice_kill");
+	//thread globalCoop_level_onBlock($pyramid_fallingWallPice,"pyramid_stairsFallingWallPice_kill"); //dosen't work gets the object stuck
 	wait(0.22);
 	vector vOrigin;
 	vOrigin = $pyramid_fallingWallPiceLand.getOrigin();
@@ -148,6 +148,10 @@ void pyramid_stairsBugs()
 	$pyramid_stairsBugsSpawner2.setspawngroupID(02);
 	$pyramid_stairsBugsSpawner2.setspawngroupdeaththread("pyramid_stairsBugsSpawnEnable");
 	$pyramid_stairsBugsSpawner2.spawnnow();
+	
+	//now that the web is gone connect nodes
+	ai_connectNodes("pyramid_stairsBugsSpawner3_node1","pyramid_stairsBugsSpawner3_node2");	
+	ai_connectNodes("pyramid_stairsBugsSpawner3_node3","pyramid_stairsBugsSpawner3_node4");	
 }
 
 void pyramid_stairsBugsSpawnEnable()

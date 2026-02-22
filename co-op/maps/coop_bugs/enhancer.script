@@ -17,8 +17,8 @@ void enhancer_Area(){
 		}
 		
 		if(globalCoop_check_existingLivingEntity(ePlayer)){
-			if(ePlayer.getFloatVar("playerInSideArea") == 0){
-				ePlayer.setFloatVar("playerInSideArea",fArea);
+			if(ePlayer.getFloatVar("!insideTransportArea_active") == 0){
+				ePlayer.setFloatVar("!insideTransportArea_active",fArea);
 				ePlayer.setStringVar("enhancherAreaTriggerName",eTrigger.getRawTargetname());
 				thread enhancer_AreaManagePlayer(ePlayer,eTrigger);
 			}
@@ -49,7 +49,7 @@ void enhancer_AreaManagePlayer(entity ePlayer, entity eTrigger)
 				if(!globalCoop_check_isEntityInsideOfEntity(ePlayer,eTrigger,0))
 				{
 					ePlayer.setStringVar("beamAreaTrigger","");	
-					ePlayer.setFloatVar("playerInSideArea",0);
+					ePlayer.setFloatVar("!insideTransportArea_active",0);
 					globalCoop_huds_Remove(ePlayer,"coop_pEArea");
 					//thread globalCoop_player_makeSolidASAP(ePlayer);
 					return;
@@ -68,7 +68,7 @@ void enhancer_AreaManagePlayer(entity ePlayer, entity eTrigger)
 	{
 		ePlayer.setStringVar("beamAreaTrigger","");	
 		ePlayer.removehud("coop_pEArea");
-		ePlayer.setFloatVar("playerInSideArea",0);
+		ePlayer.setFloatVar("!insideTransportArea_active",0);
 		globalCoop_huds_Remove(ePlayer,"coop_pEArea");
 		//thread globalCoop_player_makeSolidASAP(ePlayer);
 	}

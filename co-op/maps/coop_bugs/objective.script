@@ -3,11 +3,6 @@ void objective_gearUpComplete()
 {
 	globalCoop_objectives_update("complete",1,1);//State,Item,ShowIt right now	
 	$enterprise_beamTrigger0.missionobjective(0);
-	$enterprise_beamTrigger1.missionobjective(0);
-	$enterprise_beamTrigger2.missionobjective(0);
-	$enterprise_beamTrigger3.missionobjective(0);
-	$enterprise_beamTrigger4.missionobjective(0);
-	$enterprise_beamTrigger5.missionobjective(0);
 	
 	$fakeBomb0Symbol.missionobjective(1);
 }
