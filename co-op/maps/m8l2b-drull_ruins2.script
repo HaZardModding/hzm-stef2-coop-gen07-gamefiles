@@ -721,8 +721,8 @@ void cinematicShuttleFly_Skipthread()
 void triggerBattleBegin()
 {
 	//hzm coop mod chrissstrahl - adapt health to player count
-	$predator.health((1801 * globalCoop_return_integerPlayersQuantity(1)));
-	$predator.maxbosshealth((1801 * globalCoop_return_integerPlayersQuantity(1)));
+	//$predator.health((1801 * globalCoop_return_integerPlayersQuantity(1)));
+	//$predator.maxbosshealth((1801 * globalCoop_return_integerPlayersQuantity(1)));
 
 	$predator.rendereffects( "+shadow" );
 	$predator.archetype ( "Predator" );
