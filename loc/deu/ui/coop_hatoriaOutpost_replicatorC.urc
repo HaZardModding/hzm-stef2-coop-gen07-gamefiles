@@ -5,7 +5,7 @@ align center
 hideDuringLoad
 depth 0.1
 noescape 1
-noresize 1
+//noresize 1
 fullscreen 0
 showcommand "ui_failurereason 0\n"
 showcommand "use Knife;ui_showmouse\n"
