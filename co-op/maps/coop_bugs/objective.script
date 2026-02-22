@@ -78,6 +78,22 @@ void objective_liftDudeSurviveFailed()
 	globalCoop_objectives_update("failed",6,1);//State,Item,ShowIt right now	
 }
 
+void objective_pyramidTrapsTricorder()
+{
+	globalCoop_objectives_update("incomplete",7,1);//State,Item,ShowIt right now
+}
+
+void objective_pyramidInvestigateObject()
+{
+	//update this only once - it is hooked into a trigger that is meant to be constantly triggered by players
+	if(float_objective_investigate){
+		return;
+	}
+	float_objective_investigate=1;
+	globalCoop_objectives_update("incomplete",8,1);//State,Item,ShowIt right now
+	
+	$pyramid_callVolumeVisual.missionobjective(1);
+}
 
 
 

@@ -20,6 +20,7 @@ float	float_blowTreeCounter,
 		float_objective_beamDown,
 		float_objective_gearUp,
 		float_objective_bomb,
+		float_objective_investigate,
 		float_armoryFirstUse,
 		float_armoryBurstUsed,
 		float_armoryCompUsed;

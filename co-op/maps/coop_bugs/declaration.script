@@ -38,6 +38,8 @@ void objective_buildPeFieldComplete();
 void objective_liftDudeSurvive();
 void objective_liftDudeSurviveComplete();
 void objective_liftDudeSurviveFailed();
+void objective_pyramidTrapsTricorder();
+void objective_pyramidInvestigateObject();
 //SINGLEPLAYER
 void singleplayer_quickSave();
 void singleplayer_Save();
@@ -79,11 +81,14 @@ void bugplants_eat();
 void staudamm_hintBug();
 void staudamm_playerFiguredTheWay();
 //PYRAMID
+void pyramid_stairsFallingWallPice();
+void pyramid_stairsFallingWallPice_kill();
 void pyramid_arrivedAtPunisherTrap();
 void pyramid_secretDoor1Open();
 void pyramid_removeSymbol();
 void pyramid_stairsBugs();
 void pyramid_stairsBugsSpawn();
+void pyramid_stairsBugsSpawnEnable();
 void pyramid_codeEntred();
 void pyramid_tilesPuzzleCrusher();
 void pyramid_brikUsed();

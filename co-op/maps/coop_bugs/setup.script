@@ -90,6 +90,10 @@ globalCoop_main_waitAFrame();
 	
 	$pyramid_brigSecretDoor_spawner.bind($pyramid_brigSecretDoor);
 	
+//secret
+	//was nonsolid to allow the paths to connect
+	$hzmSec.solid();
+	
 	if(!cvar_bool_multiplayer)
 	{
 		$pyramid_callVolumeVisual.remove();

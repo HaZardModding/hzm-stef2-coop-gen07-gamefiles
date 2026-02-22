@@ -4,6 +4,7 @@ void pyramid_stairsFallingWallPice()
 	$pyramid_fallingWallPice.moveto($pyramid_fallingWallPiceLand);
 	$pyramid_fallingWallPice.time(0.25);
 	$pyramid_fallingWallPice.rotateY(150);
+	thread globalCoop_level_onBlock($pyramid_fallingWallPice,"pyramid_stairsFallingWallPice_kill");
 	wait(0.22);
 	vector vOrigin;
 	vOrigin = $pyramid_fallingWallPiceLand.getOrigin();
@@ -12,6 +13,22 @@ void pyramid_stairsFallingWallPice()
 	spawn("sfx","model","models/fx/fx-explosion-debris-rocks-dust-gray.tik","origin",""+vOrigin,"scale","0.45");
 	spawn("sfx","model","models/fx/fx-explosion-debris-rocks-dust-gray.tik","origin",""+vOrigin,"scale","1");
 	$pyramid_fallingWallPice.rotateY(0);
+}
+
+void pyramid_stairsFallingWallPice_kill()
+{
+	entity eTrigger;
+	eTrigger = getCurrentEntity();
+	if(doesEntityExist(eTrigger)){
+		entity ePlayer;
+		ePlayer = eTrigger.getLastActivatingEntity();
+		if(doesEntityExist(ePlayer)){
+			if(ePlayer.getHealth() > 0){
+				ePlayer.kill();
+				//thread globalCoop_level_onBlock($pyramid_fallingWallPice,"shuttleBlockKill");
+			}
+		}
+	}
 }
 
 
@@ -28,6 +45,9 @@ void pyramid_stairsFragileDamaged()
 void pyramid_arrivedAtPunisherTrap()
 {
 	$patternenhancer12.missionobjective(0);
+	
+	//Objective - watch out for traps, use tricorder
+	thread objective_pyramidTrapsTricorder();
 
 	float fBeam;
 	entity eButton;
@@ -123,22 +143,28 @@ void pyramid_stairsBugs()
 //spawn bugs
 {
 	$pyramid_stairsBugsSpawner1.setspawngroupID(02);
-	$pyramid_stairsBugsSpawner1.setspawngroupdeaththread("pyramid_stairsBugsSpawn");
+	$pyramid_stairsBugsSpawner1.setspawngroupdeaththread("pyramid_stairsBugsSpawnEnable");
 	$pyramid_stairsBugsSpawner1.spawnnow();
-//more than 2 players on the server
-	if(1 /* globalCoop_return_integerPlayersQuantity(2) > 2 */ )//all=0,living=1,noSpec=2
-	{
-		$pyramid_stairsBugsSpawner2.setspawngroupID(02);
-		$pyramid_stairsBugsSpawner2.setspawngroupdeaththread("pyramid_stairsBugsSpawn");
-		$pyramid_stairsBugsSpawner2.spawnnow();
-	}
+	$pyramid_stairsBugsSpawner2.setspawngroupID(02);
+	$pyramid_stairsBugsSpawner2.setspawngroupdeaththread("pyramid_stairsBugsSpawnEnable");
+	$pyramid_stairsBugsSpawner2.spawnnow();
 }
 
-void pyramid_stairsBugsSpawn()
+void pyramid_stairsBugsSpawnEnable()
 //this respawns the bug, when the bug dies it calls this thread
 {
-	$pyramid_stairsBugsSpawner1.spawnnow();
-	$pyramid_stairsBugsSpawner2.spawnnow();
+	$pyramid_stairsBugsTrigger.triggerable();
+}
+void pyramid_stairsBugsSpawn()
+//Changed, so they get only triggered if a player is standing there
+{
+	if(!doesEntityExist($pyramid_stairsBug1)){
+		$pyramid_stairsBugsSpawner1.spawnnow();
+	}
+
+	if(!doesEntityExist($pyramid_stairsBug2)){
+		$pyramid_stairsBugsSpawner2.spawnnow();
+	}
 }
 
 void pyramid_codeEntred()

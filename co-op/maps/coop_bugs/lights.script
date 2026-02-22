@@ -22,7 +22,6 @@ void lights_newPlayer()
 //this will update the dynamic lights
 //otherwise the player will not see the Lights active
 {
-
 	if(lights_waitingForUpdate)
 	{
 		return;
