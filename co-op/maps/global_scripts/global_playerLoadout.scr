@@ -118,43 +118,49 @@ void globalLoadout_SecretWeapon()
 	//--- check the game variables and give the weapons
 	
 	//hzm coop mod chrissstrahl - make sure this works even on while jumping accros missions and maps
-	float fFind;
-	string sMapname;	
-	sMapname = globalCoop_return_cleanMapName((getCvar("mapname")));
-	
 	float fMax;
+	string sMapname;
+	string s1;
+	string s2;
 	string sConstructed;
-	fMax = globalCoop_return_stringLength(sMapname);
+	sMapname	= globalCoop_return_cleanMapName((getCvar("mapname")));
+	fMax		= globalCoop_return_stringLength(sMapname);
 	
+	//hzm coop mod chrissstrahl - not a coop_ or singleplayer campaign map
 	if(fMax < 5){
 		return;
 	}
-	
-	string s1;
-	string s2;
-	//hzm coop mod chrissstrahl - get first char and diget [0] [1]
-	s1 = globalCoop_return_stringFromWithLength(sMapname,0,1);
-	s1 = globalCoop_return_stringToLower(s1);//ie.: map M11L or m11l
-	s2 = globalCoop_return_stringFromWithLength(sMapname,1,1);
-	if( s1 != "m" || coop_isDigit(s2) != 1 ){
+
+	//hzm coop mod chrissstrahl - get first char it should start with a "m" (ie.: m1l1a-borg_sphere)
+	s1 = globalCoop_return_stringToLower(globalCoop_return_stringFromWithLength(sMapname,0,1));
+	if(s1 != "m"){
 		return;
 	}
 	
-	string sConstructed;
+	//hzm coop mod chrissstrahl - get second char it should be a number
+	s2 = globalCoop_return_stringFromWithLength(sMapname,1,1);
+	if(!coop_isDigit(s2)){
+		return;
+	}
 	
-	//hzm coop mod chrissstrahl - get first diget of mission [1]
+	//hzm coop mod chrissstrahl - extract mission number
+	//hzm coop mod chrissstrahl - remember first mission number
+	//hzm coop mod chrissstrahl - check if third char is also a diget or not
+	//hzm coop mod chrissstrahl - check if there is a "l" in the mapname
+	//Excluded on purpose:
+	//	m6-exterior
+	//	m6-deck16_engineering
+	//	m6-deck8_redalert
+	//	m6-deck1_bridge_redalert
 	sConstructed = s2;
-	
 	s1 = globalCoop_return_stringFromWithLength(sMapname,2,1);
 	s2 = globalCoop_return_stringFromWithLength(sMapname,3,1);
-	//hzm coop mod chrissstrahl - get second diget of mission [2]
-	if( coop_isDigit(s1) == 1 ){
+	if(coop_isDigit(s1)){
 		sConstructed = sConstructed + s1;
 		if( globalCoop_return_stringToLower(s2) != "l"){
 			return;
 		}
 	}
-	//hzm coop mod chrissstrahl - check if there is no l
 	else if( globalCoop_return_stringToLower(s1) != "l" ){
 		return;
 	}
