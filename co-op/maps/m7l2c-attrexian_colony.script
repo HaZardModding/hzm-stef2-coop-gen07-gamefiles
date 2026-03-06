@@ -1695,6 +1695,23 @@ void coop_waitForTeam()
 	thread levelEnding();
 }
 
+void coop_justDied()
+//------------------------------------------------------------------------------
+//fixes players respawning in lift and getting the lift stuck
+//------------------------------------------------------------------------------
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){ return; }
+	
+	//force respawn player at spawn location when dieing at the lift location
+	vector vPlayerPos;
+	vPlayerPos = ePlayer.getOrigin();
+	if(vPlayerPos_x > -200 && vPlayerPos_x < 240 && vPlayerPos_y > 3600) {
+		ePlayer.setFloatVar("coop_respawnAtRespawnpoint",1);
+	}
+}
+
 void coop_endLevel()
 //------------------------------------------------------------------------------
 //Level end
