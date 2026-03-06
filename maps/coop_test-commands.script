@@ -2,6 +2,7 @@
 //Used to test all coop script functions
 //if they are working properly
 
+#include "co-op/matrix/main.scr"
 #include "co-op/matrix/weld.scr"
 #include "co-op/matrix/barrel.scr"
 
@@ -47,6 +48,8 @@ void coop_playerStats2Test();
 void coop_playerStats3Test();
 void coop_playerStats4Test();
 void coop_cameraTest();
+void coop_givePhaserToAll();
+void coop_giveTricorderToAll();
 
 void coop_testWaterbarrel();
 void coop_testWaterbarrelOnDamage();
@@ -870,4 +873,15 @@ void coop_languageTest()
 void tooglePathNodes()
 {
 	stuffcmd("toggle ai_showRoutes");
+}
+
+void coop_giveTricorderToAll()
+{
+	//give to all but only to inventoty, do not make use directly
+	thread globalCoop_player_giveAll("models/weapons/worldmodel-tricorder-stx.tik",-1);
+}
+void coop_givePhaserToAll()
+{
+	//give to all but only to inventoty, do not make use directly
+	thread globalCoop_player_giveAll("models/weapons/worldmodel-phaser-stx.tik",-1);
 }
