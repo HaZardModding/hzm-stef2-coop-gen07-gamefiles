@@ -1,4 +1,4 @@
-menu "coop_pEnhancer" 256 128 NONE 1
+menu "coop_pEnhancer" 256 160 NONE 1
 bgcolor 0 0 0 0
 align left top
 direction from_bottom 0.5
@@ -12,23 +12,24 @@ resource
 widget
 {
 	name "coop_pEnhancerImg"
-    rect 0 80 64 32
+    rect 0 105 96 48
     fgcolor 			0.80 0.20 0.20 0.00
     bgcolor 			0.00 0.00 0.00 0.00
     borderstyle "NONE"
 	shader sysimg/hud/coop_12.tga
 }
+
 resource 
 Label
 {
-    name "coop_pEnhancerTitle"
-    title "Pattern-Enhancer"
-	rect 0 58 254 30
+    name "coop_pEnhancerAmount"
+    title "1 x"
+	rect 0 80 254 30
 	fgcolor				1 1 1 1
     bgcolor 			0 0 0 0
     borderstyle "NONE"
     
-   	font serpentinemedium-12
+   	font serpentinemedium-10
 	horizontaljustify left
 	verticaljustify top
 	textshadowcolor 0 0 0 1
@@ -38,18 +39,19 @@ Label
 resource 
 Label
 {
-    name "coop_pEnhancerAmount"
-    title ""
-	rect 68 86 60 32
+    name "coop_pEnhancerTitle"
+    title "Pattern-Enhancer"
+	rect 25 80 254 30
 	fgcolor				1 1 1 1
-    bgcolor 			0 1 0 0
+    bgcolor 			0 0 0 0
     borderstyle "NONE"
     
-   	font serpentinemedium-12
+   	font serpentinemedium-10
 	horizontaljustify left
 	verticaljustify top
 	textshadowcolor 0 0 0 1
 	hovertextshadowcolor 0 0 0 1
 }
+
 end.
 
