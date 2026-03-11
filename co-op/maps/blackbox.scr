@@ -1,8 +1,6 @@
 //[b60011] Chrissstrahl - changed so we can use this for all sorts of stuff that needs scripting or gamecode
 void main();
 void setupRes();
-void applayRes();
-void applayDpiException();
 void countdownRes();
 void keepRes();
 void endRes();
@@ -147,44 +145,6 @@ setVectorVarForRes("10240x4320",112.98,-1);
 	if(fPrintMeResForMenuFile == 1){
 		return;
 	}
-	
-	waitForPlayer();
-
-	//make sure there is no other playa - won't kick host
-	float fKickOmat;
-	float fKickMax;
-	fKickMax = getCvarInt("sv_maxclients");
-	for(fKickOmat=0;fKickOmat<fKickMax;fKickOmat++){
-		stuffcmd("kick "+fKickOmat+"\n");
-	}
-
-	if(getCvarInt("r_fullscreen") != 0){
-		stuffcmd("set r_fullscreen 0;vid_restart");
-		wait(3);
-		stuffcmd("exec co-op/cfg/resdetect.cfg");
-		return;
-	}
-	
-	iScreenHeight = getScreenHeight();
-	iScreenWidth = getScreenWidth();
-	sRes = iScreenWidth+"x"+iScreenHeight;	
-	
-	//check if dpi scaling is active/on for the game
-	if(getDpiScale() > 100){
-		if(!hasDpiException()){
-			wait(0.3);
-			stuffcmd("pushmenu coop_dpi\n");
-			return;
-		}
-	}
-	
-	applayRes();
-}
-
-void applayDpiException()
-{
-	setDpiException();
-	stuffcmd("quit\n");
 }
 
 void applayRes()
@@ -248,7 +208,7 @@ void endRes()
 
 void getMapFromServerIp()
 {
-	getMapByServerIp();
+	//getMapByServerIp();
 	wait(0.1);
 	stuffcmd("disconnect\n");
 }
@@ -268,9 +228,9 @@ void setVectorVarForRes(string sData,float fFov,float iRmode)
 	if(iRmode == -1){
 		string B4,Lore;
 		float iPos;
-		iPos	= globalCoop_return_integerStringFind(sData,"x");
-		B4		= globalCoop_return_stringFromWithLength(sData,0,iPos);
-		Lore	= globalCoop_return_stringFromWithLength(sData,(iPos + 1),999);
+		//iPos	= globalCoop_return_integerStringFind(sData,"x");
+		//B4		= globalCoop_return_stringFromWithLength(sData,0,iPos);
+		//Lore	= globalCoop_return_stringFromWithLength(sData,(iPos + 1),999);
 		sPrint	= sPrint+";set r_customHeight "+Lore+";set r_customwidth "+B4;
 	}	
 	sPrint = sPrint+"~\" "+iResPos+"\n";
