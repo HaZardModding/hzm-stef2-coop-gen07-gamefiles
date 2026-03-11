@@ -1,0 +1,139 @@
+menu "coop_mapVote" 640 480 FROM_BOTTOM 0.25
+fullscreen 1
+gamefocus
+depth 0.2
+hideDuringLoad
+align center
+borderstyle NONE
+bgcolor 0 0 0 0
+
+resource
+Widget
+{
+ rect 185 160 440 300
+ fgcolor 1 1 1 1
+ bgcolor 0 0 0 0.75
+}
+
+resource
+Widget
+{
+ name "coop_mapVoteImg"
+ rect 189 164 128 128
+ shader "sysimg/2d/default-map-screen.tga"
+}
+
+resource
+label
+{
+ title "Vote: Level - "
+ font serpentinemedium-16
+ horizontaljustify left
+ verticaljustify top
+ rect 318 164 400 36
+ fgcolor 1 1 1 1
+ bgcolor 0 0 0 0
+}
+
+resource
+Label
+{
+ title "0000"
+ name "coop_mapVoteCode"
+ font serpentinemedium-16
+ horizontaljustify left
+ verticaljustify top
+ rect 464 164 70 36
+ fgcolor 1 1 1 1
+ bgcolor 0 0 0 0
+}
+
+resource
+Label
+{
+ title "Votes:"
+ font serpentinemedium-16
+ horizontaljustify left
+ verticaljustify top
+ rect 318 230 226 36
+ fgcolor 0.8 0.8 0.8 1
+ bgcolor 0 0 0 0
+}
+
+resource
+Label
+{
+ title "/"
+ font serpentinemedium-16
+ horizontaljustify right
+ verticaljustify top
+ rect 420 230 20 36
+ fgcolor 1 1 1 1
+ bgcolor 1 1 0 0
+}
+
+resource
+Label
+{
+ title "00"
+ name "coop_mapVoteYes"
+ font serpentinemedium-16
+ horizontaljustify right
+ verticaljustify top
+ rect 380 230 50 36
+ fgcolor 0 1 0 1
+ bgcolor 0 1 0 0
+}
+
+resource
+Label
+{
+ title "00"
+ name "coop_mapVoteNo"
+ font serpentinemedium-16
+ horizontaljustify left
+ verticaljustify top
+ rect 440 230 50 36
+ fgcolor 1 0 0 1
+ bgcolor 1 0 0 0
+}
+
+resource
+Label
+{
+ title "999"
+ name "coop_mapVoteTimer"
+ font serpentinemedium-24
+ horizontaljustify left
+ verticaljustify top
+ rect 548 154 80 50
+ fgcolor 1 1 1 1
+ bgcolor 0 1 0 0
+}
+
+resource
+Label
+{
+ title "coop_levelNamehere$savetoken=3312?and=More"
+ name "coop_mapVoteName"
+ font serpentinemedium-12
+ horizontaljustify left
+ verticaljustify top
+ rect 318 196 306 32
+ fgcolor 0 1 0 1
+ bgcolor 1 0 0 0
+}
+
+resource
+Label
+{
+ title "Level Description text"
+ name "coop_mapVoteDescr"
+ font serpentinemedium-12
+ horizontaljustify left
+ verticaljustify top
+ rect 189 290 435 142
+ fgcolor 1 1 1 0.8
+ bgcolor 0 0 0 0
+}
+end.
