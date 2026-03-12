@@ -5,6 +5,68 @@ void keypadEnvLvlSelection_clear(entity eTrigger, string sBaseName, string sText
 void keypadEnvLvlSelection_abbort(entity eTrigger, entity ePlayer, string sBaseName);
 void keypadEnvLvlSelection_manage(entity eTrigger, entity ePlayer);
 void keypadEnvLvlSelection_addMap(string sNumber, string sMapname, string sDescr);
+void keypadEnvLvlSelection_updateHud(string sLevel,string sCode,string sDescr);
+void keypadEnvLvlSelection_updateHudTimer(float iMaxClients);
+void keypadEnvLvlSelection_updateHudVotes(float iMaxClients);
+float integer_keypadEnvLvlSelection_voteTime = 30;
+float integer_keypadEnvLvlSelection_timeLeft;
+float integer_keypadEnvLvlSelection_yesVotes;
+float integer_keypadEnvLvlSelection_noVotes;
+
+void keypadEnvLvlSelection_voteFailed()
+{
+	integer_keypadEnvLvlSelection_timeLeft=1;
+}
+void keypadEnvLvlSelection_votePassed()
+{
+	integer_keypadEnvLvlSelection_timeLeft=1;
+}
+void keypadEnvLvlSelection_voted(float iVoted)
+{
+	if(iVoted){
+		integer_keypadEnvLvlSelection_yesVotes++;
+	}
+	else{
+		integer_keypadEnvLvlSelection_noVotes++;
+	}
+}
+
+
+void keypadEnvLvlSelection_voteStarted(entity ePlayer)
+{
+	float iMaxClients;
+	iMaxClients = getCvarInt("sv_maxclients");
+	
+	float fPlayerIdInUse;
+	for(fPlayerIdInUse=0;fPlayerIdInUse<iMaxClients;fPlayerIdInUse++){
+		ePlayer = getEntity("*"+fPlayerIdInUse);
+		if(doesEntityExist(ePlayer)){
+			sendClientCommand(ePlayer,"ui_addHud coop_mapVote");
+		}
+	}
+	
+	integer_keypadEnvLvlSelection_timeLeft = integer_keypadEnvLvlSelection_voteTime;
+	while(integer_keypadEnvLvlSelection_timeLeft > 0) {
+		integer_keypadEnvLvlSelection_timeLeft--;
+		for(fPlayerIdInUse=0;fPlayerIdInUse<iMaxClients;fPlayerIdInUse++){
+			ePlayer = getEntity("*"+fPlayerIdInUse);
+			if(doesEntityExist(ePlayer)){
+				ePlayer.coop_widgetCmd("coop_mapVoteTimer","title", ""+integer_keypadEnvLvlSelection_timeLeft);
+			}
+		}
+		
+		thread keypadEnvLvlSelection_updateHudVotes(iMaxClients);
+		
+		wait(1);
+	}
+	
+	for(fPlayerIdInUse=0;fPlayerIdInUse<iMaxClients;fPlayerIdInUse++){
+		ePlayer = getEntity("*"+fPlayerIdInUse);
+		if(doesEntityExist(ePlayer)){
+			sendClientCommand(ePlayer,"ui_removeHud coop_mapVote");
+		}	
+	}
+}
 
 
 void keypadEnvLvlSelection_addMap(string sNumber, string sMapname, string sDescr)
@@ -13,29 +75,147 @@ void keypadEnvLvlSelection_addMap(string sNumber, string sMapname, string sDescr
 	$world.setStringVar("lvl_"+sNumber+"_descr",sDescr);
 }
 
-void keypadEnvLvlSelection_updateHud()
+void keypadEnvLvlSelection_updateHud(string sLevel,string sCode,string sDescr)
 {
 	string sMapImg;
-	string sCode;
-	float iYesVotes;
 	float iMaxClients;
 	iMaxClients = getCvarInt("sv_maxclients");
 	
-	sCode = "8080";
+	integer_keypadEnvLvlSelection_timeLeft = integer_keypadEnvLvlSelection_voteTime;
+	integer_keypadEnvLvlSelection_yesVotes = 1;
+	integer_keypadEnvLvlSelection_noVotes = 0;
+
 
 	entity ePlayer;
 	float fPlayerIdInUse;
 	for(fPlayerIdInUse=0;fPlayerIdInUse<iMaxClients;fPlayerIdInUse++){
 		ePlayer = getEntity("*"+fPlayerIdInUse);
 		if(doesEntityExist(ePlayer)){
-			sendClientCommand(ePlayer,"ui_removeHud coop_lvlSelection");
-			sendClientCommand(ePlayer,"globalwidgetcommand coop_lvlSelectionImg shader "+sMapImg);
-			sendClientCommand(ePlayer,"globalwidgetcommand coop_lvlSelectionCode title "+sCode);
-			sendClientCommand(ePlayer,"globalwidgetcommand coop_lvlSelectionYes title "+iYesVotes);
-			sendClientCommand(ePlayer,"globalwidgetcommand coop_lvlSelectionTimer title 123");
-			sendClientCommand(ePlayer,"globalwidgetcommand coop_lvlSelectionName title LVLNAme");
-			sendClientCommand(ePlayer,"globalwidgetcommand coop_lvlSelectionDescr title Deskr");
-			sendClientCommand(ePlayer,"ui_addHud coop_lvlSelection");
+			sendClientCommand(ePlayer,"ui_removeHud coop_mapVote");
+			ePlayer.coop_widgetCmd("coop_mapVoteImg","shader","sysimg/mapshots/"+sLevel);
+			ePlayer.coop_widgetCmd("coop_mapVoteCode","title",""+sCode);
+			ePlayer.coop_widgetCmd("coop_mapVoteName","title",""+sLevel);
+			ePlayer.coop_widgetCmd("coop_mapVoteDescr","labeltext",""+sDescr);
+			ePlayer.coop_widgetCmd("coop_mapVoteYes","title","1");
+			ePlayer.coop_widgetCmd("coop_mapVoteNo","title","0");
+			ePlayer.setFloatVar("keypadEnvLvlSelection_heldKey",0);
+			ePlayer.setStringVar("keypadEnvLvlSelection_heldKeyName","");
+			
+			sendClientCommand(ePlayer,"ui_addHud coop_mapVote");
+		}	
+	}
+}
+
+void keypadEnvLvlSelection_updateHudTimer(float iMaxClients)
+{
+return;
+	entity ePlayer;
+	float fPlayerIdInUse;
+	float fLastTime;
+	float bUpdateTime;
+	float bHeldKey;
+	string sKeyname;
+	string sKeynameLast;
+	float iKeyHeldIterations;
+	float bVoted;
+	float fLastMsg;
+	string sVoted;
+	while(integer_keypadEnvLvlSelection_timeLeft > -1)
+	{
+		bUpdateTime = 0;
+		if(fLastTime + 1 < getLevelTime()){
+			fLastTime = getLevelTime();
+			integer_keypadEnvLvlSelection_timeLeft--;
+			bUpdateTime = 1;
+		}
+		
+		for(fPlayerIdInUse=0;fPlayerIdInUse<iMaxClients;fPlayerIdInUse++) {
+			ePlayer = getEntity("*"+fPlayerIdInUse);
+			if(doesEntityExist(ePlayer)){
+				if(bUpdateTime)	{
+					ePlayer.coop_widgetCmd("coop_mapVoteTimer","title", ""+integer_keypadEnvLvlSelection_timeLeft);
+				}
+				
+				//check key presses
+				if(ePlayer.coop_checkUse()) {
+					bHeldKey = 1;
+					sKeyname = "use";
+				}
+				else if(ePlayer.coop_checkCrouch()) {
+					bHeldKey = 1;
+					sKeyname = "crouch";
+				}
+				else{
+					bHeldKey = 0;
+					sKeyname = "";
+				}
+				
+				iKeyHeldIterations = 0;
+				
+				if(bHeldKey) {
+					sKeynameLast		= ePlayer.getStringVar("keypadEnvLvlSelection_heldKeyName");
+					iKeyHeldIterations	= ePlayer.getFloatVar("keypadEnvLvlSelection_heldKey");
+					bVoted				= ePlayer.getFloatVar("keypadEnvLvlSelection_voted");
+					if(!bVoted) {
+						if(sKeyname == sKeynameLast) {
+							iKeyHeldIterations++;
+							if(iKeyHeldIterations > 10) {
+								
+								ePlayer.setFloatVar("keypadEnvLvlSelection_voted",1);
+								
+								//yes vote
+								if(sKeyname == "use"){
+									sVoted = "You voted YES\n";
+									integer_keypadEnvLvlSelection_yesVotes++;
+								}
+								//no vote
+								else{
+									sVoted = "You voted NO\n";
+									integer_keypadEnvLvlSelection_noVotes++;
+								}
+								ePlayer.hudPrint(sVoted+"\n");
+								ePlayer.setFloatVar("keypadEnvLvlSelection_lastMsg",getLevelTime());
+								
+								thread keypadEnvLvlSelection_updateHudVotes(iMaxClients);
+							}
+						}
+						else{
+							iKeyHeldIterations = 0;
+							ePlayer.setStringVar("keypadEnvLvlSelection_heldKeyName",sKeyname);
+						}
+					}
+					else{
+						//print message
+						fLastMsg = ePlayer.getFloatVar("keypadEnvLvlSelection_lastMsg");
+						if(fLastMsg + 2 < getLevelTime()){
+							ePlayer.hudprint("Already Voted\n");
+							ePlayer.setFloatVar("keypadEnvLvlSelection_lastMsg",getLevelTime());
+						}
+					}
+				}
+				ePlayer.setFloatVar("keypadEnvLvlSelection_heldKey",iKeyHeldIterations);
+			}
+		}
+		wait(0.05);
+	}
+	
+	for(fPlayerIdInUse=0;fPlayerIdInUse<iMaxClients;fPlayerIdInUse++){
+		ePlayer = getEntity("*"+fPlayerIdInUse);
+		if(doesEntityExist(ePlayer)){
+			sendClientCommand(ePlayer,"ui_removeHud coop_mapVote");
+		}	
+	}
+}
+
+void keypadEnvLvlSelection_updateHudVotes(float iMaxClients)
+{
+	entity ePlayer;
+	float fPlayerIdInUse;
+	for(fPlayerIdInUse=0;fPlayerIdInUse<iMaxClients;fPlayerIdInUse++){
+		ePlayer = getEntity("*"+fPlayerIdInUse);
+		if(doesEntityExist(ePlayer)){
+			ePlayer.coop_widgetCmd("coop_mapVoteYes","title",""+integer_keypadEnvLvlSelection_yesVotes);
+			ePlayer.coop_widgetCmd("coop_mapVoteNo","title",""+integer_keypadEnvLvlSelection_noVotes);
 		}	
 	}
 }
@@ -386,11 +566,15 @@ void keypadEnvLvlSelection_manage(entity eTrigger, entity ePlayer)
 									sDescr = $world.getstringVar("lvl_"+sInputChain+"_descr");
 									
 									if(sLevel == ""){
-										$player0.hudprint("ENTERED: "+sInputChain+" - INVALID CODE\n");
+ePlayer.hudprint("ENTERED: "+sInputChain+" - INVALID CODE\n");
 									}else{
-										thread keypadEnvLvlSelection_updateHud();
+//ePlayer.callvote("coop_scriptvote");
+ePlayer.callvote("map",sLevel);
+										//ePlayer.setFloatVar("keypadEnvLvlSelection_voted",1);
+										//ePlayer.setFloatVar("keypadEnvLvlSelection_lastMsg",getLevelTime());
 										
-										$player0.hudprint("ENTERED: "+sInputChain+":"+sLevel+":"+sDescr+"\n");
+										thread keypadEnvLvlSelection_updateHud(sLevel,sInputChain,sDescr);										
+//ePlayer.hudprint("ENTERED: "+sInputChain+":"+sLevel+":"+sDescr+"\n");
 										eTrigger.setFloatVar("keypadEnvSolved",1);
 									}
 									sInputChain = "";

@@ -1,0 +1,212 @@
+void main();
+void keypad1_solved();
+void coop_justSpawned();
+
+
+#include "co-op/matrix/keypadEnvLvlSelection.scr"
+
+void main()
+{
+	keypadEnvLvlSelection_addMap("0000","m0-intro","$$PrologueSave$$");
+	
+	keypadEnvLvlSelection_addMap("0001","m1l1a-borg_sphere","$$BorgSphereLevel1aDesc$$");
+	keypadEnvLvlSelection_addMap("0002","m1l1b-borg_sphere","$$BorgSphereLevel1bDesc$$");
+	keypadEnvLvlSelection_addMap("0003","m1l1c-borg_sphere","$$BorgSphereLevel1cDesc$$");
+	keypadEnvLvlSelection_addMap("0004","m1l2a-borg_sphere","$$BorgSphereLevel2aDesc$$");
+	keypadEnvLvlSelection_addMap("0005","m1l2b-borg_sphere","$$BorgSphereLevel2bDesc$$");
+	keypadEnvLvlSelection_addMap("0006","m1l2c-borg_sphere","$$BorgSphereLevel2cDesc$$");
+	keypadEnvLvlSelection_addMap("0007","m1l3-borg_boss","$$BorgBossLevelDesc$$");
+	
+	keypadEnvLvlSelection_addMap("0008","m2l0-sfa","$$StarfleetAcademyLevel0Desc$$");
+	keypadEnvLvlSelection_addMap("0009","m2l1-sfa","$$StarfleetAcademyLevel1Desc$$");
+	keypadEnvLvlSelection_addMap("0010","m2l2-sfa","$$StarfleetAcademyLevel2Desc$$");
+	
+	keypadEnvLvlSelection_addMap("0011","ent-deck8$igm=1?tr=0?h=0?ts=0?r=0?hm=0?m5unlocked=0","$$IGM$$");
+	keypadEnvLvlSelection_addMap("0012","m3l1a-forever","$$DallasLevel1aDesc$$");
+	keypadEnvLvlSelection_addMap("0013","m3l1b-forever","$$DallasLevel1bDesc$$");
+	keypadEnvLvlSelection_addMap("0014","m3l2-forever","$$DallasLevel2Desc$$");
+	
+	keypadEnvLvlSelection_addMap("0015","ent-deck1_bridge$igm=2?tr=0?h=0?ts=0?r=0?hm=0?m5unlocked=0","$$IGM$$");
+	keypadEnvLvlSelection_addMap("0016","m4l1a-attrexian_station","$$AttrexianStationLevel1aDesc$$");
+	keypadEnvLvlSelection_addMap("0017","m4l1b-attrexian_station","$$AttrexianStationLevel1bDesc$$");
+	keypadEnvLvlSelection_addMap("0018","m4l2-attrexian_station","$$AttrexianStationLevel2bDesc$$");
+	
+	keypadEnvLvlSelection_addMap("0019","ent-deck8$igm=3?tr=0?h=0?ts=0?r=0?hm=0?m5unlocked=0","$$IGM$$");
+	keypadEnvLvlSelection_addMap("0020","m5l1a-drull_ruins1","$$DrullRuinsLevel1aDesc$$");
+	keypadEnvLvlSelection_addMap("0021","m5l1b-drull_ruins1","$$DrullRuinsLevel1bDesc$$");
+	keypadEnvLvlSelection_addMap("0022","m5l2a-drull_ruins1","$$DrullRuinsLevel2aDesc$$");
+	keypadEnvLvlSelection_addMap("0023","m5l2b-drull_ruins1","$$DrullRuinsLevel2bDesc$$");
+	keypadEnvLvlSelection_addMap("0024","m5l2c-drull_ruins1","$$DrullRuinsLevel2cDesc$$");
+	
+	keypadEnvLvlSelection_addMap("0025","ent-deck1_bridge$igm=4?tr=0?h=0?ts=0?r=0?m5unlocked=0","$$IGM$$");
+	keypadEnvLvlSelection_addMap("0026","m6l0-attack","$$M6l0$$");
+	keypadEnvLvlSelection_addMap("0027","m6-deck8_redalert","$$M6Deck8_red$$");
+	keypadEnvLvlSelection_addMap("0028","m6-deck16_engineering","$$M6Deck16$$");
+	keypadEnvLvlSelection_addMap("0029","m6-deck1_bridge_redalert","$$M6Deck1Bridge_red$$");
+	keypadEnvLvlSelection_addMap("0030","m6-exterior","$$M6Ext$$");
+	
+	keypadEnvLvlSelection_addMap("0031","m7l1a-attrexian_colony","$$AttrexianColonyLevel1aDesc$$");
+	keypadEnvLvlSelection_addMap("0032","m7l1b-attrexian_colony","$$AttrexianColonyLevel1bDesc$$");
+	keypadEnvLvlSelection_addMap("0033","m7l2a-attrexian_colony","$$AttrexianColonyLevel2aDesc$$");
+	keypadEnvLvlSelection_addMap("0034","m7l2b-attrexian_colony","$$AttrexianColonyLevel2bDesc$$");
+	keypadEnvLvlSelection_addMap("0035","m7l2c-attrexian_colony","$$AttrexianColonyLevel2cDesc$$");
+	
+	keypadEnvLvlSelection_addMap("0036","m8l1a-drull_ruins2","$$DrullRuins2Level1aDesc$$");
+	keypadEnvLvlSelection_addMap("0037","m8l1b-drull_ruins2","$$DrullRuins2Level1bDesc$$");
+	keypadEnvLvlSelection_addMap("0038","m8l2a-drull_ruins2","$$DrullRuins2Level2aDesc$$");
+	keypadEnvLvlSelection_addMap("0039","m8l2b-drull_ruins2","$$DrullRuins2Level2bDesc$$");
+	
+	keypadEnvLvlSelection_addMap("0040","ent-deck8$igm=6?tr=0?h=0?ts=0?r=0?hm=0?m5unlocked=0","$$IGM$$");
+	keypadEnvLvlSelection_addMap("0041","m9l1a-klingon_base","$$KlingonBaseLevel1aDesc$$");
+	keypadEnvLvlSelection_addMap("0042","m9l1b-klingon_base","$$KlingonBaseLevel1bDesc$$");
+	keypadEnvLvlSelection_addMap("0043","m9l2-klingon_base","$$KlingonBaseLevel2Desc$$");
+
+	keypadEnvLvlSelection_addMap("0044","ent-deck1_bridge$igm=7?tr=0?h=0?ts=0?r=0?m5unlocked=0","$$IGM$$");
+	keypadEnvLvlSelection_addMap("0045","m10l1-romulan_installation","$$RomulanInstallation1Desc$$");
+	keypadEnvLvlSelection_addMap("0046","m10l2a-romulan_installation","$$RomulanInstallation2aDesc$$");
+	keypadEnvLvlSelection_addMap("0047","m10l2b-romulan_installation","$$RomulanInstallation2bDesc$$");
+	
+	keypadEnvLvlSelection_addMap("0048","ent-deck8$igm=8?tr=0?h=0?ts=0?r=0?hm=0?m5unlocked=0","$$IGM$$");
+	keypadEnvLvlSelection_addMap("0049","m11l1a-drull_ruins3","$$DrullRuins3Level1aDesc$$");
+	keypadEnvLvlSelection_addMap("0050","m11l2a-drull_ruins3","$$DrullRuins3Level2aDesc$$");
+	keypadEnvLvlSelection_addMap("0051","m11l3a-drull_ruins3_boss","$$DrullRuins3BossLevel3aDesc$$");
+	keypadEnvLvlSelection_addMap("0052","m11l3b-drull_ruins3_boss","$$DrullRuins3BossLevel3bDesc$$");
+	
+	keypadEnvLvlSelection_addMap("0053","m12-end","$$M12End$$");
+	keypadEnvLvlSelection_addMap("0054","credits","$$EF2Credits$$");
+	
+	//training maps
+	keypadEnvLvlSelection_addMap("0101","ent-training1","$$TrainingLevel1Desc$$");
+	keypadEnvLvlSelection_addMap("0102","ent-training2","$$TrainingLevel2Desc$$");
+	keypadEnvLvlSelection_addMap("0103","ent-training3","$$TrainingLevel3Desc$$");
+	keypadEnvLvlSelection_addMap("0104","ent-training4","$$TrainingLevel4Desc$$");
+	
+	//secret levels
+	keypadEnvLvlSelection_addMap("0111","secret1","$$Secret1$$");
+	keypadEnvLvlSelection_addMap("0112","secret2","$$Secret2$$");
+	keypadEnvLvlSelection_addMap("0113","ef2_minigame2","$$Minigame$$");
+	keypadEnvLvlSelection_addMap("0114","secret3","$$Secret3$$");
+	keypadEnvLvlSelection_addMap("0115","zoo1","$$Zoo1$$");
+	keypadEnvLvlSelection_addMap("0116","testmorph","$$Zoo2$$");
+	
+	//aftermath
+	keypadEnvLvlSelection_addMap("0201","coop_aftermath1","Start of the Aftermath Mod\nYou are to find the Spy that escaped into this city.");
+	keypadEnvLvlSelection_addMap("0202","coop_aftermath2","Aftermath Mod 2");
+	keypadEnvLvlSelection_addMap("0203","coop_aftermath3","Aftermath Mod 3");
+	keypadEnvLvlSelection_addMap("0204","coop_aftermath4","Aftermath Mod 4");
+	keypadEnvLvlSelection_addMap("0205","coop_aftermath5","Aftermath Mod 5");
+	keypadEnvLvlSelection_addMap("0206","coop_aftermath6","Aftermath Mod 6");
+	
+	//return of the empty crown
+	keypadEnvLvlSelection_addMap("0301","coop_rotec1","Return of the Empty Crown Mod 1");
+	keypadEnvLvlSelection_addMap("0302","coop_rotec2","Return of the Empty Crown Mod 2");
+	keypadEnvLvlSelection_addMap("0303","coop_rotec3","Return of the Empty Crown Mod 3");
+	keypadEnvLvlSelection_addMap("0304","coop_rotec4","Return of the Empty Crown Mod 4");
+	keypadEnvLvlSelection_addMap("0305","coop_rotec5","Return of the Empty Crown Mod 5");
+	keypadEnvLvlSelection_addMap("0306","coop_rotec6","Return of the Empty Crown Mod 6");
+	keypadEnvLvlSelection_addMap("0307","coop_rotec7","Return of the Empty Crown Mod 7");
+	keypadEnvLvlSelection_addMap("0308","coop_rotec8","Return of the Empty Crown Mod 8");
+	keypadEnvLvlSelection_addMap("0309","coop_rotec9","Return of the Empty Crown Mod 9");
+	
+	//a gate two birds and the beautiful sky
+	keypadEnvLvlSelection_addMap("0401","coop_gbs1","A Gate two Birds and the beautiful Sky Mod 1");
+	keypadEnvLvlSelection_addMap("0402","coop_gbs2","A Gate two Birds and the beautiful Sky Mod 2");
+	keypadEnvLvlSelection_addMap("0403","coop_gbs3","A Gate two Birds and the beautiful Sky Mod 3");
+	keypadEnvLvlSelection_addMap("0404","coop_gbs4","A Gate two Birds and the beautiful Sky Mod 4");
+	keypadEnvLvlSelection_addMap("0405","coop_gbs5","A Gate two Birds and the beautiful Sky Mod 5");
+	keypadEnvLvlSelection_addMap("0406","coop_gbs6","A Gate two Birds and the beautiful Sky Mod 6");
+	keypadEnvLvlSelection_addMap("0407","coop_gbs7","A Gate two Birds and the beautiful Sky Mod 7");
+	keypadEnvLvlSelection_addMap("0408","coop_gbs8","A Gate two Birds and the beautiful Sky Mod 8");
+	keypadEnvLvlSelection_addMap("0409","coop_gbs9","A Gate two Birds and the beautiful Sky Mod 9");
+	keypadEnvLvlSelection_addMap("0410","coop_gbs10","A Gate two Birds and the beautiful Sky Mod 10");
+	keypadEnvLvlSelection_addMap("0411","coop_gbs11","A Gate two Birds and the beautiful Sky Mod 11");
+	keypadEnvLvlSelection_addMap("0412","coop_gbscredits","A Gate two Birds and the beautiful Sky Mod Credits");
+	
+	
+	//custom levels
+	keypadEnvLvlSelection_addMap("1301","coop_ente","Custom Mission - Enterprise E");
+	keypadEnvLvlSelection_addMap("1302","coop_blArena","Custom Mission - Bat'leth Arena - NPC Arena Fight");
+	keypadEnvLvlSelection_addMap("1303","coop_bugs","Custom Mission - Bugs - Exploration and Rescue Mission");
+	keypadEnvLvlSelection_addMap("1304","coop_hatoriaOutpost","Custom Mission - H'atoria Outpost - Exploration Mission");
+	keypadEnvLvlSelection_addMap("1305","coop_iceStation","Custom Mission - Ice Station - Inflitration and Recovery Mission");
+	keypadEnvLvlSelection_addMap("1306","coop_rescueChell","Custom Mission - Rescue Chell - Exploration and Rescue Mission");
+	keypadEnvLvlSelection_addMap("1307","coop_paradiseIsland","Custom Mission - Infiltration Mission Part 1");
+	keypadEnvLvlSelection_addMap("1308","coop_paradiseIsland2","Custom Mission - Infiltration Mission Part 2");
+	keypadEnvLvlSelection_addMap("1309","coop_equinox","Custom Mission - Defence Mission");
+	keypadEnvLvlSelection_addMap("1310","coop_coreattack","Custom Mission - Defence Mission");
+	keypadEnvLvlSelection_addMap("1311","coop_section31l1","Custom Mission - Defence Mission");
+	keypadEnvLvlSelection_addMap("1312","coop_greatDekuTree","Custom Mission - Exploration Mission");
+	keypadEnvLvlSelection_addMap("1313","coop_ep1-platform1","Custom Mission - Exploration and Rescue Mission");
+	
+	
+	
+	//hide holodeck doors in the model - they are visible from inside the holodeck
+	$holodeck.surface("material16","+nodraw" );
+}
+
+void coop_justVoteStarted()
+//------------------------------------------------------------------------------
+//Started by the coop mod on event: vote started
+//------------------------------------------------------------------------------
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	//if(doesEntityExist(ePlayer)){
+		//ePlayer.hudprint("vote started\n");
+	//}
+	
+	keypadEnvLvlSelection_voteStarted(ePlayer);
+}
+
+void coop_justVoted()
+//------------------------------------------------------------------------------
+//Started by the coop mod on event: player voting
+//------------------------------------------------------------------------------
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(doesEntityExist(ePlayer)){
+		float iVoted;
+		iVoted = ePlayer.getFloatVar("_playerHasVoted");
+		if(iVoted == 2){
+			iVoted = 0;
+		}
+		thread keypadEnvLvlSelection_voted(iVoted);
+	}
+}
+
+void coop_justVoteFailed()
+//------------------------------------------------------------------------------
+//Started by the coop mod on event: vote failed
+//------------------------------------------------------------------------------
+{
+	//$player0.hudprint("Vote Failed\n");
+	thread keypadEnvLvlSelection_voteFailed();
+}
+
+void coop_justVotePassed()
+//------------------------------------------------------------------------------
+//Started by the coop mod on event: vote failed
+//------------------------------------------------------------------------------
+{
+	//$player0.hudprint("Vote Passed\n");
+	thread keypadEnvLvlSelection_votePassed();
+}
+
+void coop_justSpawned()
+//------------------------------------------------------------------------------
+//Started by the coop mod on event: player spawns/respawns
+//------------------------------------------------------------------------------
+{
+	entity ePlayer;
+	ePlayer = getCurrentEntity();
+	if(!doesEntityExist(ePlayer)){ return; }
+	wait(1);
+	sendClientCommand(ePlayer,"ui_removehud coop_class");
+	sendClientCommand(ePlayer,"ui_removehud coop_radar");
+}
+
+void keypad1_solved()
+{
+	$player0.hudprint("solved\n");
+}
